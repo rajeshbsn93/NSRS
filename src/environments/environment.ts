@@ -10,8 +10,8 @@ export const environment = {
   secretPasswordKey: 'Eth@n01',
 
   //Keys for Encrypt and Decrypt
-  enc_Key: '37ZA3D89B64C115122DF9178C8R99c1x',
-  ency_iv: '213A26DBB4A358C5',
+  enc_Key: '7739826323491690',
+  ency_iv: '7739826323491690',
 };
 
 /*
