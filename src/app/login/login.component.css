@@ -1,0 +1,56 @@
+
+
+.login{
+padding: 114px 0 68px;
+background: url(../../assets/images/login-bg.jpg)no-repeat center;
+background-size: cover;color: #707070;
+}
+.login h1{color: #707070;font-size: 31px;font-weight: 600;}
+.login h5{}
+
+.login .card{padding: 40px 112px;
+box-shadow: 0 3px 25px #00000021;
+border-radius: 15px;max-width: 912px;margin: 0 auto;}
+.login .nav-tabs{border-color: #ECECEC;margin-bottom: 40px;max-width: 100%;
+margin-left: auto;
+margin-right: auto;
+width: 450px;}
+.login .nav-tabs .nav-item{width: 50%;text-align: center;}
+.login .nav-tabs .nav-link{margin-bottom: 0;border: 0;position: relative;color: #DCDCDC;
+font-size: 18px;padding-bottom: 15px;}
+.login .nav-tabs .nav-link::after{content: '';position: absolute;bottom: -1px;width: 100%;
+left: 0;
+height: 2px;
+background: transparent;}
+.login .nav-tabs .nav-link.active{color: #707070;}
+.login .nav-tabs .nav-link.active::after{background: #EF7E19;}
+.login .form-control{border-color: #ECECEC;height: 50px;outline: none;box-shadow: none;}
+.login .form-control::placeholder{color: #D5D5D5;}
+.login .forget{color: #000000;margin-top: 3px;display: block;text-decoration: none;text-transform: capitalize;}
+.login .regHere{color: #000000;}
+.login .regHere a{color: #095AC5;text-decoration: none;}
+
+.inputIcon{position: relative;}
+.inputIcon .form-control{padding-left: 40px;}
+.inputIcon i{position: absolute;
+    top: 17px;
+    left: 15px;color: #D5D5D5;}
+.captcha{background-color: #F5F5F5;padding: 10px;margin-right: 25px;min-width: 250px;
+color: #A8A8A8;font-size: 25px;}
+.refreshcaptcha{color: #D5D5D5;font-size: 24px;}
+
+
+@media(max-width:991.8px){
+    .login .card{padding: 30px;}
+}
+@media(max-width:767.8px){
+    .captcha{margin-right: 10px;min-width: 190px;padding: 6px;}
+    .login h1{font-size: 22px;}
+    .login h5{font-size: 16px;}
+    .login .nav-tabs .nav-link{font-size: 15px;}
+    .login .form-control{height: 40px;}
+    .inputIcon i{top: 12px;}
+    .login{padding: 50px 35px;}
+    .login .forget{font-size: 14px;}
+}
+@media(max-width:575.8px){}

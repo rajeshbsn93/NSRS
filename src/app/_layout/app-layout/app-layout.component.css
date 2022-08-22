@@ -1,0 +1,114 @@
+.dashboard-wraper{padding-top: 85px;}
+.dashboard-content{margin-left: 240px;position: relative;transition: 300ms ease all;-webkit-backface-visibility: hidden;
+    backface-visibility: hidden;}
+
+.dashboard-headertop{border-bottom: 1px solid #EEEEEE;padding: 20px 0;position: relative;background: #fff;}
+.dhead-search{border: 1px solid #E4E4E4;
+    border-radius: 7px;font-size: 13px;}
+.dhead-search div{border-radius: 7px;}
+.dhead-search .form-control{height: 40px;border: 0;border-radius: 7px;box-shadow: none;}
+.dhead-search select{appearance: auto;}
+.dhead-search input{position: relative;}
+.dhead-search input::placeholder{color: #D4D4D4;}
+.dhead-search .headinput{padding-left: 30px;
+    position: relative;}
+.dhead-search .headinput::before{position: absolute;
+    content: "\f002";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #000;
+    left: 15px;
+    top: 12px;
+    font-size: 13px;}
+.dhead-search .headinput::after{position: absolute;
+    content: '';
+    width: 1px;
+    left: 5px;
+    background: #DFDFDF;
+    height: 19px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;}
+.duserlogin li{display: inline-block;}
+.duserlogin li a{color: #000;position: relative;font-size: 14px;}
+.duserlogin li.dropdown-user i.fa-user{width: 30px;height: 30px;line-height: 30px;border-radius: 50%;
+text-align: center;box-shadow: 0 0 10px #ccc;margin-right: 8px;color: #999;}
+.duserlogin .duser-sname{width: 28px;
+    height: 28px;
+    box-shadow: 0 3px 6px #00000029;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 900;}
+    .duserlogin  .notificationlbl{position: absolute;
+        top: -5px;
+        right: -10px;
+        background: #FF475D;
+        font-size: 9px;
+        border-radius: 50%;
+        color: #fff;
+        width: 17px;
+        height: 17px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;}
+.dmenu-goggle{font-size: 22px;color: inherit;margin-right: 10px;}
+
+.dashboard-menu{color: #ffffff;
+    position: fixed;
+    z-index: 1032;
+    top: 0;
+    height: 100%;
+    width: 240px;background: #000080;-webkit-backface-visibility: hidden;
+    backface-visibility: hidden;    transition: 300ms ease all;overflow-y: scroll;}
+.dashboard-menu::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+background-color: #F5F5F5;}
+.dashboard-menu::-webkit-scrollbar {width: 0px;background-color: #F5F5F5;}
+.dashboard-menu::-webkit-scrollbar-thumb {background-color: #F5F5F5;}
+.sidebarlogo-wrap{display: flex; align-items: center;min-height: 72px;
+    margin: 25px 0 40px;justify-content: center;
+}
+.sidebarlogo-wrap a{background: #fff;
+    border-radius: 7px;
+    padding: 0px 14px;
+    display: block;
+    text-decoration: none;
+    font-family: 'Antonio', sans-serif;
+    font-size: 48px;
+    color: #000080;transition: .5s;}
+.sidemenu-wraper .navbar-nav{}
+.sidemenu-wraper .navbar-nav li{}
+.sidemenu-wraper .navbar-nav li a{padding: 12px 20px;display: block;text-decoration: none;color: #C5C5FF;font-size: 12px;margin: 0 10px;
+    border-radius: 4px;}
+.sidemenu-wraper .navbar-nav li i{margin-right: 10px;}
+.sidemenu-wraper .navbar-nav li i::before{color: #C5C5FF;font-size: 15px;}
+.sidemenu-wraper .navbar-nav li a:hover,.sidemenu-wraper .navbar-nav li.active a{background-color: #fff;color: #000;}
+.sidemenu-wraper .navbar-nav li a:hover i::before,.sidemenu-wraper .navbar-nav li.active a i::before{color: #000080;}
+
+.sidebarClose span.menu-title{display: none;}
+.sidebarClose .dashboard-menu{width: 80px;}
+.sidebarClose .sidebarlogo-wrap a{font-size: 25px;margin:0 10px;padding: 0px 8px;}
+.sidebarClose .dashboard-content{margin-left: 80px;}
+.sidebarClose .navbar-nav li a{border-radius: 10px;}
+.sidemenu-wraper .dropdown-menu{position: static !important;
+    transform: none !important;
+    background: #262681;
+    border-radius: 0;min-width: 100%;
+}
+.dropdown-toggle{position: relative;}
+.sidemenu-wraper .dropdown-toggle::after{float: right;
+    margin-top: 2px;
+    content: "\f107";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    border: 0;right: 10px;position: absolute;}
+    .sidemenu-wraper .dropdown-toggle.show::after{content: "\f106";}
+.sidemenu-wraper .navbar-nav li li{}
+.sidemenu-wraper .navbar-nav li li a{
+    background: transparent;
+    color: #fff;
+}
+.sidemenu-wraper .navbar-nav li li a i:before{color: #fff;}
+.sidemenu-wraper .navbar-nav li li a{}

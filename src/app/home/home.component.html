@@ -1,0 +1,148 @@
+<!--start slider-->
+<div class="homeslider">
+  <div class="container position-relative">
+    <div class="sliderTxt">
+      <h2>NATIONAL SPORTS REPOSITORY SYSTEM</h2>
+      <p>Digitally Empowering Indians Sports</p>
+      <a routerLink="/login" routerLinkActive="active" class="btn me-2">Get Started</a>
+      <!-- <a href="#login"data-bs-toggle="modal" data-bs-target="#login" class="btn ml-2">Sign Up</a> -->
+    </div>
+  </div>
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide>
+      <div class="item">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6 col-xl-5">
+            </div>
+            <div class="col-md-6 col-xl-7 imgsec">
+              <img src="assets/images/Bajrang.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template carouselSlide>
+      <div class="item">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-md-6 imgsec">
+              <img src="assets/images/banner-1.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template carouselSlide>
+      <div class="item">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-md-6 imgsec">
+              <img src="assets/images/banner-1.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+
+  <div class="counterrow">
+    <div class="container text-center">
+      <div class="midtitle mb-3 mb-lg-4 mb-xl-5">
+        <h2>REGISTRATIONS ON NSRS</h2>
+      </div>
+      <div class="row">
+        <div class="col-6 col-md-3 counter-box">
+          <div class="counting_img">
+            <img src="assets/images/athlete.png" alt="">
+          </div>
+          <div class="counting">{{countinData.total_Athlete}}</div>
+          <p>Athletes</p>
+        </div>
+
+        <div class="col-6 col-md-3 counter-box">
+          <div class="counting_img">
+            <img src="assets/images/coach.png" alt="">
+          </div>
+          <div class="counting">{{countinData.total_Coach}}</div>
+          <p>Coaches</p>
+        </div>
+
+        <div class="col-6 col-md-3 counter-box">
+          <div class="counting_img">
+            <img src="assets/images/sport_science_icon.svg" alt="">
+          </div>
+          <div class="counting">{{countinData.total_Academy}}</div>
+          <p>Acadmies</p>
+        </div>
+
+        <div class="col-6 col-md-3 counter-box">
+          <div class="counting_img">
+            <img src="assets/images/academy.png" alt="">
+          </div>
+          <div class="counting">{{countinData.total_SportsScientist}}</div>
+          <p>Sports Scientist</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--close slider-->
+
+
+
+<div class="aboutsec py-4 py-md-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pe-lg-4">
+        <img src="assets/images/about.png" class="img-fluid">
+      </div>
+      <div class="col-md-6">
+        <div class="midtitle mb-3">
+          <h2 class="text-uppercase">About of NSRS</h2>
+        </div>
+        <p class="text-p">National Sports Repository System (NSRS) is a digital MIS, which envisages to provide a
+          comprehensive digital solution for all the major stakeholders such as Athletes, Coaches, Sports Scientists,
+          Sports Training Centers, Federations and Administrators. It is an open platform of sports eco-system where
+          Athletes, Coaches and Academies can register themselves. On successful registration, an Unique number (KID -
+          Khelo India ID) is generated, which is used for accessing the NSRS.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--close about-section-->
+
+
+<div class="modal login-popup fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Welcome back! Please login to your account.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center"><a href="#" class="logo"><img src="assets/images/sai-logo.png"></a></div>
+        <form #loginForm="ngForm">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="UserId" name="username"
+              (keypress)="keyPressNumber($event)" [(ngModel)]="user.username">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Password" name="userpassword"
+              [(ngModel)]="user.userpassword">
+          </div>
+          <small (click)="encrypt()">{{encryptPwd}}</small> <br />
+          <small (click)="decrypt()">{{decryptPwd}}</small>
+          <div class="text-center">
+            <button type="submit" class="btn-default" (click)="login()">Login</button>
+            <button type="button" class="btn-default w-auto" (click)="encrypt()">Encrypt Password</button>
+            <button type="button" class="btn-default w-auto" (click)="decrypt()">Decrypt Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,359 @@
+<div class="dashboardContent py-4">
+    <div class="dashboard-toprow transfer-list row">
+        <div class="col-auto">
+            <a href="#">
+                <div class="icon"><span class="icon-athletes"></span></div>
+                <h6>TRANSFER/WEED OUT</h6>
+            </a>
+        </div>
+        <div class="col-auto">
+            <a href="#">
+                <div class="icon"><span class="icon-Coaches"></span></div>
+                <h6>TRANSFER/WEED OUT</h6>
+            </a>
+        </div>
+        <div class="col-auto">
+            <a href="#">
+                <div class="icon"><span class="icon-Insurance"></span></div>
+                <h6>TRANSFER/WEED OUT</h6>
+            </a>
+        </div>
+    </div>
+    <div class="dashboard-carousel mt-3 mt-lg-4">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide id="slideitem1">
+                <h5 class="text-center">ATHLETE</h5>
+                    <div class="item d-flex flex-wrap">
+                        <div class="icon"><span class="icon-athletes"></span></div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="totallbl">Total</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Males</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Females</span>
+                                <span class="total">3464</span>
+                            </li>
+                        </ul>
+                    </div>
+            </ng-template>
+            <ng-template carouselSlide id="slideitem2">
+                <h5 class="text-center bg-2">COACH</h5>
+                    <div class="item d-flex flex-wrap">
+                        <div class="icon bg-2"><span class="icon-Coaches"></span></div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="totallbl">Total</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Males</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Females</span>
+                                <span class="total">3464</span>
+                            </li>
+                        </ul>
+                    </div>
+            </ng-template>
+            <ng-template carouselSlide id="slideitem3">
+                <h5 class="text-center bg-3">SUPPORT STAFF</h5>
+                    <div class="item d-flex flex-wrap">
+                        <div class="icon bg-3"><span class="icon-Traing-Center"></span></div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="totallbl">Total</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Males</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Females</span>
+                                <span class="total">3464</span>
+                            </li>
+                        </ul>
+                    </div>
+            </ng-template>
+            <ng-template carouselSlide id="slideitem1">
+                <h5 class="text-center">ATHLETE</h5>
+                    <div class="item d-flex flex-wrap">
+                        <div class="icon"><span class="icon-athletes"></span></div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="totallbl">Total</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Males</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Females</span>
+                                <span class="total">3464</span>
+                            </li>
+                        </ul>
+                    </div>
+            </ng-template>
+            <ng-template carouselSlide id="slideitem2">
+                <h5 class="text-center bg-2">COACH</h5>
+                    <div class="item d-flex flex-wrap">
+                        <div class="icon bg-2"><span class="icon-athletes"></span></div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="totallbl">Total</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Males</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Females</span>
+                                <span class="total">3464</span>
+                            </li>
+                        </ul>
+                    </div>
+            </ng-template>
+            <ng-template carouselSlide id="slideitem3">
+                <h5 class="text-center bg-3">SUPPORT STAFF</h5>
+                    <div class="item d-flex flex-wrap">
+                        <div class="icon bg-3"><span class="icon-athletes"></span></div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="totallbl">Total</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Males</span>
+                                <span class="total">3464</span>
+                            </li>
+                            <li>
+                                <span class="totallbl">Females</span>
+                                <span class="total">3464</span>
+                            </li>
+                        </ul>
+                    </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+    <div class="dashboardmid-row">
+        <div class="row">
+            <div class="col-md-6 item">
+                <div class="card border-0">
+                     <h3 class="d-flex flex-wrap justify-content-between">
+                        Number of Athlete(s) being provided financial assistance
+                        <select class="form-control text-uppercase">
+                            <option>EXPORT</option>
+                            <option>Excel</option>
+                            <option>Pdf</option>
+                        </select>
+                    </h3>
+                    <div class="table-responsive customscrollbar">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>SPORTS DISIPLINE</th>
+                                    <th>CORE</th>
+                                    <th>DEV</th>
+                                    <th>KHELO INDIA</th>
+                                    <th>OTHERS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Archery</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>195</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Athletics</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>203</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Badminton</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>142</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Basketball</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>100</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Archery</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>195</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Athletics</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>203</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Badminton</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>142</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Basketball</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>100</td>
+                                    <td>0</td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 item">
+                <div class="card border-0">
+                    <h3 class="d-flex flex-wrap justify-content-between">
+                        Number of Coaches and Their Category
+                        <select class="form-control text-uppercase">
+                            <option>EXPORT</option>
+                            <option>Excel</option>
+                            <option>Pdf</option>
+                        </select>
+                    </h3>
+                    <div class="table-responsive customscrollbar">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>SPORTS DISIPLINE</th>
+                                    <th>CORE</th>
+                                    <th>DEV</th>
+                                    <th>KHELO INDIA</th>
+                                    <th>OTHERS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Archery</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>195</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Athletics</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>203</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Badminton</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>142</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Basketball</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>100</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Archery</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>195</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Athletics</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>203</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Badminton</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>142</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Basketball</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>100</td>
+                                    <td>0</td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboardmid-row dashboardbottom-row mt-3 mt-md-4">
+        <div class="row">
+            <div class="col-md-6 item">
+                <div class="card border-0">
+                    <h3 class="d-flex flex-wrap justify-content-between">FINANCIAL ASSISTANCE DISBURSED</h3>
+                    <highcharts-chart 
+      [Highcharts]="Highcharts"
+      [options]="chartOptions"
+      [(update)]="updateFlag"
+    
+      style="width: 100%; height: 250px; display: block;"
+    ></highcharts-chart>            
+                </div>
+            </div>
+            <div class="col-md-6 item">
+                <div class="card border-0">
+                    <h3 class="d-flex flex-wrap justify-content-between">
+                        <span>RECENT UPDATES</span> <a href="#"><i class="fa-solid fa-download"></i></a>
+                    </h3>
+                    <ul class="list-unstyled customscrollbar recent-update">
+                        <li>
+                            <div class="shortname">T</div>
+                            <h4><span>Himanshu(ATAA000M90) transferred from NCOE Lucknow to NCOE Bhopal w.e.f. 20.05.2022. </span><small>20 min ago</small></h4>
+                        </li>
+                        <li>
+                            <div class="shortname">W</div>
+                            <h4><span>Himanshu(ATAA000M90) transferred from NCOE Lucknow to NCOE Bhopal w.e.f. 20.05.2022. </span><small>20 min ago</small></h4>
+                        </li>
+                        <li>
+                            <div class="shortname">T</div>
+                            <h4><span>Himanshu(ATAA000M90) transferred from NCOE Lucknow to NCOE Bhopal w.e.f. 20.05.2022. </span><small>20 min ago</small></h4>
+                        </li>
+                        <li>
+                            <div class="shortname">W</div>
+                            <h4><span>Himanshu(ATAA000M90) transferred from NCOE Lucknow to NCOE Bhopal w.e.f. 20.05.2022. </span><small>20 min ago</small></h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    

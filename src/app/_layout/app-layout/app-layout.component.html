@@ -1,0 +1,126 @@
+<div class="dashboard-wraper" [class.sidebarClose]="sidebarToggle">
+    <div class="dashboard-header fixed-top">
+        <div class="dashboard-content">
+            <div class="dashboard-headertop px-3 d-flex align-items-center justify-content-between">
+                <div><a href="javascript:void(0)" (click)="toggleSidebar()" class="dmenu-goggle"><i class="fa fa-bars"></i></a></div>
+                <div class="d-flex">
+                    <div class="dhead-search d-flex">
+                        <div class="headselect">
+                            <select class="form-control">
+                                <option>All</option>
+                                <option>Athletes</option>
+                                <option>Coaches</option>
+                                <option>Coaches</option>
+                            </select>
+                        </div>
+                        <div class="headinput">
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </div>
+                    <div class="headertoplogo-wrap">
+                        <ul class="duserlogin mb-0">
+                            <li><a href="#"><i class="fa-solid fa-bell"></i> <span class="notificationlbl">06</span></a></li>
+                            <li class="dropdown dropdown-user nav-item"> <a class="dropdown-toggle nav-link" href="#" data-bs-toggle="dropdown"><span class="duser-sname">M</span> 
+                            </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="arrow_box_right"> <a class="dropdown-item" href="#"> Rajesh Kumar <br>
+                                    <small>rajesh@gmail.com</small> </a>
+                                <div class="dropdown-divider"></div> <a class="dropdown-item" href="chat-application.html"> Change password</a>
+                                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">
+                                    Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="dashboard-menu">
+        <div class="sidebarlogo-wrap">
+            <a href="#">NSRS</a>
+        </div>
+        <div class="sidemenu-wraper">
+            <ul class="navbar-nav">
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Home"></i> <span class="menu-title">DASHBOARD</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a  routerLink="/dashboard" routerLinkActive="active"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">SPORTS TRAINING...</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS TRAINING</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS TRAINING</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS TRAINING</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/athletes" routerLinkActive="active"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Coaches"></i>  <span class="menu-title">COACHES</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COACHES</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COACHES</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COACHES</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Insurance"></i>  <span class="menu-title">SPORTS SCIENTIST</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS SCIENTIST</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS SCIENTIST</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS SCIENTIST</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Assessment"></i>  <span class="menu-title">ASSESSMENT</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ASSESSMENT</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ASSESSMENT</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ASSESSMENT</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">COUNSELLING</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COUNSELLING</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COUNSELLING</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COUNSELLING</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">TOURNAMENT</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">TOURNAMENT</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">TOURNAMENT</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">TOURNAMENT</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">REPORT</span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">REPORT</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">REPORT</span></a></li>
+                        <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">REPORT</span></a></li>
+                    </ul>
+                </li>
+              </ul>
+        </div>
+    </aside>
+    <div class="dashboard-content applayout-content">
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

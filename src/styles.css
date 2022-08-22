@@ -1,0 +1,170 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import './assets/css/custom.css';
+body{font-family: 'Lato', sans-serif}
+
+.btn-blue{background-color: #000080;color: #fff;font-weight: bold;padding: 10px;}
+.btn-blue:hover{color: #000080;border-color: #000080;background-color: transparent;}
+
+@media(min-width:1200px) {
+    .container{max-width:1166px}    
+}
+
+/********Dashboard css*************/
+.transfer-list{}
+.transfer-list .col-auto a{display: flex;
+align-items: center; text-decoration: none;}
+.transfer-list .col-auto .icon{width: 33px;
+height: 30px;
+background: #FF475D;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 6px;
+margin-right: 12px;}
+.transfer-list .col-auto h6{margin: 0;
+font-size: 12px;
+color: #000;
+font-weight: bold;}
+.transfer-list .col-auto:nth-child(2) .icon{background: #FE853C;}
+.transfer-list .col-auto:nth-child(3) .icon{background: #207707;}
+.dashboardContent{padding: 0 10px;}
+.dashboard-carousel .owl-stage .owl-item{}
+.dashboard-carousel{position: relative;
+    padding: 0 40px;}
+.dashboard-carousel .owl-theme .owl-nav [class*=owl-]{position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #D1D1D1;
+    color: #000;margin: 0;}
+    .dashboard-carousel .owl-theme .owl-nav .owl-prev{left: -40px;}
+    .dashboard-carousel .owl-theme .owl-nav .owl-next{right: -40px;}
+
+    /***************Athlete Module Css Common******************************/
+    .table-striped{font-size: 14px;}
+    .table-striped>tbody>tr:nth-of-type(odd)>* {background-color: #fff;box-shadow: none;}
+    .table-striped>tbody>tr:nth-of-type(even)>* {background-color: #F8FBFF;box-shadow: none;}
+    .table-striped thead tr th{background-color: #000080;color: #fff;}
+    .table-striped tbody tr td{border: 0;}
+    .athlete-stripe-tbl{max-height: 450px;}
+    .athlete-stripe-tbl::-webkit-scrollbar{width: 10px;}
+    .athlete-stripe-tbl::-webkit-scrollbar-track {border-radius: 15px;
+        background-color: #f1f1f1;
+    }
+    .athlete-stripe-tbl::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);border-radius: 20px;
+    }
+    .table-striped thead tr th,.table-striped tbody tr td{padding-left: 20px;padding-right: 20px;}
+
+/******************Sdo Dashboard*********************/
+.dashboard-carousel h5{background: #FE853C;
+color: #fff;
+font-size: 10px;
+font-weight: bold;
+margin: 0;
+padding: 4px 8px;}
+.dashboard-carousel .item{padding: 30px 20px;
+border-radius: 9px;
+box-shadow: 0 11px 9px #00000008;
+margin-bottom: 20px;}
+.dashboard-carousel .item .icon{flex: 0 0 45px;
+height: 51px;
+background: #FE853C;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 6px;
+box-shadow: 0 6px 7px #fe853c73;
+font-size: 28px;}
+.dashboard-carousel .item ul{display: grid;
+grid-template-columns: 1fr 1fr 1fr;margin-bottom: 0;}
+.dashboard-carousel .item ul li{padding: 0 17px;}
+.dashboard-carousel .item ul li:not(:last-child){border-right: 1px solid #DCDCDC;}
+.dashboard-carousel .item ul li .totallbl{display: block;
+font-size: 11px;
+color: #404040;
+font-weight: bold;
+margin-bottom: 8px;}
+.dashboard-carousel .item ul li .total{font-size: 18px;
+font-weight: bold;
+color: #000061;}
+.dashboard-carousel .slideitem .card:nth-child(2) h5{background: #2A39DE;}
+.dashboard-carousel .slideitem .card:nth-child(3) h5{background: #088292;}
+.dashboard-carousel .owl-prev{position: relative;}
+.dashboard-carousel .owl-theme .owl-nav [class*=owl-]{position: absolute;}
+.dashboard-carousel .bg-2{background: #2A39DE;}
+.dashboard-carousel .bg-3{background: #088292;}
+.dashboard-carousel .item .icon.bg-2{background: #2A39DE;box-shadow: 0px 6px 7px #2A39DE47;}
+.dashboard-carousel .item .icon.bg-3{background: #088292;box-shadow: 0px 6px 7px #08829247;}
+.dashboard-carousel .item .icon span:before{color: #fff;}
+.dashboardmid-row .card{font-size: 14px;background-color: #fff;box-shadow: 0px 11px 9px #00000008;
+padding: 5px;}
+.dashboardmid-row .card h3{font-size: 13px;margin-bottom: 15px;min-height: 28px;align-items: center;}
+.dashboardmid-row .card h3 a{color: inherit;text-decoration: none;}
+.dashboardmid-row .card h3 select{    max-width: 90px;
+font-size: 10px;
+appearance: auto;box-shadow: none;}
+.dashboardmid-row .row .item .table thead tr th{color: #fff;font-weight: normal;
+font-size: 12px;padding-top: 10px;padding-bottom: 10px;}
+.dashboardmid-row .row .item:nth-child(1) .table thead tr th{background-color: #207707;}
+.dashboardmid-row .row .item:nth-child(2) .table thead tr th{background-color: #088292;}
+.dashboardmid-row .table>:not(:first-child){border: 0;}
+.dashboardmid-row .table-responsive{max-height: 205px;}
+.dashboardmid-row .table tbody tr td{padding-top: 10px;padding-bottom: 10px;border-color: #00000008;}
+.dashboardmid-row .table tbody tr:last-child td{border-bottom: 0;}
+
+.customscrollbar::-webkit-scrollbar-track
+{
+border-radius: 10px;
+background-color: #F5F5F5;
+}
+
+.customscrollbar::-webkit-scrollbar
+{
+width: 8px;
+background-color: #F5F5F5;
+}
+
+.customscrollbar::-webkit-scrollbar-thumb
+{
+border-radius: 10px;
+background-color: #E2E2E2;
+}
+
+.dashboardbottom-row .item h3{color: #fff;padding: 11px;min-height: auto;font-size: 12px;}
+.dashboardbottom-row .item:nth-child(1) h3{background-color: #FE853C;}
+.dashboardbottom-row .item:nth-child(2) h3{background-color: #000080;}
+.dashboardbottom-row .recent-update{max-height: 235px;
+overflow-y: scroll;}
+.dashboardbottom-row .recent-update li{position: relative;
+padding: 15px 10px 15px 40px;border-bottom: 1px solid #E8E8E8;}
+.dashboardbottom-row .recent-update li:last-child{border-bottom: 0;padding-bottom: 0;}
+.dashboardbottom-row .recent-update .shortname{background: #F1F1FF;
+width: 22px;
+height: 22px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+font-size: 11px;
+font-weight: 900;
+position: absolute;
+left: 8px;
+top: 20px;}
+.dashboardbottom-row .recent-update h4{font-size: 14px;
+color: #5B5B5B;
+line-height: 22px;}
+.dashboardbottom-row .recent-update h4 span{margin-right: 20px;}
+.dashboardbottom-row .recent-update h4 small{font-size: 11px;
+color: #8F8F8F;}
+
+
+
