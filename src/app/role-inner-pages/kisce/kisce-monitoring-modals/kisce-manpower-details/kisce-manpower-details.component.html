@@ -1,0 +1,109 @@
+<div class="my-modal">
+  <div class="container-fluid">
+    <div class="modal-body">
+      <div class="row border-bottom">
+        <div class="col">
+          <h4>Details of Manpower - KISCE</h4>
+        </div>
+        <div class="col-auto">
+          <button (click)="activeModal.dismiss('Cross click')" type="button" class="btn-close"
+            aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-lg-3 col-md-4 col-12 my-2">
+          <select class="form-control" [(ngModel)]="selectedDesignation" #designation
+            (change)="onchangeDesignation(designation.value)">
+            <option value="" selected disabled>Designation</option>
+            <option *ngFor="let rc of designationMaster" [value]="rc.designation">{{rc.designation}}</option>
+          </select>
+
+        </div>
+        <div class="col-lg-3 col-md-4 col-12 my-2">
+          <select class="form-control" [(ngModel)]="selectedStatus" #status (change)="onChangeStatus(status.value)">
+            <option value="" selected disabled>Status</option>
+            <option value="VACANT">VACANT</option>
+            <option value="HIRED">HIRED</option>
+          </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-12 my-2">
+
+          <select class="form-control" [(ngModel)]="selectedGender" #gender (change)="onChangeGender(gender.value)">
+            <option value="" selected disabled>Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-12 d-flex align-items-center my-2">
+          <button class="btn btn-primary " (click)="clearFilters()">Clear Filters</button>
+        </div>
+      </div>
+
+      <div class="row my-2 my-custom-man-power-table">
+        <div class="table-responsive position-relative">
+          <table class="table table-bordered">
+            <thead class="table-light">
+              <tr>
+                <th>S.NO.</th>
+                <th>DESIGNATION</th>
+                <th>CANDIDATE NAME</th>
+                <th>GENDER</th>
+                <th>MOBILE NO.</th>
+                <th>EMPLOYMENT STATUS</th>
+                <th>CURRENT STATUS</th>
+                <th *ngIf="showAction">ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let row of paginatedData; let i = index">
+                <tr>
+                  <td>{{ currentPage * pageSize + i + 1 }}</td>
+                  <td *ngIf="row.rowspan" [attr.rowspan]="row.rowspan">{{ row.designation }}</td>
+                  <td>{{ row.full_name }}</td>
+                  <td>{{ row.gender }}</td>
+                  <td>{{ row.mobile_no }}</td>
+                  <td>{{ row.employment_Status }}</td>
+                  <td>
+                    <div *ngIf="!row.editing">{{ row.current_Status }}</div>
+                    <textarea *ngIf="row.editing" [(ngModel)]="row.current_Status" class="form-control"></textarea>
+                  </td>
+                  <td *ngIf="showAction">
+                    <ng-container *ngIf="row.employment_Status ==='HIRED'">
+                      <ng-container *ngIf="!row.editing">
+                        <a class="ms-2" (click)="toggleEdit(row, i)">
+                          <img src="../../../../../assets/images/editIcon.png" alt="">
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="row.editing">
+                        <a class="ms-2" (click)="saveEdit(row, i)">
+                          <img src="../../../../../assets/images/Right.svg" alt="">
+                        </a>
+                        <a class="ms-2" (click)="cancelEdit(row, i)">
+                          <img src="../../../../../assets/images/Weong.svg" alt="">
+                        </a>
+                      </ng-container>
+                    </ng-container>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+
+          <!-- Custom Pagination -->
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              Showing {{ currentPage * pageSize + 1 }} to
+              {{ Math.min((currentPage + 1) * pageSize, filteredData.length) }} of {{ filteredData.length }} entries
+            </div>
+            <div>
+              <button class="btn btn-outline-primary btn-sm me-1" (click)="previousPage()"
+                [disabled]="currentPage === 0">Previous</button>
+              <button class="btn btn-outline-primary btn-sm" (click)="nextPage()"
+                [disabled]="(currentPage + 1) * pageSize >= filteredData.length">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

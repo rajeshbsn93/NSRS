@@ -1,0 +1,32 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-football-line"></i></span> Sport & Kitting Details</h3>
+      <!-- <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button> -->
+    </div>
+      <div class="row row-info" *ngIf="popupDataReceived !=null else noData">
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Shoes Size</h6>
+            <h3>{{popupDataReceived.shoe_size  ? popupDataReceived.shoe_size : 'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Blazer Size</h6>
+            <h3>{{popupDataReceived.blazer_size ? popupDataReceived.blazer_size :'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Tshirt Size</h6>
+            <h3>{{popupDataReceived.tshirt_size != (null  || '') ? popupDataReceived.tshirt_size :'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Pant Size</h6>
+            <h3>{{popupDataReceived.pant_size ? popupDataReceived.pant_size : 'NA'}}</h3>
+        </div>
+        <!-- <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Bank Address</h6>
+            <h3>{{popupDataReceived.gender =='M' ? 'Male' : 'Female'}}</h3>
+        </div> -->
+    </div>
+    <ng-template #noData>
+        <p class="text-center"><strong>Data not available!</strong></p>
+      </ng-template>
+  </div>

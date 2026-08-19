@@ -1,0 +1,89 @@
+<div class="academySignup">
+    <div class="container">
+        <div class="card border-0">
+            <div class="text-center mb-3 mb-md-4">
+                <h1 class="mb-lg-3">Academy Registration</h1>
+                <h5>Welcome ! Please register to your account.</h5>
+            </div>
+            <form [formGroup]="academySignUpMobileForm" (ngSubmit)="academySignUpMobile()">
+              <div class="row">
+                  <div class="col-sm-12 mb-3">
+                      <span class="inputIcon">
+                       <input type="text" name="email" class="form-control" (keyup.enter)="academySignUpMobile()" placeholder="Enter Your Email" formControlName="academyEmail" />
+                       <i class="fa-solid fa-envelope"></i>           
+                      </span>
+                       <div *ngIf="academySignUpMobileForm.controls['academyEmail'].touched && academySignUpMobileForm.controls['academyEmail'].invalid" class="text-danger">
+                           <div *ngIf="academySignUpMobileForm.controls['academyEmail'].errors && academySignUpMobileForm.controls['academyEmail'].errors['required']">
+                               Email is Required
+                           </div>
+                           <div *ngIf="academySignUpMobileForm.controls['academyEmail'].errors && academySignUpMobileForm.controls['academyEmail'].errors['email']">
+                             Invalid Email.
+                          </div>                         
+                       </div> 
+                   </div>
+                  <div class="col-sm-12">
+                      <div class="or text-center">
+                          <span>OR</span>
+                      </div>
+                  </div>
+                  <div class="col-sm-12 mb-3">
+                     <span class="inputIcon">
+                      <input type="text" name="mobile" class="form-control" (keyup.enter)="academySignUpMobile()" placeholder="Enter Your Mobile Number" [maxlength]="10" formControlName="academyMobile"  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+                      <i class="fa-solid fa-mobile-screen-button"></i>           
+                     </span>
+                      <div *ngIf="academySignUpMobileForm.controls['academyMobile'].touched && academySignUpMobileForm.controls['academyMobile'].invalid" class="text-danger">
+                          <div *ngIf="academySignUpMobileForm.controls['academyMobile'].errors && academySignUpMobileForm.controls['academyMobile'].errors['required']">
+                              Mobile Number is Required
+                          </div>
+                          <div *ngIf="academySignUpMobileForm.controls['academyMobile'].errors && academySignUpMobileForm.controls['academyMobile'].errors['pattern']">
+                              Please Enter 10 digit Mobile Number.
+                          </div>
+                           
+                      </div> 
+                  </div>
+                  <div class="col-sm-12 mb-3">
+                      <button type="button submit" class="btn btn-blue w-100"  >SEND OTP</button>
+                  </div>
+              </div>
+          </form>
+        </div>      
+    </div>
+  </div>
+  
+  <ng-template #otpContent let-modal >    
+      <div class="modal-header d-block">
+          <div class="text-end">
+              <button type="button" class="btn-close" aria-label="Close"
+              (click)="modal.dismiss('Cross click')" (click)="stopCounter()"></button></div>
+          <h4 class="modal-title text-center">Confirm OTP</h4>        
+      </div>
+      <div class="modal-body">
+          <p class="text-center text-success">OTP sent successfully.</p>
+              <form [formGroup]="academySignUpOtpVerifyForm">               
+                  <div class="mb-3">
+                      <input type="text" class="form-control" value="{{academySignUpMobileNO}}" readonly>
+                  </div>
+                  <div class="mb-3">
+                      <input type="text" class="form-control" maxlength="6" (keyup.enter)="academyOtpVerifyFormSubmit()"  placeholder="Please Enter OTP" formControlName="academySignUpOtp" required>
+                      <div *ngIf="academySignUpOtpVerifyForm.controls['academySignUpOtp'].touched && academySignUpOtpVerifyForm.controls['academySignUpOtp'].errors" class="text-danger">
+                          <div *ngIf="academySignUpOtpVerifyForm.controls['academySignUpOtp'].errors && academySignUpOtpVerifyForm.controls['academySignUpOtp'].errors['required']">
+                              Otp is Required
+                          </div>
+                          <div *ngIf="academySignUpOtpVerifyForm.controls['academySignUpOtp'].errors && academySignUpOtpVerifyForm.controls['academySignUpOtp'].errors['pattern']">
+                              Please Enter Correct OTP.
+                          </div>
+                      </div> 
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" (click)="academyOtpVerifyFormSubmit()" class="btn btn-blue px-4 w-100 text-uppercase">Confirm OTP</button>
+                  </div>
+              </form>
+          <p class="text-center mt-3">Haven't received OTP? <button class="btn btn-blue mx-2 border-0" [disabled]="!resendOtpButton" (click)="startCounter()">Resend OTP</button> {{counter}} sec &#9202;</p> 
+          <hr />    
+          <div class="text-center mt-3">
+              <small><strong>Note:</strong> Your One Time Password(OTP) is confidential. Please do not share it with anyone via e-mail, phone or any other medium.</small>
+          </div>
+      </div>
+  </ng-template>
+  
+  <app-loader *ngIf="mainLoader"></app-loader>

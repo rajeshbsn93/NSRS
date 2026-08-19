@@ -1,0 +1,14 @@
+<div class="india-map-wrapper" [ngClass]="{'d-none':loader,'d-block':!loader}">
+    <div class="india-map-container w-100 d-flex justify-content-center">
+        <highcharts-chart *ngIf="isShowMap" id="container" [Highcharts]="highcharts" [constructorType]="type"
+            [options]="chartOptions" style="width: 80%; height: 500px; display: block">
+        </highcharts-chart>
+    </div>
+</div>
+
+<div *ngIf="loader" class="loader d-flex align-items-center justify-content-center" style="height: 400px;">
+    <app-page-loader [show]="loader"></app-page-loader>
+</div>
+
+<app-district-map-detail *ngIf="showDistrictFlag" (showHideControl)="showHideDistrictPopup($event)"
+    [data]="clickedDistrictData"></app-district-map-detail>

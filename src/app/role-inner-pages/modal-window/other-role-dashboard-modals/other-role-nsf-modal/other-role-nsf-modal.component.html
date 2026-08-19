@@ -1,0 +1,47 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-football-line"></i></span> NSF</h3>
+      <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button>
+    </div>
+    <form [formGroup]="sportForm">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field class="w-100" appearance="fill" >
+            <mat-label>Sport Disciplines</mat-label>
+            <mat-select formControlName="disciplines" (valueChange)="get_Tectical_Officer_Detail_By_Id($event)" >
+              <mat-option [value]="data.sport_detail_id" *ngFor="let data of sportsList">{{data.sport_display_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <mat-form-field class="w-100" appearance="fill" >
+                <mat-label>NSF Name</mat-label>
+                <mat-select formControlName="NSF_Name" (valueChange)="setNsfDetail($event)">
+                  <mat-option [value]="data.master_id" *ngFor="let data of nsfList">{{data.user_display_name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Email ID</mat-label>
+                <input matInput formControlName="Email_ID">
+            </mat-form-field>
+        </div>        
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>NSF Mobile Number</mat-label>
+                <input matInput formControlName="mobile">
+            </mat-form-field>
+        </div>        
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <hr class="mt-1" />
+          <button type="button" class="btn btn-blue px-4" (click)="save()" [disabled]="readonlyEdit">Save</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+  <app-loader *ngIf="loader || loader2"></app-loader>

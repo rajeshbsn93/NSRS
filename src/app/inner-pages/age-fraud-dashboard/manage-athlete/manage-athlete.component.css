@@ -1,0 +1,6 @@
+.nodal-officer-manage-athlete{font-family: 'Lato';}
+.nodal-officer-manage-athlete ::ng-deep .mat-tab-label-content{font-family: 'lato'; letter-spacing: 0.6px; font-size: 14px; font-weight: 500;}
+.nodal-officer-manage-athlete ::ng-deep .mat-tab-label-active .mat-tab-label-content{
+    color: #1E195C;
+    font-weight: 700;
+}

@@ -1,0 +1,77 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-image-line"></i></span>  Photo ID Proof</h3>
+      <!-- <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button> -->
+    </div>
+      <div class="row row-info" *ngIf="popupDataReceived !=null else noData">
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Aadhar Number</h6>
+            <h3>{{popupDataReceived.aadhar_number  ? popupDataReceived.aadhar_number : 'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Aadhar Image</h6>
+            <h3 *ngIf="popupDataReceived?.aadhar_image_path==null || popupDataReceived?.aadhar_image_path=='';else urlAdharImg">NA</h3>
+            <ng-template #urlAdharImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.aadhar_image_path"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Passport Number</h6>
+            <h3>{{popupDataReceived.passport_number  ? popupDataReceived.passport_number :'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Passport Image</h6>
+            <h3 *ngIf="popupDataReceived?.passport_image_path==null || popupDataReceived?.passport_image_path=='';else urlPassportImg">NA</h3>
+            <ng-template #urlPassportImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.passport_image_path"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>           
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Voter Number</h6>
+            <h3>{{popupDataReceived.voter_id_number ? popupDataReceived.voter_id_number : 'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Voter Image</h6>
+            <h3 *ngIf="popupDataReceived?.voter_id_image_path==null || popupDataReceived?.voter_id_image_path=='';else urlVoterImg">NA</h3>
+            <ng-template #urlVoterImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.voter_id_image_path"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>            
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Birth Certificate</h6>
+            <h3 *ngIf="popupDataReceived?.birth_certificate_path==null || popupDataReceived?.birth_certificate_path==''; else urlBirthImg">NA</h3>
+            <ng-template #urlBirthImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.birth_certificate_path"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Pan Card Number</h6>
+            <h3>{{popupDataReceived.pancard_number ? popupDataReceived.pancard_number : 'NA'}}</h3>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Pan card Image</h6>
+            <h3 *ngIf="popupDataReceived?.pancard_image_path==null || popupDataReceived?.pancard_image_path=='';else urlPanImg">NA</h3>
+            <ng-template #urlPanImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.pancard_image_path"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Service Certificate</h6>
+            <h3 *ngIf="popupDataReceived?.service_id_image_path==null || popupDataReceived?.service_id_image_path==''; else urlServiceImg">NA</h3>
+            <ng-template #urlServiceImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.service_id_image_path"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+            <h6>Coaching Certificate</h6>
+            <h3 *ngIf="popupDataReceived?.coaching_certificate_image==null || popupDataReceived?.coaching_certificate_image=='';else urlCoachingImg">NA</h3>
+            <ng-template #urlCoachingImg>
+                <a class="text-black" target="_blank" [href]="baseUrl + popupDataReceived?.coaching_certificate_image"><i class="fa-solid fa-eye"></i></a>
+            </ng-template>
+        </div>
+    </div>
+    <ng-template #noData>
+        <p class="text-center"><strong>Data not available!</strong></p>
+    </ng-template>
+  </div>

@@ -1,0 +1,5 @@
+<svg id="user-location-line" xmlns="http://www.w3.org/2000/svg" width="24" height="24.5" viewBox="0 0 24 24.5">
+  <path id="Path_5917" data-name="Path 5917" d="M0,0H24V24H0Z" fill="none"/>
+  <path id="Path_5918" data-name="Path 5918" d="M12,14v2a6,6,0,0,0-6,6H4a8,8,0,0,1,8-8Zm0-1a6,6,0,1,1,6-6A6,6,0,0,1,12,13Zm0-2A4,4,0,1,0,8,7,4,4,0,0,0,12,11Z" fill="#c1c1c1"/>
+  <text id="_" data-name="?" transform="translate(17.5 22.5)" fill="#c1c1c1" font-size="11" font-family="Lato-Semibold, Lato" font-weight="600" letter-spacing="0.002em"><tspan x="-2" y="0">?</tspan></text>
+</svg>

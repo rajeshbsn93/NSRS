@@ -1,0 +1,357 @@
+
+<!-- rd list -->
+<ng-container *ngIf="!rdListshow && this.userDetails.role_id==this.KicUsersRoleId.hoAdmin">
+  <div class="equipementTable equipment-procurement-table mt-2">
+    
+    <div class="table-responsive position-relative">
+  
+      <table mat-table id="kicEquipmentTable" [dataSource]="dataSourceForRC" matSort class="table-striped  w-100">
+        <ng-container matColumnDef="index">
+  
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef > S.NO </th>
+            <td mat-cell *matCellDef="let element; let i=index">{{this.rdListPaginator.pageIndex == 0 ? i + 1 : 1 + i + this.rdListPaginator.pageIndex * this.rdListPaginator.pageSize}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="rdName">
+            <th mat-header-cell *matHeaderCellDef > NAME </th>
+            <td mat-cell *matCellDef="let element">
+              <a class="state-wise-link" (click)="rdChange(element)">
+                {{element.user_name}}
+                <!-- {{element.state_name}} -->
+               </a>
+            </td>
+          </ng-container>
+  
+          <ng-container *ngIf="this.userDetails.role_id==this.KicUsersRoleId.hoAdmin" matColumnDef="stateName">
+            <th mat-header-cell *matHeaderCellDef > STATES </th>
+            <td mat-cell *matCellDef="let element">{{element.state_names}}</td>
+          </ng-container>
+   
+          <ng-container *ngIf="this.userDetails.role_id==this.KicUsersRoleId.hoAdmin" matColumnDef="totalKic">
+            <th mat-header-cell *matHeaderCellDef > TOTAL KIC </th>
+            <td mat-cell *matCellDef="let element;">{{element.total_kic}}</td>
+          </ng-container>
+  
+          <ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsForRCList"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsForRCList;"></tr>
+          </ng-container>
+  
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+          </tr>
+        </ng-container>
+      </table>
+    
+    </div>
+    <mat-paginator #rdListPaginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="rdListshow">
+  <div class=" training-table" [ngClass]="userDetails.role_id!=KicUsersRoleId.kicAdmin ? 'brandingTableTopMargin' : ''" *ngIf="userDetails.role_id == KicUsersRoleId.rcAdmin || userDetails.role_id == KicUsersRoleId.hoAdmin">
+    <div class="d-flex justify-content-between">
+      <h2 class="mb-2 training-details-heading">STATE WISE</h2>
+      <h2 class="training-details-heading " (click)="backToRD()" style="cursor: pointer;" *ngIf="userDetails.role_id==KicUsersRoleId.hoAdmin"><span><mat-icon class="rdBackButton mt-2 ml-2">keyboard_backspace</mat-icon></span>BACK TO RC</h2>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    <div class="table-responsive position-relative">
+      <table mat-table id="athleteDetailTable" [dataSource]="dataSourceForState" matSort class="table-striped  w-100">
+        <ng-container matColumnDef="index">
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef > S.NO</th>
+            <td mat-cell *matCellDef="let element; let i=index">
+              {{this.statePaginator.pageIndex == 0 ? i + 1 : 1 + i + this.statePaginator.pageIndex * this.statePaginator.pageSize}}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="state" *ngIf="this.userDetails.role_id != KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef > STATE</th>
+            <td mat-cell *matCellDef="let element">
+             <a href="javascript:void(0)" (click)="getKicByStateId(element.state)"> {{element.state}}</a>
+              
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="no_of_kic" *ngIf="this.userDetails.role_id != KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef >NO. OF KIC</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.academy_count}}
+               
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="pro_completed_kic" *ngIf="this.userDetails.role_id != KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef > KICS WHERE TRAINING BEING CONDUCTED</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.kicS_Where_Training_Being_Conducted}}
+              
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="pro_incompleted_kic">
+            <th mat-header-cell *matHeaderCellDef >KICS WHERE TRAINING NOT BEING CONDUCTED</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.kicS_Where_Training_Not_Being_Conducted}}
+            </td>
+          </ng-container>
+  
+          
+            <tr mat-header-row *matHeaderRowDef="displayedStateWiseColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedStateWiseColumns"></tr>
+         
+  
+          
+  
+  
+          <tr class="mat-row" *matNoDataRow>
+           
+            
+              <td class="mat-cell text-center" colspan="5"> <span class="noDataFound"> No Data Found </span></td>
+           
+            
+          </tr>
+  
+  
+  
+          </ng-container>
+  
+         
+      </table>
+    
+    </div>
+    <mat-paginator #statePaginator [pageSizeOptions]="[2,5,10, 100]" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</ng-container>
+
+
+
+<a _ngcontent-oin-c393=""  href="javascript:void(0)" class="btn btn-blue titleTxt my-2 d-block ms-auto" *ngIf="this.userDetails.role_id == KicUsersRoleId.kicAdmin" (click)="openAddTrainingDetailsModal('add',0)">ADD +</a>
+
+
+<ng-container *ngIf="rdListshow">
+  <div class=" training-table" [ngClass]="userDetails.role_id!=KicUsersRoleId.kicAdmin ? 'brandingTableTopMargin' : ''">
+    <h2 class="mb-2 training-details-heading" *ngIf="userDetails.role_id == KicUsersRoleId.rcAdmin || userDetails.role_id == KicUsersRoleId.hoAdmin">{{stateName}} KIC WISE</h2>
+    
+    <div class="filterBottom container-fluid mb-3" *ngIf="this.userDetails.role_id == KicUsersRoleId.kicAdmin">
+      <form [formGroup]="searchFilter">
+        <div class="row gx-3 align-items-center flex-wrap">
+          
+         
+          <div class="col-md col-12 my-2 custom-ui-mat">
+            <mat-form-field class="example-full-width w-100"   appearance="fill">
+              <mat-label>SORT BY MONTH</mat-label>
+              <mat-select formControlName="month" (selectionChange)="search()">
+                <mat-option *ngFor="let month of monthsDetails" [value]="month.id">{{month.name}}</mat-option>
+               
+              </mat-select>
+            </mat-form-field>
+          </div> 
+          <div class="col-md col-12 my-2 custom-ui-mat">
+            <mat-form-field class="example-full-width w-100"  appearance="fill" (click)="yearEstablish.open()" appYearFormat>
+              <mat-label>SORT BY YEAR</mat-label>
+              <input matInput [matDatepicker]="yearEstablish"  [min]="min_date" [max]="max_date" formControlName="year" >
+              <mat-datepicker-toggle matSuffix [for]="yearEstablish"></mat-datepicker-toggle>
+              <mat-datepicker  #yearEstablish startView="multi-year" (yearSelected)="handleYearSelected($event,yearEstablish)"></mat-datepicker>
+            </mat-form-field>
+  
+          </div>
+          <div class="col-md col-12 my-2 custom-ui-mat">
+            <mat-form-field class="example-full-width w-100"   appearance="fill">
+              <mat-label>SORT BY REGULAR TRAINING IS BEING PROVIDED</mat-label>
+              <mat-select formControlName="status" (selectionChange)="search()">
+                <mat-option value="1">YES</mat-option>
+                <mat-option value="0">NO</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3 col-12 my-2">
+            <button class="btn btn-primary btn-blue custom-ui-btn" style="font-family:'Lato'" (click)="clearFilter(true)">CLEAR</button>
+          </div>
+        
+         
+        </div>
+     
+     </form>
+    </div>
+    
+    
+    
+    
+    
+    
+    <div class="table-responsive position-relative">
+      <table mat-table id="athleteDetailTable" [dataSource]="dataSource" matSort class="table-striped  w-100">
+        <ng-container matColumnDef="index">
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef > S.NO</th>
+            <td mat-cell *matCellDef="let element; let i=index">
+              {{this.kicWISEPaginator.pageIndex == 0 ? i + 1 : 1 + i + this.kicWISEPaginator.pageIndex * this.kicWISEPaginator.pageSize}}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="kiC_NAME" *ngIf="this.userDetails.role_id != KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef > NAME</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.kiC_NAME}}
+              
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="kiC_KUID" *ngIf="this.userDetails.role_id != KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef > NSRS ID </th>
+            <td mat-cell *matCellDef="let element">
+              <!-- {{element.kiC_KUID}} -->
+              <ng-container *ngIf="this.userDetails.role_id!=this.KicUsersRoleId.hoAdmin">
+                {{element.kiC_KUID}}
+              </ng-container>
+              <ng-container *ngIf="this.userDetails.role_id==this.KicUsersRoleId.hoAdmin">
+                <a class="state-wise-link" (click)="openKicDetailsModal(element)">
+                  {{element.kiC_KUID}}
+                 </a>
+              </ng-container>
+              
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="district" *ngIf="this.userDetails.role_id != KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef > DISTRICT</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.district ?? 'N/A'}}
+              
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="year" *ngIf="userDetails.role_id==KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef >YEAR</th>
+            <td mat-cell *matCellDef="let element">
+             <ng-container *ngIf="element.year==null">
+              N/A
+             </ng-container>
+             <ng-container *ngIf="element.year!=null">
+              {{element.year}}
+             </ng-container>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="month" *ngIf="userDetails.role_id==KicUsersRoleId.kicAdmin">
+            <th mat-header-cell *matHeaderCellDef >MONTH</th>
+            <td mat-cell *matCellDef="let element">
+              <!-- {{element.month}} -->
+              {{get(element.month)}} 
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="regularTrainingProvided">
+            <th mat-header-cell *matHeaderCellDef >{{this.userDetails.role_id == KicUsersRoleId.kicAdmin ? 'REGULAR TRAINING IS BEING PROVIDED?' : 'IS TRAINING REGULAR?'}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.is_trainging_provided ? 'Yes' : 'No'}}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="reasonForTrainingNotProvided">
+            <th mat-header-cell *matHeaderCellDef>{{this.userDetails.role_id == KicUsersRoleId.kicAdmin ? 'IF NOT, REASONS THERE OF' : 'IF NOT,REASONS THERE OF'}}</th>
+            <td mat-cell *matCellDef="let element">
+              
+              <ng-container *ngIf="element.reason==''"> 
+                N/A
+              </ng-container>
+              <ng-container *ngIf="element.reason!=''"> 
+                {{element.reason}}
+              </ng-container>
+            </td>
+          </ng-container>
+  
+          <!-- <ng-container matColumnDef="uploadedDocument">
+            <th mat-header-cell *matHeaderCellDef >UPLOAD DOCUMENT, IF ANY</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.uploadedDocument}}
+            </td>
+          </ng-container> -->
+  
+  
+          <ng-container matColumnDef="uploadedDocument">
+            <th mat-header-cell *matHeaderCellDef >TRAINING VIDEO LINK</th>
+            <td mat-cell *matCellDef="let element">
+             <a [href]="KicUsersRoleId.kicAdmin == this.userDetails.role_id ? element.training_Video_Link : element.upload_doc_path" *ngIf="KicUsersRoleId.kicAdmin == this.userDetails.role_id ? element.training_Video_Link!='' : element.upload_doc_path != ''" class="text-decoration-none text-dark" target="_blank">
+  
+              <mat-icon>remove_red_eye</mat-icon>
+             </a>            
+             <ng-container *ngIf="element.training_Video_Link=='' || element.upload_doc_path ==''">
+                N/A
+             </ng-container>
+  
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="action" *ngIf="this.userDetails.role_id==this.KicUsersRoleId.kicAdmin" >
+            <th mat-header-cell *matHeaderCellDef > ACTION </th>
+            <td mat-cell *matCellDef="let element; let i=index">
+             <!-- <button class="btn btn-sm btn-warning" (click)="openAddModal('edit')">Edit</button> -->
+            <div class="d-flex align-items-center justify-content-center ">
+              <mat-icon (click)="openAddTrainingDetailsModal('edit',element)" class="me-2 edit-btn-equipment" >edit</mat-icon> 
+              <!-- *ngIf="userDetails.role_id==KicUsersRoleId.stateAdmin? true : element.modify_by==null ? true : userDetails.user_id==element.modify_by" -->
+              <!-- <i _ngcontent-ncd-c236="" class="fa-solid fa-trash-can trash-can-equipment" (click)="deleteEquipment(element)"></i> -->
+            </div>
+            </td>
+          </ng-container>
+  
+          <ng-container *ngIf="userDetails.role_id == KicUsersRoleId.kicAdmin">
+            <tr mat-header-row *matHeaderRowDef="displayedKicColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedKicColumns;"></tr>
+  
+          </ng-container>
+  
+          <ng-container *ngIf="userDetails.role_id == KicUsersRoleId.stateAdmin">
+            <tr mat-header-row *matHeaderRowDef="displayedStateColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedStateColumns"></tr>
+          </ng-container>
+  
+          <ng-container *ngIf="userDetails.role_id == KicUsersRoleId.rcAdmin || userDetails.role_id == KicUsersRoleId.hoAdmin">
+            <tr mat-header-row *matHeaderRowDef="displayedRCHOColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedRCHOColumns"></tr>
+          </ng-container>
+  
+          <tr class="mat-row" *matNoDataRow>
+            <ng-container *ngIf="userDetails.role_id != KicUsersRoleId.kicAdmin">
+              <td class="mat-cell text-center" colspan="8"> <span class="noDataFound"> No Data Found </span></td>
+            </ng-container>
+            <ng-container *ngIf="userDetails.role_id == KicUsersRoleId.kicAdmin">
+              <td class="mat-cell text-center" colspan="6"> <span class="noDataFound"> No Data Found </span></td>
+            </ng-container>
+            
+          </tr>
+        </ng-container>
+      </table>
+    
+    </div>
+    <mat-paginator #kicWISEPaginator [pageSizeOptions]="[2,5,10, 100]" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</ng-container>
+
+
+
+<ng-template #delete let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <!-- <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{deleteInsuranceData.equipment_type_value.split('-')[1]}} ({{deleteInsuranceData.status_type_value.split('-')[1]}})</h4>
+    </div> -->
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want Delete this Training Detail.!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmDeleteInsurance()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<app-loader *ngIf="mainLoader"></app-loader>

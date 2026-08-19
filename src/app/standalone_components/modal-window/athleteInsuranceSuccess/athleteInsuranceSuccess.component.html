@@ -1,0 +1,288 @@
+
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active "  data-bs-toggle="tab" data-bs-target="#athleteInsurance-details" type="button">Edit</button>
+        <button class="nav-link " data-bs-toggle="tab" data-bs-target="#Insurance-history" type="button">HISTORY</button>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active " id="athleteInsurance-details">
+        <div class="text-center">
+          <p *ngIf="menuName=='athlete'" class="insuranceNsrsId px-4">{{athleteData.ath_Name}} ({{athleteData.nsrsId}})</p>
+          <p *ngIf="menuName=='coach'" class="insuranceNsrsId px-4">NSRS ID: {{coachData.kitd_unique_id}}</p>
+        </div>
+        <form [formGroup]="insuranceForm1" >
+          <div class="row">
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field  appearance="fill" class="w-100" >
+                <mat-label> SELECT</mat-label>
+                <mat-select [(value)]="dropdownOption"  formControlName="insurer" >
+                  <mat-option *ngFor="let data of insuranceList" [value]="data.value">{{data.text}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field appearance="fill" class="w-100 example-full-width">
+                <mat-label>Insurer Name</mat-label>
+                <input  matInput  formControlName="insurerName" readonly >
+              </mat-form-field>
+              <div *ngIf="insuranceForm1Control['insurerName'].touched && insuranceForm1Control['insurerName'].dirty">
+                <div *ngIf="insuranceForm1Control['insurerName'].errors?.['inValidName']" class="text-danger">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Policy Number</mat-label>
+                <input matInput formControlName="policynumber" >
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field class="example-full-width w-100" appearance="fill" (click)="insuredFrom.open()" >
+                <mat-label>Insured Period From</mat-label>
+               <input matInput [matDatepicker]="insuredFrom" formControlName="insuredFromDate" (dateChange)="insuredFromDate(insuranceForm1.value?.insuredFromDate)" >
+                <mat-datepicker-toggle matSuffix [for]="insuredFrom"></mat-datepicker-toggle>
+                <mat-datepicker #insuredFrom></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field class="example-full-width w-100" appearance="fill" (click)="insuredTo.open()" >
+                <mat-label>Insured Period To</mat-label>
+                <input matInput [matDatepicker]="insuredTo" [min]="dateinsuredFrom" formControlName="insuredToDate" >
+                <mat-datepicker-toggle matSuffix [for]="insuredTo"></mat-datepicker-toggle>
+                <mat-datepicker #insuredTo></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Nominee</mat-label>
+                <input matInput formControlName="nominee"  >
+              </mat-form-field>
+              <div *ngIf="insuranceForm1Control['nominee'].touched && insuranceForm1Control['nominee'].dirty">
+                <div *ngIf="insuranceForm1Control['nominee'].errors?.['inValidName']" class="text-danger">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Sum Insured</mat-label>
+                <input matInput formControlName="sumInsured"  >
+              </mat-form-field>
+              <div *ngIf="insuranceForm1Control['sumInsured'].touched && insuranceForm1Control['sumInsured'].dirty">
+                <div *ngIf="insuranceForm1Control['sumInsured'].errors?.['inValidNumber']" class="text-danger">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3" *ngIf="menuName=='athlete'">
+              <mat-form-field appearance="fill" class="w-100  mat-form-field-disabled">
+                <mat-label>Reason</mat-label>
+                <input matInput formControlName="reason1">
+              </mat-form-field>
+            </div>  
+            <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+             
+
+              <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                <div class="inputfileLevel position-relative">
+                  <span class="text-uppercase uploadLevel me-2">Upload</span>
+                  <input type="file" class="inputUpload" #inuranceSuccessfileInput formControlName="file" accept=".png, .Jeg, .Jpg"
+                  (change)="insuranceFileUpload(inuranceSuccessfileInput.files)" >
+                </div>
+                <div *ngIf="insuranceSuccessFileUploadUrl"><a [href]="insuranceSuccessFileUploadUrl" target="_blank"><i class="fa-solid fa-eye"></i></a></div>
+                
+              </div>
+
+            </div> 
+                
+          </div>
+          
+          <div class="d-flex justify-content-between align-items-center my-2">
+            <h5 class="mb-md-0">Sum Reimbursement</h5>
+            <button class="btn border px-3 text-uppercase addmore" (click)="addMoreForm()" >ADD MORE +</button>
+          </div>
+          <div class="table-responsive mt-3" >
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Released</th>
+                <th scope="col">Reason</th>
+              </tr>              
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of ReimbursementDetailsData">
+                  <td class="text-center">{{data.amount}}</td>
+                  <td class="text-center">{{data.date |date:'dd-MM-YYYY'}}</td>
+                  <td class="text-center" *ngIf="data.released==true">Yes</td>
+                  <td class="text-center" *ngIf="data.released==false">No</td>
+                  <td class="text-center">{{data.reason}}</td>
+                  <td></td>
+                </tr>
+                <ng-container formArrayName="sumReimburesement">
+                <tr *ngFor="let item of sumReimburesement.controls; let i= index" [formGroupName]="i"><td>
+                  <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Amount</mat-label>
+                    <input type="number" matInput formControlName="amount" [required]="(insuranceForm1.controls['sumReimburesement'].controls[i].controls.date.value!='') || (insuranceForm1.controls['sumReimburesement'].controls[i].controls.isReleased.value!='') || (insuranceForm1.controls['sumReimburesement'].controls[i].controls.reason.value!='')">
+                    <div class="text-danger" *ngIf="insuranceForm1.controls['sumReimburesement'].controls[i].controls.amount.errors?.['invalid']">*required</div> 
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width w-100" appearance="fill" class="w-100" (click)="date1.open()">
+                    <mat-label>Date</mat-label>
+                    <input matInput formControlName="date" [matDatepicker]="date1" [required]="(insuranceForm1.controls['sumReimburesement'].controls[i].controls.amount.value!='') || (insuranceForm1.controls['sumReimburesement'].controls[i].controls.isReleased.value!='') || (insuranceForm1.controls['sumReimburesement'].controls[i].controls.reason.value!='')">
+                    <div class="text-danger" *ngIf="insuranceForm1.controls['sumReimburesement'].controls[i].controls.date.errors?.['invalid']">*required</div> 
+                    <mat-datepicker-toggle matSuffix [for]="date1"></mat-datepicker-toggle>
+                    <mat-datepicker #date1></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Choose an option</mat-label>
+                    <mat-select formControlName="isReleased" [required]="(insuranceForm1.controls['sumReimburesement'].controls[i].controls.amount.value!='') || (insuranceForm1.controls['sumReimburesement'].controls[i].controls.date.value!='') || (insuranceForm1.controls['sumReimburesement'].controls[i].controls.reason.value!='')" >
+                      <mat-option value=1>Yes</mat-option>
+                      <mat-option value=0>No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width w-100"  appearance="fill" >
+                    <mat-label>Reason</mat-label>
+                    <input matInput formControlName="reason" [required]="(insuranceForm1.controls['sumReimburesement'].controls[i].controls.isReleased.value)== '0'">
+                    <div class="text-danger" *ngIf="insuranceForm1.controls['sumReimburesement'].controls[i].controls.reason.errors?.['invalid']">*required</div> 
+                  </mat-form-field>
+                </td>
+                <td>
+                  <button class="border-0 bg-transparent" (click)="insuranceRemovedata(i)" ><i class="fa-solid fa-trash-can text-danger"></i></button>
+                </td>              
+              </tr>
+            </ng-container>
+            </tbody>
+            </table>
+          </div>
+          <ng-container *ngIf="menuName=='athlete'">
+            <ng-container *ngIf="this.userDetails.user_id==athleteData.insured_by">
+              <div class="mt-3">
+                <button type="button submit" (click)="submitInsurance()"  class="btn btn-lightblue me-2">Save</button>
+                <button type="button"  class="btn readmore border px-3" (click)="activeModal.dismiss()" >Cancel</button>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="this.userDetails.user_id!=athleteData.insured_by">
+              <div class="mt-3">
+                <h5 class="alert alert-danger text-center" *ngIf="menuName=='athlete'">This Athlete is insured by another User</h5>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <!-- <ng-container *ngIf="menuName=='coach'">
+              <div class="mt-3">
+                <button type="button submit" (click)="submitInsurance()"  class="btn btn-lightblue me-2">Save</button>
+                <button type="button"  class="btn readmore border px-3" (click)="activeModal.dismiss(false)" >Cancel</button>
+              </div>
+          </ng-container> -->
+          <ng-container *ngIf="menuName=='coach'">
+            <ng-container *ngIf="this.userDetails.user_id==coachData.insuredby_id">
+              <div class="mt-3">
+                <button type="button submit" (click)="submitInsurance()" class="btn btn-lightblue me-2">Save</button>
+                <button type="button" class="btn readmore border px-3" (click)="activeModal.dismiss()">Cancel</button>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="this.userDetails.user_id!=coachData.insuredby_id">
+              <div class="mt-3">
+                <h5 class="alert alert-danger text-center" *ngIf="menuName=='coach'">Insured by
+                  another User</h5>
+              </div>
+            </ng-container>
+            
+          </ng-container>
+        </form>
+      </div>
+
+
+      <div class="tab-pane fade historyCommon " id="Insurance-history">
+        <div class="text-center">
+          <p *ngIf="menuName=='athlete'" class="insuranceNsrsId px-4">{{athleteData.ath_Name}} ({{athleteData.nsrsId}})</p>
+          <p *ngIf="menuName=='coach'" class="insuranceNsrsId px-4">NSRS ID: {{coachData.kitd_unique_id}}</p>
+        </div>
+        <ng-container *ngIf="menuName=='athlete'">
+          <div class="table-responsive mt-3" >
+            <table class="table table-striped table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">INSURER </th>
+                <th scope="col">POLICY NUMBER</th>
+                <th scope="col">PERIOD</th>
+                <th scope="col">DOCUMENT</th>
+                <th>NOMINEE</th>
+                <th>REIMBURSEMENT</th>
+              </tr>
+              </thead>
+              <tbody *ngIf="athleteInsuranceHistoryResLength!=0">
+                <ng-container *ngFor="let item of athleteInsuranceHistoryRes">
+                <tr class="text-center">
+                  <td>{{item.insurer}}</td>
+                  <td>{{item.policy_number}}</td>
+                  <td>{{item.insured_period_from| date:'dd/MM/yyyy'}}&nbsp; <b >To</b> &nbsp; {{item.insured_period_to| date:'dd/MM/yyyy'}}</td>
+                  <td *ngIf="item.insurance_document"><a [href]="staticFileUrl+item.insurance_document" target="_blank"><i class="fa-solid fa-eye"></i></a></td>
+                  <td *ngIf="!item.insurance_document">N/A</td>
+                  <td>{{item.nominee}}</td>
+                  <td><a href="javascript:void(0)" (click)="reimbursementModal('athlete',item,athleteData)" ><i class="fa-solid fa-eye"></i></a></td>
+                </tr> 
+              </ng-container>
+              </tbody>
+              <tbody *ngIf="athleteInsuranceHistoryResLength==0">
+                <tr>
+                  <td colspan="6" class="text-center"><span class="noDataFound d-block pt-3 pb-3" >No Data Found!</span></td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="menuName=='coach'">
+          <div class="table-responsive mt-3" >
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">INSURER </th>
+                <th scope="col">POLICY NUMBER</th>
+                <th scope="col">PERIOD</th>
+                <th scope="col">DOCUMENT</th>
+                <th>NOMINEE</th>
+                <th>REIMBURSEMENT</th>
+              </tr>
+              </thead>
+              <tbody *ngIf="coachDataInsuranceHistoryLength!=0">
+                <ng-container *ngFor="let item of coachDataInsuranceHistory">
+                <tr class="text-center">
+                  <td>{{item.insurer}}</td>
+                  <td>{{item.policyNo}}</td>
+                  <td>{{item.period_from| date:'dd/MM/yyyy'}} to {{item.period_to| date:'dd/MM/yyyy'}}</td>
+                  <td *ngIf="insuranceSuccessFileUploadUrl"><a [href]="staticFileUrl+insuranceSuccessFileUploadUrl"><i class="fa-solid fa-eye"></i></a></td>
+                  <td *ngIf="!insuranceSuccessFileUploadUrl">N/A</td>
+                  <td>{{item.nominee}}</td>
+                  <td><a href="javascript:void(0)" (click)="reimbursementModal('coach',item,coachData)" ><i class="fa-solid fa-eye"></i></a></td>
+                  
+                </tr>
+              </ng-container>
+              </tbody>
+              <tbody *ngIf="coachDataInsuranceHistoryLength==0">
+                <tr>
+                  <td colspan="6" class="text-center"><span class="noDataFound d-block pt-3 pb-3" >No Data Found!</span></td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="innerLoaderMainData"></app-loader>

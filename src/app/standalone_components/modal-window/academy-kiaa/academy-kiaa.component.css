@@ -1,0 +1,85 @@
+.athleteAction-modal .modal-body {
+    padding: 0;
+}
+
+.athleteAction-modal .btn-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.athleteAction-modal .nav-tabs {
+    border: 0;
+    padding: 0px 15px;
+    box-shadow: 0 0 7px -2px #ddd;
+}
+
+.athleteAction-modal .nav-tabs .nav-link {
+    border: 0;
+    font-size: 14px;
+    color: #C9C9C9;
+    border-bottom: 1.5px solid transparent;
+    padding: 16px 14px;
+    text-transform: uppercase;
+}
+
+.athleteAction-modal .nav-tabs .nav-link.active {
+    border-bottom-color: #1F60AB;
+    color: #1F60AB;
+}
+
+.athleteAction-modal .tab-content {
+    padding: 15px;
+}
+.athleteAction-modal .mat-form-field{font-size: 14px;}
+.athleteAction-modal ::ng-deep .mat-form-field-infix{padding-bottom: 8px;width: 110px;}
+.inputFile{
+    padding: 7px 10px;
+}
+.table-striped tbody tr td{border: 1px solid #dee2e6;vertical-align: middle;}
+.athleteAction-modal label{font-size: 14px;}
+.table-striped tbody tr td:last-child{width: 180px;}
+
+.btn-lightblue{font-size: 14px;}
+.btn-light{font-size: 14px;padding: 7px 30px;font-weight: bold;border-radius: 3px;}
+
+.inputFileUpload-wraper{justify-content: space-between;
+    padding: 6.5px 10px;}
+/* .inputFileUpload-wraper .inputfileLevel{} */
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;
+font-size: 11px;
+font-weight: bold;
+padding: 7px 20px;
+border-radius: 4px;
+display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;
+opacity: 0;
+width: 100%;
+left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+.athleteAction-modal .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #1f60ab;
+}
+
+#weed-out-kiaa ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{padding-bottom: 0;padding-left: 10px;}
+#weed-out-kiaa ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix{padding-bottom: 10px;}
+#weed-out-kiaa ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+    top: 1.18125em;
+}
+
+.athleteAction-modal #weed-out-kiaa tr th{font-size: 14px;text-align: center;color: #000000;background-color: #F8F8F8;}
+.athleteAction-modal #weed-out-kiaa tr th,.athleteAction-modal tr td{padding-left: 8px;padding-right: 8px;}
+.athleteAction-modal #weed-out-kiaa tr td{border-color: #F5F5F5;padding-top: 15px;}
+.athleteAction-modal #weed-out-kiaa .table-striped tbody tr td {
+    border:1px solid #dee2e6;padding-top: 8px;
+}
+
+.insuranceNsrsId{
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    background-color: #D1E5FB;
+    border: 1px solid;
+    border-color: #A3CCF9;
+}

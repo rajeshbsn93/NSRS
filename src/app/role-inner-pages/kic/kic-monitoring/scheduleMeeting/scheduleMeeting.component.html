@@ -1,0 +1,89 @@
+<a  _ngcontent-oin-c393="" href="javascript:void(0)" class="btn btn-blue titleTxt my-2 d-block ms-auto" (click)="openAddModal('add',0)">ADD +</a>
+<div class="equipementTable equipment-procurement-table">
+  <div class="table-responsive position-relative">
+    <table mat-table id="scheduleMeetingTable" [dataSource]="dataSource" matSort class="table-striped  w-100">
+      <ng-container matColumnDef="index">
+
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef > S.NO </th>
+          <td mat-cell *matCellDef="let element; let i=index">
+            {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+          </td>
+        </ng-container>
+
+        <ng-container  matColumnDef="requestMeetingDate">
+          <th mat-header-cell *matHeaderCellDef > REQUEST MEETING DATE </th>
+          <td mat-cell *matCellDef="let element;">{{element.meeting_date | date : "dd/MM/yyyy" }}</td>
+        </ng-container>
+
+        <ng-container  matColumnDef="meetingTime">
+          <th mat-header-cell *matHeaderCellDef > MEETING TIME </th>
+          <td mat-cell *matCellDef="let element;">{{ element.meeting_time.substring(0,8) }}</td>
+        </ng-container>
+
+        <ng-container  matColumnDef="link">
+          <th mat-header-cell *matHeaderCellDef > LINK </th>
+          <td mat-cell *matCellDef="let element;">
+            <a [href]="element.link"  class="text-decoration-underline text-primary" target="_blank">
+            {{element.link}}
+             </a> 
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="attendedBy">
+          <th mat-header-cell *matHeaderCellDef > ATTENDED BY </th>
+          <td mat-cell *matCellDef="let element">{{element.attended_by}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="minutes">
+          <th mat-header-cell *matHeaderCellDef> MINUTES </th>
+          
+          <td mat-cell *matCellDef="let element">
+            <a *ngIf="element.minutes != ''" [href]="fileurl+element.minutes" class="text-decoration-none text-dark" target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+             </a> 
+          </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef >
+            REMARKS
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.remarks }}
+          </td>
+        </ng-container>   
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef > ACTION </th>
+          <td mat-cell *matCellDef="let element">
+           <!-- <button class="btn btn-sm btn-warning" (click)="openAddModal('edit')">Edit</button> -->
+          <div class="d-flex align-items-center justify-content-center ">
+            <!-- <mat-icon *ngIf="userDetails.role_id==KicUsersRoleId.stateAdmin? true : element.modify_by==null ? true : userDetails.user_id==element.modify_by" (click)="openAddModal('edit',element)" class="me-2 edit-btn-equipment">edit</mat-icon> -->
+            <mat-icon  (click)="openAddModal('edit',element)" class="me-2 edit-btn-equipment">edit</mat-icon>
+            <!-- <i *ngIf="userDetails.role_id==KicUsersRoleId.stateAdmin ? false : element.modify_by==null ? true : userDetails.user_id==element.modify_by" _ngcontent-ncd-c236="" class="fa-solid fa-trash-can trash-can-equipment" (click)="deleteEquipment(element)" ></i> -->
+            <!-- <i  _ngcontent-ncd-c236="" class="fa-solid fa-trash-can trash-can-equipment" (click)="deleteEquipment(element)" ></i> -->
+          </div>
+          </td>
+        </ng-container>
+
+
+
+        <ng-container > 
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </ng-container>
+
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+        </tr>
+      </ng-container>
+    </table>
+  
+  </div>
+  <mat-paginator [pageSizeOptions]="[5,10, 25, 100]" aria-label="Select page">
+  </mat-paginator>
+</div>

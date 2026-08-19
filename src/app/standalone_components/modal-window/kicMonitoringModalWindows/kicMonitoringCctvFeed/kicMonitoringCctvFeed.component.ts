@@ -1,0 +1,268 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+import { Moment } from 'moment';
+import { Subject, takeUntil } from 'rxjs';
+import { RoleCode, Months } from 'src/app/_common/_enums/role-code';
+import { MaterialModule } from 'src/app/_common/material.module';
+import { MY_DATE_FORMATS } from 'src/app/_common/models/my_dateFormat';
+import { AlertService } from 'src/app/_common/services/common-services/alert.service';
+import { IUserDetails, StorageService } from 'src/app/_common/services/common-services/storage.service';
+import { SharableService } from 'src/app/_common/services/innerPagesServices/innerpagesSharable.service';
+import { EquipmentProcurementService } from 'src/app/_common/services/role-inner-pages-services/kic-services/monitoring-evaluation/equipmentProcurement.service';
+import { YearFormatDirective } from 'src/app/standalone_components/directives/year-format.directive';
+import { LoaderComponent } from 'src/app/standalone_components/loader/loader.component';
+import { environment } from 'src/environments/environment';
+
+@Component({
+  selector: 'app-kicMonitoringCctvFeed',
+  templateUrl: './kicMonitoringCctvFeed.component.html',
+  styleUrls: ['./kicMonitoringCctvFeed.component.css'],
+  
+  standalone:true,
+  imports:[CommonModule,ReactiveFormsModule,MaterialModule,LoaderComponent,YearFormatDirective],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter},
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
+})
+export class KicMonitoringCctvFeedComponent implements OnInit {
+
+ 
+  
+  multiCctvFeedForm!:FormGroup; 
+  loader:boolean=false
+  fileUploadRes:any
+  fileUrl:any
+  fileBaseUrl = environment.fileUrl;
+  equipmentModalData:any;
+  userDetails!:IUserDetails
+  unsubscribe: Subject<any> = new Subject();
+  remarks:boolean=false;
+  monthsDetails:any=Months
+  date = new FormControl(moment());
+  min_date = new Date(2017,1,1)
+  max_date = new Date()
+  KicUsersRoleId:any=RoleCode
+  constructor(
+    public activeModal:NgbActiveModal,
+    private fb:FormBuilder,
+    private _alertService:AlertService,
+    private _sharableService:SharableService,
+    private storageService:StorageService,
+    private _cctvFeedService: EquipmentProcurementService
+    ) { }
+  ngOnInit() {
+    this.userDetails=this.storageService.getUserDetails()
+    this.multiCctvFeedForm = this.fb.group({ 
+      addMultiTagArray:this.fb.array([])
+    });
+
+    this.addMultiTagArray.push(this.AddMultiTagArray(this.equipmentModalData));
+  }
+
+  
+  get addMultiTagArray(): FormArray{
+    return this.multiCctvFeedForm.get('addMultiTagArray') as FormArray
+  }
+  
+  AddMultiTagArray(modal:any):FormGroup{    
+    return this.fb.group({
+      id:[modal.action == 'edit' ? modal.data.id : 0,Validators.required],
+      academy_kuid:[modal.action == 'edit' ? ( this.userDetails.role_id==82 ? this.userDetails.nsrs_id : modal.data.kitd_unique_id) : this.userDetails.nsrs_id,Validators.required],
+      cctv:[modal.action == 'edit' ? modal.data.covered_by_cctv : '',Validators.required],
+      upload_vedio_linkWitUsern:[''],
+      upload_vedio: [{value:modal.action == 'edit' ? modal.data.upload_vedio : '',disabled: modal.action == 'edit' ? modal.data.covered_by_cctv ? false : true : false},Validators.compose([Validators.required])], 
+      user_id: [this.userDetails.user_id,Validators.required],
+      role_id: [this.userDetails.role_id,Validators.required],
+      kiuid: [this.userDetails.role_id==82 ? this.equipmentModalData.kiuid ? this.equipmentModalData.kiuid: '' : ''],
+      year:[modal.action == 'edit' ? new Date((modal.data.year),1,1) : '',Validators.required],
+      month:[modal.action == 'edit' ? modal.data.month : '',Validators.required],
+      
+    })
+  }
+
+  newAddMultiTagArray(){
+    this.addMultiTagArray.push(this.AddMultiTagArray(this.equipmentModalData))
+  }
+
+  removeAddMultiTagArray(index:any){
+    this.addMultiTagArray.removeAt(index)
+  }
+
+
+  submitMultiTagged(){
+    if(this.multiCctvFeedForm.valid){
+      this.loader=true
+
+      let rawData = this.multiCctvFeedForm.getRawValue()
+
+      rawData.addMultiTagArray[0].year =new Date (rawData.addMultiTagArray[0].year).getFullYear();
+
+
+      this._cctvFeedService.saveCctvForm(rawData.addMultiTagArray).pipe(takeUntil(this.unsubscribe)).subscribe({
+        next: (response: any) => {
+          this.loader=false
+          if(response.status){
+            this._alertService.swalPopSuccess(`${response.message}`)
+            this.activeModal.close({
+              saved:1,
+            })
+          }else{
+            this._alertService.swalPopError(`${response.message}`)
+          }
+        },
+        error: (error:any) => {
+          this.loader=false
+          if(error?.error?.code==200){
+            if(error?.error?.message){
+              this._alertService.swalPopError(`${error.error.message}`)
+            }
+          }
+        }
+      });
+   }else{
+    this.multiCctvFeedForm.markAllAsTouched();
+   }   
+   
+    
+  }
+
+
+  verifyFileSize(files:any){
+    var fileSize = files[0].size
+    return fileSize
+  }
+
+  verifyDocumentFileExtension(files:any){
+    var fileIndex = files[0].name.lastIndexOf(".") + 1;
+    var extFile = files[0].name.substr(fileIndex, files[0].name.length).toLowerCase();
+    return extFile 
+  }
+
+  // public uploadDocuments=(files:any,index:any)=>{
+  //   if (files.length === 0){
+  //     return;
+  //   }else{
+  //     var extFile=this.verifyDocumentFileExtension(files)
+  //     if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "pdf") {
+  //       var fileSize=this.verifyFileSize(files)
+  //       if(fileSize<=5242880){
+  //         const formData = new FormData();
+  //         for (let i = 0; i < files.length; i++) {
+  //           formData.append("file",files[i], files[i].name);
+  //           formData.append("path",'data/Tempimage')
+  //           formData.append("uploadType",'3')
+  //         }
+  //         //serivce calling
+  //         this.loader = true
+  //         this._sharableService.uploadFile(formData).subscribe({
+  //           next: (res) => {
+  //             this.loader = false
+  //             this.fileUploadRes=res;
+  //             if(this.fileUploadRes.isUploaded==true) {
+  //               this._alertService.swalPopSuccess('File Uploaded')
+  //               this.addMultiTagArray.controls[index].get('upload_vedio')?.setValue(this.fileUploadRes.filedataList[0].filePath);
+  //             } else {
+  //               this._alertService.swalPopError(this.fileUploadRes.errorMsg || 'Upload Failed! Please Try Again.');
+  //             }
+  //           },
+  //           error: () => {
+  //             console.error('error caught in file uploading');
+  //             // this.addMultiTagArray.controls[index].get('document_upload_path')?.setValue('');
+  //             // this.addMultiTagArray.controls[index].get('document_upload_path_url')?.setValue(null);
+  //             this.loader=false;
+  //           }
+  //         })
+  //       }else{
+  //         this._alertService.swalPopError('File size must not be more than 5mb')
+  //       }
+  //     }
+  //     else {
+  //       this._alertService.swalPopWarning('Only jpg, jpeg, png, pdf file is allowed!')
+  //     }
+  //   }
+  // }
+
+  getRegularTraining(data:any, formArr:FormArray, index:any){
+    
+     if(data.value == 0){
+      // this.remarks = true;
+      // formArr.controls[index].get('reason')?.enable()
+      formArr.controls[index].get('reason')?.enable()
+     }
+     else formArr.controls[index].get('reason')?.disable();
+  }
+  handleYearSelected(normalizedYear: Moment, dp:any,index:any) {
+    const ctrlValue = this.date.value;
+    ctrlValue!.year(normalizedYear.year());
+    this.addMultiTagArray.controls[index].get('year')?.setValue(ctrlValue);
+    dp.close();
+
+  }
+
+
+  public uploadDocuments=(files:any,index:any)=>{
+    if (files.length === 0){
+      return;
+    }else{
+      var extFile=this.verifyDocumentFileExtension(files)
+      if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "pdf") {
+        var fileSize=this.verifyFileSize(files)
+        if(fileSize<=5242880){
+          const formData = new FormData();
+          for (let i = 0; i < files.length; i++) {
+            formData.append("file",files[i], files[i].name);
+            formData.append("path",'data/Tempimage')
+            formData.append("uploadType",'3')
+          }
+          //serivce calling
+          this.loader = true
+          this._sharableService.uploadFile(formData).subscribe({
+            next: (res) => {
+              this.loader = false
+              this.fileUploadRes=res;
+              if(this.fileUploadRes.isUploaded==true) {
+                this._alertService.swalPopSuccess('File Uploaded')
+                this.addMultiTagArray.controls[index].get('upload_vedio')?.setValue(this.fileUploadRes.filedataList[0].filePath)
+              } else {
+                this._alertService.swalPopError(this.fileUploadRes.errorMsg || 'Upload Failed! Please Try Again.');
+              }
+            },
+            error: () => {
+              this._alertService.swalPopError('File Uploading Failed!')
+              // this.addMultiTagArray.controls[index].get('document_upload_path')?.setValue('');
+              // this.addMultiTagArray.controls[index].get('document_upload_path_url')?.setValue(null);
+              this.loader=false;
+            }
+          })
+        }else{
+          this._alertService.swalPopError('File size must not be more than 5mb')
+        }
+      }
+      else {
+        this._alertService.swalPopWarning('Only jpg, jpeg, png, pdf file is allowed!')
+      }
+    }
+  }
+
+
+  cctvCovered(data:any, formArr:FormArray, index:any){
+    if(data.value == 0){ 
+      this.addMultiTagArray.controls[index].get('upload_vedio')?.setValue('');
+      formArr.controls[index].get('upload_vedio')?.disable();
+     
+     }
+     else{
+      
+        formArr.controls[index].get('upload_vedio')?.enable()
+                
+     }
+  }
+
+
+}

@@ -1,0 +1,37 @@
+.inner-bg {
+    min-height: 110px;
+    /*min-height: 150px;*/
+}
+
+.roleInnerContent,
+.roleInnerSidebar {
+    margin-top: -80px;
+    background: #fff;
+    min-height: 100%;
+    border: 1px solid #E4E7EB;
+    width: 100%;
+}
+
+.roleInnerSidebar {
+    border-radius: 4px;
+}
+
+:host .br-4-px {
+    border-radius: 4px;
+}
+
+@media(max-width:767px) {
+    .roleInnerContent {
+        margin-top: 0;
+    }
+
+    .roleInnerSidebar {
+        margin-bottom: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .dashboard-wraper::before {
+        display: none;
+    }
+}

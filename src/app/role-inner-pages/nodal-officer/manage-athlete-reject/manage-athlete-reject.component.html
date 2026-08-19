@@ -1,0 +1,63 @@
+<div class="nodal-officer-manage-athlete mt-4">
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource" matSort class="table table-bordered table-striped">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Sno Column -->
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="srno" class="col-1"> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.srno}} </td>
+      </ng-container>
+    
+      <!-- Athlete Name Column -->
+      <ng-container matColumnDef="athletename">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="full_name" class="col-3 col-lg-2"> Athlete Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+      </ng-container>
+    
+      <!-- NSRS ID Column -->
+      <ng-container matColumnDef="nsrsid">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrs_id"> NSRS ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.nsrs_id}} </td>
+      </ng-container>
+    
+      <!-- Date of Birth Column -->
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="date_of_birth"> Date of Birth </th>
+        <td mat-cell *matCellDef="let element"> {{element.date_of_birth | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- discipline Column -->
+      <ng-container matColumnDef="discipline">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="sport_display_name"> Discipline </th>
+        <td mat-cell *matCellDef="let element"> {{element.sport_display_name}} </td>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender=='M'? 'Male':element.gender=='F' ? 'Female' : 'NA'}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <!-- <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"> <div (click)="viewDocument(element)" class="d-flex flex-row align-items-center justify-content-center view-acn-btn">
+          View <mat-icon class="ms-1 eye-ath-icon">remove_red_eye</mat-icon>
+        </div> </td>
+      </ng-container> -->
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell text-center" colspan="7"> <span class="noDataFound"> No Data Found </span></td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  
+  
+</div>
+<app-loader *ngIf="loader"></app-loader>

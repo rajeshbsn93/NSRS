@@ -1,0 +1,62 @@
+<div class="modal-body tagcommonModal language-modal">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+    <h3><span class="titleIcon"><i class="icon-kicAttendanceHistory"></i></span>Khelo India Games</h3>
+    <!-- <a *ngIf="form.disabled" href="javascript:void(0)" class="btn btn-edit">EDIT</a> -->
+  </div>
+  <hr />
+  <form [formGroup]="state_univ_form">
+    <div class="row">
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Select Khelo India Games</mat-label>
+          <mat-select  formControlName="gametype_id" (valueChange)="gamesChange($event)">
+            <mat-option *ngFor="let data of gamesListData" [value]="data.id">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="state_univ_form.get('gametype_id')?.touched && state_univ_form.get('gametype_id')?.errors?.['required']">
+          <div class="me-2 text-danger">Required</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100 custom-input">
+          <mat-label>Select Participating State/University</mat-label>
+          <mat-select formControlName="part_state_uni" (opened)="onInsttNameSelectOpen()">
+            <mat-option value="null" class="custom-select-option p-2" disabled>
+              <div class="searchInput">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input 
+                  #insttSearch
+                  [formControl]="insttNameSearch" 
+                  (keydown.space)="$event.stopPropagation()"
+                  (blur)="onInsttSearchBlur()"
+                  class="form-control h-100 w-100" 
+                  placeholder="Search.." 
+                  type="text"
+                />
+              </div>
+            </mat-option>
+            <mat-optgroup *ngIf="filter_State_UniListData?.length == 0">
+              <div>No results found!</div>
+            </mat-optgroup>
+            <mat-option
+              *ngFor="let option of filter_State_UniListData" 
+              [value]="option.st_Uni_id"
+            >
+              {{option.st_Uni_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="state_univ_form.get('part_state_uni')?.touched && state_univ_form.get('part_state_uni')?.errors?.['required']">
+          <div class="me-2 text-danger">Participating State/University Required</div>
+        </div>
+      </div>
+      <div class="col-12 text-center">
+        <hr>
+        <button type="button" (click)="submit()" class="btn btn-blue px-4">Save</button>
+      </div>
+    </div>
+    </form>
+</div>
+<app-loader *ngIf="loader"></app-loader>
+<app-loader *ngIf="loader2"></app-loader>

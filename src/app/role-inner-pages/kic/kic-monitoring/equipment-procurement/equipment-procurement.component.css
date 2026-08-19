@@ -1,0 +1,113 @@
+
+::ng-deep .mat-sort-header-arrow {color: #fff;}
+
+.filterRoleInner .form-control{font-size: 14px;}
+
+.equipment-procurement-table .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.equipment-procurement-table .mat-row .mat-cell:last-child {border-right: 0;}
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+.btn-blue {
+    background-color: #1F60AB;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    width: fit-content;
+}
+.titleTxt{
+    padding: 7px 20px;
+    font-size: 12px;
+    border-radius: 3px;
+    font-family: 400;
+    font-family: 'Lato';
+}
+.trash-can-equipment{
+    font-size: 18px;
+    color: #dc3545;
+    cursor: pointer;
+}
+.edit-btn-equipment{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.tagcommonModal.deleteCommonModal .titleTxt h4{background: #ffdede;
+    border-color: #fb9f9f;}
+
+
+    .tagcommonModal .titleTxt h4{background-color: #FFE89E;border: 1px solid #E1C15C;
+        padding: 3px;
+        font-size: 13px;
+        text-transform: uppercase;}
+      .tagcommonModal .btn-close{position: absolute;
+        right: 7px;
+        top: 7px;
+        font-size: 9px;box-shadow: none;outline: none;}
+      .tagcommonModal{padding: 15px 26px 15px 20px}
+    
+      .taggedSuccessfully .titleTxt h4{background-color: #D4FFC2;
+        border: 1px solid #20BE35;}
+    
+
+        ::ng-deep tr.mat-header-row{
+            height: 45px !important;
+          }
+/* newly added heading in training details */
+.training-details-heading{
+    font-size: 15px !important;
+    font-weight: 700;
+    font-family: "Lato" !important;
+}
+.state-wise-link{
+    cursor: pointer;
+}
+
+
+.rdBackButton{
+    margin-bottom:-7px;
+}
+
+
+/* ::ng-deep .custom-ui-mat  .mat-form-field-flex{
+    height: 32px;
+    font-size: 14px;
+    padding-top: 0px !important;
+  }
+  ::ng-deep .custom-ui-mat .mat-form-field-wrapper{
+    padding: 0px 12px !important;
+    border:1px solid rgb(206, 212, 218) !important;
+    border-radius: 3px !important;
+  } */
+ ::ng-deep .custom-ui-btn{
+    height: 32px !important;
+    font-size: 14px !important;
+    border: 1px solid !important;
+    border-radius: 3px !important;
+    font-weight: 400 !important;
+    display: flex !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+/* ::ng-deep .custom-ui-mat-select .mat-form-field-flex{
+    height: 32px !important;
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-top: 22px !important;
+  } */
+
+  ::ng-deep .custom-ui-mat  .mat-form-field-flex{
+    height: 32px;
+    font-size: 14px;
+    padding-top: 0px !important;
+  }
+  ::ng-deep .custom-ui-mat .mat-form-field-wrapper{
+    padding: 0px 12px !important;
+    border:1px solid rgb(206, 212, 218) !important;
+    border-radius: 3px !important;
+  }
+
+  ::ng-deep .mat-form-field-label {
+    color: #212529 !important;
+  }

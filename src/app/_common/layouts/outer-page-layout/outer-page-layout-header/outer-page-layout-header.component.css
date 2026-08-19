@@ -1,0 +1,55 @@
+
+.header{box-shadow: 0 3px 18px #8E8E8E29;}
+.navbar .navbar-nav li{color: #CFCFCF;}
+.navbar .navbar-nav li:not(:last-child):after{content: '|';}
+.navbar .navbar-nav li a{color: #161616;text-decoration: none;text-transform: uppercase;
+font-weight: 600;padding: 0 21px;display: inline-block;font-size: 14px;}
+.navbar .navbar-nav li li a{font-size: 12px;}
+.navbar .navbar-nav li:last-child a{padding-right: 0;}
+.navbar .navbar-nav ul{min-width: 220px;}
+@media(min-width:992px){
+.navbar .navbar-nav li ul{display: block;
+transform: translateY(94px);
+opacity: 0;
+visibility: hidden;
+transition: .5s;box-shadow: 0 0 36px -20px #ccc;border: 0;}
+.navbar .navbar-nav li:hover ul{transform: translateY(0px);
+opacity: 1;
+visibility: visible;}
+#mobilemenu,.offcanvas-backdrop.show{display: none;}
+}
+.navbar .navbar-nav ul li::after{display: none;}
+.navbar .navbar-nav ul li a:hover{color: #F36E21;}
+.navbar .navbar-nav ul li a{padding: 8px 15px;}
+.navbar .navbar-nav ul li:not(:last-child){border-bottom: 1px solid #eee;}
+.navbar .navbar-nav ul li a:hover,.navbar .navbar-nav ul li a.active{background-color: transparent;}
+.navbar .navbar-nav li a.dropdown-toggle.active-class{color: #F36E21;}
+.navbar .navbar-nav li a:hover,.navbar .navbar-nav li a.active{color: #F36E21;}
+.navbar-brand{display: flex;
+justify-content: space-between;
+border-radius: 5px;
+/*width: 290px;border: 1px solid #d2d0d0;padding: 5px 18px;*/}
+.navbar-dark .navbar-toggler{color: #000080;box-shadow: none !important;font-size: 25px;}
+.pointer-cursor {cursor: pointer;}
+
+/************Media Query*************/
+@media(max-width:1199.8px){
+    .navbar .navbar-nav li a{padding: 0 15px;}
+}
+@media(max-width:991.8px){
+.navbar-nav .dropdown-menu{position: static !important;transform: none !important;}
+#mobilemenu .offcanvas-title{/*border: 1px solid #d2d0d0;padding: 9px 15px;*/border-radius: 5px;}
+#mobilemenu .offcanvas-title img{max-width: 200px; height: 60px;}
+#mobilemenu .navbar-nav li:not(:last-child){border-bottom: 1px solid #eee;}
+#mobilemenu .navbar-nav a{text-decoration: none;color: #161616;display: block;padding: 5px 0;font-size: 14px;}
+#mobilemenu .navbar-nav a.active{color: #F36E21;background-color: transparent;}
+#mobilemenu .navbar-nav ul{padding:0 10px;border: 0;}
+.midtitle h2{font-size: 30px;}
+}
+@media(max-width:767.8px){
+
+}
+@media(max-width:575.8px){}
+@media(max-width:480.8px){
+    .navbar-brand{width: 210px;}
+}

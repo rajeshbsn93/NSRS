@@ -1,0 +1,358 @@
+<div class="coach-popup-home py-2" #pdfContent id="pdfContent">
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-lg col-md col-12">
+        <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+          <div class="d-flex  w-100">
+            <span class="border-end py-1 px-2 text-heading w-50 text-end">Name</span>
+            <span class="py-1 px-2  text-content w-50  text-left">{{academyCoachDetailPopUpData?.full_name ?
+              academyCoachDetailPopUpData?.full_name :'N/A'}}</span>
+          </div>
+          <div class="d-flex  w-100">
+            <span class="border-end py-1 px-2 text-heading w-50 text-end">Gender</span>
+            <span class="py-1 px-2  text-content w-50  text-left">{{academyCoachDetailPopUpData?.gender=='M' ? 'Male'
+              :'Female'}}</span>
+          </div>
+          <div class="d-flex  w-100">
+            <span class="border-end py-1 px-2 text-heading w-50 text-end">NSRS ID</span>
+            <span class="py-1 px-2  text-content w-50  text-left">{{academyCoachDetailPopUpData?.kitd_unique_id ?
+              academyCoachDetailPopUpData?.kitd_unique_id :'N/A'}}</span>
+          </div>
+          <div class="d-flex  w-100">
+            <span class="border-end py-1 px-2 text-heading w-50 text-end">Designation /Allotment Year</span>
+            <span class="py-1 px-2  text-content w-50  text-left">{{academyCoachDetailPopUpData?.designation ?
+              academyCoachDetailPopUpData?.designation :'N/A'}} / {{academyCoachDetailPopUpData?.allotmentyear ?
+              academyCoachDetailPopUpData?.allotmentyear : 'N/A'}}</span>
+          </div>
+          <div class="d-flex  w-100">
+            <span class="border-end py-1 px-2 text-heading w-50 text-end">Olympian/Para Olympian</span>
+            <span class="py-1 px-2  text-content w-50  text-left">NA</span>
+          </div>
+          <div class="d-flex  w-100">
+            <span class="border-end py-1 px-2 text-heading w-50 text-end">Employment Type</span>
+            <span class=" py-1 px-2  text-content w-50  text-left">{{academyCoachDetailPopUpData?.employmenttype ?
+              academyCoachDetailPopUpData?.employmenttype : 'N/A'}}</span>
+          </div>
+          <div class="d-flex  w-100">
+            <span class="border-end  py-1 px-2  text-heading w-50 text-end">Employment Status</span>
+            <span class=" py-1 px-2  text-content w-50  text-left">{{academyCoachDetailPopUpData?.employmentstatus ?
+              academyCoachDetailPopUpData?.employmentstatus :'N/A'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-auto col-md-auto col-12"><button *ngIf="exportButton" (click)="exportPDF()" type="button"
+          class="btn btn-blue ex-btn  px-4">EXPORT</button>
+      </div>
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Posting Details</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="mb-2 right-top-heading">Date of Joining :</h5>
+            <p class="right-bottom-heading">
+              <span
+                *ngIf="academyCoachDetailPopUpData?.date_of_joining; else postingDob">{{academyCoachDetailPopUpData?.date_of_joining
+                | date:'dd/MM/yyyy'}}</span>
+              <ng-template #postingDob>N/A</ng-template>
+            </p>
+          </div>
+          <div class="col-6">
+            <h5 class="mb-2 right-top-heading">Date of Expiration of tenure:</h5>
+            <p class="right-bottom-heading">N/A</p>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <h3 class="right-top-heading-second d-inline-block border-bottom mb-1 pb-1">Current Posting :</h3>
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Academy</th>
+                  <th>Date of Joining</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="postingCurrent.length>0">
+                  <tr *ngFor="let data of postingCurrent; index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{data.academyName}}</td>
+                    <td>{{data.period.split('-')[0]}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!postingCurrent.length">
+                  <tr>
+                    <td colspan="3" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <h3 class="right-top-heading-second d-inline-block border-bottom mb-1 pb-1">History :</h3>
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Academy</th>
+                  <th>Date of Joining</th>
+                  <th>Date of Relieving</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="postingHistory.length>0">
+                  <tr *ngFor="let data of postingHistory; index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{data.academyName}}</td>
+                    <td>{{data.period.split('-')[0]!='' && data.period.split('-')[0]!=null? data.period.split('-')[0]
+                      :'N/A'}}</td>
+                    <td>{{data.period.split('-')[1]}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!postingHistory.length">
+                  <tr>
+                    <td colspan="4" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Education Qualification</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row mb-2">
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Institute/College/University</th>
+                  <th>Course Name</th>
+                  <th>Passing Status</th>
+                  <th>Passing Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="officialProfilePopupDetailsData.educationInfo.length">
+                  <tr *ngFor="let eduData of officialProfilePopupDetailsData.educationInfo; index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{eduData.name_of_institution}}</td>
+                    <td>{{eduData.education_name}}</td>
+                    <td>{{eduData.passing_status}}</td>
+                    <td>{{eduData.year_of_passing}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!officialProfilePopupDetailsData.educationInfo.length">
+                  <tr>
+                    <td colspan="5" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Sports Specific Qualification</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row mb-2">
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Issued by</th>
+                  <th>Course Name</th>
+                  <th>Level</th>
+                  <th>Passing Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="sportSpecificEducationData?.length>0">
+                  <tr *ngFor="let data of sportSpecificEducationData; index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{data.issued_by}}</td>
+                    <td>{{data.course_name}}</td>
+                    <td>{{data.level_name}}</td>
+                    <td>{{data.year_of_course}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!sportSpecificEducationData?.length">
+                  <tr>
+                    <td colspan="5" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Coaching Qualification</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row mb-2">
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Issued by</th>
+                  <th>Course Name</th>
+                  <th>Level</th>
+                  <th>Passing Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>test</td>
+                  <td>test</td>
+                  <td>test</td>
+                  <td>test</td>
+                  <td>test</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Awards / Recognition</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row mb-2">
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Received From</th>
+                  <th>Award Name</th>
+                  <th>Year</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="awardData?.length">
+                  <tr *ngFor="let data of awardData, index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{data.award_recieved_from}}</td>
+                    <td>{{data.award_name}}</td>
+                    <td>{{data.award_year}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!awardData?.length">
+                  <tr>
+                    <td colspan="4" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Foreign Exposure</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row mb-2">
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Designation</th>
+                  <th>Category</th>
+                  <th>Exposure</th>
+                  <th>Country</th>
+                  <th>Duration</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <ng-container *ngIf="foreignExposureData?.length">
+                  <tr *ngFor="let data of foreignExposureData; index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{data.designation}}</td>
+                    <td>{{data.category_of_player}}</td>
+                    <td>{{data.exposure}}</td>
+                    <td>{{data.country}}</td>
+                    <td>{{data.from_date | date:'dd/MM/yyyy'}} - {{data.to_date | date:'dd/MM/yyyy'}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!foreignExposureData?.length">
+                  <tr>
+                    <td colspan="6" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-12 mb-2">
+        <h3 class="mb-0 left-heading">Experience in National Camp</h3>
+      </div>
+      <div class="col-md-10 col-12 mb-2">
+        <div class="row mb-2">
+          <div class="table-responsive my-popup-coach">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Designation</th>
+                  <th>Category</th>
+                  <th>Duration</th>
+                  <th>Academy Name</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <ng-container *ngIf="experienceInNationalCampData?.length">
+                  <tr *ngFor="let data of experienceInNationalCampData; index as index">
+                    <td>{{index+1}}</td>
+                    <td>{{data.designation}}</td>
+                    <td>{{data.category_of_player}}</td>
+                    <td>{{data.camp_from | date:'dd/MM/yyyy'}} - {{data.camp_to | date:'dd/MM/yyyy'}}</td>
+                    <td>{{data.name_of_training_center}}</td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!experienceInNationalCampData?.length">
+                  <tr>
+                    <td colspan="5" align="center"><strong>No Data Found</strong></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="loader"></app-loader>

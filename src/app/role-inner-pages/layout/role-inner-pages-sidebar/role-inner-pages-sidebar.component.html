@@ -1,0 +1,114 @@
+<div class="roleMenu">
+  <div class="menuProfile text-center">
+    <div class="roleProfileImg mb-2 mb-lg-3">
+      <ng-container *ngIf="profilePicUrl; else demoProfilePic">
+        <img [src]="profilePicUrl" class="img-fluid img-thumbnail" alt="profile photo">
+      </ng-container>
+      <ng-template #demoProfilePic >
+        <img src="/assets/images/placeholderProfile.png" class="img-fluid img-thumbnail" alt="profile photo">
+      </ng-template>
+      <input type='file' class="d-none" id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadImage(fileInput.files)" /> 
+      <a href="javascript:void(0)" (click)="fileInput.click()" class="cameraIcon"><span class="icon-camera-fill"></span></a>
+      <!-- <a href="javascript:void(0)" class="cameraIcon"><span class="icon-camera-fill"></span></a> -->
+    </div>
+    <h3>{{academydetails.userData.name}}</h3>
+    <div class="text-muted small uploadPhotoText">Upload photograph (Max size 1MB)</div>
+
+    <div class="nsrsid d-inline-block"><span>{{academydetails.userData.nsrs_id}}</span></div>
+    <div class="d-inline-block mx-1 borderLine" 
+      *ngIf="academydetails.userData?.role_name == 'Athlete' ||
+             academydetails.userData?.role_name == 'Coach' || academydetails.userData?.role_name == 'SportsScientist' ||
+             academydetails.userData?.role_id == 4 || academydetails.userData?.role_id == 3"
+    >|</div>
+    <div class="nsrsid d-inline-block"
+      *ngIf="academydetails.userData?.role_name == 'Athlete' ||
+             academydetails.userData?.role_name == 'Coach' || academydetails.userData?.role_name == 'SportsScientist' || 
+             academydetails.userData?.role_id == 4 || academydetails.userData?.role_id == 3"
+    ><span>{{academydetails.profileData?.sport_name}}</span></div>
+    <div class="athlete-top-row d-flex flex-wrap mt-2" *ngIf="currentFASchemesData !='' && academydetails.userData?.role_name == 'Athlete'">
+      <ng-container *ngFor="let item of currentFASchemesData">
+        <div class="list justify-content-center fw-bold me-2" [ngClass]="item">{{item}}</div>
+      </ng-container>
+    </div>
+  </div>
+  <ul class="list-unstyled">
+    <ng-container *ngFor="let data of sideBarDetails">
+      <li>
+        <a href="javascript:void(0)" [routerLink]="data.menu_component" routerLinkActive="active"  [routerLinkActiveOptions]={exact:true}>
+          <span class="navText d-flex align-items-center">
+            <i [class]="data.class_name"></i> {{data.menu_name}}
+          </span>
+          <span class="navCount">
+            <ng-container *ngIf="data.menu_name=='Athlete'">
+              {{sideBarDetailsAthleteCount}}
+            </ng-container>
+            <ng-container *ngIf="data.menu_name=='Coach'">
+              {{sideBarDetailsCoachCount}}
+            </ng-container>
+            <ng-container *ngIf="data.menu_name=='Sports Scientist'">
+              {{sideBarDetailsSSCount}}
+            </ng-container>
+          </span>
+        </a>
+      </li>
+    </ng-container>
+    <!--<li>
+      <a href="javascript:void(0)">
+        <span class="navText">
+          <i class="icon-Coaches"></i> Coach
+        </span>
+        <span class="navCount">{{sideBarDetails.coach_Count}}</span>
+        <span class="navCount">0</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)">
+        <span class="navText">
+          <i class="icon-sports-scientist"></i> SPORT SCIENTIST
+        </span>
+        <span class="navCount">{{sideBarDetails.sS_Count}}</span>
+        <span class="navCount">0</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)">
+        <span class="navText">
+          <i class="icon-map-arhlete-coach"></i> MAP ATHLETE COACH
+        </span>
+        <span class="navCount">0</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)">
+        <span class="navText">
+          <i class="icon-Report"></i> REPORTS
+        </span>
+        <span class="navCount">0</span>
+      </a>
+    </li> -->
+  </ul>
+</div>
+
+
+<!-- <ng-template #contentCamera let-modal>
+  <div class="modal-body tagcommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt mb-3">
+      <h4 class="text-center fw-bold">Profile update</h4>
+    </div>
+    <form>
+      <div class="mb-3">
+        <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+          <div class="inputfileLevel position-relative">
+            <span class="text-uppercase uploadLevel">Upload</span>
+            <input type="file" class="inputUpload">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button type="button" class="btn btn-blue px-lg-4">Submit</button>
+      </div>
+    </form>
+    
+  </div>
+</ng-template> -->

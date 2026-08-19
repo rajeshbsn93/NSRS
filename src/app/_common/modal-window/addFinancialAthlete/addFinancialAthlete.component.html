@@ -1,0 +1,129 @@
+
+  <div class="athleteAction-modal">
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab"
+          data-bs-target="#addFinance" type="button">Athlete Scholar Details</button>
+      </div>
+    </nav>      
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="addFinance">
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h5></h5>
+          <button class="btn border px-3 text-uppercase addmore" [disabled]="!addAthleteForm.valid" (click)="addAthlete()">ADD MORE +</button>
+        </div>
+        <form [formGroup]="addAthleteForm">
+          <div class="table-responsive mt-3">
+            <table class="table">
+              <!-- <thead>
+                <tr>
+                  <th>S.NO.</th>
+                  <th>NSRS ID</th>
+                  <th>Athlete Name</th>
+                  <th>Date Of Birth	</th>
+                  <th>Discipline</th>
+                  <th>Nominated By</th>
+                  <th>Scholarship Type </th>
+                  <th>Amount</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Remove</th>
+                </tr>
+              </thead> -->
+              <tbody formArrayName="addAthleteArray">
+                <tr *ngFor="let item of addAthleteArray.controls; let i= index" [formGroupName]="i" >
+                  <td>{{i + 1}}</td>
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>NSRS ID</mat-label>
+                      <input matInput (change)="onBlurNsrsid($event,i)">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled" appearance="fill">
+                      <mat-label>Athlete Name</mat-label>
+                      <input matInput formControlName="athleteName" [readonly]="true" readonly>
+                    </mat-form-field>
+                    <input type="text" formControlName="player_detail_id" hidden>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="mat-form-field-disabled" (click)="picker.open()">
+                      <mat-label>Date of Birth</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="dob" readonly>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled" appearance="fill">
+                      <mat-label>Discipline</mat-label>
+                      <input matInput formControlName="sport" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Nominated By</mat-label>
+                      <mat-select formControlName="nominated_by_id" (selectionChange)="SelectnominateType($event,i)" >
+                        <mat-option [value]="data.lookup_value" *ngFor="let data of nominateListData; let i=index"> {{data?.lookup_text}}</mat-option>
+                        <!-- <mat-option> TIDC</mat-option>
+                        <mat-option> MOC</mat-option> -->
+                      </mat-select>
+                    </mat-form-field> 
+                  </td>
+                  <td>
+                    <!-- <ng-container hidden>{{newSchemeListData$ | async | json}}</ng-container> -->
+                    
+                    <mat-form-field appearance="fill">
+                     
+                      <mat-label>FA Type</mat-label>
+                      <mat-select (selectionChange)="SelectScholarshipType($event,i)" formControlName="scholarship_type_id">  
+                        <mat-option *ngFor="let scholarship of schemeListData" [value]="scholarship.id"> {{scholarship.scholarship_type}}  </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled" appearance="fill">
+                      <mat-label>Amount</mat-label>
+                      <input matInput formControlName="amount" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill"  (click)="picker1.open()">
+                      <mat-label>From date</mat-label>
+                      <input matInput [matDatepicker]="picker1" formControlName="start_date">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill"  (click)="picker2.open()">
+                      <mat-label>To date</mat-label>
+                      <input matInput [matDatepicker]="picker2" [min]="addAthleteArray.controls[i].value?.start_date" formControlName="end_date">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0)" (click)="removeAthlete(i)"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="11" class="text-end">
+                  <button (click)="savefinance()" class="btn btn-lightblue px-3" [disabled]="!addAthleteForm.valid">Save</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <app-loader *ngIf="innerLoaderMainData"></app-loader>
+  <app-loader *ngIf="innerLoaderschemeList"></app-loader>
+  <app-loader *ngIf="innerLoadernominatedList"></app-loader>
+

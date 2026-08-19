@@ -1,0 +1,106 @@
+<div class="container-fluid p-2 border border-blue">
+  <div class="row h4 m-0 p-2 justify-content-center bg-blue text-white fw-bold">
+    MANAGE PROJECT
+  </div>
+  <div class="row g-0 py-1">
+    <div class="col py-1 d-flex align-items-center justify-content-end">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input #searchField matInput (keyup)="applyFilter($any($event.target).value)" />
+      </mat-form-field>
+      <button type="button" mat-flat-button class="bg-blue text-white h-100 ms-2" (click)="openProject()"><mat-icon>add_box</mat-icon> ADD </button>
+    </div>
+  </div>
+  <div class="row table-responsive">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="w-100 table-striped"
+    >
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+        <td mat-cell *matCellDef="let record" class="text-nowrap text-center">
+          <mat-icon class="text-blue" (click)="openProject(record)">edit</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- App ID Column -->
+      <ng-container matColumnDef="appId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="appId">
+          App ID
+        </th>
+        <td mat-cell *matCellDef="let record">{{ record.appId }}</td>
+      </ng-container>
+
+      <!-- Project Name Column -->
+      <ng-container matColumnDef="projectName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="projectName">
+          Project Name
+        </th>
+        <td mat-cell *matCellDef="let record">
+          {{ record.projectName }}
+        </td>
+      </ng-container>
+
+      <!-- Encrypted App ID Column -->
+      <ng-container matColumnDef="encAppId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="encAppId">
+          Enc. App ID
+        </th>
+        <td mat-cell *matCellDef="let record">
+          {{ record.encAppId }}
+        </td>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="created_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="created_date">
+          Created Date
+        </th>
+        <td mat-cell *matCellDef="let record">
+          {{ record.created_date }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 50, 100]" aria-label="Select page"></mat-paginator>
+</div>
+
+<ng-template #editProject>
+  <form novalidate>
+    <div
+        class="container-fluid p-0 border rounded border-blue"
+        [formGroup]="form"
+      >
+      <div class="row p-1 bg-blue h5 m-0 bg-blue text-white justify-content-center">
+        {{ form.get('appId')?.value ? 'EDIT' : 'ADD'}} PROJECT
+      </div>
+      <div class="row p-1">
+        <div class="col p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Project Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <div *ngIf="form.get('projectName')?.touched && form.get('projectName')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col text-center">
+          <button mat-raised-button class="bg-blue text-white me-2" (click)="save()">Save</button>
+          <button mat-raised-button (click)="closeProject()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-container *ngIf="loader">
+  <app-loader></app-loader>
+</ng-container>

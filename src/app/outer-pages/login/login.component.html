@@ -1,0 +1,186 @@
+<div class="login">
+    <div class="container">
+        <div class="card border-0">
+            <div class="text-center mb-3 mb-md-4">
+                <h1 class="mb-lg-3">LOG IN</h1>
+                <h5>Welcome ! Please login to your account.</h5>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-bs-toggle="tab" href="#usernameTab"><i class="fa-solid fa-envelope"></i> USERNAME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#otpTab"><i class="fa-solid fa-mobile-screen-button"></i> OTP</a>
+                </li>
+              </ul>
+              
+
+              <!-- Tab panes -->
+
+
+              <div class="tab-content">
+                <div class="tab-pane active" id="usernameTab">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                               <span class="inputIcon" >
+                                <input type="text" name="username" class="form-control"   placeholder="Enter your User Name or NSRS ID" />
+                                <i class="fa-solid fa-user"></i>
+                               </span>
+                                <div class="text-end" style="width: fit-content;float: right;"><a href="javascript:void(0)" routerLink="/forgot-userid" class="forget">Forgot user ID?</a></div>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <span class="inputIcon">
+                                    <input type="password" name="password" class="form-control" placeholder="Enter Your Password" />
+                                    <i class="fa-solid fa-key fa-rotate-180"></i>
+                                    <div class="hideShoePwd">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </div>
+                                </span>
+                                <!-- <div *ngIf="logincontrol['password'].touched || submitted && logincontrol['password'].errors" class="text-danger">
+                                    <div *ngIf="logincontrol['password'].errors && logincontrol['password'].errors['required']">
+                                        Password is Required
+                                    </div> -->
+
+
+                                    <!-- <small *ngIf="logincontrol['password'].errors && logincontrol['password'].errors['pattern']">Minimum eight characters, at least one uppercase letter, one lowercase letter, 
+                                        one number and one special character</small> -->
+
+                                        
+                                <!-- </div> -->
+                                <div class="text-end" style="width: fit-content;float: right;"><a href="javascript:void(0)" routerLink="/forgot-password" class="forget">Forgot Password?</a></div>
+                            </div>
+                            <div class="col-sm-6 mb-3 d-flex align-items-center">
+                                <div class="captcha text-center">
+
+
+                                    <!-- {{getcaptchaText}} -->
+
+
+                                    <canvas id="capCan" height="50px"></canvas>
+                                </div>
+
+
+                                <!-- {{getcaptchaText}} -->
+
+
+                                <div>
+                                <a href="javascript:void(0)" class="refreshcaptcha"><i class="fas fa-sync-alt"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="text" name="logincaptcha" class="form-control" placeholder="Enter Captcha"  required />
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <button type="button" class="btn btn-blue w-100">LOG IN</button>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <span class="regHere">Don't have an account? <a routerLink="/registration">Register here</a></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="otpTab">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                               <span class="inputIcon">
+
+
+                                <!-- <input type="text" [(ngModel)]="phoneval"  (keyup.enter)="loginByPhone()" -->
+
+
+                                <input type="text" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" name="mobile" class="form-control" placeholder="Enter Your Mobile Number" 
+                                 />
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+
+
+                                <!-- <div class="mb-3 mulusertxt" *ngIf="mulUserCheck && (phoneval == mobileOtpLogin)" > -->
+
+            
+                               </span>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <button type="button" class="btn btn-blue w-100">SEND OTP</button>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <span class="regHere">Don't have an account? <a routerLink="/registration">Register here</a></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+              </div>
+        </div>      
+    </div>
+</div>
+
+<!-- <ng-template #content let-modal>
+    <div class="modal-header d-block">
+        <div class="text-end">
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+      <h4 class="modal-title text-center">Linked User IDs</h4>           
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="mulUserFormPopup" (ngSubmit)="submitMulUserPopupForm()">
+        <div class="table-ressponsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>USER NAME</th>
+                        <th>USER TYPE</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let d of mulUserData">
+                    <tr>                            
+                        <td>
+                            <input type="radio" formControlName="space" class="from-control" value="{{d.user_id}}" required/>
+                        </td>
+                        <td>{{d.user_namee}}</td>
+                        <td>{{d.role_name}}</td>  
+                        <td>{{d.name}}</td>
+                        <td>{{d.email_id}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button type="submit" [disabled]="!mulUserFormPopup.valid" (click)="modal.dismiss('Cross click')" class="btn btn-blue px-5 text-uppercase w-100">CLICK TO LOGIN</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </ng-template> -->
+
+
+<!-- <ng-template #phoneOtp let-modal>
+    <div class="modal-header d-block">
+        <div class="text-end">
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="stopCounter()" ></button>
+        </div>
+      <h4 class="modal-title text-center">Log In</h4>      
+    </div>
+    <div class="modal-body">
+        <p class="text-center text-success">OTP sent successfully.</p>
+      <form [formGroup]="otpVerifyForm" (ngSubmit)="otpVerify()">
+        <div class="mb-3">
+            <input type="text" class="form-control" value="{{this.loginFormPhone.value.mobile}}" readonly>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" [maxlength]="6" formControlName="otp" placeholder="Please Enter OTP" required>
+        </div>        
+        <div class="text-center mb-3">
+            <button type="submit" [disabled]="!otpVerifyForm.valid" class="btn btn-blue px-4 w-100">Confirm OTP</button>
+        </div>   
+        <p class="text-center">Haven't received OTP?  <button class="btn btn-blue mx-2 border-0" href="javascript:void(0)" [disabled]="!resendOtpButton" (click)="startCounter()">Resend OTP</button> {{counter}} sec &#9202;</p>  
+        <hr />    
+        <div class="text-center mt-3">
+            <small><strong>Note:</strong> Your One Time Password(OTP) is confidential. Please do not share it with anyone via e-mail, phone or any other medium.</small>
+        </div>
+      </form>
+    </div>
+  </ng-template> -->
+
+<app-loader *ngIf="loaderMain"></app-loader>

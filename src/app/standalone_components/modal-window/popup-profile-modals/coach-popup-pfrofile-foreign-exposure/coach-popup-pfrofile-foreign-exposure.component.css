@@ -1,0 +1,49 @@
+
+:host .experience-modal .btn-close{position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: 14px;box-shadow: none;outline: none;}
+  :host .experience-modal {padding: 15px 20px;}
+  
+  
+  :host .experience-modal .mat-form-field{font-size: 14px;}
+  :host .experience-modal .titleTxt h3{font-size: 16px;
+    color: #4b6fbf;
+    text-transform: uppercase;margin-bottom: 0;}
+  :host .experience-modal .titleTxt{border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 10px;
+    margin-bottom: 20px;}
+  :host .experience-modal .titleTxt .titleIcon{width: 30px;
+    height: 30px;
+    border: 1px solid #1E5FAA;
+    border-radius: 50%;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;margin-right: 8px;}
+    :host .experience-modal .titleTxt .titleIcon mat-icon{font-size: 18px;width: auto;height: auto;}
+  .athlete .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+  .athlete .mat-row .mat-cell:last-child {border-right: 0;}
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;width: 98px;}
+  .noDataFound{font-size: 16px;}
+  
+  .action_col a{display: inline-block;font-size: 16px;}
+  .action_col .d-flex a:not(:last-child){padding: 0 8px;border-right: 1px solid #dbdbdb;
+  margin-right: 5px;padding-left: 0;}
+  .action_col span.icon-Check{font-size: 18px;}
+  
+  .tagcommonModal .titleTxt h4{background-color: #FFE89E;border: 1px solid #E1C15C;
+    padding: 3px;
+    font-size: 13px;
+    text-transform: uppercase;}
+    .tagcommonModal .btn-close{position: absolute;
+    right: 7px;
+    top: 7px;
+    font-size: 9px;box-shadow: none;outline: none;}
+    .tagcommonModal{padding: 15px 26px 15px 20px}
+    
+    .taggedSuccessfully .titleTxt h4{background-color: #D4FFC2;
+    border: 1px solid #20BE35;}
+    .tagcommonModal.deleteCommonModal .titleTxt h4{background: #ffdede;
+        border-color: #fb9f9f;}

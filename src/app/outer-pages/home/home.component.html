@@ -1,0 +1,274 @@
+<!--start slider-->
+<div class="homeslider">
+  <div class="container position-relative">
+    <div class="sliderTxt">
+      <h2>NATIONAL SPORTS REPOSITORY SYSTEM</h2>
+      <p class="text-uppercase mb-lg-5">Digitally Empowering Indian Sports</p>
+      <a href="javascript:void(0)" (click)="goToSsoLoginPage()" routerLinkActive="active" class="btn me-2">Get Started</a>
+    </div>
+  </div>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let slide of slidesStore;let i=index">
+      <ng-template carouselSlide id="i">
+        <div class="item">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6 col-xl-6">
+              </div>
+              <div class="col-md-6 col-xl-6 imgsec">
+                <img [src]="slide.image" [alt]="slide.title" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
+<!--close slider-->
+<!--New slider-->
+<!-- <div class="new-slider-home">
+  <div class="container ">
+    <div class="row gx-0">
+     <div class="col-lg-7 col-md-12 col-12 my-1">
+      <div class="owl-wrapper-class">
+        <owl-carousel-o [options]="customOptions" >
+          <ng-container *ngFor="let slide of slidesStore;let i=index">
+            <ng-template carouselSlide id="i">
+              <div class="item">
+                <div class="container-fluid">
+                  <div class="row">
+                   
+                    <div class="col-md-12 col-xl-12 imgsec">
+                      <img [src]="slide.image" [alt]="slide.title" class="my-owl-img" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+          
+        </owl-carousel-o>
+        <div class="owl-banner-text">
+          <h2>NATIONAL SPORTS REPOSITORY SYSTEM</h2>
+          <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+          <div class="d-flex">
+            <p class="read-more">READ MORE <mat-icon>arrow_right_alt</mat-icon></p>
+          </div>
+        </div>
+      </div>
+      
+     </div>
+     <div class="col-lg-5 col-md-12 col-12 my-1">
+      <div class="latest-updates">
+        <h3>LATEST UPDATES</h3>
+        <div class="my-4 px-4">
+          <ul class="nav nav-pills " id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">JOBS</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">SUPPORT</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">ADMISSIONS</button>
+            </li>
+          </ul>
+          <div class="tab-content  my-4" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+             <div class="my-3 pb-tab">
+              <h5>Notification for Recruitment against sports quota for the year 2024-25..</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center" >
+                  <span class="min-text">Ministry of Railways</span>
+                  <span class="divider"></span>
+                  <span class="min-text">18 Dec 2024</span>
+                </div>
+                <div class="">
+                  <button class="apply-btn">APPLY <mat-icon>arrow_right_alt</mat-icon></button>
+                </div>
+              </div>
+             </div>
+             <div class="my-3 pb-tab">
+              <h5>Notification for Recruitment against sports quota for the year 2024-25..</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center" >
+                  <span class="min-text">Ministry of Railways</span>
+                  <span class="divider"></span>
+                  <span class="min-text">18 Dec 2024</span>
+                </div>
+                <div class="">
+                  <button class="apply-btn">APPLY <mat-icon>arrow_right_alt</mat-icon></button>
+                </div>
+              </div>
+             </div>
+             <div class="my-3 pb-tab">
+              <h5>Notification for Recruitment against sports quota for the year 2024-25..</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center" >
+                  <span class="min-text">Ministry of Railways</span>
+                  <span class="divider"></span>
+                  <span class="min-text">18 Dec 2024</span>
+                </div>
+                <div class="">
+                  <button class="apply-btn">APPLY <mat-icon>arrow_right_alt</mat-icon></button>
+                </div>
+              </div>
+             </div>
+             <div class="my-3 pb-tab">
+              <h5>Notification for Recruitment against sports quota for the year 2024-25..</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center" >
+                  <span class="min-text">Ministry of Railways</span>
+                  <span class="divider"></span>
+                  <span class="min-text">18 Dec 2024</span>
+                </div>
+                <div class="">
+                  <button class="apply-btn">APPLY <mat-icon>arrow_right_alt</mat-icon></button>
+                </div>
+              </div>
+             </div>
+             <div class="my-3 pb-tab">
+              <h5>Notification for Recruitment against sports quota for the year 2024-25..</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center" >
+                  <span class="min-text">Ministry of Railways</span>
+                  <span class="divider"></span>
+                  <span class="min-text">18 Dec 2024</span>
+                </div>
+                <div class="">
+                  <button class="apply-btn">APPLY <mat-icon>arrow_right_alt</mat-icon></button>
+                </div>
+              </div>
+             </div>
+            
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+          </div>
+        </div>
+       
+      </div>
+     </div>
+    </div>
+     
+   </div>
+</div> -->
+<!--close New slider-->
+
+<div class="counterrow">
+  <div class="container text-center">
+    <div class="midtitle mb-3 mb-lg-4 mb-xl-5">
+      <h2>REGISTRATIONS ON NSRS</h2>
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-3 counter-box">
+        <div class="counting_img">
+          <img src="assets/images/Athletes-h1.png" alt="">
+        </div>
+        <div class="counting" #athleteCount>{{countingData?.total_Athlete}}</div>
+        <p>Athletes</p>
+      </div>
+
+      <div class="col-6 col-md-3 counter-box">
+        <div class="counting_img">
+          <img src="assets/images/Coach-h1.png" alt="">
+        </div>
+        <div class="counting" #couchCount>{{countingData?.total_Coach}}</div>
+        <p>Coaches</p>
+      </div>
+      <div class="col-6 col-md-3 counter-box">
+        <div class="counting_img">
+          <img src="assets/images/Sports-Scientisth1.png" alt="">
+        </div>
+        <div class="counting" #sportsScientistCount>{{countingData?.total_SportsScientist}}</div>
+        <p>Sports Scientist</p>
+      </div>
+      <div class="col-6 col-md-3 counter-box">
+        <div class="counting_img">
+          <img src="assets/images/Sports-Training-Center-h1.png" alt="">
+        </div>
+        <div class="counting" #trainingCenterCount>{{countingData?.total_Academy}}</div>
+        <p>SPORTS TRAINING CENTER</p>
+      </div>
+      
+    </div>
+    <hr class="border-top mt-4 mt-lg-5 mb-5">
+    <div class="text-center mb-4 mb-md-0">
+      <div class="midtitle mb-4 mb-xl-5">
+        <h2 class="text-uppercase">NSRS Stack</h2>
+      </div>
+      <img src="assets/images/infographic.svg" alt="" class="img-fluid infographic">
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="aboutsec">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 pe-lg-4">
+        <div class="aboutimg">
+          <img src="assets/images/neeraj.png" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="midtitle mb-3">
+          <h2 class="text-uppercase">ABOUT NSRS</h2>
+        </div>
+        <p class="text-p">National Sports Repository System (NSRS) is a digital MIS, which envisages to provide a comprehensive digital solution for all the major stakeholders such as Athletes, Coaches, Sports Scientists, Sports Training Centers, Federations and Administrators. It is an open platform of sports eco-system where Athletes, Coaches and Academies can register themselves. On successful registration, an Unique ID is generated, which is used for accessing the NSRS.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--close about-section-->
+
+<div class="nsrs-mobile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="midtitle mb-3">
+          <h2 class="text-uppercase">NSRS ON MOBILE</h2>
+        </div>
+        <p>The NSRS mobile application is currently in active development phase, and can be downloaded from Google Play Store.</p>
+        <a target="_blank" href="https://drive.google.com/file/d/1xUCBisYbAd158stvLoZjYVc4LAJ0dl08/view?usp=sharing"><img src="assets/images/Google_Play_Store_badge_EN.png" alt=""></a>
+      </div>
+      <div class="col-md-4 pe-lg-4">
+        <img src="assets/images/appHome-img.png" alt="" class="appimg img-fluid">
+      </div>
+      <div class="col-md-4">
+        <ul class="list-unstyled mb-0 mt-lg-4 mt-xl-5">
+          <li>
+            <span class="imgicon">
+              <img src="assets/images/Attendance.svg" alt="">
+            </span>
+            <span class="imgicon-title">Attendance</span>
+          </li>
+          <li>
+            <span class="imgicon">
+              <img src="assets/images/Performance.svg" alt="">
+            </span>
+            <span class="imgicon-title">Performance</span>
+          </li>
+          <li>
+            <span class="imgicon">
+              <img src="assets/images/Awards.svg" alt="">
+            </span>
+            <span class="imgicon-title">Awards</span>
+          </li>
+          <li>
+            <span class="imgicon">
+              <img src="assets/images/Facial-recognition.svg" alt="">
+            </span>
+            <span class="imgicon-title">Facial recognition</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="loaderMain"></app-loader>
+ 

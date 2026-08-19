@@ -1,0 +1,135 @@
+<div class="athlete athlete-detail">
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center p-3 pb-0">
+    <h3 class="fw-bold mb-3"><span class="titleIcon"><i class="icon-athlete-detail"></i></span> KIAA  </h3>
+  </div>
+
+  <div class="px-3">
+    <div class="athlete coach-information mt-3 pe-2">
+        
+        <!-- Tab panes -->
+        <!-- <div class="tab-content">
+          <div class="tab-pane active" id="current">  -->
+              <!--filter table--> 
+              <div class="titleTxt d-flex flex-wrap justify-content-end align-items-center p-3 pb-0">
+                <div class="filterRoleInner d-flex align-items-center flex-wrap">
+                  <div class="me-2 mb-3">
+                    <!-- <form [formGroup]="searchFilter"> -->
+                    <!-- <form>
+                      <select   class="form-control">
+                        <option  value="" selected="selected">Select Sports Discipline</option>
+                        <option value="1">2</option>
+                      </select> 
+                    </form> -->
+                  </div>
+            
+                  <!-- <a href="javascript:void(0)" class="btn btn-blue mb-3 me-2" (click)="openmultiTag()">ADD +</a> -->
+                  <!-- <a href="javascript:void(0)" class="btn btn-blue mb-3 me-2">ADD +</a> -->
+                  
+                  <div class="searchInput border-end pe-2 me-2 mb-3">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="form-control"  (keyup)="applyFilter($event)" placeholder="Search.." #input>
+                  </div>
+                  <div class="exports mb-3">
+                    <select class="form-control"  (ngModelChange)="exportToExcelPdfChange($event)" >
+                      <option disabled selected="selected">Export</option>
+                      <option value="excel">Excel</option>
+                      <option value="pdf">PDF</option>
+                    </select>
+                  </div>
+                </div>
+              </div>   
+              <!--Current Tab Table start-->        
+              <div class="table-responsive position-relative">
+                <table mat-table  id="KIAAProposalsTable" matTableExporter  #exporter="matTableExporter" [dataSource]="dataSource" matSort class="table-striped w-100">  
+                  
+                  <ng-container matColumnDef="proposal_Id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="proposal_Id"> PROPOSAL ID </th>
+                    <td mat-cell *matCellDef="let row">{{row.proposal_Id}}</td>
+                  </ng-container>  
+                  
+                  <ng-container matColumnDef="proposal_Head">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="proposal_Head"> PROPOSAL HEAD </th>
+                    <td mat-cell *matCellDef="let row; let i = index" >{{row.proposal_Head}}</td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="proposal_Document">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="proposal_Document"> PROPOSAL DOCUMENT </th>
+                    <td mat-cell *matCellDef="let row"> {{row.proposal_Document}}</td>
+                  </ng-container>  
+          
+                  <ng-container matColumnDef="proposal_Date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="proposal_Date"> PROPOSAL DATE </th>
+                    <td mat-cell *matCellDef="let row">{{row.proposal_Date | date:'dd-MM-YYYY'}}</td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="pac_Agenda">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="pac_Agenda">PAC AGENDA</th>
+                    <td mat-cell *matCellDef="let row">
+                      <a [href]="fileBaseUrl+row.pac_Agenda" *ngIf="row.pac_Agenda!=''" class="text-decoration-none text-dark" target="_blank">
+                        <mat-icon >remove_red_eye</mat-icon>
+                       </a>
+                       <ng-container *ngIf="row.pac_Agenda==''">
+                         N/A
+                      </ng-container>
+                       
+                       <!-- {{row.pac_Agenda}}  -->
+                      </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="pac_Minutes">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="pac_Minutes"> PAC MINUTES </th>
+                    <td mat-cell *matCellDef="let row">
+                      <a [href]="fileBaseUrl+row.pac_Minutes" *ngIf="row.pac_Minutes!=''" class="text-decoration-none text-dark" target="_blank">
+                        <mat-icon>remove_red_eye</mat-icon>
+                       </a>
+                       <ng-container *ngIf="row.pac_Minutes==''">
+                         N/A
+                      </ng-container>
+
+                      <!-- {{row.pac_Minutes}} -->
+                    </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="nsrS_ID">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrS_ID"> NSRS ID </th>
+                    <td mat-cell *matCellDef="let row">{{row.nsrS_ID}}</td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="state">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="state"> STATE </th>
+                    <td mat-cell *matCellDef="let row">{{row.state}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef > ACTION </th>
+                    <td mat-cell *matCellDef="let row">
+                      <ng-container *ngIf="row.match_Flag==0">
+                        <button type="button"  class="UpcomingBtn"  (click)="viewKiaaProposalDetails(row)" >Edit</button>
+                      </ng-container>
+                      <ng-container *ngIf="row.match_Flag==1">
+                        <button type="button" style="cursor:auto" class="approvedbtn">Submitted</button>
+                      </ng-container>
+                      
+                    </td>
+                  </ng-container>
+          
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>      
+              
+                  
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+                  </tr>
+                </table>     
+              </div>
+              <mat-paginator [pageSizeOptions]="[10, 50, 100]" aria-label="Select page of users"></mat-paginator>               
+          </div>
+        </div>
+    </div>
+<!--     
+  </div>
+  
+ </div>    -->
+
+<app-loader *ngIf="mainLoader"></app-loader>

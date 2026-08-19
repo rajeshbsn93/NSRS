@@ -1,0 +1,69 @@
+<div class="modal-body tagcommonModal coach-details-modal">
+  <button type="button" class="close-btn" aria-label="Close" (click)="activeModal.close(false)"><mat-icon>close</mat-icon></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+    <h3><span class="titleIcon"><img height="16" width="16" src="/assets/images/icon-coach-details.svg" /></span>COACH DETAILS</h3>
+    <a *ngIf="readonlyEdit" href="javascript:void(0)" (click)="editButton()" class="btn btn-edit">EDIT</a>
+  </div>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>NATIONALITY</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>EMPLOYEE NAME</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>EMAIL</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>CONTRACT</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>SPORTS TRAINING CENTER KID NO</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>STATE</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>EMPLOYEE ID</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>SPORTS TRAINING CENTER</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-4 mb-3">
+        <mat-form-field class="w-100 readonlyBasicDetailsInput" appearance="fill">
+          <mat-label>DISTRICT</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-sm-6 col-lg-3 mb-3">
+        <button type="button" class="btn btn-blue px-lg-4 w-100" (click)="save()" [disabled]="readonlyEdit">Save</button>
+      </div> -->
+    </div>
+  </form> 
+</div>
+<app-loader *ngIf="loader"></app-loader>

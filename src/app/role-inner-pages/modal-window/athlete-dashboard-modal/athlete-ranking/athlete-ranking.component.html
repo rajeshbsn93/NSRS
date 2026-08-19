@@ -1,0 +1,90 @@
+<!-- {{athleteData | json}} -->
+
+<div class="athleteAction-modal">
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span class="titleIcon"><i class="icon-Athlete-Ranking"></i></span> Athlete Ranking</button>
+        </div>
+      </nav>
+  
+  
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="athletetag">
+          <div class="d-flex justify-content-between align-items-center my-2">
+            <h5></h5>
+            <!-- <button class="btn border px-3 text-uppercase addmore" (click)="newAddMultiTagArray()">ADD MORE +</button> -->
+            <button class="btn border px-3 text-uppercase addmore" (click)="addMore()">ADD MORE +</button>
+          </div>
+          <form [formGroup]="athleteRankForm">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered">
+                <tbody formArrayName="athleteRankFormControl">
+                  <tr  *ngFor="let item of athleteRankFormArray.controls; let i= index" [formGroupName]="i" >
+                    <td style="min-width: 40px;">{{i+1}}</td>
+                    <td>
+                      <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Category</mat-label>
+                        <input matInput formControlName="category">
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field  class="w-100" appearance="fill">
+                        <mat-label>Competition Level</mat-label>
+                        <input matInput formControlName="competition_level">
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field  class="w-100" appearance="fill">
+                        <mat-label>Name of Competition</mat-label>
+                        <input matInput formControlName="name_of_competition">
+                      </mat-form-field>
+                    </td>                    
+                    <td>
+                      <mat-form-field appearance="fill" class="w-100" (click)="picker1.open()">
+                        <mat-label>Period From</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="from_date">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="fill" class="w-100"  (click)="picker2.open()">
+                        <mat-label>Upto</mat-label>
+                        <!-- <input matInput [matDatepicker]="picker2" [min]="addMultiTagArray.controls[i].value?.date_of_joining" formControlName="valid_upto"> -->
+                        <input matInput [matDatepicker]="picker2" formControlName="to_date">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field  class="w-100" appearance="fill">
+                          <mat-label>Venue</mat-label>
+                          <input matInput formControlName="venue">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field  class="w-100" appearance="fill">
+                          <mat-label>Represente</mat-label>
+                          <input matInput formControlName="represente">
+                        </mat-form-field>
+                    </td>
+                    <td *ngIf="this.athleteRankFormArray.length>1">
+                      <a href="javascript:void(0)"  (click)="removeRow(i)"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-3">
+                <button type="button" class="btn btn-lightblue me-2">Save</button>
+                <!-- <button type="button" [disabled]="!this.multiAthleteTagForm.valid" (click)="submitMultiTagged()" class="btn btn-lightblue me-2">Save</button> -->
+                <!-- <button type="button"  (click)="activeModal.dismiss('Cross click')" class="btn readmore border px-3">Cancel</button> -->
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <app-loader *ngIf="loader"></app-loader> -->

@@ -1,0 +1,65 @@
+table {
+    width: 100%;
+  }
+  
+  .search-text{
+    color:#000000;font-size: 20px;
+  
+  }
+  .athlete .table thead tr th{font-size: 10px;background-color: #1F60AB;}
+  .athlete-table .table{font-size: 10px;}
+  .athlete-table .table .nobtn{font-size: 8px;}
+  
+  .form-control{box-shadow: none !important;}
+  
+  .athlete .mat-table button{font-size: 10px;}
+  .mat-table,.table{min-height: 160px;}
+  
+  
+  .mat-header-cell{
+      text-align: center;
+      justify-content:center;
+    }
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+    th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+    /* .athlete .mat-row .mat-cell:nth-child(2),.athlete th.mat-header-cell:nth-child(2){width: 15%;} */
+    /* .athlete .mat-row .mat-cell:nth-child(4),.athlete th.mat-header-cell:nth-child(4){width: 15%;} */
+    #athleteTable ::ng-deep .mat-sort-header-arrow{color: #fff;}
+    .mat-sort-header-container {
+      justify-content: center;
+  }
+  .athlete .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+  .athlete .mat-row .mat-cell:last-child {border-right: 0;}
+  
+  .noDataFound{font-size: 16px;}
+
+  .filterBottom ::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix{
+    padding-bottom: 0;
+  }
+  .filterTop .form-control, .filterBottom .form-control{height: 38px;}
+   .filterBottom ::ng-deep .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button, 
+   .filterBottom ::ng-deep .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button{
+    height:2em;
+    width: 1em;
+   }
+   .filterBottom ::ng-deep .mat-form-field-infix{width: auto;}
+
+   .yesBtn{
+    background-color: #CCFFEC;
+    border: 1px solid;
+    border-color: #0E8B5C;
+    border-radius: 3px;text-transform: uppercase
+  }
+  
+  .noBtn{
+    background-color: #FFCCD2;
+    border: 1px solid;
+    border-color: #FF475D;
+    border-radius: 3px;text-transform: uppercase
+  }
+  
+  @media(max-width:991) and (min-width:768px){
+  /* .filterTop{} */
+  }
+  
+  

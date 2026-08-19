@@ -1,0 +1,74 @@
+
+<div class="tab-content">
+    <div class="tab-pane active" id="athletecoaching">
+        <div class="row justify-content-between  align-items-center mt-4">
+            <div class="col d-flex align-items-center">
+                <h5 class="event-title mb-sm-0 me-3 backbtn-arrow" ><mat-icon class="me-2">arrow_back</mat-icon>Back</h5>
+                <h2 class="event-title mb-sm-0">Rejected</h2>
+            </div>
+            <div class="col-auto d-flex">
+                <select name="" id="" class="form-select me-2 rounded-0">
+                    <option value="1">Export</option>
+                </select>
+                <!-- <button type="button"  class="btn data-history-btn-yp text-uppercase  d-flex align-items-center"><mat-icon class="me-2">access_time</mat-icon> Data History</button> -->
+            </div>
+        </div>
+        <div class="reject-table-yp yp-tab-table table-responsive mt-3">
+            <table mat-table class="currentTable" matTableExporter  #exporter="matTableExporter" [dataSource]="athleteCurrentCoachingInfoData" matSort class="table-striped w-100">  
+                
+                <ng-container matColumnDef="s_no">
+                <th mat-header-cell *matHeaderCellDef >S.No</th>
+                <td mat-cell *matCellDef="let row"> {{row?.s_no}} </td>
+                </ng-container>  
+                
+                <ng-container matColumnDef="kitd">
+                <th mat-header-cell *matHeaderCellDef >KID</th>
+                <td mat-cell *matCellDef="let row"> {{row?.kitd}}</td>
+                </ng-container>  
+                
+                <ng-container matColumnDef="athlete_name">
+                <th mat-header-cell *matHeaderCellDef >Athlete Name</th>
+                <td mat-cell *matCellDef="let row"> 
+                    {{row.name}}
+                </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="date_of_birth">
+                <th mat-header-cell *matHeaderCellDef > Date of Birth </th>
+                <td mat-cell *matCellDef="let row">{{row?.date_of_birth}}
+                </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="father_name">
+                <th mat-header-cell *matHeaderCellDef> Father Name </th>
+                <td mat-cell *matCellDef="let row">{{row?.father_name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div class="my-2">
+             <span class="text-danger">Rejected By YP-Vaibhav</span> <small>20-05-2022</small>
+                        <div class="cursor-pointer d-flex align-items-center justify-content-center"><span>Form 5 |</span><span class="cursor-pointer" (click)="openDialog()">	<mat-icon class="mx-1">remove_red_eye</mat-icon></span>  | download-icon</div>
+                        </div>
+                    </td>
+                    </ng-container>
+                <ng-container matColumnDef="comments">
+                    <th mat-header-cell *matHeaderCellDef> Comments </th>
+                    <td mat-cell *matCellDef="let row">{{row?.comments}}
+                    </td>
+                    </ng-container>
+        
+                  
+                <tr mat-header-row *matHeaderRowDef="athleteCurrentTableColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: athleteCurrentTableColumns;"></tr>      
+            
+                
+                <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+                </tr>
+            </table>     
+        </div>
+        <mat-paginator [pageSizeOptions]="[5,10, 50, 100]" aria-label="Select page of users"></mat-paginator>            
+    </div> 
+  
+</div>     

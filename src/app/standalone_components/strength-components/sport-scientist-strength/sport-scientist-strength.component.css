@@ -1,0 +1,24 @@
+.table>tbody {
+vertical-align: middle;
+}
+.table-striped thead tr th, .table-striped tbody tr td{text-align: center;}
+.table>tbody .form-control{max-width: 100px;margin: 0 auto;}
+.table>tbody .bg-transparent{max-width: initial;}
+.table-responsive{max-height: 550px;}
+.table-striped thead tr th{position: sticky;top: 0;}
+.table-striped input{text-align: center;}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media(max-width:767.8px) {
+  .table-striped input{min-width: 60px;} 
+}

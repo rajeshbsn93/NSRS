@@ -1,0 +1,66 @@
+<!-- {{athleteData | json}} -->
+<div class="athleteAction-modal">
+
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#add-kiaa" type="button">Coach Mapping</button>
+        </div>
+      </nav>
+  
+      <div class="tab-content" id="nav-tabContent">
+        <!-- Add KIAA -->
+        <div class="tab-pane fade show active" id="add-kiaa">
+          <form [formGroup]="otherCoachForm">
+            <div class="row gx-3">                
+                <div class="col-sm-6 col-lg-4 mb-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>NSRS ID</mat-label>
+                    <input matInput formControlName="nsrsid" (blur)="changeNSRSID($event)">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Designation</mat-label>
+                    <mat-select formControlName="designation">
+                      <!-- <mat-option value="one">First option</mat-option> -->
+                      <mat-option [value]="data.designation" *ngFor="let data of designation$ | async">{{data.designation}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Job Type</mat-label>
+                    <mat-select formControlName="job_type">
+                      <mat-option *ngFor="let data of jobTypes$ | async" [value]="data.job_type">{{data.job_type}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3">
+                  <mat-form-field class="example-full-width w-100" appearance="fill" (click)="joiningDate.open()">
+                    <mat-label>Date of Joining</mat-label>
+                    <input matInput [matDatepicker]="joiningDate" formControlName="joining_date" 
+                      required readonly (keyup.space)="joiningDate.open()" (keyup.enter)="joiningDate.open()">
+                    <mat-datepicker-toggle matSuffix [for]="joiningDate"></mat-datepicker-toggle>
+                    <mat-datepicker #joiningDate>
+                    </mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3">
+                    <button type="button" class="btn btn-blue py-sm-2 w-100" (click)="save()" [disabled]="otherCoachForm.invalid">Save</button>
+                </div>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <app-loader *ngIf="loader"></app-loader>

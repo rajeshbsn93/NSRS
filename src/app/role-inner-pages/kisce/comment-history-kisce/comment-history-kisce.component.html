@@ -1,0 +1,122 @@
+<div>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div id="mContent" class="modal-content inner-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentModalLabel">COMMENT HISTORY</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalClose('cancel')"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="commentHistoryForm" (ngSubmit)="onSubmit()">
+          <div>
+            <div>
+              <div class="custom-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="min-width: 60px; max-width: 150px">From</th>
+                      <th>To</th>
+                      <th>Date</th>
+                      <th>Remarks</th>
+                      <th>Supporting Document</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container>
+                      <tr *ngFor="let item of addCommentHistory; let i = index">
+                        <td>
+                          <p>{{ item.comment_From }}</p>
+                        </td>
+                        <td>
+                          <p>{{ item.comment_To }}</p>
+                        </td>
+                        <td>
+                          <p>{{ item.commented_Date | date : "dd/MM/yyyy" }}</p>
+                        </td>
+                        <td>
+                          <p>{{ item.remarks }}</p>
+                        </td>
+                        <td>
+                          <div class="wrap-view" *ngIf="item.supporting_Document else elseBlock">
+                            <div class="view">
+                              <span class="icon">
+                                <img src="assets/images/svg-icons/eye-fill.svg" alt="view" srcset="" />
+                              </span>
+                              <span class="text" (click)="openFile(item.supporting_Document)">View</span>
+                            </div>
+                          </div>
+                          <ng-template #elseBlock>{{'N/A'}}</ng-template>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+                <div class="noDataFound">
+                  <ng-container *ngIf="addCommentHistory.length === 0"
+                    ><img src="../../../../assets/images/norecordfound.png" alt="No Records Found"
+                  /></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="enableEdit || userRoleId===1005 || userRoleId ===46">
+            <div class="d-flex align-items-center" id="adreess">
+              <p class="Address-para">Address To:</p>
+              <td id="dropdown">
+                <select class="form-control" placeholder="Select" formControlName="comment_To">
+                  <option [value]="item.user_Name" *ngFor="let item of addressDetails">{{ item.user_Name }}</option>
+                </select>
+              </td>
+            </div>
+            <div class="form-error">
+              <mat-error *ngIf="formSubmitted && commentHistoryForm.controls['comment_To'].hasError('required')">
+                {{ "Address is required" }}
+              </mat-error>
+            </div>
+            <div class="d-flex" style="margin-top: 4px">
+              <p class="Address-para">Add Remarks:</p>
+              <input type="text" class="form-control" id="proposalHead" formControlName="remarks" />
+            </div>
+            <div class="form-error">
+              <mat-error *ngIf="formSubmitted && commentHistoryForm.controls['remarks'].hasError('required')">
+                {{ "Remarks is required" }}
+              </mat-error>
+            </div>
+            <div class="d-flex align-items-center" id="supporting">
+              <p class="Address-para">Supporting Document:</p>
+              <div class="inputFileUpload-wraper rounded-1 d-flex align-items-center">
+                <div class="upload">
+                  <span class="text-uppercase uploadLevel">Upload</span>
+                  <!-- <span class="icon"><img src="assets/images/svg-icons/upload.svg" alt=""
+                                        srcset=""></span> -->
+                  <input
+                    type="file"
+                    #fileUpload
+                    name="fileUpload"
+                    class="inputUpload"
+                    (change)="uploadFile(fileUpload.files, 'supporting_Document')"
+                  />
+                </div>
+                <div *ngIf="!showDocument">
+                  <a [href]="fileUrl + commentHistoryForm.get('supporting_Document')?.value" target="_blank">
+                    <i class="fa-solid fa-eye"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end align-items-center">
+              <div class="col-auto">
+                <button type="button" class="btn btn-lightblue px-3 ms-2 text-uppercase" (click)="CommentHistory()">ADD+</button>
+              </div>
+            </div>
+          </div>
+          <div class="save-data text-center my-4">
+            <button (click)="modalClose('cancel')" type="button" class="btn btn-lightwhite px-3 ms-2 text-uppercase">Cancel</button>
+            <button *ngIf="enableEdit || userRoleId===1005 || userRoleId ===46" type="submit" class="btn btn-lightblue px-3 ms-2 text-uppercase">Save</button>
+          </div>
+        </form>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="mainLoader || isLoading"></app-loader>

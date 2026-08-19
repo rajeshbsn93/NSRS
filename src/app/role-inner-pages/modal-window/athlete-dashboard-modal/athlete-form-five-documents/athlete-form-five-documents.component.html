@@ -1,0 +1,98 @@
+<div class="modal-body kitting-document-modal">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+    <h3><span class="titleIcon"><i class="icon-form5"></i></span>Uploaded Documents</h3>
+    <!-- <button *ngIf="readonlyEdit" href="javascript:void(0)" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button> -->
+  </div>
+  <div class="upload-section mt-2">
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col" class="col-2 col-lg-1 text-center">S.No</th>
+          <th scope="col">Document Name</th>
+          <th scope="col" class="col-2 text-center">View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row" class="col-2 col-lg-1 text-center">1</td>
+          <td>Aadhar/Passport</td>
+          <td  class="col-2 text-center">
+            <a *ngIf="this.documentsList[0].playerAadhar !=''" [href]="this.filebaseUrl+this.documentsList[0].playerAadhar " target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+            </a>
+            <ng-container *ngIf="this.documentsList[0].playerAadhar==''">
+              N/A
+            </ng-container>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row" class="col-2 col-lg-1 text-center">2</td>
+          <td>10<sup>th</sup> MarkSheet</td>
+          <td class="col-2 text-center">
+            <a *ngIf="this.documentsList[0].highSchoolMarkSheet !=''" [href]="this.filebaseUrl+this.documentsList[0].highSchoolMarkSheet " target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+            </a>
+            <ng-container *ngIf="this.documentsList[0].highSchoolMarkSheet==''">
+              N/A
+            </ng-container>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row" class="col-2 col-lg-1 text-center">3</td>
+          <td>12<sup>th</sup> Marksheet</td>
+          <td class="col-2 text-center">
+            <a *ngIf="this.documentsList[0].interMarkSheet !=''" [href]="this.filebaseUrl+this.documentsList[0].interMarkSheet " target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+            </a>
+            <ng-container *ngIf="this.documentsList[0].interMarkSheet==''">
+              N/A
+            </ng-container>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row" class="col-2 col-lg-1 text-center">4</td>
+          <td>School/College Certificate</td>
+          <td class="col-2 text-center">
+            <a *ngIf="this.documentsList[0].schoolCertificate !=''" [href]="this.filebaseUrl+this.documentsList[0].schoolCertificate " target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+            </a>
+            <ng-container *ngIf="this.documentsList[0].schoolCertificate==''">
+              N/A
+            </ng-container>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row" class="col-2 col-lg-1 text-center">5</td>
+          <td>Degree/Marksheet</td>
+          <td class="col-2 text-center">
+            <a *ngIf="this.documentsList[0].degree !=''" [href]="this.filebaseUrl+this.documentsList[0].degree " target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+            </a>
+            <ng-container *ngIf="this.documentsList[0].degree==''">
+              N/A
+            </ng-container>
+          </td>
+        </tr>
+      
+        <tr>
+          <td scope="row" class="col-2 col-lg-1 text-center">6</td>
+          <td>Khelo India Certificate</td>
+          <td class="col-2 text-center">
+            <a *ngIf="this.documentsList[0].kheloIndiaCertificate !=''" [href]="this.filebaseUrl+this.documentsList[0].kheloIndiaCertificate " target="_blank">
+              <mat-icon>remove_red_eye</mat-icon>
+            </a>
+            <ng-container *ngIf="this.documentsList[0].kheloIndiaCertificate==''">
+              N/A
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+</div>
+
+<app-loader *ngIf="loader"></app-loader>

@@ -1,0 +1,88 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-mail-line-1"></i></span> Mobile No & Email ID</h3>
+      <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button>
+    </div>
+    <form [formGroup]="mobileEmailForm">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput type="number" onKeyPress="if(this.value.length==10) return false;" formControlName="mobile_number">
+          </mat-form-field>
+          <div class="text-danger" *ngIf="(mobileEmailForm.controls['mobile_number']?.dirty || mobileEmailForm.controls['mobile_number']?.touched) && mobileEmailForm.errors?.['matchedMobile']">
+            <small>Mobile & alternate mobile not be same</small>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Alternate Mobile Number</mat-label>
+            <input matInput type="number" onKeyPress="if(this.value.length==10) return false;" formControlName="alternate_mobile_number">
+          </mat-form-field>
+          <div class="text-danger" *ngIf="(mobileEmailForm.controls['alternate_mobile_number']?.dirty || mobileEmailForm.controls['alternate_mobile_number']?.touched) && mobileEmailForm.errors?.['matchedMobile']">
+            <small>Mobile & alternate mobile not be same</small>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Email ID</mat-label>
+            <input matInput formControlName="email_id">
+          </mat-form-field>
+          <div class="text-danger" *ngIf="(mobileEmailForm.controls['email_id']?.dirty || mobileEmailForm.controls['email_id']?.touched) && mobileEmailForm.errors?.['matchedEmail']">
+            <small>Email & alternate email not be same</small>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Alternate Email ID</mat-label>
+            <input matInput formControlName="alternate_email_id">
+          </mat-form-field>
+          <div class="text-danger" *ngIf="(mobileEmailForm.controls['alternate_email_id']?.dirty || mobileEmailForm.controls['alternate_email_id']?.touched) && mobileEmailForm.errors?.['matchedEmail']">
+            <small>Email & alternate email not be same</small>
+          </div>
+        </div>       
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <hr class="mt-1" />
+          <button type="button" class="btn btn-blue px-lg-4" (click)="save()" [disabled]="readonlyEdit">Save</button>
+        </div>
+      </div>
+      
+    </form>
+    
+  </div>
+
+  <ng-template #phoneOtp let-modal>
+    <div class="modal-header d-block">
+        <div class="text-end">
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="stopCounter()" ></button>
+        </div>
+      <h4 class="modal-title text-center">OTP</h4>      
+    </div>
+    <div class="modal-body">
+        <p class="text-center text-success">OTP sent successfully.</p>
+      <form [formGroup]="otpVerifyForm">
+        <div class="mb-3">
+            <input type="text" class="form-control" value="{{this.mobileEmailForm.value.mobile_number}}" readonly>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control" onKeyPress="if(this.value.length==6) return false;" formControlName="otp" placeholder="Please Enter OTP" required>
+        </div>        
+        <div class="text-center mb-3">
+            <button type="button" (click)="otpVerify()" [disabled]="!otpVerifyForm.valid" class="btn btn-blue px-4 w-100">Confirm OTP</button>
+        </div>   
+        <p class="text-center">Haven't received OTP?  <button class="btn btn-blue mx-2 border-0" type="button" [disabled]="!resendOtpButton" (click)="startCounter();resendotp()">Resend OTP</button> {{counter}} sec &#9202;</p> 
+        <hr />    
+        <div class="text-center mt-3">
+            <small><strong>Note:</strong> Your One Time Password(OTP) is confidential. Please do not share it with anyone via e-mail, phone or any other medium.</small>
+        </div>
+      </form>
+    </div>
+    <!-- <app-loader *ngIf="loaderGenarateotp"></app-loader> -->
+  </ng-template>
+
+  
+  <app-loader *ngIf="loader"></app-loader>
+  <app-loader *ngIf="loaderGenarateotp"></app-loader>

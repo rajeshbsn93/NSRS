@@ -1,0 +1,32 @@
+
+.id-color{
+    background-color: #2263AE;
+}
+
+.text-color{
+    color: #059EE2;
+}
+.modal-reject{
+    padding: 50px 0;
+}
+@media screen and (max-width:767px) {
+    .modal-reject{
+        padding: unset;
+    }
+}
+.modal-reject .btn-modal{
+    width: 120px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+}
+.modal-reject h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+.modal-reject h4{
+    font-size: 25px;
+    font-weight: 700;
+    color: #059EE2;
+}

@@ -1,0 +1,85 @@
+@import '../../../../../assets/css/variables.scss';
+
+
+
+.summary-card {
+    // padding: 1em 0.2em;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    .heading {
+        font-size: 17px;
+        font-weight: 500;
+    }
+    .summary-card-tile{
+        box-shadow: 0px 3px 6px #00000029;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    .tile {
+        &-1 {
+            @include cardContainer(#FFEAD8, #FFF5EC, invert(78%) sepia(14%) saturate(5803%) hue-rotate(327deg) brightness(99%) contrast(97%),#F89544)
+        }
+
+        &-2 {
+            @include cardContainer(#D5EDFF, #E8F5FF,invert(65%) sepia(9%) saturate(3424%) hue-rotate(174deg) brightness(97%) contrast(87%),#55A9E7)
+        }
+
+        &-3 {
+            @include cardContainer(#E4DCFF, #F5F2FF,invert(37%) sepia(9%) saturate(5066%) hue-rotate(218deg) brightness(90%) contrast(90%),#6A51B9)
+        }
+
+        &-4 {
+            @include cardContainer(#AAEEBA, #D5F3DC,invert(37%) sepia(89%) saturate(862%) hue-rotate(96deg) brightness(105%) contrast(101%),#00AE29)
+        }
+
+    }
+
+    h4 {
+        // padding: 9px 12px;
+        // background-color: white;
+        // text-align: center;
+        padding: 9px 0px;
+        padding-bottom: 0 !important;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .summary-card-heading {
+        font-size: 17px;
+        margin-bottom: 0;
+
+    }
+    .mat-progress-bar{
+        height: 8px;
+    }
+}
+
+.vertical-line{
+    height: 1px;
+    width: 100%;
+    background-color: #6A51B9;
+}
+.main-content-card{
+    padding-bottom: 10px;
+}
+
+::ng-deep .progressbar-green .mat-progress-bar-fill::after{
+    background-color: #00AE29;
+}
+::ng-deep .progressbar-yellow .mat-progress-bar-fill::after{
+    background-color: #ffcd23;
+}
+::ng-deep .progressbar-red .mat-progress-bar-fill::after{
+    background-color: #ef4e42;
+}
+.summary-card-tile .icon-img{background-color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px #00000029;}
+.summary-card-tile .icon-img img{
+    height: 40px;
+    max-width: 100%;min-width: 40px;
+}
+.summary-card.state_img .icon-img img{
+    filter: none !important;
+}

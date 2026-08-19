@@ -1,0 +1,134 @@
+<div class="kicattendance-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalClose('cancel')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span
+            class="titleIcon"><i class="icon-kicAttendance"></i></span>ADD ATTENDANCE PCA</button>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="athletetag">
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h5></h5>
+          <button class="btn border px-3 text-uppercase addmore" [disabled]="!attendanceForm.valid"
+            (click)="!attendanceForm.valid?'': addItemAttendance()">ADD MORE +</button>
+        </div>
+        <div class="table-responsive">
+          <form [formGroup]="attendanceForm">
+            <table class="table ">
+              <tbody formArrayName="items">
+
+
+                <tr *ngFor="let item of atendanceArray.controls; let i= index" [formGroupName]="i">
+
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Attendance Duration</mat-label>
+                      <mat-select formControlName="duration">
+                        <mat-option *ngFor="let data of durationData"
+                          [value]="data.id.toString()">{{data.period}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>KIUD</mat-label>
+                      <input matInput formControlName="kiud">
+                    </mat-form-field>
+                  </td>
+                  <!-- <td>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Male</mat-label>
+                        <input matInput readonly formControlName="maleCount">
+                      </mat-form-field>
+                    </td> -->
+                  <!-- <td>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Female</mat-label>
+                        <input matInput readonly formControlName="femaleCount">
+                      </mat-form-field>
+                    </td> -->
+                  <!-- <td>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Total</mat-label>
+                        <input matInput readonly formControlName="totalCount">
+                      </mat-form-field>
+                    </td> -->
+
+                  <td>
+                    <mat-form-field appearance="fill" (click)="picker2.open()">
+                      <mat-label>From Date</mat-label>
+                      <input matInput [matDatepicker]="picker2" (keypress)="false" formControlName="fromDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" (click)="picker3.open()">
+                      <mat-label>To Date</mat-label>
+                      <input matInput [matDatepicker]="picker3" (keypress)="false" formControlName="toDate"
+                        [min]="attendanceForm.controls['items'].value[i].fromDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <div class="form-floating  position-relative  ms-1">
+
+                      <div
+                        class="inputFileUpload-wraper border rounded-1 p-2 d-flex flex-lg-row flex-column align-items-center justify-content-lg-between justify-content-md-center ">
+
+                        <div class="d-flex align-items-center ">
+                          <div class="inputfileLevel d-flex align-items-center position-relative ">
+                            <span class="fa fa-upload uploadLevel "></span>
+                            <span class="input">{{ attendanceForm.controls['items'].value[i].filePath !=='' &&
+                              this.fileUploadRes?.isUploaded == true? attendanceForm.controls['items'].value[i].fileName
+                              : 'Upload Excel'}}</span>
+
+                            <input class="inputUpload" type="file" #documentFileInput accept=".xls, .xlsx"
+                              (change)="uploadDocuments(documentFileInput.files,i)">
+                          </div>
+                          <div
+                            *ngIf="attendanceForm.controls['items'].value[i].filePath !=='' && this.fileUploadRes?.isUploaded == true">
+                            <a [href]="fileBaseUrl + attendanceForm.controls['items'].value[i].filePath" target="_blank"><i class="fa-solid fa-eye "><span
+                                  class="view">View</span></i></a>
+                          </div>
+
+
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="attendanceForm.value.items.length >1 ">
+                      <a href="javascript:void(0)" (click)="removeAttendance(i)"><i
+                          class="fa-solid fa-trash-can text-danger"></i></a>
+                    </ng-container>
+                  </td>
+
+
+
+                </tr>
+
+
+
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="button" class="btn btn-lightblue me-2" (click)="saveData()"
+          [disabled]="!attendanceForm.valid">Save</button>
+        <button type="button" (click)="modalClose('cancel')" class="btn readmore border px-3">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="mainLoader"></app-loader>

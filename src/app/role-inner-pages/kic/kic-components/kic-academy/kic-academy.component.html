@@ -1,0 +1,159 @@
+<div class="kicAcademy container-fluid">
+    <div class="filterdata">
+      <div class="filterTop">
+        <div class="row align-items-center justify-content:between mt-3">
+          <div class="col-auto"><h5 class="text-uppercase">
+            <ng-container *ngIf="moduleType=='kisce'">KISCE Center</ng-container>
+            <ng-container *ngIf="moduleType=='kic'">KIC Center</ng-container>
+          </h5></div>
+          <div class="col text-end">
+            <div class="row justify-content-end">
+             
+          
+              <div class="col-auto rightsec d-flex align-items-center">
+                <div class="exports">
+                
+                  <select class="form-control"(change)="exportToExcelPdfChange($event)" >
+                    <option disabled selected="selected">Export</option>
+                    <option value="excel">Excel</option>
+        
+                  </select>
+                </div>
+                <div class="searchInput ms-2">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input class="form-control"  (keyup)="applyFilter($event)" placeholder="Search..">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="filterBottom mb-3">
+        <form [formGroup]="academySearchFilter">
+          <div class="row gx-3 align-items-center justify-content-end flex-wrap">
+            
+            <div class="col">
+              <input type="text" class="form-control" placeholder="NSRS ID" formControlName="nsrsid">
+            </div>
+
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Academy Name" formControlName="academyName">
+            </div>
+
+            <div class="col">
+              <select class="form-control" formControlName="stateId">
+                <option value="" selected="selected"> State</option>
+                <option  *ngFor="let state of stateMasterList" [value]="state.id">{{state.state_name}}</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <select class="form-control" formControlName="discipline">
+                <option value="" selected="selected"> Discipline</option>
+                <option  *ngFor="let sport of sportMasterList" [value]="sport.sport_name">{{sport.sport_name}}</option>
+              </select>
+            </div>
+        
+            <div class="col-auto">
+              <button type="submit" (click)="searchFilter()" class="btn btn-lightblue px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="col-auto">
+              <a href="javascript:void(0)" class="btn btn-lightblue  px-3"><i class="icon-sound-module-line mt-1 d-block"></i></a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="table-responsive position-relative">
+        
+      <table mat-table id=""  matTableExporter  #exporter="matTableExporter" [dataSource]="dataSource" matSort class="mat-elevation-z8 table-striped">
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="sno" class="col-1"> S.No</th>
+          <td mat-cell *matCellDef="let element; let i=index"> 
+            <!-- {{i+1}} -->
+            {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="nsrs_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrs_id" class="col-2"> NSRSID </th>
+          <td mat-cell *matCellDef="let element"> {{element.nsrs_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="academy_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="academy_name" class="col-4"> NAME </th>
+          <td mat-cell *matCellDef="let element"> {{element.academy_name}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="sports_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="sports_name" class="col-3"> DISCIPLINE
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.sports_name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="scheme_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="scheme_name" sortActionDescription="Sort by scheme name">
+            Type </th>
+          <!-- <td mat-cell *matCellDef="let row"> {{row.scheme_name}} </td> -->
+          <td mat-cell *matCellDef="let row">
+            <span *ngIf="row.scheme_name == 'Academy'" class="commonbtnType btnAcademy">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'SATC (SAI)'" class="commonbtnType btnSatcSai">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'NCOE (SAI)'" class="commonbtnType btnNcoeSai">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'SKIC (SAI)'" class="commonbtnType btnSkicSai">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'ABSC (SAI)'" class="commonbtnType btnAbscSai">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'NSTC (SAI)'" class="commonbtnType btnNstcSai">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'ABSC (SLKIC)'" class="commonbtnType btnAbscSlkic">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'KICE (SLKIC)'" class="commonbtnType btnKiceSlkic">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'KISS (SLKIC)'" class="commonbtnType btnKissSlkic">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name == 'SKIC (SLKIC)'" class="commonbtnType btnSkicSlkic">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name.toLowerCase().includes('college')" class="commonbtnType btnCollege">{{row.scheme_name}}</span>
+            <span *ngIf="row.scheme_name.toLowerCase().includes('hostel')" class="commonbtnType btnHostel">{{row.scheme_name }}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="athleteCount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="athleteCount"> Athlete </th>
+          <td mat-cell *matCellDef="let row"><a class="eye-icon" href="javascript:void(0)" style="text-decoration: none;"
+              (click)="athleteModal(row,this.ListTypeUserId.athleteUserid)">{{row.athleteCount}}</a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="coachCount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="coachCount"> Coach </th>
+          <td mat-cell *matCellDef="let row"><a class="eye-icon" href="javascript:void(0)" style="text-decoration: none;"
+              (click)="athleteModal(row,this.ListTypeUserId.coachUserid)">{{row.coachCount}}</a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="sportScientistCount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="sportScientistCount"> Sports Scientist </th>
+          <td mat-cell *matCellDef="let row"><a class="eye-icon" href="javascript:void(0)" style="text-decoration: none;"
+              (click)="athleteModal(row,this.ListTypeUserId.ssUserid)">{{row.sportScientistCount}}</a>
+          </td>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="state_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="state_name" class="col-2">STATE </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.state_name}}
+          </td>
+        </ng-container>
+      
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell text-center" colspan="9"> <span class="noDataFound"> No Data Found </span></td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+
+  </div>
+  
+
+  
+  <!-- <app-loader *ngIf="innerLoaderSportList"></app-loader> -->
+  <app-loader *ngIf="mainLoader"></app-loader>
+  <app-loader *ngIf="loader1"></app-loader>
+  <app-loader *ngIf="loader2"></app-loader>

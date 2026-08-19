@@ -1,0 +1,174 @@
+<div class="modal-body tagcommonModal profileModal">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center mb-1">
+    <h3><span class="titleIcon"><i class="icon-personal-information-18"></i></span> MAP {{compInstanceDataGet.mappingTypeCode === 103 ? 'SPORT SCIENTIST':'COACH'}} ATHLETE</h3>
+    <!-- <a *ngIf="readonlyEdit" href="javascript:void(0)" (click)="editButton()" class="btn btn-edit">EDIT</a> -->
+  </div>
+  <div class="w-100 d-flex justify-content-end">
+    <div class="searchInput col-6 col-sm-4">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input #search class="form-control"  (keyup)="applyFilter($any($event.target).value)" placeholder="Search.." />
+    </div>
+  </div>
+  <div class="matTable">
+    <form [formGroup]="form">
+      <div class="table-responsive mt-1">
+        <table mat-table [dataSource]="dataSource" class="w-100  table-striped" matSort>
+    
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <span class="d-flex align-items-center">
+                <mat-checkbox 
+                  [checked]="isAllSelectedCheck()"
+                  [indeterminate]="isIndeterminateCheck()"
+                  (change)="$event ? masterToggleMapAthlete($event) : null"
+                ></mat-checkbox>
+                <span class="d-inline-block ms-2">ALL</span>
+              </span>
+            </th>
+            <td mat-cell formArrayName="items" *matCellDef="let formGroup">
+              <ng-container [formGroup]="formGroup">
+                <mat-checkbox
+                  formControlName="isMapped"
+                  (click)="$event.stopPropagation()"
+                  (change)="onCheckboxClick($event, formGroup)"
+                >
+                </mat-checkbox>
+              </ng-container>
+            </td>
+          </ng-container>
+        
+          <!-- <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"><img src="assets/images/placeholderProfile.png" alt="" style="max-height: 35px;"></td>
+          </ng-container> -->
+    
+          <!-- NSRS ID Column -->
+          <ng-container matColumnDef="nsrsId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrsId"> NSRS ID </th>
+            <td mat-cell *matCellDef="let formGroup"> {{formGroup.value.nsrsId}} </td>
+          </ng-container>
+
+          
+        
+          <!-- ATHLETE Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="name" class="col-3 col-lg-2 "> ATHLETE </th>
+            <td mat-cell *matCellDef="let formGroup"> {{formGroup.value.name}} </td>
+          </ng-container>         
+        
+          <!-- Date of joining Column -->
+          <ng-container matColumnDef="academy_date_of_joining">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="academy_date_of_joining" class="text-nowrap"> Date Of Joining </th>
+            <td mat-cell *matCellDef="let formGroup"> {{ formGroup.value.academy_date_of_joining }} </td>
+          </ng-container>
+          <!-- TrainingLevel_id Column -->
+          <ng-container matColumnDef="trainingLevel_id">
+            <th mat-header-cell *matHeaderCellDef> Level </th>
+            <td mat-cell formArrayName="items" *matCellDef="let formGroup;let i=index"> 
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Level</mat-label>
+                <ng-container [formGroup]="formGroup">
+                  <mat-select formControlName="trainingLevel">
+                    <mat-option *ngFor="let data of trainingLevelData" [value]="data.trainingLevel_id">{{data.trainingLevel}}</mat-option>
+                  </mat-select>
+                </ng-container>
+              </mat-form-field>
+             </td>
+          </ng-container>
+          <!-- PA_Permissions Column -->
+          <ng-container matColumnDef="PA_Permissions">
+            <th mat-header-cell *matHeaderCellDef> PA Permissions </th>
+            <td mat-cell formArrayName="items" *matCellDef="let formGroup;let i=index"> 
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label> PA Permissions</mat-label>
+                  <ng-container [formGroup]="formGroup">
+                    <mat-select formControlName="paPermission">
+                      <mat-option value="ALL">ALL</mat-option>
+                      <mat-option value="View">View</mat-option>
+                      <mat-option value="Edit">Edit</mat-option>
+                      <mat-option value="None">None</mat-option>
+                    </mat-select>
+                  </ng-container>
+                </mat-form-field>
+               </td>
+          </ng-container>
+          <!-- coach_fromDate Column -->
+          <ng-container matColumnDef="coach_fromDate">
+            <th mat-header-cell *matHeaderCellDef> From Date </th>
+            <td mat-cell formArrayName="items" *matCellDef="let formGroup">
+              <ng-container [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="w-100" (click)="picker.open()" (keyup.enter)="picker.open()">
+                  <mat-label>From Date</mat-label>
+                  <input readonly 
+                    matInput 
+                    [matDatepicker]="picker" 
+                    formControlName="coach_fromDate" 
+                    [min]="getMinDate(formGroup)"
+                    [max]="formGroup.value.coach_toDate"
+                  >
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </ng-container>
+               </td>
+          </ng-container>
+          <!-- coach_toDate Column -->
+          <ng-container matColumnDef="coach_toDate">
+            <th mat-header-cell *matHeaderCellDef> To Date </th>
+            <td mat-cell formArrayName="items" *matCellDef="let formGroup">
+              <ng-container [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="w-100" (click)="picker2.open()" (keyup.enter)="picker2.open()">
+                  <mat-label>To Date</mat-label>
+                  <input readonly matInput [matDatepicker]="picker2" formControlName="coach_toDate" [min]="formGroup.value.coach_fromDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </ng-container> 
+               </td>
+          </ng-container>
+        
+          <!-- FROM Column -->
+          <!-- <ng-container matColumnDef="from">
+            <th mat-header-cell *matHeaderCellDef> FROM </th>
+            <td mat-cell *matCellDef="let element"> 
+              {{element.coach_fromDate }}  <ng-container *ngIf="element.coach_toDate == ''">to  {{ element.coach_toDate}}</ng-container>
+
+            </td>
+          </ng-container> -->
+          <ng-container *ngIf="compInstanceDataGet.mappingTypeCode==2">
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsCoach"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsCoach;"></tr>
+          </ng-container>
+          <ng-container *ngIf="compInstanceDataGet.mappingTypeCode==103">
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsSportScientist"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsSportScientist;"></tr>
+          </ng-container>
+          
+          <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row)">
+          </tr> -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="7"> <span class="noDataFound"> No Data Found </span></td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <mat-paginator [pageSizeOptions]="[10, 50]" aria-label="Select page of users"></mat-paginator>
+      </div>
+      <div class="text-end mt-3 mb-3">
+        <button 
+          (click)="save()" 
+          type="button" 
+          class="btn btn-blue px-4 px-lg-5" 
+          [disabled]="itemsFormArray.invalid">SAVE</button>
+      </div>
+    </form>
+  </div>
+  
+</div>
+
+<ng-container *ngIf="iscoachOptionLoader || trainingLevelLoader" >
+  <app-loader></app-loader>
+</ng-container>

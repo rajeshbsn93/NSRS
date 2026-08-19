@@ -1,0 +1,86 @@
+<!-- {{athleteData | json}} -->
+
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span class="titleIcon"><i class="icon-personal-information-18"></i></span>  SPORT SCIENTIST DETAILS</button>
+      </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="athletetag">
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h5></h5>
+          <!-- <button class="btn border px-3 text-uppercase addmore" (click)="newAddMultiTagArray()">ADD MORE +</button> -->
+        </div>
+        <form [formGroup]="multiTagForm">
+          <div class="table-responsive mt-3">
+            <table class="table">
+              <tbody formArrayName="addMultiTagArray">
+                <tr *ngFor="let item of addMultiTagArray.controls; let i = index" [formGroupName]="i">
+                  <!-- <td>{{i + 1}}</td> -->
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>NSRS ID</mat-label>
+                      <input matInput formControlName="ki_unique_id" (change)="changeNSRSID($event,i)">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Name</mat-label>
+                      <input matInput formControlName="coach_name">
+                    </mat-form-field>
+                    <input type="hidden" formControlName="sport_detail_id">
+                  </td>
+                  <td>
+                      <mat-form-field appearance="fill" (click)="picker.open()">
+                        <mat-label>Date Of Joining</mat-label>
+                        <input matInput [matDatepicker]="picker" (keypress)="false" formControlName="date_of_joining">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Designation</mat-label>
+                      <mat-select formControlName="designation">
+                        <mat-option *ngFor="let data of designationList" [value]="data.designation">{{data.designation}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Employment Type</mat-label>
+                      <mat-select formControlName="employmenttype">
+                        <mat-option value="Regular">Regular</mat-option>
+                        <mat-option value="Contract">Contract</mat-option>
+                        <mat-option value="Deputation">Deputation</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td  *ngIf="this.addMultiTagArray.length>1">
+                    <a href="javascript:void(0)" (click)="removeAddMultiTagArray(i)"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="9" class="text-start">
+                  <div>
+                    <button type="button" [disabled]="!multiTagForm.valid" (click)="submitMultiTagged()" class="btn btn-lightblue me-2">Save</button>
+                    <button type="button"  (click)="activeModal.dismiss('Cross click')" class="btn readmore border px-3">Cancel</button>
+                  </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>    
+
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="loader"></app-loader>

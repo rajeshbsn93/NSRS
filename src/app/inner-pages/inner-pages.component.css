@@ -1,0 +1,3 @@
+@media(max-width:767px){
+    .dashboard-wraper::before{display: none;}
+}

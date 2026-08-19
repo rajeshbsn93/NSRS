@@ -1,0 +1,112 @@
+<div class="container-fluid p-2 border border-blue">
+  <div class="row h4 m-0 p-2 justify-content-center bg-blue text-white fw-bold">
+    MANAGE MENU
+  </div>
+  <div class="row g-0 py-1">
+    <div class="col-12 col-sm-6 py-1 d-flex align-items-center">
+      <mat-form-field appearance="fill">
+        <mat-label>Applications</mat-label>
+        <mat-select [formControl]="appIdControl">
+          <mat-option *ngFor="let option of appIdList$ | async" [value]="option.appId">{{ option.projectName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col col-sm-6 py-1 d-flex align-items-center justify-content-end">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input #searchField matInput (keyup)="applyFilter($any($event.target).value)" />
+      </mat-form-field>
+      <button type="button" mat-flat-button class="bg-blue text-white h-100 ms-2" (click)="openPopup()"><mat-icon>add_box</mat-icon> ADD MENU </button>
+    </div>
+  </div>
+  <div class="row table-responsive">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="w-100 table-striped"
+    >
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+        <td mat-cell *matCellDef="let record" class="text-nowrap text-center">
+          <mat-icon class="text-blue" (click)="openPopup(record)">edit</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Menu Name Column -->
+      <ng-container matColumnDef="menu_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="menu_name">Menu Name</th>
+        <td mat-cell *matCellDef="let record">{{ record.menu_name }}</td>
+      </ng-container>
+
+      <!-- Menu Component Name Column -->
+      <ng-container matColumnDef="menu_component_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="menu_component_name">Menu Component Name</th>
+        <td mat-cell *matCellDef="let record">{{ record.menu_component_name }}</td>
+      </ng-container>
+
+      <!-- Menu Class Name Column -->
+      <ng-container matColumnDef="menu_class">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="menu_class">Menu Class</th>
+        <td mat-cell *matCellDef="let record">{{ record.menu_class }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 50, 100]" aria-label="Select page"></mat-paginator>
+</div>
+
+<ng-template #manageMenu>
+  <form novalidate>
+    <div
+        class="container-fluid p-0 border rounded border-blue"
+        [formGroup]="form"
+      >
+      <div class="row p-1 bg-blue h5 m-0 bg-blue text-white justify-content-center">
+        {{ form.get('id')?.value ? 'EDIT' : 'ADD'}} MENU
+      </div>
+      <div class="row p-1">
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Menu Name</mat-label>
+            <input matInput formControlName="menu_name" />
+          </mat-form-field>
+          <div *ngIf="form.get('menu_name')?.touched && form.get('menu_name')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Menu Component Name</mat-label>
+            <input matInput formControlName="menu_component_name" />
+          </mat-form-field>
+          <div *ngIf="form.get('menu_component_name')?.touched && form.get('menu_component_name')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Menu Class</mat-label>
+            <input matInput formControlName="menu_class" />
+          </mat-form-field>
+          <div *ngIf="form.get('menu_class')?.touched && form.get('menu_class')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-2 p-2">
+        <div class="col text-center">
+          <button mat-raised-button class="bg-blue text-white me-2" (click)="saveDetails()">Save</button>
+          <button mat-raised-button (click)="closePopup()" >Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-container *ngIf="loader">
+  <app-loader></app-loader>
+</ng-container>

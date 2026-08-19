@@ -1,0 +1,26 @@
+.nodal-officer-manage-athlete{font-family: 'Lato';}
+.nodal-officer-manage-athlete .table .mat-header-row{
+    height: 44px;
+}
+.nodal-officer-manage-athlete .table th{
+    /* text-align: center; */
+    vertical-align: middle;
+    font-size: 14px;
+}
+.nodal-officer-manage-athlete .table td{
+    /* text-align: center; */
+    vertical-align: middle;
+}
+
+.eye-ath-icon {
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
+    font-size: 20px;
+}
+.view-acn-btn{cursor: pointer;}
+.noDataFound{font-size: 16px;}

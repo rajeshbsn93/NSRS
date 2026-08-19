@@ -1,0 +1,137 @@
+<!-- {{athleteData | json}} -->
+<div class="athleteAction-modal">
+
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" data-bs-toggle="tab"
+            data-bs-target="#add-camp" type="button">ASSESSMENT CAMP</button>
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane show active fade" id="add-camp">
+          <form [formGroup]="campForm">
+            <div class="row gx-3">
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Enter Assessment Camp Name</mat-label>
+                  <input type="text" matInput formControlName="camp_name">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill" (click)="picker.open()">
+                  <mat-label>Start Date</mat-label>
+                  <input matInput [matDatepicker]="picker" (keypress)="false" formControlName="from_date" (dateChange)="changeStartDate($event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill" (click)="picker2.open()">
+                  <mat-label>End Date</mat-label>
+                  <input matInput [matDatepicker]="picker2" (keypress)="false" formControlName="to_date" [min]="campForm.get('from_date')?.value">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Discipline</mat-label>
+                  <mat-select formControlName="sport_display_name">
+                    <mat-option [value]="data.sport_detail_id" *ngFor="let data of sportListData">{{data.sport_name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <hr class="mt-0">
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>State</mat-label>
+                  <mat-select formControlName="state" (valueChange)="onChangeState($event)">
+                    <mat-option [value]="data.id" *ngFor="let data of stateListData">{{data.state_name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field appearance="fill" class="w-100" (click)="checkState(campForm.controls['state'].value)">
+                  <mat-label>District</mat-label>
+                  <mat-select formControlName="district" (valueChange)="onChangeDistrict($event)">
+                    <mat-option *ngFor="let data of districtListData" [value]="data.districtId">{{data.district_Name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field appearance="fill" class="w-100" (click)="checkDidtrict(campForm.controls['district'].value)">
+                  <mat-label>Pincode</mat-label>
+                  <mat-select formControlName="pincode">
+                    <mat-option *ngFor="let data of pincodeListData" [value]="data.pinCodeId">{{data.pinCode}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>MobileNo</mat-label>
+                  <input type="text" matInput formControlName="mob_no" maxlength="10">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Email</mat-label>
+                  <input type="text" matInput formControlName="email">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label> Enter Venue Name</mat-label>
+                  <input matInput formControlName="venue">
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <hr class="mt-0">
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label> Enter User Name</mat-label>
+                  <input matInput formControlName="userName" (change)="checkUser($event)">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label> Enter Password</mat-label>
+                  <input [type]="passwordhide ? 'password' : 'text'" matInput formControlName="password">
+                  <button mat-icon-button matSuffix (click)="passwordhide = !passwordhide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordhide">
+                    <mat-icon>{{passwordhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div *ngIf="campForm.get('password')?.touched && campForm.get('password')?.invalid" class="text-danger">
+                  <small *ngIf="campForm.get('password')?.errors && campForm.get('password')?.errors!['pattern']">Minimum eight characters, at least one uppercase letter, one lowercase letter,
+                      one number and one special character</small>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label> Confirm Password</mat-label>
+                  <input [type]="confirmPasswordhide ? 'password' : 'text'" matInput formControlName="confirm_password">
+                  <button mat-icon-button matSuffix (click)="confirmPasswordhide = !confirmPasswordhide" [attr.aria-label]="'Hide Confirm password'" [attr.aria-pressed]="confirmPasswordhide">
+                    <mat-icon>{{confirmPasswordhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div class="text-danger" *ngIf="(campForm.get('confirm_password')?.dirty || campForm.get('confirm_password')?.touched)  && campForm.errors?.['notMatched']"><small>Password and Confirm Password must be match</small></div>
+              </div>
+              <div class="col text-end">
+                <button (click)="save()" type="submit" class="btn btn-lightblue px-3 px-md-4 me-2" [disabled]="!this.campForm.valid">Save</button>
+                <button  (click)="activeModal.dismiss('Cross click')" class="btn btn-light bg-white border px-3 px-md-4">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-loader *ngIf="loader"></app-loader>
+  <app-loader *ngIf="loaderDiscipline"></app-loader>
+  <app-loader *ngIf="loaderState"></app-loader>

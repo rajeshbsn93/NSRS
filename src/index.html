@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>National Sports Repository System</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/icomoon.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Symbols+Outlined" rel="stylesheet">
+  <script>
+    let stagingDigioUrl='https://ext.digio.in/sdk/v11/digio.js'
+    let prodDigioUrl = 'https://app.digio.in/sdk/v11/digio.js'
+    var scriptUrl = window.location.hostname.includes('nsrs.kheloindia.gov.in') ? prodDigioUrl : stagingDigioUrl;
+    var scriptElement = document.createElement('script');
+    scriptElement.src = scriptUrl;
+    scriptElement.onload = function () {
+    };
+    scriptElement.onerror = function () {
+      console.error('Failed to load Digio SDK');
+    };
+    document.head.appendChild(scriptElement);
+  </script>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+
+
+

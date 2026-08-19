@@ -1,0 +1,117 @@
+.athleteAction-modal .modal-dialog{}
+.athleteAction-modal .modal-body{padding: 0;}
+.athleteAction-modal .btn-close{position: absolute;
+  right: 15px;
+  top: 15px;}
+.athleteAction-modal .nav-tabs{border: 0;
+  padding: 0px 15px;
+  box-shadow: 0 0 7px -2px #ddd;}
+.athleteAction-modal .nav-tabs .nav-link{border: 0;
+  font-size: 14px;
+  color: #C9C9C9;
+  border-bottom: 1.5px solid transparent;padding: 16px 14px;text-transform: uppercase;}
+.athleteAction-modal .nav-tabs .nav-link.active{border-bottom-color: #1F60AB;
+  color: #1F60AB;}
+.athleteAction-modal .tab-content{padding: 15px;}
+.athleteAction-modal tr th{font-size: 14px;text-align: center;}
+.athleteAction-modal tr td{border-color: #F5F5F5;}
+.athleteAction-modal tr td,.athleteAction-modal .form-control{font-size: 14px;color: #4D4D4D;}
+.form-control:disabled{background-color: #E9ECEF;}
+.athleteAction-modal tr td .form-control{border-radius: 3px;border-color:#E9ECEF ;}
+.athleteAction-modal label{font-size: 12px;color: #000000;}
+.athleteAction-modal select{appearance: auto;}
+.athleteAction-modal ::ng-deep .mat-form-field-infix{    padding-bottom: 5px;}
+.setMinWidth{
+  min-width: 100px;
+}
+
+.inputFile{padding: 7px 10px;}
+.commonselect{font-size: 14px;}
+
+.addAcademyBtn{
+  font-size: 12px;
+  color:black;
+  background-color: #CCFFEC;
+  border: 1px solid;
+  border-color: #0E8B5C;
+  border-radius: 3px;text-transform: uppercase
+}
+
+.inputFileUpload-wraper{justify-content: space-between;
+  padding: 6.5px 10px;}
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;
+font-size: 11px;
+font-weight: bold;
+padding: 5px 20px;
+border-radius: 4px;
+display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;
+opacity: 0;
+width: 100%;
+left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+.insuranceNsrsId{
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  background-color: #D1E5FB;
+  border:1px solid;
+  border-color:#A3CCF9;
+}
+
+.athleteAction-modal #history tr th{font-size: 14px;text-align: center;color: #000000;background-color: #F8F8F8;}
+.athleteAction-modal ::ng-deep .matselectFont{font-size: 12px;}
+#weed-out ::ng-deep .matselectFull{font-size: 14px;}
+
+
+.modal-profile-card{min-height: 500px;}
+.modal-profile-card .profile-card-img{
+  height: 140px;
+  width: 150px;
+}
+.modal-profile-card p{
+  color: #b1b1b1;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+.modal-profile-card .my-custom-border-bottom{
+  border-bottom: 1px solid #b1b1b169;
+  padding-bottom: 10px;
+}
+.modal-profile-card .list-card-1{
+  border-top: 1px solid #b1b1b169;
+  padding-top: 10px;
+}
+.modal-profile-card .list-card{
+  border-bottom: 1px solid #b1b1b169;
+}
+.modal-profile-card .list-card p{font-size: 10px;}
+.modal-profile-card .list-card .icon-img{
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.modal-profile-card .list-card h6{
+ font-size: 12px;
+ font-weight: 600;
+ color: #717171;
+ letter-spacing: 0.3px;
+}
+.modal-profile-card .ver-tick{
+  height: 16px;
+}
+.modal-profile-card .adhrd-img{
+  /* background-color: #d93b49; */
+  
+}
+.transfer-btn{
+  background-color: #ececec;
+  color: #282525;
+}
+
+

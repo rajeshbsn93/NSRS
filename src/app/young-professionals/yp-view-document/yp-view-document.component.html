@@ -1,0 +1,171 @@
+<div class="tab-content view-doc font-fix ">
+    <div class="tab-pane active" id="athletecoaching">
+        <div class="row justify-content-between  align-items-center mt-4">
+            <div class="col d-flex align-items-center">
+                <h5 class="event-title mb-sm-0 me-3 backbtn-arrow cursor-pointer" (click)="goBack()" ><mat-icon class="me-2">arrow_back</mat-icon>Back</h5>
+                <h2 class="event-title mb-sm-0">View Documents</h2>
+            </div>
+            <!-- <div class="col-auto d-flex">
+                <select name="" id="" class="form-select me-2 rounded-0">
+                    <option value="1">Export</option>
+                </select>
+                <button type="button"  class="btn data-history-btn-yp text-uppercase  d-flex align-items-center"><mat-icon class="me-2">access_time</mat-icon> Data History</button>
+            </div> -->
+        </div>
+       <div class="container-fluid mt-1" *ngIf="ypDocumentList">
+        <div class="row my-yp-cards mt-3">
+            <ng-container>
+
+                <!-- Aadhar Card -->
+                <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.playerAadhar">
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.playerAadhar)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">Aadhaar Card</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ng-container *ngIf="ypDocumentList?.playerAadhar.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.playerAadhar.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.playerAadhar"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+                   <!-- 10th Marksheet -->
+                   <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.highSchoolMarkSheet">
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.highSchoolMarkSheet)" >
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">10th Marksheet</h5>
+                        </div>
+                        <div class="card-body p-0">     
+                            <ng-container *ngIf="ypDocumentList?.highSchoolMarkSheet.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.highSchoolMarkSheet.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.highSchoolMarkSheet"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+
+
+                   <!-- 12th Marksheet -->
+                   <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.interMarkSheet">
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.interMarkSheet)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">12th Marksheet</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ng-container *ngIf="ypDocumentList?.interMarkSheet.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.interMarkSheet.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.interMarkSheet"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+
+                   <!-- Degree -->
+                   <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.degree">
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.degree)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">Degree</h5>
+                        </div>
+                        <div class="card-body p-0">
+
+                            <ng-container *ngIf="ypDocumentList?.degree.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.degree.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.degree"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+
+                   <!-- Bonafide -->
+                   <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.schoolCertificate" >
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.schoolCertificate)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">Bonafide</h5>
+                        </div>
+                        <div class="card-body p-0">
+
+                            <ng-container *ngIf="ypDocumentList?.schoolCertificate.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.schoolCertificate.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.schoolCertificate"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+
+                   <!-- Current Posting -->
+                   <div class="col-md-3 col-12  my-2 cursor-pointer" *ngIf="ypDocumentList?.positionCertificate">
+                    <div class="card bg-transparent" (click)="previewMedia(fileUrl+ypDocumentList?.positionCertificate)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">Current Posting</h5>
+                        </div>
+                        <div class="card-body p-0">
+
+                            <ng-container *ngIf="ypDocumentList?.positionCertificate.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.positionCertificate.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.positionCertificate"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+
+                   <!-- Khelo India Certificate -->
+                   <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.kheloIndiaCertificate">
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.kheloIndiaCertificate)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">Khelo India Certificate</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ng-container *ngIf="ypDocumentList?.kheloIndiaCertificate.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.kheloIndiaCertificate.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.kheloIndiaCertificate"  class="img-fluid">
+                            </ng-container>
+                            
+                        </div>
+                    </div>
+                   </div>
+
+
+                   <!-- Form 5 -->
+                   <div class="col-md-3 col-12  my-2" *ngIf="ypDocumentList?.form5docpath">
+                    <div class="card bg-transparent cursor-pointer" (click)="previewMedia(fileUrl+ypDocumentList?.form5docpath)">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">Form 5</h5>
+                        </div>
+                        <div class="card-body p-0">
+
+                            <ng-container *ngIf="ypDocumentList?.form5docpath.includes('.pdf')">
+                                <img src="assets/images/pdf-icon.svg"  class="img-fluid">
+                            </ng-container>
+                            <ng-container *ngIf="!ypDocumentList?.form5docpath.includes('.pdf')">
+                                <img [src]="fileUrl+ypDocumentList?.form5docpath"  class="img-fluid">
+                            </ng-container>
+                        </div>
+                    </div>
+                   </div>
+            </ng-container>
+          
+           
+        </div>
+       </div>
+       
+    </div> 
+  
+</div>   
+
+
+<app-loader *ngIf="isLoading"></app-loader>

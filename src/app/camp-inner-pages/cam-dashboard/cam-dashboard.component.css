@@ -1,0 +1,26 @@
+.regProfile .item{display: flex;}
+.regProfile .item a:not(:last-child){margin-right: 10px;}
+.regProfile .item .card{padding: 5px 15px;border-color: #1F60AB;text-decoration: none;flex-direction: revert;align-items: center;
+justify-content: center;background-color: #1F60AB;color: #fff}
+.regProfile .item .iconbox{color: #1E5FAA;font-size: 16px;margin-right: 8px;}
+.regProfile .item .iconbox i::before{color: #fff;}
+.regProfile .item h3{font-size: 13px;font-weight: 600;text-transform: uppercase;}
+.regProfile .item .icon-football-line{font-size: 18px;}
+
+.profile-title select{max-width: 90px;font-size: 11px;-webkit-appearance: auto;appearance: auto;box-shadow: none;}
+.profile-title h5{font-size: 16px;font-weight: bold;}
+.profile-title span{background-color: #1F60AB;padding: 3px 8px 1px;border-radius: 3px;font-size: 12px;}
+.adashboard-athlete-profile .table{font-size: 14px;}
+.adashboard-athlete-profile .table tr th{background-color: #FFF9EE;text-align: center;}
+.adashboard-athlete-profile .table tr td{font-weight: bold;text-align: center;}
+.achievement-row .table{font-size: 14px;}
+.achievement-row .table tr td{font-weight: 600;}
+.achievement-row .leftcol .table tr th{background-color: #EEF6FF;}
+.achievement-row .leftcol .table tr th:first-child{color: #1F60AB;}
+.achievement-row .leftcol .table tr th:not(:first-child),.achievement-row .leftcol .table tr td:not(:first-child){text-align: center;}
+.achievement-row .rightcol .table tr th{background-color: #FFEEEE;}
+.achievement-row .rightcol .table tr th:last-child{text-align: center;}
+.achievement-row .rightcol .table tr td:not(:first-child){text-align: center;}
+
+
+

@@ -1,0 +1,209 @@
+<div class="container-fluid p-2 border border-blue">
+  <div class="row h4 m-0 p-2 justify-content-center bg-blue text-white fw-bold">
+    MANAGE USER
+  </div>
+  <div class="row g-0 py-2 justify-content-end">
+    <div class="col-6 col-md-4 p-0 d-flex align-items-center justify-content-end">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input #searchField matInput (keyup)="applyFilter($any($event.target).value)" />
+      </mat-form-field>
+      <button type="button" mat-flat-button class="bg-blue text-white h-100 ms-2" (click)="openEditUserPopup()"><mat-icon>add_box</mat-icon> ADD </button>
+    </div>
+  </div>
+  <div class="row table-responsive">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="w-100 table-striped"
+    >
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let record" class="text-nowrap">
+          <mat-icon (click)="openEditUserPopup(record)" class="text-blue"
+            >edit</mat-icon
+          >
+          <mat-icon class="text-danger" (click)="deleteUserDetails(record)">delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- User Name Column -->
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="userName">
+          User Name
+        </th>
+        <td mat-cell *matCellDef="let record">{{ record.userName }}</td>
+      </ng-container>
+
+      <!-- User Displayed Name Column -->
+      <ng-container matColumnDef="userDisplayName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="userDisplayName">
+          User Display Name
+        </th>
+        <td mat-cell *matCellDef="let record">
+          {{ record.userDisplayName }}
+        </td>
+      </ng-container>
+
+      <!-- Role Name Column -->
+      <ng-container matColumnDef="roleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="roleName">
+          Role Name
+        </th>
+        <td mat-cell *matCellDef="let record">{{ record.roleName }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="emailId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="emailId">
+          Email ID
+        </th>
+        <td mat-cell *matCellDef="let record">{{ record.emailId }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page"></mat-paginator>
+</div>
+<ng-template #editUser>
+  <form novalidate>
+    <div
+      class="container-fluid p-0 border rounded border-blue"
+      [formGroup]="form"
+    >
+      <div
+        class="row p-1 bg-blue h5 m-0 bg-blue text-white justify-content-center"
+      >
+        USER PROFILE
+      </div>
+      <div class="row p-2 text-blue fw-bold">
+        <div class="d-flex align-items-center">
+          <mat-icon class="material-symbols-outlined">info</mat-icon><span class="ps-1">USER INFORMATION</span>
+        </div>
+      </div>
+      <div class="row p-1">
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="userName" />
+          </mat-form-field>
+          <div *ngIf="form.get('userName')?.touched && form.get('userName')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>User Display Name</mat-label>
+            <input matInput formControlName="userDisplayName" />
+          </mat-form-field>
+          <div *ngIf="form.get('userDisplayName')?.touched && form.get('userDisplayName')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Roles</mat-label>
+            <mat-select formControlName="roleId">
+              <mat-option *ngFor="let option of rolesList$ | async" [value]="option.role_id"> {{option.role_name}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="form.get('roleId')?.touched && form.get('roleId')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row p-2 text-blue fw-bold">ADDRESS</div>
+      <div class="row p-1">
+        <div class="col-8 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" />
+          </mat-form-field>
+          <div *ngIf="form.get('address')?.touched && form.get('address')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>State</mat-label>
+            <mat-select formControlName="stateId">
+              <mat-option *ngFor="let option of stateList$ | async" [value]="option.id"> {{option.state_name}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="form.get('stateId')?.touched && form.get('stateId')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row p-2 text-blue fw-bold">MOBILE NUMBER & EMAIL ID</div>
+      <div class="row p-1">
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Email ID</mat-label>
+            <input matInput formControlName="emailId" />
+          </mat-form-field>
+          <div *ngIf="form.get('emailId')?.touched && form.get('emailId')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+          <div *ngIf="form.get('emailId')?.touched && form.get('emailId')?.hasError('email')" class="text-danger">
+            <small>Invalid Email</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Mobile Number</mat-label>
+            <input type="number" matInput formControlName="mobileNo" />
+          </mat-form-field>
+          <div *ngIf="form.get('mobileNo')?.touched && form.get('mobileNo')?.hasError('required')" class="text-danger">
+            <small>This field is required</small>
+          </div>
+        </div>
+        <div class="col-4 p-1">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Alternate No.</mat-label>
+            <input type="number" matInput formControlName="phoneNo" />
+          </mat-form-field>
+        </div>
+      </div>
+      <ng-container *ngIf="!form.get('userId')?.value">
+        <div class="row p-2 text-blue fw-bold">PASSWORD</div>
+        <div class="row p-1">
+          <div class="col-4 p-1">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" />
+            </mat-form-field>
+            <div *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')" class="text-danger">
+              <small>This field is required</small>
+            </div>
+          </div>
+          <div class="col-4 p-1">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput formControlName="confirmPassword" />
+            </mat-form-field>
+            <div *ngIf="form.get('confirmPassword')?.touched && form.get('confirmPassword')?.hasError('required')" class="text-danger">
+              <small>This field is required</small>
+            </div>
+            <div *ngIf="form.get('confirmPassword')?.touched && form.get('confirmPassword')?.hasError('passwordMismatch')" class="text-danger">
+              <small>Passwords do not match</small>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="row p-2">
+        <div class="col text-center">
+          <button mat-raised-button class="bg-blue text-white me-2" (click)="saveDetails()">Save</button>
+          <button mat-raised-button (click)="closeEditUserPopup()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+<ng-container *ngIf="loader">
+  <app-loader></app-loader>
+</ng-container>

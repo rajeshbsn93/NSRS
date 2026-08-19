@@ -1,0 +1,391 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?fty4ef');
+  src:  url('../fonts/icomoon.eot?fty4ef#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?fty4ef') format('truetype'),
+    url('../fonts/icomoon.woff?fty4ef') format('woff'),
+    url('../fonts/icomoon.svg?fty4ef#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-achievement:before {
+  content: "\e900";
+}
+.icon-address-30:before {
+  content: "\e901";
+  color: #1f60ab;
+}
+.icon-approved:before {
+  content: "\e902";
+}
+.icon-apps_dots:before {
+  content: "\e903";
+}
+.icon-Assessment:before {
+  content: "\e904";
+  color: #fff;
+}
+.icon-athlete:before {
+  content: "\e905";
+  color: #fff;
+}
+.icon-athlete-detail:before {
+  content: "\e906";
+  color: #fff;
+}
+.icon-Athlete-Ranking:before {
+  content: "\e907";
+  color: #f39749;
+}
+.icon-athletes:before {
+  content: "\e908";
+  color: #fff;
+}
+.icon-Bank:before {
+  content: "\e909";
+  color: #ff9beb;
+}
+.icon-book-2-line-1:before {
+  content: "\e90a";
+  color: #ff9beb;
+}
+.icon-book-mark-line:before {
+  content: "\e90b";
+  color: #4a87cc;
+}
+.icon-calendar-todo-fill-1:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-camera-fill:before {
+  content: "\e90d";
+  color: #fff;
+}
+.icon-camp:before {
+  content: "\e90e";
+  color: #1f60ab;
+}
+.icon-Check:before {
+  content: "\e90f";
+  color: #64c6d5;
+}
+.icon-coach:before {
+  content: "\e910";
+  color: #fff;
+}
+.icon-coach-detail:before {
+  content: "\e911";
+  color: #fff;
+}
+.icon-Coaches:before {
+  content: "\e912";
+  color: #fff;
+}
+.icon-coach-instructor:before {
+  content: "\e913";
+  color: #f39749;
+}
+.icon-Counselling:before {
+  content: "\e914";
+  color: #fff;
+}
+.icon-dashboard:before {
+  content: "\e915";
+}
+.icon-Details-Of-achievement:before {
+  content: "\e916";
+  color: #4b6fbf;
+}
+.icon-DOB:before {
+  content: "\e917";
+  color: #58b9f6;
+}
+.icon-download_certificate:before {
+  content: "\e918";
+  color: #ffb24d;
+}
+.icon-download_image_zip:before {
+  content: "\e919";
+}
+.icon-download-2-line:before {
+  content: "\e91a";
+}
+.icon-eye-fill:before {
+  content: "\e91b";
+}
+.icon-file-chart-line-3:before {
+  content: "\e91c";
+  color: #fff;
+}
+.icon-file-search-line:before {
+  content: "\e91d";
+  color: #fff;
+}
+.icon-football-line:before {
+  content: "\e91e";
+  color: #1f60ab;
+}
+.icon-form5:before {
+  content: "\e91f";
+}
+.icon-Group-39975:before {
+  content: "\e920";
+  color: #0e0f7a;
+}
+.icon-History:before {
+  content: "\e921";
+  color: #ff9beb;
+}
+.icon-Home:before {
+  content: "\e922";
+  color: #fff;
+}
+.icon-image-line:before {
+  content: "\e923";
+  color: #58b9f6;
+}
+.icon-information:before {
+  content: "\e924";
+  color: #d99c69;
+}
+.icon-information-line-1:before {
+  content: "\e925";
+  color: #4a87cc;
+}
+.icon-Insurance:before {
+  content: "\e926";
+  color: #fff;
+}
+.icon-Insurance-1:before {
+  content: "\e927";
+  color: #fff;
+}
+.icon-kiaa:before {
+  content: "\e928";
+  color: #fff;
+}
+.icon-kicAttendance:before {
+  content: "\e929";
+  color: #1f60ab;
+}
+.icon-kicAttendanceHistory:before {
+  content: "\e92a";
+  color: #1f60ab;
+}
+.icon-kicMonitoring:before {
+  content: "\e92b";
+  color: #fff;
+}
+.icon-kicReports:before {
+  content: "\e92c";
+  color: #fff;
+}
+.icon-ki-dashboard-approved .path1:before {
+  content: "\e92d";
+  color: rgb(77, 183, 72);
+}
+.icon-ki-dashboard-approved .path2:before {
+  content: "\e92e";
+  margin-left: -1.13671875em;
+  color: rgb(255, 255, 255);
+}
+.icon-ki-dashboard-approved .path3:before {
+  content: "\e92f";
+  margin-left: -1.13671875em;
+  color: rgb(255, 255, 255);
+}
+.icon-ki-dashboard-pending .path1:before {
+  content: "\e930";
+  color: rgb(243, 112, 34);
+}
+.icon-ki-dashboard-pending .path2:before {
+  content: "\e931";
+  margin-left: -1.13671875em;
+  color: rgb(255, 255, 255);
+}
+.icon-ki-dashboard-reject .path1:before {
+  content: "\e932";
+  color: rgb(217, 59, 59);
+}
+.icon-ki-dashboard-reject .path2:before {
+  content: "\e933";
+  margin-left: -1.13671875em;
+  color: rgb(255, 255, 255);
+}
+.icon-ki-dashboard-reject .path3:before {
+  content: "\e934";
+  margin-left: -1.13671875em;
+  color: none;
+}
+.icon-lock-password-line:before {
+  content: "\e935";
+  color: #c1c1c1;
+}
+.icon-mail-fill:before {
+  content: "\e936";
+  color: #fff;
+}
+.icon-mail-line-1:before {
+  content: "\e937";
+  color: #fff;
+}
+.icon-map-2-line:before {
+  content: "\e938";
+  color: #8eb9d5;
+}
+.icon-map-pin-2-fill:before {
+  content: "\e939";
+  color: #fff;
+}
+.icon-mapping-athlete-official:before {
+  content: "\e93a";
+}
+.icon-map-pin-line-2:before {
+  content: "\e93b";
+  color: #ff9beb;
+}
+.icon-medal-fill-4:before {
+  content: "\e93c";
+  color: #fff;
+}
+.icon-menu-line:before {
+  content: "\e93d";
+  color: #fff;
+}
+.icon-New-Registration:before {
+  content: "\e93e";
+  color: #c1c1c1;
+}
+.icon-PCA:before {
+  content: "\e93f";
+  color: #fff;
+}
+.icon-pending:before {
+  content: "\e940";
+  color: inherit;
+}
+.icon-personal-information-18:before {
+  content: "\e941";
+  color: #1f60ab;
+}
+.icon-phone-fill:before {
+  content: "\e942";
+  color: #fff;
+}
+.icon-profile:before {
+  content: "\e943";
+}
+.icon-rejected:before {
+  content: "\e944";
+}
+.icon-Report:before {
+  content: "\e945";
+  color: #0e0f7a;
+}
+.icon-Represented:before {
+  content: "\e946";
+  color: #d5ab28;
+}
+.icon-Reset-Password:before {
+  content: "\e947";
+  color: #c1c1c1;
+}
+.icon-sound-module-line:before {
+  content: "\e948";
+  color: #fff;
+}
+.icon-sports-sci:before {
+  content: "\e949";
+  color: #0e0f7a;
+}
+.icon-sportscientist-detail:before {
+  content: "\e94a";
+  color: #fff;
+}
+.icon-sportsscientist:before {
+  content: "\e94b";
+  color: #fff;
+}
+.icon-sportstrainingcenter:before {
+  content: "\e94c";
+  color: #000080;
+}
+.icon-sports-training-centres:before {
+  content: "\e94d";
+  color: #fff;
+}
+.icon-square-grid:before {
+  content: "\e94e";
+  color: #d5ab28;
+}
+.icon-support:before {
+  content: "\e94f";
+}
+.icon-tick:before {
+  content: "\e950";
+  color: #008205;
+}
+.icon-time-fill:before {
+  content: "\e951";
+  color: #fff;
+}
+.icon-time-line:before {
+  content: "\e952";
+  color: #fff;
+}
+.icon-tournament:before {
+  content: "\e953";
+  color: #fff;
+}
+.icon-Traing-Center:before {
+  content: "\e954";
+  color: #000080;
+}
+.icon-training-info:before {
+  content: "\e955";
+}
+.icon-t-shirt-2-line:before {
+  content: "\e956";
+  color: #c9ba4c;
+}
+.icon-upload:before {
+  content: "\e957";
+}
+.icon-user-line:before {
+  content: "\e958";
+  color: #4b6fbf;
+}
+.icon-user-location-line:before {
+  content: "\e959";
+  color: #c1c1c1;
+}
+.icon-veryfied .path1:before {
+  content: "\e95a";
+  color: rgb(183, 255, 185);
+}
+.icon-veryfied .path2:before {
+  content: "\e95b";
+  margin-left: -0.9990234375em;
+  color: rgb(10, 149, 16);
+}
+.icon-video-line-1:before {
+  content: "\e95c";
+  color: #58b9f6;
+}

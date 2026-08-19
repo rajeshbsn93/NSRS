@@ -1,0 +1,187 @@
+/* .education-popup .modal-body {
+  padding: 0;
+}
+
+.education-popup .btn-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.education-popup .nav-tabs {
+  border: 0;
+  padding: 0px 15px;
+  box-shadow: 0 0 7px -2px #ddd;
+}
+.noDataFound{font-size: 16px;
+  font-weight: bold;}
+
+.education-popup .nav-tabs .nav-link {
+  border: 0;
+  font-size: 14px;
+  color: #C9C9C9;
+  border-bottom: 1.5px solid transparent;
+  padding: 16px 14px;
+  text-transform: uppercase;
+}
+
+.education-popup .nav-tabs .nav-link.active {
+  border-bottom-color: #1F60AB;
+  color: #1F60AB;
+}
+
+.education-popup .tab-content {
+  padding: 15px;
+}
+
+.education-popup tr th {
+  font-size: 11px;
+  text-align: center;    text-transform: uppercase;
+}
+.education-popup #history tr th{text-align: left;}
+
+.education-popup tr td {
+  border-color: #F5F5F5;
+}
+
+.education-popup tr td,
+.education-popup .form-control {
+  font-size: 11px;
+  color: #4D4D4D;
+}
+
+.form-control:disabled {
+  background-color: #E9ECEF;
+}
+
+.education-popup tr td .form-control {
+  border-radius: 3px;
+  border-color: #E9ECEF;
+}
+
+.education-popup label {
+  font-size: 12px;
+  color: #000000;
+}
+
+.education-popup select {
+  appearance: auto;
+}
+
+
+.setMinWidth {
+  min-width: 100px;
+}
+
+
+#history tr th{text-align: center;color: #000000;background-color: #F8F8F8;}
+#history tr td{color: #4D4D4D;}
+
+
+
+@media(max-width:420px){
+.education-popup .nav-tabs{padding-top: 5px;}
+.education-popup .nav-tabs .nav-link{padding: 10px 6px;}
+.education-popup .btn-close{right: 3px;
+  top: 2px;}
+  .education-popup tr th{min-width: 110px;}
+}
+
+
+/* coach academy css */
+
+/* .education-popup .modal-body{ padding: 0; }
+.education-popup .btn-close{ position: absolute; right: 15px; top: 15px; }
+.education-popup .nav-tabs{ border: 0; padding: 0px 15px; box-shadow: 0 0 7px -2px #ddd; }
+.education-popup .nav-tabs .nav-link {
+  border: 0;
+  font-size: 14px;
+  color: #C9C9C9;
+  border-bottom: 1.5px solid transparent;
+  padding: 16px 14px;
+  text-transform: uppercase;
+}
+.education-popup .nav-tabs .nav-link.active { border-bottom-color: #1F60AB; color: #1F60AB; }
+.education-popup .tab-content{padding: 15px;}
+.education-popup tr th{font-size: 14px;text-align: center;}
+.education-popup tr td{border-color: #F5F5F5;}
+.education-popup tr td,.education-popup .form-control{font-size: 14px;color: #4D4D4D;}
+.form-control:disabled{background-color: #E9ECEF;}
+.education-popup tr td .form-control{border-radius: 3px;border-color:#E9ECEF ;}
+.education-popup label{font-size: 12px;color: #000000;}
+.education-popup select{appearance: auto;}
+.education-popup ::ng-deep .mat-form-field-infix{    padding-bottom: 5px;}
+.setMinWidth{
+min-width: 100px;
+}
+.education-popup .mat-form-field{font-size: 14px;}
+
+.inputFile{padding: 7px 10px;}
+.commonselect{font-size: 14px;}
+
+.addAcademyBtn{
+font-size: 12px;
+color:black;
+background-color: #CCFFEC;
+border: 1px solid;
+border-color: #0E8B5C;
+border-radius: 3px;text-transform: uppercase
+}
+.tab-inner-label {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  background-color: #D1E5FB;
+  border:1px solid;
+  border-color:#A3CCF9;
+}
+.table-striped tbody tr td {
+  border:1px solid #dee2e6;
+} */ 
+
+.education-popup .modal-body{padding: 0;}
+.education-popup .btn-close{position: absolute;
+  right: 15px;
+  top: 15px;}
+.education-popup .nav-tabs{border: 0;
+  padding: 0px 15px;
+  box-shadow: 0 0 7px -2px #ddd;}
+.education-popup .nav-tabs .nav-link{border: 0;
+  font-size: 14px;
+  color: #C9C9C9;
+  border-bottom: 1.5px solid transparent;padding: 16px 14px;text-transform: uppercase;}
+.education-popup .nav-tabs .nav-link.active{border-bottom-color: #1F60AB;
+  color: #1F60AB;}
+.education-popup .tab-content{padding: 15px;}
+.titleIcon{width: 30px;
+height: 30px;
+border: 1px solid #1E5FAA;
+border-radius: 50%;
+font-size: 14px;
+display: inline-flex;
+align-items: center;
+justify-content: center;margin-right: 8px;}
+.titleIcon i:before{color: #1E5FAA;}
+.btn-close{box-shadow: none;outline: none;}
+.btn-lightblue{font-size: 14px;padding: 7px 26px;}
+
+.addmore{font-size: 13px;font-weight: bold;color: #000000;}
+.education-popup tr td{font-size: 14px;}
+.education-popup tr td .mat-form-field{font-size: 14px;}
+.education-popup ::ng-deep .mat-form-field-flex{padding-top: 0;}
+.education-popup ::ng-deep .mat-form-field-infix{padding-bottom: 8px;width: 110px;}
+.education-popup tr th{font-size: 13px;text-align: center;color: #000000;background-color: #F8F8F8;text-transform: uppercase;}
+.education-popup tr td:last-child,.education-popup tr td:first-child{vertical-align: middle;text-align: center;}
+.education-popup .btn-edit{border-color: #1F60AB;
+  background-color: #D1E6FF;
+  color: #1F60AB;
+  font-size: 12px;
+  padding: 1px 8px 0;
+  border-radius: 3px;}
+
+.inputFileUpload-wraper{justify-content: space-between;padding: 6.3px 10px;}
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;font-size: 11px;font-weight: bold;padding: 5px 20px;
+border-radius: 4px;display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;opacity: 0;width: 100%;left: 0;}
+.inputFileUpload-wraper a{color: inherit;}

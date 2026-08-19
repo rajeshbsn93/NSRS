@@ -1,0 +1,86 @@
+
+:host .row, ::ng-deep .role-popup .mat-dialog-container .row {--bs-gutter-x: 0;}
+
+::ng-deep .role-popup .mat-dialog-container {
+  padding: 0.5rem;
+  width: 50vw;
+  min-width: 320px;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+::ng-deep .role-popup .mat-form-field-wrapper, :host ::ng-deep .mat-form-field-wrapper {
+  border-color: #1F60AB !important;
+  overflow: hidden;
+}
+
+::ng-deep .role-popup .mat-dialog-container .mat-radio-group {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+::ng-deep .role-popup .mat-dialog-container .mat-radio-button:nth-child(even) {
+  background-color: #e9ecef;
+}
+
+::ng-deep .role-popup .mat-dialog-container .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #1F60AB;
+}
+
+::ng-deep .role-popup .mat-dialog-container .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #1F60AB;
+}
+
+::ng-deep .role-popup .mat-dialog-container .mat-radio-label {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+::ng-deep .role-popup .mat-dialog-container .mat-radio-label-content {
+  padding: 0;
+}
+
+:host .mat-icon {
+  cursor: pointer !important;
+}
+
+.table-responsive {max-height: 70vh;}
+
+:host ::ng-deep .mat-table thead {position: sticky; top: 0; z-index: 99;}
+
+.mat-header-cell {
+  background: #1F60AB;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0.7px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0 8px;
+}
+
+:host ::ng-deep .mat-sort-header-arrow {
+  color: #fff;
+}
+
+::ng-deep input::-webkit-outer-spin-button,
+::ng-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .swal2-title {
+  color: #707070;
+  font-size: 31px;
+  font-weight: 600;
+  font-family: 'lato', sans-serif;
+}
+
+::ng-deep .custom-tooltip {
+  font-size: 12px;
+}

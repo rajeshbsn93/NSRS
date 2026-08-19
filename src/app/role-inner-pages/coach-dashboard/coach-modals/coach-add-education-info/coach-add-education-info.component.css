@@ -1,0 +1,48 @@
+.education-modal .titleTxt h4{background-color: #FFE89E;border: 1px solid #E1C15C;
+  padding: 3px;
+  font-size: 13px;
+  text-transform: uppercase;}
+.education-modal .btn-close{position: absolute;
+  right: 4px;
+  top: 4px;
+  font-size: 14px;box-shadow: none;outline: none;}
+.education-modal{padding: 15px 26px 15px 20px}
+
+
+.education-modal .mat-form-field{font-size: 14px;}
+.education-modal .titleTxt h3{font-size: 16px;
+  color: #4b6fbf;
+  text-transform: uppercase;margin-bottom: 0;}
+.education-modal .titleTxt{border-bottom: 1px solid #D9D9D9;
+  padding-bottom: 10px;
+  margin-bottom: 20px;}
+.education-modal .titleTxt .titleIcon{width: 30px;
+  height: 30px;
+  border: 1px solid #1E5FAA;
+  border-radius: 50%;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;margin-right: 8px;}
+.education-modal .titleTxt .btn-edit{border-color: #1F60AB;
+  background-color: #D1E6FF;
+  color: #1F60AB;
+  font-size: 12px;
+  padding: 1px 8px 0;
+  border-radius: 3px;
+}
+::ng-deep .custom-input.mat-form-field-disabled.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: rgba(0,0,0,.02);
+}
+
+::ng-deep .mat-option.custom-select-option {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 9999;
+  border-bottom: 1px solid #1F60AB;
+}
+
+:host .fs-14-px {
+  font-size: 14px;
+}

@@ -1,0 +1,18 @@
+<div class="nodal-officer-manage-athlete py-2">
+  <div class="container-fluid">
+    <div class="row">
+      <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedIndexChange)="selectedIndexChange($event)">
+        <mat-tab label="Pending"> 
+          <app-manage-athlete-pending *ngIf="selectedTabIndex===0" [selectedTabIndex]="selectedTabIndex"></app-manage-athlete-pending>        
+        </mat-tab>
+        <mat-tab label="Verified">
+          <app-manage-athlete-verified *ngIf="selectedTabIndex===1"></app-manage-athlete-verified>
+        </mat-tab>
+        <mat-tab label="Reject">
+          <app-manage-athlete-reject *ngIf="selectedTabIndex===2"></app-manage-athlete-reject>
+        </mat-tab>
+      </mat-tab-group>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+.tagcommonModal .titleTxt h4 {
+  background-color: #ffe89e;
+  border: 1px solid #e1c15c;
+  padding: 3px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.tagcommonModal .btn-close {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  font-size: 14px;
+  box-shadow: none;
+  outline: none;
+}
+.tagcommonModal {
+  padding: 15px 20px;
+}
+
+.profileModal .mat-form-field {
+  font-size: 14px;
+}
+.profileModal .titleTxt h3 {
+  font-size: 16px;
+  color: #4b5674;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+.profileModal .titleTxt {
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.profileModal .titleTxt .titleIcon {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #1e5faa;
+  border-radius: 50%;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+.profileModal .titleTxt .titleIcon i::before {
+  color: #1e5faa;
+}
+.profileModal .titleTxt .btn-edit {
+  border-color: #1f60ab;
+  background-color: #d1e6ff;
+  color: #1f60ab;
+  font-size: 12px;
+  padding: 1px 8px 0;
+  border-radius: 3px;
+}
+
+::ng-deep .readonlyBasicDetailsInput.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.inputFileUpload-wraper {
+  justify-content: space-between;
+  padding: 6.5px 10px;
+}
+.inputFileUpload-wraper .uploadLevel {
+  background-color: #f1f1f1;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 7px 20px;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
+.inputFileUpload-wraper .inputUpload {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  left: 0;
+}
+.inputFileUpload-wraper a {
+  color: inherit;
+}
+.athleteAction-modal .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #1f60ab;
+}
+
+.nobtn {
+  background-color: #ffccd2;
+  border: 1px solid;
+  border-color: #ff475d;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.yesbtn {
+  background-color: #ccffec;
+  border: 1px solid;
+  border-color: #0e8b5c;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.n-table table th:first-child {
+  min-width: 100px;
+  padding-left: 10px;
+}
+
+.fs-custom {
+  height: 15px;
+  width: 24px;
+  font-size: 18px !important;
+}
+
+
+
+
+.clr-btn-blue{
+  background-color: #1f60ab;
+}
+.clr-btn-green{
+  background-color: #5db85b;
+}
+.bank-details-popup .w-fix{
+  width: 45%;
+}
+
+/* .nobtn:disabled  {
+
+  background-color: #ffccd2 !;
+  border: 10px solid;
+  border-color: #ff475d;
+  border-radius: 3px;
+  text-transform: uppercase;      
+} */
+
+
+/* .yesbtn button:disabled {
+  background-color: #ccffec;   
+  border: 1px solid #0e8b5c;   
+  color: inherit;               
+  cursor: pointer;             
+  pointer-events: none;       
+} */
+
+
+
+
+
+button[disabled] {
+  cursor: pointer;  
+}

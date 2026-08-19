@@ -1,0 +1,67 @@
+.carousel-img{background-color: #F2F2F2;padding: 2em 10px;border-radius: 3px;}
+.carousel-img img{max-width: 140px;}
+.sidebar-event h3{font-size: 14px;font-weight: bold;border-bottom: 1px solid #c7c8c9;
+    padding-bottom: 5px;}
+
+.quicklinks ul{    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;}
+.quicklinks ul li{width: 100%;}
+.quicklinks ul li a{display: block;background-color: #D04E94;box-shadow: 0 3px 6px #D04E9487;color: #fff;padding: 15px;border-radius: 6px;text-decoration: none;}
+.quicklinks ul li:nth-child(2) a{background-color: #6A51B9;box-shadow: 0 3px 6px #6A51B987;}
+.quicklinks ul li:nth-child(3) a{background-color: #55A9E7;box-shadow: 0 3px 6px #55A9E787;}
+.quicklinks ul li:nth-child(4) a{background-color: #F89544;box-shadow: 0 3px 6px #F8954487;}
+.quicklinks ul li:nth-child(5) a{background-color: #5CCADB;box-shadow: 0 3px 6px #5CCADB59;}
+.quicklinks ul li:nth-child(6) a{background-color: #1F60AB;box-shadow: 0 3px 6px #1F60AB87;}
+.quicklinks ul li .text{font-size: 10px;display: block;}
+
+.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot span{width: 12px;
+height: 12px;
+border-radius: 50%;
+background: #fff;
+border: 1px solid #ccc;
+position: relative;}
+.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot span::after{content: '';
+width: 5px;
+height: 5px;
+background: #fff;
+border-radius: 50%;
+display: inline-block;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);}
+.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot:hover span{background-color: transparent;}
+.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot.active span{background: #fff;}
+.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot.active span,.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot:hover span{border-color: #ccc;}
+.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot.active span::after,.sidebar-event ::ng-deep .owl-theme .owl-dots .owl-dot:hover span::after{background: #FFB24D;}
+
+.count-down-timer {
+text-align: center;
+}
+
+.description, .times {
+display: grid;
+grid-template-columns: repeat(4, calc(25% - 8px));
+grid-column-gap: 10px;
+}
+.descriptionp {
+  margin: 0;
+}
+
+.times p {
+  /* letter-spacing: -5px; */
+  position: relative;
+  margin: 0;
+  /* font: normal 40px courier, sans-serif; */
+  
+}
+.count-down-timer ::ng-deep img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  display: block;
+  height: 30px;
+}

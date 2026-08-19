@@ -1,0 +1,31 @@
+.event-title{font-size: 16px;border-bottom: 1px solid #c7c8c9;
+    padding-bottom: 5px;font-family: 'Lato', sans-serif;font-weight: bold;}
+.btn-status{background-color: #D4EFD5;border-color: #008205;color: #008205;font-size: 11px;padding: 1px 8px;border-radius: 0;}
+.btn-notverified{background-color: #FFC9C9;border-color: #FF0000;color: #FF0000;font-size: 11px;padding: 1px 8px;border-radius: 0;}
+.athlete .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.athlete .mat-row .mat-cell:last-child {border-right: 0;}
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+
+.coach-information .nav-tabs li a{color: #b1b1b1;font-weight: bold;font-size: 17px;}
+.coach-information .nav-tabs li:not(:last-child) a{padding-right: 30px;}
+.coach-information .nav-tabs li a.active{color: #000000;}
+
+.noDataFound{font-size: 16px;}
+
+
+ .tagcommonModal .titleTxt h4{background-color: #FFE89E;border: 1px solid #E1C15C;
+    padding: 3px;
+    font-size: 13px;
+    text-transform: uppercase;}
+    .tagcommonModal .btn-close{position: absolute;
+    right: 7px;
+    top: 7px;
+    font-size: 9px;box-shadow: none;outline: none;}
+    .tagcommonModal{padding: 15px 26px 15px 20px}
+    
+    .taggedSuccessfully .titleTxt h4{background-color: #D4FFC2;
+    border: 1px solid #20BE35;}
+    .tagcommonModal.deleteCommonModal .titleTxt h4{background: #ffdede;
+        border-color: #fb9f9f;}
+

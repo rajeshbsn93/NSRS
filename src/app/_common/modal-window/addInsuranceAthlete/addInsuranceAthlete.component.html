@@ -1,0 +1,81 @@
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Athlete Medical Insurance Details</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>    
+    <div class="p-3">
+      <div class="d-flex justify-content-between align-items-center my-2">
+        <h5 class=" mb-md-0"> </h5>
+        <button class="btn border px-3 text-uppercase addmore" [disabled]="!addAthleteForm.valid" (click)="addAthlete()">ADD MORE +</button>
+      </div>
+      <!--{"name":"Pratham Sharma","sport_id":13,"sport_name":"Boxing","date_of_birth":"2010-05-04T00:00:00","training_center_name":null,"isExist":true,"reason":""}-->
+      <form [formGroup]="addAthleteForm">
+        <div class="table-responsive mt-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>S.NO.</th>
+                <th>NSRS ID</th>
+                <th>Athlete Name</th>
+                <th>Date Of Birth	</th>
+                <th>Sport</th>
+                <th>Academy</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody formArrayName="addAthleteArray">
+              <tr *ngFor="let item of addAthleteArray.controls; let i= index" [formGroupName]="i" >
+                <td>{{i + 1}}</td>
+                <td>
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>NSRS ID</mat-label>
+                    <input matInput formControlName="nsrsid" (change)="onBlurNsrsid($event,i)">
+                  </mat-form-field>
+                  <input type="text" formControlName="playerID" hidden>
+                  <input type="text" formControlName="insTagID" hidden>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width mat-form-field-disabled" appearance="fill">
+                    <mat-label>Athlete Name</mat-label>
+                    <input matInput formControlName="athleteName" readonly>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance="fill" class="mat-form-field-disabled">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width mat-form-field-disabled" appearance="fill">
+                    <mat-label>Sport</mat-label>
+                    <input matInput formControlName="sport" readonly>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width mat-form-field-disabled" appearance="fill">
+                    <mat-label>Academy</mat-label>
+                    <input matInput formControlName="academy" readonly>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <a href="javascript:void(0)" (click)="removeAthlete(i)"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="7" class="text-end">
+                <button class="btn btn-lightblue px-3" [disabled]="!addAthleteForm.valid" (click)="saveInsurance()">Save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="innerLoaderMainData"></app-loader>

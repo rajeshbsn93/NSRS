@@ -1,0 +1,191 @@
+<div class="p-2 ps-3 d-flex align-items-center">
+  <span class="page-heading-icon"><i class="icon-dashboard"></i></span>
+  <span class="page-heading">DASHBOARD</span>
+</div>
+
+<div class="border-top">
+  <div class="row mx-0">
+    <div class="col-lg-9">
+      <div class="px-2 py-3 py-lg-4">
+        <app-official-upcoming-event></app-official-upcoming-event>
+      </div>
+      <hr class="content-divider" />
+      <div class="px-2 py-3 py-lg-4">
+        <div
+          class="d-flex justify-content-between flex-wrap align-items-center"
+        >
+          <!-- <h2 class="event-title mb-sm-0">ACHIEVEMENT DETAIL</h2> -->
+          <!-- <a routerLink="/coach-achievement" routerLinkActive="active" class="btn btn-blue px-3">VIEW DETAILS</a> -->
+        </div>
+        <!-- CoachAchievementData -->
+        <div
+          class="achievement-carousel mt-3 pe-2"
+          *ngIf="ssDashboardData?.coachAchievementDatas?.length"
+        >
+          <owl-carousel-o [options]="customOptions">
+            <ng-container
+              *ngFor="
+                let carouselData of ssDashboardData.coachAchievementDatas;
+                let i = index
+              "
+            >
+              <ng-template carouselSlide id="i">
+                <div
+                  class="card"
+                  [ngClass]="
+                    carouselData?.position === '1'
+                      ? 'card-gold'
+                      : carouselData?.position === '2'
+                      ? 'card-silver'
+                      : carouselData?.position === '3'
+                      ? 'card-bronze'
+                      : ''
+                  "
+                >
+                  <div class="title-wrap d-flex justify-content-between">
+                    <h3>{{ carouselData.tournament_name }}</h3>
+                    <div class="icon-box">
+                      <i class="icon-medal-fill-4"></i>
+                    </div>
+                  </div>
+                  <ul class="list-unstyled">
+                    <li>
+                      <span class="iconlist"
+                        ><i class="icon-square-grid"></i
+                      ></span>
+                      <span class="cat-name">CATEGORY</span>
+                      <span class="cat-level">{{ carouselData.category }}</span>
+                    </li>
+                    <li>
+                      <span class="iconlist"
+                        ><i class="icon-Represented"></i
+                      ></span>
+                      <span class="cat-name">REPRESENTED</span>
+                      <span class="cat-level">{{
+                        carouselData.represented
+                      }}</span>
+                    </li>
+                    <li>
+                      <span class="iconlist"
+                        ><i class="icon-football-line"></i
+                      ></span>
+                      <span class="cat-name">EVENT</span>
+                      <span class="cat-level">{{
+                        carouselData.event_list
+                      }}</span>
+                    </li>
+                    <li>
+                      <span class="iconlist"
+                        ><i class="icon-address-30"></i
+                      ></span>
+                      <span class="cat-name">VENUE</span>
+                      <span class="cat-level">{{ carouselData.venue }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </ng-template>
+            </ng-container>
+
+            <!-- <ng-template carouselSlide>
+                            <div  class="card card-2">
+                                <div class="title-wrap d-flex justify-content-between">
+                                    <h3>18th Asian Junior Athletics Championship</h3>
+                                    <div class="icon-box"><i class="icon-medal-fill-4"></i></div>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <span class="iconlist"><i class="icon-square-grid"></i></span>
+                                        <span class="cat-name">CATEGORY</span>
+                                        <span class="cat-level">Junior</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-Represented"></i></span>
+                                        <span class="cat-name">REPRESENTED</span>
+                                        <span class="cat-level">India</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-football-line"></i></span>
+                                        <span class="cat-name">EVENT</span>
+                                        <span class="cat-level">800 meter</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-address-30"></i></span>
+                                        <span class="cat-name">VENUE</span>
+                                        <span class="cat-level">Delhi</span>
+                                    </li>
+                                </ul>
+                            </div>                            
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div  class="card card-3">
+                                <div class="title-wrap d-flex justify-content-between">
+                                    <h3>18th Asian Junior Athletics Championship</h3>
+                                    <div class="icon-box"><i class="icon-medal-fill-4"></i></div>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <span class="iconlist"><i class="icon-square-grid"></i></span>
+                                        <span class="cat-name">CATEGORY</span>
+                                        <span class="cat-level">Junior</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-Represented"></i></span>
+                                        <span class="cat-name">REPRESENTED</span>
+                                        <span class="cat-level">India</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-football-line"></i></span>
+                                        <span class="cat-name">EVENT</span>
+                                        <span class="cat-level">800 meter</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-address-30"></i></span>
+                                        <span class="cat-name">VENUE</span>
+                                        <span class="cat-level">Delhi</span>
+                                    </li>
+                                </ul>
+                            </div>                            
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div  class="card">
+                                <div class="title-wrap d-flex justify-content-between">
+                                    <h3>18th Asian Junior Athletics Championship</h3>
+                                    <div class="icon-box"><i class="icon-medal-fill-4"></i></div>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <span class="iconlist"><i class="icon-square-grid"></i></span>
+                                        <span class="cat-name">CATEGORY</span>
+                                        <span class="cat-level">Junior</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-Represented"></i></span>
+                                        <span class="cat-name">REPRESENTED</span>
+                                        <span class="cat-level">India</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-football-line"></i></span>
+                                        <span class="cat-name">EVENT</span>
+                                        <span class="cat-level">800 meter</span>
+                                    </li>
+                                    <li>
+                                        <span class="iconlist"><i class="icon-address-30"></i></span>
+                                        <span class="cat-name">VENUE</span>
+                                        <span class="cat-level">Delhi</span>
+                                    </li>
+                                </ul>
+                            </div>                            
+                        </ng-template> -->
+          </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 border-lg-start">
+      <div class="py-lg-4">
+        <app-athlete-dashboard-sidebar></app-athlete-dashboard-sidebar>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="loader"></app-loader>

@@ -1,0 +1,64 @@
+<!-- <ng-container *ngIf="loaderType === 'default'">
+    <div class="loader-container default">
+        <div class="logo">
+            <img src="assets/images/SAIgif.gif" style="max-width: 250px;">
+        </div>
+
+    </div>
+</ng-container> -->
+
+<div *ngIf="loaderType == 'default'">
+    <div class="d-flex align-items-center justify-content-center" *ngIf="show">
+        <div class="loader-container default">
+            <div class="logo">
+                <img src="assets/images/SAIgif.gif" style="max-width: 250px;">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ################ Standard ######################## -->
+
+<div class="pg-small" *ngIf="loaderType == 'pgSmall'">
+    <div class="d-flex align-items-center justify-content-center" *ngIf="show">
+        <div>
+            <ngx-spinner [fullScreen]="false" [color]="color" type="ball-clip-rotate" [size]="'small'">
+            </ngx-spinner>
+            <p class="loaderText">Loading...</p>
+        </div>
+    </div>
+</div>
+<div class="pg-medium" *ngIf="loaderType == 'pgMedium'">
+    <div class="d-flex align-items-center justify-content-center" *ngIf="show">
+        <div>
+            <ngx-spinner [fullScreen]="false" [color]="color" type="ball-clip-rotate" [size]="'medium'">
+            </ngx-spinner>
+            <p class="loaderText">Loading...</p>
+        </div>
+    </div>
+</div>
+
+<!-- +++++++++++++++ btn start +++++++++++++++++++++++ -->
+<div class="btn-small" *ngIf="loaderType == 'btnSmall'">
+    <div class="d-flex align-items-center justify-content-center" *ngIf="show">
+        <div>
+            <ngx-spinner [fullScreen]="false" [color]="color" type="ball-clip-rotate" [size]="'small'">
+            </ngx-spinner>
+            <!-- <p class="loaderText">Loading...</p> -->
+        </div>
+    </div>
+</div>
+<div class="btn-medium" *ngIf="loaderType == 'btnMedium'">
+    <div class="d-flex align-items-center justify-content-center" *ngIf="show">
+        <div>
+            <ngx-spinner [fullScreen]="false" [color]="color" type="ball-clip-rotate" [size]="'medium'">
+            </ngx-spinner>
+            <!-- <p class="loaderText">Loading...</p> -->
+        </div>
+    </div>
+</div>
+<!-- +++++++++++++++ btn end +++++++++++++++++++++++ -->
+
+<!-- ################ Standard End ######################## -->

@@ -1,0 +1,39 @@
+
+<div class="athlete">
+  <div class="filterdata">
+    <div class="filterTop">
+      <div class="row align-items-center justify-content:between mt-3">
+        <div class="col-auto"><h5  class="fw-bold text-uppercase">Report</h5></div>
+        <div class="col text-end">
+          <div class="row justify-content-end">
+            <div class="col-auto rightsec d-flex align-items-center">
+              <div class="exports">
+              
+                <select class="form-control cursour_pointer" name="isAthleteOrCoach" [(ngModel)]="isAthleteOrCoach" (change)="exportToExcelPdfChange($event)"  >
+                  <option class="cursor_pointer" value="acss"selected="selected">ATHLETE CURRENT STRENGTH SUMMARY</option>
+                  <option class="cursor_pointer" value="ccss">COACH CURRENT STRENGTH SUMMARY</option>
+                </select>
+              </div>
+              <!-- <div class="searchInput ms-2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="form-control"   placeholder="Search.." #input>
+              </div> -->
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<ng-container *ngIf="isAthleteOrCoach ==='acss'">
+  <app-ops-athlete-css></app-ops-athlete-css>
+</ng-container>
+
+
+<ng-container *ngIf="isAthleteOrCoach ==='ccss'">
+<app-ops-coach-css ></app-ops-coach-css>
+</ng-container>

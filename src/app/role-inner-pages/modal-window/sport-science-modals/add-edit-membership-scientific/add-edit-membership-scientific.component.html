@@ -1,0 +1,49 @@
+<div class="modal-body experience-modal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3 class="d-inline-flex align-items-center"><span class="titleIcon"><mat-icon class="material-symbols-outlined" fontIcon="psychology"></mat-icon></span>{{editData == null ? 'Add' : 'Edit'}} Membership of Scientific Bodies</h3>
+      <!-- <button *ngIf="readonlyEdit" href="javascript:void(0)" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button> -->
+    </div>
+    <form [formGroup]="experienceForm">
+      <div class="row">
+        <div class="col-6 col-lg-3 mb-3">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Level</mat-label>
+            <mat-select  formControlName="body_type">
+              <mat-option value="National">National</mat-option>
+              <mat-option value="International">International</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6 col-lg-3 mb-3">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Name of Scientific Body</mat-label>
+                <input matInput formControlName="body_name">
+            </mat-form-field>
+        </div>
+        <div class="col-6 col-lg-3 mb-3">
+            <mat-form-field class="example-full-width w-100" appearance="fill" (click)="yearEstablish.open()" appYearFormat>
+                <mat-label>Year</mat-label>
+                <input matInput [matDatepicker]="yearEstablish" (keypress)="false" formControlName="body_year" [max]="maxDate" required>
+                <mat-datepicker-toggle matSuffix [for]="yearEstablish"></mat-datepicker-toggle>
+                <mat-datepicker #yearEstablish startView="multi-year" 
+                  (yearSelected)="handleYearSelected($event,yearEstablish)">
+                </mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-6 col-lg-3 mb-3">
+          <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Remark</mat-label>
+              <input matInput formControlName="remark">
+          </mat-form-field>
+      </div>
+        <div class="col-12 text-center">
+            <hr class="mt-1">
+            <button type="button" class="btn btn-blue px-4" [disabled]="!experienceForm.valid" (click)="save()">Save</button>
+          </div>
+      </div>
+    </form>
+    
+  </div>
+
+  <app-loader *ngIf="loader"></app-loader>

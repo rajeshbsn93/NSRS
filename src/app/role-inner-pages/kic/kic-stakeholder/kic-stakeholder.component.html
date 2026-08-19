@@ -1,0 +1,108 @@
+<div class="athlete athlete-detail">
+  <!-- <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center p-3 pb-0"> -->
+  <!-- <h3 class="fw-bold mb-3"><span class="titleIcon"><i class="icon-kicAttendanceHistory"></i></span> Khelo India
+            Center
+            Attendance History</h3> -->
+  <div class="filterRoleInner d-flex align-items-center flex-wrap">
+    <!-- <div class="me-2 mb-3">
+            <form >
+              <select formControlName="disciplineToSearch"  class="form-control">
+                <option  value="" selected="selected">Select Sports Discipline</option> 
+              </select> 
+            </form>
+          </div> -->
+
+    <!-- <a href="javascript:void(0)" class="btn btn-blue mb-3 me-2" (click)="popupOpen()"
+                *ngIf="this.userDetails.role_id === 82">ADD +</a> -->
+
+    <!-- <div class="searchInput border-end pe-2 me-2 mb-3">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input class="form-control" placeholder="Search.." #input>
+          </div>
+          <div class="exports mb-3">
+            <select class="form-control" >
+              <option disabled selected="selected">Export</option>
+              <option value="excel">Excel</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div> -->
+
+  </div>
+  <!-- </div> -->
+  <!-- <router-outlet></router-outlet> -->
+
+  <!-- Implementing Mat Tab Group for tabbing  -->
+  <mat-tab-group class="mt-2" [dynamicHeight]="false">
+
+    <mat-tab #firstTab aria-label="dashBoardKICTab">
+      <ng-template matTabLabel class="tablbl ">DASHBOARD</ng-template>
+      <ng-template matTabContent>
+        <!-- ++++++++++ KIC Dashborad ++++++++++ -->
+        <app-kic-dashboard></app-kic-dashboard>
+      </ng-template>
+
+    </mat-tab>
+    <mat-tab #firstTab aria-label="dashBoardKICTab">
+      <ng-template matTabLabel class="tablbl ">PROPOSALS</ng-template>
+      <ng-template matTabContent>
+        <!-- ++++++++++ KIC S ++++++++++ -->
+        <!-- <app-kic-proposals></app-kic-proposals> -->
+        <app-kic-table-view></app-kic-table-view>
+      </ng-template>
+
+    </mat-tab>
+    
+    <mat-tab #firstTab aria-label="sanctionKICTab">
+      <ng-template matTabLabel class="tablbl ">SANCTIONS  /  UC</ng-template>
+      <ng-template matTabContent>
+        <app-sanction-table-view></app-sanction-table-view>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab aria-label="academyKICTab">
+      <ng-template matTabLabel class="tablbl">ACADEMY</ng-template>
+      <ng-template matTabContent>
+        <app-kic-academy></app-kic-academy>
+      </ng-template>
+    </mat-tab>
+
+   
+
+    <mat-tab aria-label="monitoringEvaluationKICTab">
+      <ng-template matTabLabel class="tablbl">MONITORING & EVALUATION</ng-template>
+      <ng-template matTabContent>
+        <app-kic-monitoring></app-kic-monitoring>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab aria-label="attendanceKICTab">
+      <ng-template matTabLabel class="tablbl">ATTENDANCE</ng-template>
+      <ng-template matTabContent>
+        <!-- If KIC Admin Level 0 is loggedin show this table  -->
+        <app-kic-table
+          *ngIf="((this.userDetails.role_id === roleCode.kicAdmin) || (this.userDetails.role_id === roleCode.pcaAdmin))"></app-kic-table>
+        <!-- If State is loggedin show this table  -->
+        <app-kic-state-table *ngIf="(this.userDetails.role_id === roleCode.stateAdmin)"></app-kic-state-table>
+        <!-- If RC/RD is loggedin show this table  -->
+        <app-kic-rc-table *ngIf="(this.userDetails.role_id === roleCode.rcAdmin)"></app-kic-rc-table>
+        <!-- If HO is loggedin show this table  -->
+        <app-kic-ho-table *ngIf="(this.userDetails.role_id === roleCode.hoAdmin)"></app-kic-ho-table>
+      </ng-template>
+    </mat-tab>
+
+    <!-- <mat-tab aria-label="cctcFeed" >
+          <ng-template matTabLabel  class="tablbl">SPORT SCIENTIST</ng-template>
+          <ng-template matTabContent>
+            ghd
+          </ng-template>
+      </mat-tab> -->
+
+    <!-- <mat-tab aria-label="cctcFeed" >
+          <ng-template matTabLabel  class="tablbl">SPORT SCIENTIST</ng-template>
+          <ng-template matTabContent>
+            ghd
+          </ng-template>
+      </mat-tab> -->
+  </mat-tab-group>
+</div>
+<!-- <app-loader *ngIf="false"></app-loader> -->

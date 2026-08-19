@@ -1,0 +1,49 @@
+<div class="modal-body education-modal sports-ed-modal">
+    <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.close(false)"
+  ></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="fa-solid fa-award f-18-px"></i></span>DISCIPLINE SPECIFIC EDUCATION</h3>
+      
+    </div>
+    <div class="row g-0 overflow-auto max-h-70-vh">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center align-middle">ISSUED BY</th>
+            <th scope="col" class="text-center align-middle">EDUCATION TYPE</th>
+            <th scope="col" class="text-center align-middle">LEVEL</th>
+            <th scope="col" class="text-center align-middle">PASSING YEAR</th>
+            <th scope="col" class="text-center align-middle">COURSE NAME</th>
+            <th scope="col" class="text-center align-middle">DURATION</th>
+            <th scope="col" class="text-center align-middle">REMARKS</th>
+            <!-- <th scope="col" class="text-center align-middle">ACTION</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of educationDetails">
+            <td class="text-center align-middle">{{ record.issued_by }}</td>
+            <td class="text-center align-middle">{{ record.education }}</td>
+            <td class="text-center align-middle">{{ record.level_name }}</td>
+            <td class="text-center align-middle">{{ record.year_of_course }}</td>
+            <td class="text-center align-middle">{{ record.course_name }}</td>
+            <td class="text-center align-middle">{{ record.degree_Duration }}</td>
+            <td class="text-center align-middle">{{ record.remarks }}</td>
+            <!-- <td class="text-center align-middle">
+              <i class="fa-solid fa-trash-can text-danger me-2"></i>
+              <span *ngIf="record.document_path" class="ms-2">
+                <a [href]="fileBaseUrl + record.document_path" target="_blank"><i class="fa-solid fa-eye"></i></a>
+              </span>
+            </td> -->
+          </tr>
+          <tr *ngIf="!educationDetails?.length">
+            <td colspan="100" class="py-2 text-center h5 fw-bold m-0">No Record Found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-loader *ngIf="loader"></app-loader>
