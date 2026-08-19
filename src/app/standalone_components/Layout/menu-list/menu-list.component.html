@@ -1,7 +1,0 @@
-<ul class="sidebar-content">
-<ng-container *ngFor="let menuData of this.authenticateService.dashboardData">
-     <li *ngIf="menuData.menu_order >= 0">
-        <a (click)="onMenuClick()" [routerLink]="menuData.menu_component" routerLinkActive="active"><i [ngClass]="menuData.class_name" ></i><span >{{menuData.menu_name}}</span></a>
-    </li>
-</ng-container>
-</ul>
