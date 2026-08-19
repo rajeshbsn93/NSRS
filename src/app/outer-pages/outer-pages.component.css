@@ -1,0 +1,5 @@
+@media(max-width:767.8px){
+   ::ng-deep .userManual .nav-tabs .nav-link {font-size: 14px;padding: 8px 10px;}
+   ::ng-deep .userManual h6{font-size: 15px;}
+   .userManual{padding: 40px 0;}
+}

@@ -1,0 +1,203 @@
+<div class="athlete coach-information pe-2 mt-3">
+    <ul class="nav nav-tabs mb-3 mb-lg-4">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#athletecoaching">ATHLETE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" data-bs-toggle="tab" href="#academy">Academy</a>
+        </li>
+      </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="athletecoaching">
+            <div class="d-flex justify-content-between flex-wrap align-items-center">
+                <h2 class="event-title mb-sm-0">CURRENT</h2>
+            </div>
+            <div class="table-responsive mt-3">
+                <table mat-table class="currentTable" matTableExporter  #exporter="matTableExporter" [dataSource]="athleteCurrentCoachingInfoData" matSort class="table-striped w-100">  
+                    
+                    <ng-container matColumnDef="athlete_nsrs_id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="athlete_nsrs_id" class="col-xl-2"> NSRS Id </th>
+                    <td mat-cell *matCellDef="let row"> {{row.athlete_nsrs_id}} </td>
+                    </ng-container>  
+                    
+                    <ng-container matColumnDef="athlete_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="athlete_name" class="col-5 col-lg-3"> Athlete</th>
+                    <td mat-cell *matCellDef="let row"> {{row.athlete_name}}</td>
+                    </ng-container>  
+                    
+                    <ng-container matColumnDef="period">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="period"> 
+                        Period
+                    </th>
+                    <td mat-cell *matCellDef="let row"> 
+                        {{row.period}}
+                    </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="mappingType">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="mappingType"> Mapping Type </th>
+                    <td mat-cell *matCellDef="let row">{{row.mappingType}}
+                    </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> STATUS </th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-container *ngIf="row.status; else elsebtn">
+                        <button class="btn btn-success btn-status">VERIFIED</button>
+                        </ng-container>
+                        <ng-template #elsebtn>
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-danger btn-notverified">NOT VERIFIED</button>                                          
+                        </div>
+                        </ng-template>
+                    </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="athleteCurrentTableColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: athleteCurrentTableColumns;"></tr>      
+                
+                    
+                    <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+                    </tr>
+                </table>     
+            </div>
+            <mat-paginator [pageSizeOptions]="[5,10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+
+            <div class="d-flex justify-content-between flex-wrap align-items-center mt-4">
+                <h2 class="event-title mb-sm-0 text-uppercase">History</h2>
+            </div>
+            <div class="table-responsive mt-3">
+                <table mat-table id="athleteDetailTable" matTableExporter  #exporter="matTableExporter" [dataSource]="athleteHistoryCoachingInfoData" matSort class="table-striped w-100">  
+                <ng-container matColumnDef="athlete_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="athlete_name"> Athlete</th>
+                    <td mat-cell *matCellDef="let row"> {{row.athlete_name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="AcademyName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="AcademyName"> Academy </th>
+                    <td mat-cell *matCellDef="let row"> {{row.AcademyName}} </td>
+                </ng-container> 
+                <ng-container matColumnDef="AcademyType">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="AcademyType"> Academy Type </th>
+                    <td mat-cell *matCellDef="let row"> {{row.AcademyType}} </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="period">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="period"> 
+                        Period
+                    </th>
+                    <td mat-cell *matCellDef="let row"> 
+                    {{row.period}}
+                    </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="mappingType">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="mappingType"> Mapping Type </th>
+                    <td mat-cell *matCellDef="let row">{{row.mappingType}}
+                    </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> STATUS </th>
+                    <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.status; else elsebtn">
+                        <button class="btn btn-success btn-status">VERIFIED</button>
+                    </ng-container>
+                    <ng-template #elsebtn>
+                        <div class="d-flex align-items-center">
+                        <button class="btn btn-danger btn-notverified">NOT VERIFIED</button>
+                        <!-- <a href="javascript:void(0)" (click)="deleteCoach(row)" class="text-danger ms-1"><i class="fa-solid fa-trash-can"></i></a> -->
+                        </div>
+                    </ng-template>                                    
+                    </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="athleteHistoryTableColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: athleteHistoryTableColumns;"></tr>      
+            
+                
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+                </tr>
+                </table>     
+            </div>
+            <mat-paginator [pageSizeOptions]="[5,10, 50, 100]" aria-label="Select page of users"></mat-paginator>                            
+        </div> 
+
+        <div class="tab-pane fade" id="academy">
+            <div class="d-flex justify-content-between flex-wrap align-items-center mt-4">
+                <h2 class="event-title mb-sm-0">TRAINING INFO </h2>
+                 <button *ngIf="addEditDelPermission?.can_add" href="javascript:void(0)" (click)="addEdit(null)" class="btn btn-blue py-1 me-4">ADD</button>
+            </div>
+            <div class="table-responsive mt-3">
+                <table mat-table id="athleteDetailTable" matTableExporter  #exporter="matTableExporter" [dataSource]="academyData" matSort class="table-striped w-100">  
+                  
+                  <ng-container matColumnDef="academyName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="academyName"> Academy </th>
+                    <td mat-cell *matCellDef="let row"> {{row?.academyName}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="period">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="period"> 
+                        Period
+                    </th>
+                    <td mat-cell *matCellDef="let row"> 
+                    {{row.period}}
+                    </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="weedOutDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="weedOutDate"> Weedout</th>
+                    <td mat-cell *matCellDef="let row">{{row?.weedOutDate | date:'dd/MM/yyyy'}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="weedOutRemark">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="weedOutRemark"> Remark </th>
+                    <td mat-cell *matCellDef="let row">{{row?.weedOutRemark}}
+                    </td>
+                  </ng-container>
+
+
+                   <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="action"> Action </th>
+                       <td mat-cell *matCellDef="let row"  class="action_col">
+                    <div class="d-flex align-items-center justify-content-evenly">
+                       <a href="javascript:void(0)"  *ngIf="(addEditDelPermission?.can_update && row.coach_training_Id)|| row.period.toLowerCase().includes('present')"  (click)="addEdit(row)"  class="text-success text-decoration-none ms-1"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:void(0)" *ngIf="addEditDelPermission?.can_delete && row.coach_training_Id" (click)="deleteRow(row)" class="text-danger"><i class="fa-solid fa-trash-can"></i></a>
+
+                    </div>
+                </td>
+                  </ng-container>
+              
+                  <tr mat-header-row *matHeaderRowDef="athleteAcademyTableColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: athleteAcademyTableColumns;"></tr>      
+              
+                  
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+                  </tr>
+                </table>     
+            </div>
+              <mat-paginator [pageSizeOptions]="[5,10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>                   
+</div>
+
+<ng-template #deleteExperience let-modal>
+    <div class="modal-body tagcommonModal deleteCommonModal">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <div class="titleTxt">
+        <h4 class="text-center fw-bold"> {{deleteRowData?.academyName}}  ( {{ deleteRowData?.period }} ) </h4>
+      </div>
+      <div class="text-center mt-3 pt-lg-2">
+        <p>Please confirm if you want delete this!</p>
+      </div>
+      <div class="text-center pb-3">
+        <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+          (click)="modal.close('Save click')">CANCEL</button>
+        <button type="button" class="btn btn-lightblue px-3" (click)="confirmDelete()">CONFIRM</button>
+      </div>
+    </div>
+  </ng-template>

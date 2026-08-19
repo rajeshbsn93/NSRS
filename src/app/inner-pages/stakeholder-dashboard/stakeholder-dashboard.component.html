@@ -1,0 +1,79 @@
+
+<div class="stakeholder-dashboard-wraper mt-3 mt-lg-4">
+  <div class="acst-card">
+    <app-acsat-cards [cardListData]="acsatCardData"></app-acsat-cards>
+  </div>
+  <div class="seperator mt-4 px-3">
+    <hr class="mb-0">
+  </div>
+  <div class="state-wise-tabs container-fluid">
+
+      <!-- ++++++++++ Select Region Start ++++++++++ -->
+      <div class="select-region-container">
+        <div class="select-region d-flex justify-content-end">
+          <div class="me-2" *ngIf="userDetails.role_id==39">
+            <select class="form-control" id="region" name="region" (change)="changeRc($event)">
+              <option value="0" selected>Select RC</option>
+              <ng-container  *ngFor="let data of rcListData">
+                <option *ngIf="data.id !=0" [value]="data.id">{{data.value}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="me-2">
+            <select class="form-control" (change)="changeScheme($event)" name="scheme">
+              <option value="0"  selected>Select Scheme</option>
+              <option *ngFor="let data of schemeListData" [value]="data.scheme_id">{{data.scheme_name}}</option>
+            </select>
+          </div>          
+        </div>
+      </div>
+      <!-- ++++++++++ Select Region End ++++++++++ -->
+      <mat-tab-group  [selectedIndex]="activeIndexTab" (selectedTabChange)="selectedTab($event)">
+        <mat-tab label="OVERVIEW" id="overview">
+          <ng-container  *ngIf="!loader">
+           <app-stakeholder-dashboard-overview [user_id]="userId" [role_id]="roleId" [rduserId]="rcuser_id" [schemeId]="scheme_id" [chartsData]="overviewData?.data"></app-stakeholder-dashboard-overview>
+          </ng-container>
+        </mat-tab>
+
+        <mat-tab label="STATE WISE" id="state">
+          <ng-container *ngIf="!loader">
+            <app-stakeholder-dashboard-card-summary [user_id]="userId" [role_id]="roleId" [rduserId]="rcuser_id" [schemeId]="scheme_id" [cardList]="stateWisecardListData"  [type]="'stateWise'"></app-stakeholder-dashboard-card-summary>
+          </ng-container>
+        </mat-tab>
+
+        <mat-tab label="DISCIPLINE WISE" id="discipline">
+          <ng-container *ngIf="!loader">
+            <app-stakeholder-dashboard-card-summary [user_id]="userId" [role_id]="roleId" [rduserId]="rcuser_id" [schemeId]="scheme_id" [cardList]="disciplineWisecardListData"  [type]="'disciplineWise'"></app-stakeholder-dashboard-card-summary>
+          </ng-container>
+        </mat-tab>
+
+        <mat-tab label="VACANCY" id="vacancy">
+          <ng-container *ngIf="!loader">
+           <app-stakeholder-dashboard-vacancy [user_id]="userId" [role_id]="roleId" [rduserId]="rcuser_id" [schemeId]="scheme_id" [vacancyData]="vacancyWiseData"></app-stakeholder-dashboard-vacancy>
+          </ng-container>
+        </mat-tab>
+
+        <mat-tab label="MAP" id="detail_map">
+          <ng-container *ngIf="!loader">
+            <app-stakeholder-dashboard-map-india  [defaultStateColor]="'rgb(245, 194, 60)'"  [mapUpdatedData]="mapAllData"></app-stakeholder-dashboard-map-india>
+          </ng-container>
+        </mat-tab>
+
+        <mat-tab label="INSURANCE" id="insurance">
+          <ng-container *ngIf="!loader">
+            <app-stakeholder-dashboard-insurance [user_id]="userId" [role_id]="roleId" [rduserId]="rcuser_id" [schemeId]="scheme_id"  [insuranceData]="insuranceData"></app-stakeholder-dashboard-insurance>
+          </ng-container>
+        </mat-tab>
+        <mat-tab *ngIf="this.userDetails.role_id!=1005" label="RC WISE" id="rc">
+          <ng-container *ngIf="!loader">
+             <app-stakeholder-dashboard-rc [user_id]="userId" [role_id]="roleId" [rduserId]="rcuser_id" [schemeId]="scheme_id" [rcListData]="rcWiseData"></app-stakeholder-dashboard-rc>
+          </ng-container>
+        </mat-tab>
+      </mat-tab-group>
+  </div>
+
+</div>
+
+<ng-container *ngIf="loader || opsTilesloader || schemeLoader || rcLoader">
+  <app-loader></app-loader>
+</ng-container>

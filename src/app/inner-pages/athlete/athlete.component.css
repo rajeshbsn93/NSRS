@@ -1,0 +1,153 @@
+table {
+  width: 100%;
+}
+
+.search-text{
+  color:#000000;font-size: 20px;
+
+}
+.athlete .table thead tr th{font-size: 10px;background-color: #1F60AB;}
+.nobtn{
+    background-color: #FFCCD2;
+    border: 1px solid;
+    border-color: #FF475D;
+    border-radius: 3px;text-transform: uppercase
+}
+.yesbtn{
+    background-color: #CCFFEC;
+    border: 1px solid;
+    border-color: #0E8B5C;
+    border-radius: 3px;text-transform: uppercase
+}
+.insuredBtn{
+    background-color:#CCFFEC;
+    border: 1px solid;
+    border-color: #0E8B5C;
+    border-radius: 3px;text-transform: uppercase;
+}
+.pendingBtn{
+    background-color:#FFF8CC;
+    border: 1px solid;
+    border-color: #FFD500;
+    border-radius: 3px;text-transform: uppercase;
+}
+.expiredBtn{
+    background-color:#FFCCD2;
+    border: 1px solid;
+    border-color: #FF475D;
+    border-radius: 3px;text-transform: uppercase
+}
+.developmentOpaBtn{
+    min-width: 99px;
+    background-color: #71E3FB;
+    border:1px solid;
+    border-color:#06809A;
+    border-radius: 3px;text-transform: uppercase
+}
+
+.topcoreOpaBtn{
+    background-color: #E1BAFF;
+    border:1px solid;
+    border-color:#6E10B5;
+    border-radius: 3px;text-transform: uppercase
+}
+.othersOpaBtn{background-color: #EFC29A;
+    border:1px solid;
+    border-color:#DF9655;
+    border-radius: 3px;text-transform: uppercase}
+
+.kheloIndiaBtn{
+    width:139px;
+    height:20px;
+    background-color: #E1BAFF;
+    border:1px solid;
+    border-color: #6E10B5;
+    border-radius: 3px;text-transform: uppercase
+}
+
+.kheloIndiaOpaBtn{
+    background-color: #FFBABA;
+    border:1px solid;
+    border-color: #6E10B5;
+    border-radius: 3px;text-transform: uppercase
+}
+
+.nodataBtn{
+    border:0;
+    box-shadow: none;text-transform: uppercase
+}
+.addAcademyBtn{
+    font-size: 12px;
+    color:black;
+    background-color: #ddd;
+    border: 1px solid;
+    border-color: #ddd;
+    border-radius: 3px;text-transform: uppercase
+}
+
+.athlete-table .table{font-size: 10px;}
+.athlete-table .table .nobtn{font-size: 8px;}
+
+.form-control{box-shadow: none !important;}
+
+.athlete .mat-table button{font-size: 10px;}
+
+.athlete .mat-row .mat-cell:first-child img{cursor: pointer;}
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mat-table,.table{min-height: 160px;}
+
+
+.mat-header-cell{
+    text-align: center;
+    justify-content:center;
+  }
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+  .athlete .mat-row .mat-cell:nth-child(2),.athlete th.mat-header-cell:nth-child(2){width: 15%;}
+  .athlete .mat-row .mat-cell:nth-child(4),.athlete th.mat-header-cell:nth-child(4){width: 15%;}
+  #athleteTable ::ng-deep .mat-sort-header-arrow{color: #fff;}
+  .mat-sort-header-container {
+    justify-content: center;
+}
+.athlete .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.athlete .mat-row .mat-cell:last-child {border-right: 0;}
+
+.tagcommonModal .titleTxt h4{background-color: #FFE89E;border: 1px solid #E1C15C;
+    padding: 3px;
+    font-size: 13px;
+    text-transform: uppercase;}
+  .tagcommonModal .btn-close{position: absolute;
+    right: 7px;
+    top: 7px;
+    font-size: 9px;box-shadow: none;outline: none;}
+  .tagcommonModal{padding: 15px 26px 15px 20px}
+
+  .taggedSuccessfully .titleTxt h4{background-color: #D4FFC2;
+    border: 1px solid #20BE35;}
+
+/* .mat-input-element[read-only]{} */
+
+.noDataFound{font-size: 16px;}
+.tagcommonModal.deleteCommonModal .titleTxt h4{background: #ffdede;
+    border-color: #fb9f9f;}
+@media(min-width:768px){
+    .col select.academy-type{
+        min-width:  135px;
+      }
+}
+
+@media(max-width:991) and (min-width:768px){
+/* .filterTop{} */
+}
+

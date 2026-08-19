@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="21" viewBox="0 0 40 21">
+  <g id="Group_40110" data-name="Group 40110" transform="translate(-616 -458)">
+    <g id="Rectangle_13735" data-name="Rectangle 13735" transform="translate(616 458)" fill="#f6f2ff" stroke="#581aaa" stroke-width="0.5">
+      <rect width="40" height="21" rx="2" stroke="none"/>
+      <rect x="0.25" y="0.25" width="39.5" height="20.5" rx="1.75" fill="none"/>
+    </g>
+    <g id="Group_290" data-name="Group 290" transform="translate(65 -64)">
+      <g id="men-line_1_" data-name="men-line (1)" transform="translate(556 526)">
+        <path id="Path_7029" data-name="Path 7029" d="M0,0H13V13H0Z" fill="none"/>
+        <path id="Path_7030" data-name="Path 7030" d="M9.527,6l1.915-1.916H8.958V3h4.333V7.333H12.208V4.849L10.292,6.765A4.063,4.063,0,1,1,9.527,6ZM7.063,12.208A2.979,2.979,0,1,0,4.083,9.229,2.979,2.979,0,0,0,7.063,12.208Z" transform="translate(-1.375 -1.375)" fill="#581aaa"/>
+      </g>
+      <g id="women-line_1_" data-name="women-line (1)" transform="translate(575 526)">
+        <path id="Path_7031" data-name="Path 7031" d="M0,0H13V13H0Z" fill="none"/>
+        <path id="Path_7032" data-name="Path 7032" d="M8.024,9.089a4.066,4.066,0,1,1,1.083,0v1.119h2.708v1.083H9.107v2.167H8.024V11.292H5.315V10.208H8.024Zm.542-1.048A2.979,2.979,0,1,0,5.586,5.062,2.979,2.979,0,0,0,8.565,8.042Z" transform="translate(-2.065 -0.458)" fill="#581aaa"/>
+      </g>
+      <text id="_" data-name="+" transform="translate(570 536)" fill="#581aaa" font-size="9" font-family="Lato-Semibold, Lato" font-weight="600"><tspan x="0" y="0">+</tspan></text>
+    </g>
+  </g>
+</svg>

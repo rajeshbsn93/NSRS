@@ -1,0 +1,9 @@
+.modal-body {
+    padding: 15px 15px 30px 15px;
+}
+.modal-title {
+    letter-spacing: 0px;
+    color: #0d0d0d;
+    font-size: 1.063rem;
+    font-weight: 600;
+}

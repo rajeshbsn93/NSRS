@@ -1,0 +1,201 @@
+<div class="modal-body id-proof-modal">
+  <!-- <button type="button" class="close-btn" aria-label="Close" (click)="activeModal.close(false)"><mat-icon>close</mat-icon></button> -->
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+    <h3><span class="titleIcon"><i class="icon-image-line"></i></span>PHOTO ID PROOF</h3>
+    <ng-container *ngIf="isAllDocsUploaded; else addBtn">
+      <span class="bg-success text-white fw-bold rounded-2 py-1 px-2 me-4">All Docs Uploaded</span>
+    </ng-container>
+    <ng-template #addBtn>
+      <button type="button" class="btn btn-blue py-1 me-4" (click)="openAddIdProofModal()">ADD</button>
+    </ng-template>
+  </div>
+  <div class="row g-0 mt-3" *ngIf="isNoDocUploaded">
+    <div class="p-2 border border-blue text-center bg-light text-blue">
+      NO DOCUMENT UPLOADED!
+    </div>
+  </div>
+  <div class="row">
+    <mat-accordion>
+      <!-- <mat-expansion-panel *ngIf="idProofDetails.aadhar_number" [expanded]="firstDoc === docTypes.AADHAR">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/images/aadhaar.svg" class="mat-expansion-header-img" /><span>Aadhaar</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container-fluid p-2 bg-white rounded-1">
+          <div class="row py-2">
+            <div><span class="fw-bold">Aadhaar Number: &nbsp; &nbsp;</span><span>{{ idProofDetails.aadhar_number }}</span></div>
+          </div>
+          <div class="row">
+            <div class="d-flex py-2">
+              <button class="btn btn-blue py-1 me-2" (click)="openAddIdProofModal(docTypes.AADHAR)">EDIT <i class="fa-solid fa-pencil"></i></button>
+              <a class="btn btn-success py-1" [href]="fileBaseUrl + idProofDetails.aadhar_image_path" target="_blank">
+                VIEW <i class="fa-solid fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel> -->
+      <mat-expansion-panel *ngIf="idProofDetails.passport_number" [expanded]="firstDoc === docTypes.PASSPORT">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/images/passport.svg" class="mat-expansion-header-img p-0" /><span>Passport</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container-fluid p-2 bg-white rounded-1">
+          <div class="row pt-2">
+            <div><span class="fw-bold">Passport Number: &nbsp; &nbsp;</span><span>{{ idProofDetails.passport_number }}</span></div>
+          </div>
+          <div class="row py-2">
+            <div><span class="fw-bold">Expiry Date: &nbsp; &nbsp;</span><span>{{ idProofDetails.passport_expiry_date | date : 'dd-MM-yyyy' }}</span></div>
+          </div>
+          <div class="row">
+            <div class="d-flex py-2">
+            <button class="btn btn-blue py-1 me-2" (click)="openAddIdProofModal(docTypes.PASSPORT)">EDIT <i class="fa-solid fa-pencil"></i></button>
+              <a class="btn btn-success py-1 me-2" [href]="fileBaseUrl + idProofDetails.passport_image_path" target="_blank">
+                FRONT PAGE <i class="fa-solid fa-eye"></i>
+              </a>
+              <a class="btn btn-success py-1" [href]="fileBaseUrl + idProofDetails.passport_last_image_path" target="_blank">
+                BACK PAGE <i class="fa-solid fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel *ngIf="idProofDetails.voter_id_number" [expanded]="firstDoc === docTypes.VOTER_ID">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/images/voter-id.svg" class="mat-expansion-header-img p-0" /><span>Voter ID</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container-fluid p-2 bg-white rounded-1">
+          <div class="row py-2">
+            <div><span class="fw-bold">Voter ID Number: &nbsp; &nbsp;</span><span>{{ idProofDetails.voter_id_number }}</span></div>
+          </div>
+          <div class="row">
+            <div class="d-flex py-2">
+              <button class="btn btn-blue py-1 me-2" (click)="openAddIdProofModal(docTypes.VOTER_ID)">EDIT <i class="fa-solid fa-pencil"></i></button>
+              <a class="btn btn-success py-1" [href]="fileBaseUrl + idProofDetails.voter_id_image_path" target="_blank">
+                VIEW <i class="fa-solid fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel *ngIf="idProofDetails.pancard_number" [expanded]="firstDoc === docTypes.PAN_CARD">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/images/pan-card.svg" class="mat-expansion-header-img p-0" /><span>PAN</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container-fluid p-2 bg-white rounded-1">
+          <div class="row py-2">
+            <div><span class="fw-bold">PAN Number: &nbsp; &nbsp;</span><span>{{ idProofDetails.pancard_number }}</span></div>
+          </div>
+          <div class="row">
+            <div class="d-flex py-2">
+              <button class="btn btn-blue py-1 me-2" (click)="openAddIdProofModal(docTypes.PAN_CARD)">EDIT <i class="fa-solid fa-pencil"></i></button>
+              <a class="btn btn-success py-1" [href]="fileBaseUrl + idProofDetails.pancard_image_path" target="_blank">
+                VIEW <i class="fa-solid fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel 
+        *ngIf="idProofDetails.dob_path || idProofDetails.birth_certificate_path" 
+        [expanded]="firstDoc === docTypes.DOB"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/images/bday-calender.svg" class="mat-expansion-header-img p-2" /><span>DOB</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container-fluid p-2 bg-white rounded-1">
+          <div class="row">
+            <div class="d-flex py-2">
+              <button class="btn btn-blue py-1 me-2" (click)="openAddIdProofModal(docTypes.DOB)">EDIT <i class="fa-solid fa-pencil"></i></button>
+              <a 
+                *ngIf="idProofDetails.dob_path"
+                class="btn btn-success py-1 me-2" 
+                [href]="fileBaseUrl + idProofDetails.dob_path" 
+                target="_blank"
+              >
+                DOB PROOF <i class="fa-solid fa-eye"></i>
+              </a>
+              <a 
+                *ngIf="idProofDetails.birth_certificate_path"
+                class="btn btn-success py-1" 
+                [href]="fileBaseUrl + idProofDetails.birth_certificate_path" 
+                target="_blank"
+              >
+                BIRTH CERTIFICATE <i class="fa-solid fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel 
+        *ngIf="idProofDetails.service_id_image_path || idProofDetails.coaching_certificate_image"
+        [expanded]="firstDoc === docTypes.OTHERS"  
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <!-- <img src="/assets/images/aadhaar.svg" class="mat-expansion-header-img"> -->
+            <i class="mat-expansion-header-img custom-icon fa-solid fa-id-badge"></i><span>Others</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container-fluid p-2 bg-white rounded-1">
+          <div class="row">
+            <div class="d-flex py-2">
+              <button class="btn btn-blue py-1 me-2" (click)="openAddIdProofModal(docTypes.OTHERS)">EDIT <i class="fa-solid fa-pencil"></i></button>
+              <a 
+                *ngIf="idProofDetails.service_id_image_path"
+                class="btn btn-success py-1 me-2" 
+                [href]="fileBaseUrl + idProofDetails.service_id_image_path" 
+                target="_blank"
+              >
+                SERVICE PROOF <i class="fa-solid fa-eye"></i>
+              </a>
+              <a 
+                *ngIf="idProofDetails.coaching_certificate_image"
+                class="btn btn-success py-1" 
+                [href]="fileBaseUrl + idProofDetails.coaching_certificate_image" 
+                target="_blank"
+              >
+                COACHING CERTIFICATE <i class="fa-solid fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+    <!-- <div class="row g-0 overflow-auto">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center align-middle">S NO.</th>
+            <th scope="col" class="text-center align-middle">DOCUMENT NUMBER</th>
+            <th scope="col" class="text-center align-middle">DOCUMENT NAME</th>
+            <th scope="col" class="text-center align-middle">IMAGE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="idProofDetails">
+            <tr *ngFor="let record of idProofDetails; let i = index">
+              <td class="text-center align-middle">{{ i + 1 }}</td>
+              <td class="text-center align-middle">{{ 'DOC NUMBER' }}</td>
+              <td class="text-center align-middle">{{ 'NAME' }}</td>
+              <td class="text-center align-middle">
+                <span>{{ 'IMAGE' }}</span>
+                <span><a [href]="''" target="_blank"><i class="fa-solid fa-eye"></i></a></span>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div> -->
+</div>
+<app-loader *ngIf="loader"></app-loader>

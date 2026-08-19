@@ -1,0 +1,44 @@
+.row .item .card{
+    box-shadow: 0px 3px 6px #00000029;
+    border: 0;
+    padding-left: 15px;
+    position: relative;
+    background-color: #3a49cf;
+    color: #fff;}
+.row .item:nth-child(2) .card{background-color: #06b0bd;}
+.row .item:nth-child(3) .card{background-color: #FF7D7D;}
+.row .item:nth-child(4) .card{background-color: #9E55E7;}
+.row .item .card::before{
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    height: 60px;
+    border-left: 3px solid #a3acff;
+}
+.row .item:nth-child(2) .card::before{border-color: #85d1d7;}
+.row .item:nth-child(3) .card::before{border-color: #ffc9c9;}
+.row .item:nth-child(4) .card::before{border-color: #ca95ff;}
+.row .item h6{color: #fff;font-size: 14px;margin: 0; text-transform: uppercase;}
+.row .item strong{
+    font-size: 34px;
+    display: block;
+    margin-top: -4px;
+}
+.row .item .iconbox{background-color: #eceefb;
+    background-color: #eceefb;
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    font-size: 40px;
+    box-shadow: 0 3px 6px #273189;}
+.row .item:nth-child(2) .iconbox{background-color: #F1F9FA;box-shadow: 0px 3px 6px #077c85;}
+.row .item:nth-child(3) .iconbox{background-color: #ffebeb;box-shadow: 0px 3px 6px #b53a3a}
+.row .item:nth-child(4) .iconbox{background-color: #f3e6ff;box-shadow: 0px 3px 6px #6d2eab;}
+.row .item .icon-athlete::before{color: #3a49cf;}
+.row .item .icon-coach::before{color: #7fc1c6;}
+.row .item .icon-sportsscientist::before{color: #ff8787;}
+.row .item .icon-sportstrainingcenter::before{color: #9e55e7;}

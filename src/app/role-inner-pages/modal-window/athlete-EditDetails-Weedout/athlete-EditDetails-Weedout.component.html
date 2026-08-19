@@ -1,0 +1,201 @@
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#edit-details" type="button">EDIT DETAILS</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#weed-out" type="button">WEED OUT</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reset-password" type="button">RESET PASSWORD</button>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="edit-details">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{this.elementRowData.ath_Name}} ({{this.elementRowData.nsrsId}})</p>
+        </div>
+        <form [formGroup]="editDetailForm">
+        <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled w-100" appearance="fill">
+                      <mat-label>NSRS ID</mat-label>
+                      <input matInput formControlName="ki_unique_id" readonly="true">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled w-100" appearance="fill">
+                      <mat-label>Athlete Name</mat-label>
+                      <input matInput formControlName="athelete_name" readonly="true">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Geographical Location</mat-label>
+                      <mat-select formControlName="geoLocation">
+                        <mat-option value="Urban"> Urban</mat-option>
+                        <mat-option value="Rural"> Rural </mat-option>
+                        <mat-option value="Others">Others</mat-option>
+                      </mat-select>
+                    </mat-form-field> 
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Residential Status</mat-label>
+                      <mat-select formControlName="type_of_athelete">
+                        <mat-option value="Residential"> Residential</mat-option>
+                        <mat-option value="Non-Residential"> Non-Residential</mat-option>
+                      </mat-select>
+                    </mat-form-field> 
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Joining Status</mat-label>
+                      <mat-select formControlName="joining_status">
+                        <mat-option [value]=true> Joined</mat-option>
+                        <mat-option [value]=false>Not Joined</mat-option>
+                      </mat-select>
+                    </mat-form-field> 
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" (click)="picker1.open()" class="w-100">
+                      <mat-label>Date Of Joining</mat-label>
+                      <input matInput [matDatepicker]="picker1" (dateChange)="changeJoining($event)" formControlName="date_of_joining">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill"  (click)="picker2.open()" class="w-100">
+                      <mat-label>Period Upto</mat-label>
+                      <input matInput [matDatepicker]="picker2" (dateChange)="changePeriodDate($event)" formControlName="valid_upto">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                      <div class="inputfileLevel position-relative">
+                        <span class="text-uppercase uploadLevel me-2">Upload</span>
+                        <!-- <input type="file" class="inputUpload"> -->
+                        <input type="file" class="inputUpload" #editDetailFileInput formControlName="document_upload_path" accept=".png, .Jeg, .Jpg, .pdf" (change)="uploadTransferFile(editDetailFileInput.files)">
+                      </div>
+                      <div *ngIf="editDetailsFileUrl"><a [href]="baseFileUrl + editDetailsFileUrl" target="_blank"><i class="fa-solid fa-eye"></i></a></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-3 d-flex justify-content-between align-items-center">
+            <div>
+              <button type="button" class="btn btn-lightblue me-2" (click)="saveDetail()" [disabled]="!editDetailForm.valid">Save</button>
+              <!-- <button (click)="activeModal.dismiss()" class="btn readmore border px-3">Cancel</button> -->
+            </div>
+            <a href="javascript:void(0)" (click)="delete()" class="deleteIcon text-danger text-decoration-none px-3 mx-2"><i class="fa-solid fa-trash-can"></i></a>
+          </div>
+        </form>
+      </div>
+
+      <div class="tab-pane fade" id="weed-out">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{this.elementRowData.ath_Name}} ({{this.elementRowData.nsrsId}})</p>
+        </div>
+        <div class="table-responsive text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>NSRS ID</th>
+                <th>DISCIPLINE</th>
+                <th>STATE</th>
+                <th>DATE OF JOINING</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{this.elementRowData.ath_Name}}</td>
+                <td>{{this.elementRowData.nsrsId}}</td>
+                <td>{{this.elementRowData.sport_name}}</td>
+                <td>{{this.elementRowData.state_name}}</td>
+                <td>{{this.elementRowData.date_of_joining | date:'dd/MM/yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <form [formGroup]="weedoutForm">
+          <div class="row">
+            <!-- gx-3 -->
+            <div class="col-sm-6 mb-3">
+              <mat-form-field class="example-full-width w-100" appearance="fill" (click)="weedoutDate1.open()">
+                <mat-label>WEED-OUT DATE</mat-label>
+                <input matInput formControlName="pWeedOutDate" [matDatepicker]="weedoutDate1" [min]="elementRowData.date_of_joining | date:'yyyy-MM-dd'" readonly />
+                <mat-datepicker-toggle matSuffix [for]="weedoutDate1"></mat-datepicker-toggle>
+                <mat-datepicker #weedoutDate1></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-6 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>WEED-OUT REASON</mat-label>
+                <input type="text" formControlName="pWeedOutRemark" matInput placeholder="weed out reason">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <button (click)="weedoutSubmit()" class="btn btn-lightblue" [disabled]="!weedoutForm.valid">Weed Out</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="tab-pane fade" id="reset-password">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{this.elementRowData.ath_Name}} ({{this.elementRowData.nsrsId}})</p>
+        </div>
+        <div class="p-3">
+          <div class="text-center">
+            <button (click)="resetPassword()" class="btn btn-blue px-4">Reset Password</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #deleteAthlete let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{this.elementRowData.ath_Name}} ({{this.elementRowData.nsrsId}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want delete this Athlete!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmDelete()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #resetPasswordAthlete let-modal>
+  <div class="modal-body tagcommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{this.elementRowData.ath_Name}} ({{this.elementRowData.nsrsId}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Do you want to reset password!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmResetPassword()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <app-loader></app-loader> -->

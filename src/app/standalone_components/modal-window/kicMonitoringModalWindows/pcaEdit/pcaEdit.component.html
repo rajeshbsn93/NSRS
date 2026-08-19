@@ -1,0 +1,124 @@
+
+
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span class="titleIcon"><i class="icon-personal-information-18"></i></span>PAST CHAMPION ATHLETE</button>
+      </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="athletetag">
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h5></h5>
+          <!-- <button class="btn border px-3 text-uppercase addmore" *ngIf="equipmentModalData.action == 'add'" (click)="newAddMultiTagArray()">ADD MORE +</button> -->
+        </div>
+        <form [formGroup]="multiEquipmentTagForm">
+          <div class="table-responsive mt-3">
+            <table class="table">
+              <tbody formArrayName="addMultiTagArray">
+              
+                <tr  *ngFor="let item of addMultiTagArray.controls; let i= index" [formGroupName]="i">
+               
+                  <td>{{i + 1}}</td>
+                  
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>NSRSID</mat-label> 
+                      <input matInput formControlName="pca_kiuid">
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>NAME</mat-label> 
+                      <input matInput formControlName="name">
+                     
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>DISCIPLINE</mat-label> 
+                      <input matInput formControlName="discipline">
+                     
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>AADHAR STATUS</mat-label> 
+                      <input matInput formControlName="aadharStatus">
+                     
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <!-- <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>JOINING DATE</mat-label> 
+                      <input matInput formControlName="joiningDate">
+                     
+                    </mat-form-field> -->
+                    <mat-form-field appearance="fill" (click)="picker1.open()">
+                      <mat-label>DATE OF JOINING</mat-label>
+                      <input #dateOfProcurement matInput [matDatepicker]="picker1" formControlName="joiningDate" (keypress)="false" />
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>ELIGIBILITY CRETIA</mat-label>
+                      <input matInput formControlName="eligibility_criteria">
+                   
+                    </mat-form-field>
+                    <div *ngIf="addMultiTagArray.controls[i].get('eligibility_criteria')?.touched &&addMultiTagArray.controls[i].get('remark')?.errors?.['eligibility_criteria']">
+                      <div class="me-2 text-danger">Eligibility Criteria Required</div>
+                    </div>
+                    <div *ngIf="addMultiTagArray.controls[i].get('eligibility_criteria')?.touched && (addMultiTagArray.controls[i].get('eligibility_criteria')?.errors?.['maxlength'])">
+                      <div class="me-2 text-danger">Eligibility Criteria  Limit Exceeded</div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>REASON FOR DELAY</mat-label> 
+                      <input matInput formControlName="reason">
+                     
+                    </mat-form-field>
+
+                    <div *ngIf="addMultiTagArray.controls[i].get('reason')?.touched &&addMultiTagArray.controls[i].get('reason')?.errors?.['required']">
+                            <div class="me-2 text-danger">Reason Required</div>
+                      </div>
+                      <div *ngIf="addMultiTagArray.controls[i].get('reason')?.touched && (addMultiTagArray.controls[i].get('reason')?.errors?.['maxlength'])">
+                            <div class="me-2 text-danger">Reason Limit Exceeded</div>
+                    </div>
+
+                  </td>
+
+                  
+                  <!-- <td>
+                 
+                    <a href="javascript:void(0)"  (click)="removeAddMultiTagArray(i)" *ngIf="this.addMultiTagArray.length>1"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-3">
+            <button type="button" [disabled]="!this.multiEquipmentTagForm.valid"  (click)="submitMultiTagged()" class="btn btn-lightblue me-2">{{pcaModalData.action == 'add' ? 'SAVE' : 'UPDATE' }}</button>
+            <!-- <button type="button"   (click)="submitMultiTagged()" class="btn btn-lightblue me-2">{{equipmentModalData.action == 'add' ? 'SAVE' : 'UPDATE' }}</button> -->
+           
+            <button type="button"  (click)="activeModal.dismiss('Cross click')" class="btn readmore border px-3">CANCEL</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="loader"></app-loader>
+<app-loader *ngIf="mainloader"></app-loader>

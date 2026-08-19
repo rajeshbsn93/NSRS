@@ -1,0 +1,45 @@
+<!-- {{athleteData | json}} -->
+
+<div class="athleteAction-modal">
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span class="titleIcon"><i class="icon-Details-Of-achievement"></i></span>Achievement</button>
+        </div>
+      </nav>
+  
+  
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="athletetag">
+          <div class="d-flex justify-content-between align-items-center my-2">
+            <h5></h5>
+            <!-- <button class="btn border px-3 text-uppercase addmore" (click)="newAddMultiTagArray()">ADD MORE +</button> -->
+          </div>
+          <form>
+            <div class="row">
+              <div class="col mb-3">
+                <div class="inputFileUpload-wrapper border rounded-1 d-flex align-items-center">
+                  <div class="inputfileLevel position-relative">
+                    <span class="text-uppercase upload-level">Choose File</span>
+                    <input #document_pathInput type="file" class="upload-input" 
+                      (change)="fileUpload($event)" 
+                      accept=".jpg, .jpeg, .png, .pdf" />
+                  </div>
+                  <div *ngIf="document_pathUrl">
+                    <a [href]="fileBaseUrl + document_pathUrl" target="_blank"><i class="fa-solid fa-eye ps-2"></i></a>
+                  </div>
+                </div>
+                <small *ngIf="isSaveClicked && !document_pathUrl" class="text-danger">Please upload the file.</small>
+              </div>              
+            </div>
+            <div class="text-center">
+              <hr class="mt-1">
+                <button type="button" (click)="save()" class="btn btn-blue px-4">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loader *ngIf="loader"></app-loader>

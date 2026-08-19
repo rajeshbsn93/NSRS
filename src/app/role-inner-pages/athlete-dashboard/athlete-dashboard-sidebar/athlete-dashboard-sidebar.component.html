@@ -1,0 +1,140 @@
+<div class="sidebar-event">
+    <div>
+        <h3 class="d-inline-block mb-lg-3">UPCOMING EVENTS</h3>
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide>
+                <div class="carousel-img text-center">
+                    <!-- <img src="assets/images/2026_Asian_Games_logo.svg" alt="" class="img-fluid mx-auto"> -->
+                    <img src="assets/images/Olympic_2026.svg" alt="" class="img-fluid mx-auto">
+                    <div class="mt-2">
+                        <div class="count-down-timer">
+                            <div class="wrapper">
+                              <div class="description">
+                                <p>Days</p>
+                                <p>Hours</p>
+                                <p>Minutes</p>
+                                <p>Seconds</p>
+                              </div>
+                              <div class="times">
+                                <strong>{{days > 0 ? days : 0}}</strong>
+                                <strong>{{hours > 0 ? hours : 0}}</strong>
+                                <strong>{{minutes > 0 ? minutes : 0}}</strong>
+                                <strong>{{seconds > 0 ? seconds : 0}}</strong>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </ng-template>  
+            <ng-template carouselSlide>
+                <div class="carousel-img text-center">
+                    <img src="assets/images/Olympic_2026.svg" alt="" class="img-fluid mx-auto">
+                    <div class="mt-2">
+                        <div class="count-down-timer">
+                            <div class="wrapper">
+                              <div class="description">
+                                <p>Days</p>
+                                <p>Hours</p>
+                                <p>Minutes</p>
+                                <p>Seconds</p>
+                              </div>
+                              <div class="times">
+                                <strong>{{days > 0 ? days : 0}}</strong>
+                                <strong>{{hours > 0 ? hours : 0}}</strong>
+                                <strong>{{minutes > 0 ? minutes : 0}}</strong>
+                                <strong>{{seconds > 0 ? seconds : 0}}</strong>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </ng-template>  
+            <ng-template carouselSlide>
+                <div class="carousel-img text-center">
+                    <img src="assets/images/Olympic_2026.svg" alt="" class="img-fluid mx-auto">
+                    <div class="mt-2">
+                        <div class="count-down-timer">
+                            <div class="wrapper">
+                              <div class="description">
+                                <p>Days</p>
+                                <p>Hours</p>
+                                <p>Minutes</p>
+                                <p>Seconds</p>
+                              </div>
+                              <div class="times">
+                                <!-- <strong>{{days}}</strong>
+                                <strong>{{hours}}</strong>
+                                <strong>{{minutes}}</strong>
+                                <strong>{{seconds}}</strong> -->
+                                <strong>{{days > 0 ? days : 0}}</strong>
+                                <strong>{{hours > 0 ? hours : 0}}</strong>
+                                <strong>{{minutes > 0 ? minutes : 0}}</strong>
+                                <strong>{{seconds > 0 ? seconds : 0}}</strong>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </ng-template>  
+            <!-- <ng-template carouselSlide>
+                <div class="carousel-img text-center">
+                    <img src="assets/images/Paris-2024.svg" alt="" class="img-fluid mx-auto">
+                    <div class="mt-2">
+                        <p>262 DAYS TO GO</p>
+                    </div>
+                </div>
+            </ng-template>  
+            <ng-template carouselSlide>
+                <div class="carousel-img text-center">
+                    <img src="assets/images/Paris-2024.svg" alt="" class="img-fluid mx-auto">
+                    <div class="mt-2">
+                        <p>262 DAYS TO GO</p>
+                    </div>
+                </div>
+            </ng-template>   -->
+        </owl-carousel-o>
+    </div>
+    <hr>
+    <div class="quicklinks">
+        <h3 class="d-inline-block mb-lg-3">QUICK LINKS</h3>
+        <ul class="list-unstyled">
+            <li class="text-center">
+                <a href="javascript:void(0)">
+                    <span class="d-block"><i class="icon-mail-line-1"></i></span>
+                    <span class="text">ASSESMENT</span>
+                </a>
+            </li>
+            <li class="text-center">
+                <a href="javascript:void(0)">
+                    <span class="d-block"><i class="icon-time-line"></i></span>
+                    <span class="text">FEEDBACK</span>
+                </a>
+            </li>
+            <li class="text-center">
+                <a href="javascript:void(0)">
+                    <span class="d-block"><i class="icon-calendar-todo-fill-1"></i></span>
+                    <span class="text">HELPLINE</span>
+                </a>
+            </li>
+            <li class="text-center" *ngIf="!hideVerifyViewAadhaar.includes(userSessionData.userData.role_id)">
+                <a href="javascript:void(0)" (click)="verifyAadhar()">
+                <!-- <a href="javascript:void(0)"> -->
+                    <span class="d-block"><i class="icon-file-chart-line-3"></i></span>
+                    <span class="text">VERIFY AADHAAR</span>
+                </a>
+            </li>
+            <li class="text-center">
+                <a href="javascript:void(0)">
+                    <span class="d-block"><i class="icon-file-search-line"></i></span>
+                    <span class="text">CHANGE REQUEST</span>
+                </a>
+            </li>
+            <li class="text-center" *ngIf="!hideVerifyViewAadhaar.includes(userSessionData.userData.role_id)">
+                <a href="javascript:void(0)" (click)="viewAadhaar()">
+                    <span class="d-block"><i class="icon-menu-line"></i></span>
+                    <span class="text">VIEW AADHAAR</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+.data-history-btn-yp{
+    border-radius: 2px;
+    border: 1px solid #2263AE;
+    background-color: #2263AE;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.39px;
+    min-width: fit-content;
+}
+.data-history-btn-yp:hover{
+    border-radius: 2px;
+    border: 1px solid #2263AE;
+    background-color: #2263AE;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.39px;
+    min-width: fit-content;
+}
+.pending-table-yp table th,td{
+ text-align: center;
+}
+.backbtn-arrow .mat-icon{
+height: 20px;
+width: 22px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+.my-yp-cards .card-header h5{
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.view-doc .card{
+    /* height: 238px; */
+    min-height: 238px;
+    /* max-height:300px ; */
+}
+.view-doc .card .img-fluid{
+    height: 190px;
+    width: 100%;
+}
+
+.font-fix h2{
+    font-family: 'Lato';
+    font-size: 24px;
+    font-weight: bold;
+}

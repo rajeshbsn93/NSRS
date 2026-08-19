@@ -1,0 +1,319 @@
+
+<ng-container *ngIf="!formsdocumentOpen">
+  <div class="modal-body kitting-modal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content- align-items-center">
+      <h3><span class="titleIcon"><i class="icon-form5"></i></span> Form 5</h3>
+      <!-- <button *ngIf="readonlyEdit" href="javascript:void(0)" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button> -->
+    </div>
+    <form [formGroup]="formfive">
+      <div class="row align-items-center ">
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>NSRS ID</mat-label>
+            <input matInput formControlName="nsrsid">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Athlete Name</mat-label>
+            <input matInput   formControlName="fullName">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Father Name</mat-label>
+            <input matInput   formControlName="fatherFullName">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Resident</mat-label>
+            <input matInput   formControlName="resident">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>School/University</mat-label>
+            <mat-select formControlName="school_Uni" (selectionChange)="schoolSelectionChange()">
+            
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>School/University Name</mat-label>
+            <input matInput   formControlName="school_Uni_Name">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Competition Participated</mat-label>
+            <mat-select formControlName="competitionName" (selectionChange)="compChange()">
+            
+                <mat-option *ngFor="let competition of competitonList" [value]="competition">{{competition}}</mat-option>
+            
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Represented School/University</mat-label>
+            <input matInput   formControlName="represented_School">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Venue</mat-label>
+            <input matInput   formControlName="venueName">
+        
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Event</mat-label>
+            <mat-select formControlName="eventName" (selectionChange)="eventChange()">
+            
+                <mat-option *ngFor="let event of eventList" [value]="event">{{event}}</mat-option>
+            
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryName">
+            
+                <mat-option value="Team">Team</mat-option>
+                <mat-option value="Individual">Individual</mat-option>
+            
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field  class="w-100"  appearance="fill">
+            <mat-label >From Date</mat-label>
+            <input matInput [matDatepicker]="compStartDate" formControlName="comp_StartDate">
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matSuffix [for]="compStartDate"></mat-datepicker-toggle>
+            <mat-datepicker #compStartDate></mat-datepicker>
+          </mat-form-field>
+        
+        </div>
+        <div class="col-md-3 my-1">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label >To Date</mat-label>
+            <input matInput [matDatepicker]="compEnDate" formControlName="comp_EndDate">
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matSuffix [for]="compEnDate"></mat-datepicker-toggle>
+            <mat-datepicker #compEnDate></mat-datepicker>
+          </mat-form-field>
+        
+        </div>
+
+        <div class="col-md-3 my-1">
+          <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Position</mat-label>
+            <mat-select formControlName="position">
+            
+                <mat-option value="FIRST">FIRST</mat-option>
+                <mat-option value="SECOND">SECOND</mat-option>
+                <mat-option value="THIRD">THIRD</mat-option>
+                
+                <!-- <mat-option value="PARTICIPATED">PARTICIPATED</mat-option> -->
+            </mat-select>
+          </mat-form-field>
+        
+        </div>
+
+        <div class="col-md d-flex justify-content-end my-1" >
+          <button *ngIf="formToSave" (click)="saveAsDraft()" class="btn btn-secondary  mx-3">Save As Draft</button>
+          <button (click)="formToSave ? openFormDocuments() : this.formsdocumentOpen=!formsdocumentOpen" class="btn btn-primary next-btn">Next</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+</ng-container>
+
+<ng-template #profileDetailMissingModal let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal deleteCoachSS">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-auto">
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+    </div>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{'Information Required' }} </h4>
+    </div>
+    <hr>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>{{missingFieldsMessage}}!</p>
+    </div>
+ 
+
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+       (click)="closeModal()">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="redirectToAthletProfile(this.missingFieledCom)">Continue</button>
+    </div>
+  </div>
+  
+<app-loader *ngIf="loader"></app-loader>
+</ng-template>
+
+
+
+
+
+<ng-container *ngIf="formsdocumentOpen">
+  <div class="modal-body kitting-document-modal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-image-line"></i></span> Upload Documents</h3>
+      <!-- <button *ngIf="readonlyEdit" href="javascript:void(0)" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button> -->
+    </div>
+    <form [formGroup]="formfive5documentForm">
+    <div class="row justify-content-between align-items-center upload-section mt-2">
+      <div class="col-md-6 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">Upload Aadhaar/Passport/Voter ID/Driving License</span>
+              <input type="file" class="inputUpload" #playerAadhar
+                accept=".jpg, .jpeg, .png, .pdf" (change)="uploadfile(playerAadhar.files,'playerAadhar')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('playerAadhar')?.value!=''" [href]="this.filebaseUrl+this.formfive5documentForm.get('playerAadhar')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <div class="col-md-3 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">Upload 10th Marksheet</span>
+              <input type="file" class="inputUpload"  #upload10Marksheet
+                accept=".jpg, .jpeg, .png, .pdf" (change)="uploadfile(upload10Marksheet.files,'highSchoolMarkSheet')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('highSchoolMarkSheet')?.value!=''"  [href]="this.filebaseUrl+this.formfive5documentForm.get('highSchoolMarkSheet')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <div class="col-md-3 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">Upload 12th Marksheet</span>
+              <input type="file" class="inputUpload" #twelthMarksheet
+                accept=".jpg, .jpeg, .png, .pdf"  (change)="uploadfile(twelthMarksheet.files,'interMarkSheet')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('interMarkSheet')?.value!=''" [href]="this.filebaseUrl+this.formfive5documentForm.get('interMarkSheet')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <div class="col-md-4 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">School/College Certificate</span>
+              <input type="file" class="inputUpload" #schoolCertificate
+                accept=".jpg, .jpeg, .png, .pdf" (change)="uploadfile(schoolCertificate.files,'schoolCertificate')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('schoolCertificate')?.value!=''" [href]="this.filebaseUrl+this.formfive5documentForm.get('schoolCertificate')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <div class="col-md-4 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">Marksheet/Degree</span>
+              <input type="file" class="inputUpload" #degree
+                accept=".jpg, .jpeg, .png, .pdf" (change)="uploadfile(degree.files,'degree')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('degree')?.value!=''" [href]="this.filebaseUrl+this.formfive5documentForm.get('degree')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <!-- <div class="col-md-4 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">Position Place </span>
+              <input type="file" class="inputUpload" #positionCertificate
+                accept=".jpg, .jpeg, .png, .pdf" (change)="uploadfile(positionCertificate.files,'positionCertificate')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('positionCertificate')?.value!=''" [href]="this.filebaseUrl+this.formfive5documentForm.get('positionCertificate')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div> -->
+      <div class="col-md-4 col-12 my-2">
+        <div class="form-floating  position-relative">
+          <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+            <div class="inputfileLevel position-relative">
+              <span class="text-uppercase uploadLevel ">Khelo India Certificate</span>
+              <input type="file" class="inputUpload" #kheloIndiaCertificate
+                accept=".jpg, .jpeg, .png, .pdf" (change)="uploadfile(kheloIndiaCertificate.files,'kheloIndiaCertificate')">
+              <input type="hidden">
+            </div>
+            <a *ngIf="this.formfive5documentForm.get('kheloIndiaCertificate')?.value!=''"  [href]="this.filebaseUrl+this.formfive5documentForm.get('kheloIndiaCertificate')?.value" target="_blank">
+              <mat-icon class="position-absolute"
+                style="right: 10px; top: 25%;">remove_red_eye</mat-icon>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <div class="col-md-12 my-2 d-flex align-items-center justify-content-end">
+        <button *ngIf="formToSave" class="btn btn-secondary  mx-3" (click)="saveAsDraft()">Save As Draft</button>
+        <button  class="btn btn-primary previous-btn me-2" (click)="this.formsdocumentOpen=!formsdocumentOpen">Previous</button>
+        <button *ngIf="formToSave" class="btn btn-primary next-btn" (click)="saveCompleteForm()">Save</button>
+      </div>
+    
+    </div>
+    </form>
+    
+  </div>
+</ng-container>
+
+
+<app-loader *ngIf="loader"></app-loader>

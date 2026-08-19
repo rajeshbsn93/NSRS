@@ -1,0 +1,205 @@
+<div class="regProfile p-3 p-lg-4 pt-xl-5 mt-xl-3 mx-xl-2">
+  <div class="item justify-content-sm-end flex-wrap">
+    <a href="javascript:void(0)" (click)="basicInfo()" class="card text-center mb-3">
+      <div class="iconbox">
+        <i class="icon-personal-information-18"></i>
+      </div>
+      <h3 class="mb-0">BASIC INFORMATION</h3>
+    </a>
+    <a href="javascript:void(0)" (click)="address()" class="card text-center mb-3">
+      <div class="iconbox">
+        <i class="icon-address-30"></i>
+      </div>
+      <h3 class="mb-0">ADDRESS</h3>
+    </a>
+    <a href="javascript:void(0)" (click)="SportDiscipline()" class="card text-center mb-3">
+      <div class="iconbox">
+        <i class="icon-football-line"></i>
+      </div>
+      <h3 class="mb-0">SPORTS DISCIPLINE</h3>
+    </a>
+  </div>
+    <div *ngIf="(academyDashboardData$ | async) as data; else noData">
+      <div class="count-slider-carousel mt-lg-3 px-xl-0">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide id="slideitem1">
+              <div class="totAthlete box1">
+                <div class="row align-items-center">
+                  <div class="col-sm-6 col-xl-7 d-flex flex-column " >
+                    <div class="text-center">
+                      <div class="iconBox">
+                        <span class="icon-athlete"></span>
+                      </div>
+                      <h4>TOTAL ATHLETES</h4>     
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-5" >
+                      <div class="tabsCount">
+                        <span style="font-size: 27px;">{{totalCountGrid[0]?.no_Of_Athletes}}</span>
+                      </div>
+                  </div>
+                </div>
+              </div>          
+            </ng-template>
+            <ng-template carouselSlide id="slideitem2">
+              <div class="totAthlete box2">
+                <div class="d-flex align-items-center">
+                  <div class="col-6 col-xl-7 d-flex flex-column " >
+                    <div class="text-center">
+                      <div class="iconBox">
+                        <span class="icon-coach"></span>
+                      </div>
+                      <h4>TOTAL Coach</h4>     
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-5" >
+                      <div class="tabsCount tabsCount2">
+                        <span style="font-size: 27px;">{{totalCountGrid[0]?.no_Of_Coaches}}</span>
+                      </div>
+                  </div>
+                </div>
+              </div>          
+            </ng-template>
+            <ng-template carouselSlide id="slideitem3">
+              <div class="totAthlete box3">
+                <div class="d-flex align-items-center">
+                  <div class="col-sm-6 col-xl-7 d-flex flex-column " >
+                    <div class="text-center">
+                      <div class="iconBox">
+                        <span class="icon-sportsscientist"></span>
+                      </div>
+                      <h4>TOTAL Sport Scientist</h4>     
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-5" >
+                      <div class="tabsCount tabsCount3">
+                        <span style="font-size: 27px;">{{totalCountGrid[0]?.no_Of_Sports_Scientists}}</span>
+                      </div>
+                  </div>
+                </div>
+              </div>          
+            </ng-template>
+            <!-- <ng-template carouselSlide id="slideitem4">
+              <div class="totAthlete box4">
+                <div class="d-flex align-items-center">
+                  <div class="col-6 d-flex flex-column " >
+                    <div class="text-center">
+                      <div class="iconBox">
+                        <span class="icon-athlete"></span>
+                      </div>
+                      <h4>TOTAL Others</h4>     
+                    </div>
+                  </div>
+                  <div class="col-sm-6" >
+                      <div class="tabsCount tabsCount4">
+                        <span style="font-size: 27px;">123</span>
+                      </div>
+                  </div>
+                </div>
+              </div>          
+            </ng-template> -->
+          </owl-carousel-o>
+        </div>
+
+        <div class="athlet-coach-profile mt-3">
+          <div class="profile-title d-flex justify-content-between mb-3">
+            <div class="d-flex align-items-center">
+              <h5 class="mb-0">ATHLETE & COACH PROFILE</h5>
+            </div>
+            <!-- <select class="form-control text-uppercase">
+                <option>EXPORT</option>
+                <option>Excel</option>
+                <option>Pdf</option>
+            </select> -->
+          </div>
+        </div>
+        <div>
+          <ng-container *ngIf="athleteMale.length >0; else noAthleteCoachChart">
+            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsAthleteCoach" class="w-100 d-block"></highcharts-chart> 
+          </ng-container>
+          <ng-template #noAthleteCoachChart>
+            <strong class="noDataFound">No Data Found</strong> 
+          </ng-template>
+        </div>
+
+        <div class="sport-science-profile mt-3">
+          <div class="row">
+            <div class="col-lg-7 col-xxl-8 pe-lg-5">
+              <div class="profile-title d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center">
+                  <h5 class="mb-0">SPORT SCIENTIST PROFILE</h5>
+                </div>
+              </div>
+              <ng-container *ngIf="sportScientistMale.length > 0; else noSsChart ">
+                <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsSportScience" class="w-100 d-block"></highcharts-chart>
+              </ng-container>
+              <ng-template #noSsChart>
+                <strong class="noDataFound">No Data Found</strong> 
+              </ng-template>
+            </div>
+            <div class="col-lg-5 col-xxl-4 border-start">
+              <div class="profile-title d-flex justify-content-center mb-3">
+                <div class="d-flex align-items-center">
+                  <h5 class="mb-0">FINANCIAL ASSISTANCE STATUS</h5>
+                </div>
+              </div>
+              <ng-container *ngIf="scholarshipData.length > 0; else noFinancialChart">
+                <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsFinancialStatus" class="w-100 d-block"></highcharts-chart>
+              </ng-container>
+              <ng-template #noFinancialChart>
+                <strong class="noDataFound">No Data Found</strong> 
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-lg-3 achievement-row">
+          <div class="col-lg-7 col-xxl-8 leftcol pe-lg-5">
+            <div class="profile-title d-flex justify-content-between mb-3">
+              <div class="d-flex align-items-center">
+                <h5 class="mb-0">ACHIEVEMENT</h5>
+              </div>
+              <select class="form-control text-uppercase" (change)="changeExport($event)">
+                <option value="">EXPORT</option>
+                <option value="Excel">Excel</option>
+                <option value="Pdf">Pdf</option>
+            </select>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="achievement-table">
+                <thead>
+                  <tr>
+                    <th>SPORTS DISCIPLINE</th>
+                    <th><img src="assets/images/medal-gold.svg" alt="Gold"></th>
+                    <th><img src="assets/images/medal-silver.svg" alt="Silver"></th>
+                    <th><img src="assets/images/medal-bronze.svg" alt="Bronze"></th>
+                    <th><img src="assets/images/medal-other.svg" alt="Total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of achievementData">
+                    <td>{{data.sport_display_name}}</td>
+                    <td>{{data.gold_medals}}</td>
+                    <td>{{data.silver_medals}}</td>
+                    <td>{{data.bronze_medals}}</td>
+                    <td>{{data.total_medals}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-5 col-xxl-4 border-start">
+            <div class="profile-title d-flex justify-content-center mb-3">
+              <div class="d-flex align-items-center">
+                <h5 class="mb-0">INSURANCE STATUS</h5>
+              </div>
+            </div>
+            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsInsurance" class="w-100 d-block" style="height: 250px;"></highcharts-chart>
+          </div>
+        </div>
+  </div>
+
+</div>
+<ng-template #noData>
+  <app-loader></app-loader>
+</ng-template>

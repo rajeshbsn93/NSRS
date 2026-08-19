@@ -1,0 +1,75 @@
+.athleteAction-modal .modal-body {
+    padding: 0;
+}
+
+.athleteAction-modal .btn-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;outline: none;box-shadow: none;
+}
+
+.athleteAction-modal .nav-tabs {
+    border: 0;
+    padding: 0px 15px;
+    box-shadow: 0 0 7px -2px #ddd;
+}
+
+.athleteAction-modal .nav-tabs .nav-link {
+    border: 0;
+    font-size: 14px;
+    color: #C9C9C9;
+    border-bottom: 1.5px solid transparent;
+    padding: 16px 14px;
+    text-transform: uppercase;
+}
+
+.athleteAction-modal .nav-tabs .nav-link.active {
+    border-bottom-color: #1F60AB;
+    color: #1F60AB;
+}
+
+.athleteAction-modal .tab-content {
+    padding: 15px;
+}
+
+
+.table-responsive .mat-table{font-family: 'Lato', sans-serif;font-weight: bold;}
+th.mat-header-cell{background: #F2F2F2;
+  color: #000;
+  font-size: 13px;
+  font-weight: normal;letter-spacing: 0.7px;font-weight: bold;text-transform: uppercase;padding: 0 8px;}
+  td.mat-cell{color: #555;font-size: 12px;letter-spacing: 0.7px;padding: 0 8px;}
+  .table-responsive .mat-form-field-infix{border-top: 0;width: 250px;}
+  .table-responsive tr.mat-header-row{height: 45px;}
+  .table-responsive .mat-row .mat-cell:first-child{padding-left: 24px;}
+  .mat-table{min-height: 150px;}
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;border-left: 0.5px solid rgb(196 196 196 / 40%);}
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{
+    padding-right: 24px;
+}
+  .example-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  th.mat-header-cell:nth-child(2), td.mat-cell:nth-child(2){}
+  th.mat-header-cell, td.mat-cell{
+    border-right: 0.5px solid rgb(196 196 196 / 40%);}
+
+    select.form-control {font-size: 14px;
+      height: 37px;
+  }
+
+  .noDataFound{font-size: 16px;}
+  .titleTxt h4{background-color: #D1E5FB;
+    border: 1px solid #A3CCF9;
+    padding: 3px;
+    font-size: 13px;
+    text-transform: uppercase;}

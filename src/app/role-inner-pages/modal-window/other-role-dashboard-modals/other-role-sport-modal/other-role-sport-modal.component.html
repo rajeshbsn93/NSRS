@@ -1,0 +1,57 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-football-line"></i></span> Sports</h3>
+      <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button>
+    </div>
+    <form [formGroup]="sportForm">
+      <div class="row">      
+        <div class="col-sm-6 col-lg-6 mb-3">
+            <mat-form-field appearance="fill" class="w-100 custom-input">
+                <mat-label>University</mat-label>
+                <mat-select formControlName="university" (opened)="onInsttNameSelectOpen()">
+                  <mat-option value="null" class="custom-select-option p-2" disabled>
+                    <div class="searchInput">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <input 
+                        #insttSearch
+                        [formControl]="insttNameSearch" 
+                        (keydown.space)="$event.stopPropagation()"
+                        (blur)="onInsttSearchBlur()"
+                        class="form-control h-100 w-100" 
+                        placeholder="Search.." 
+                        type="text"
+                      />
+                    </div>
+                  </mat-option>
+                  <mat-optgroup *ngIf="filterUniversityList?.length == 0">
+                    <div>No results found!</div>
+                  </mat-optgroup>
+                  <mat-option
+                    *ngFor="let option of filterUniversityList" 
+                    [value]="option.university_detail_id"
+                  >
+                    {{option.university_name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>        
+        <div class="col-sm-6 col-lg-6 mb-3">
+          <mat-form-field class="w-100" appearance="fill" >
+            <mat-label>Sport Disciplines</mat-label>
+            <mat-select formControlName="disciplines" >
+              <mat-option [value]="data.sport_detail_id" *ngFor="let data of sportsList">{{data.sport_display_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>        
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <hr class="mt-1" />
+          <button type="button" class="btn btn-blue px-4" (click)="save()" [disabled]="readonlyEdit">Save</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+  <app-loader *ngIf="loader || loader2"></app-loader>

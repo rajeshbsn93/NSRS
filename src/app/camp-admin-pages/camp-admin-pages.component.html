@@ -1,0 +1,10 @@
+
+<div class="dashboard-wraper" [class.sidebarClose]="sidebarToggle">
+  <app-inner-pages-layout-header (headerButtonEvent)="ToggleSideBar($event)" ></app-inner-pages-layout-header>
+  <app-inner-page-layout-sidebar #mockOffcanvaschild></app-inner-page-layout-sidebar>
+  <div class="dashboard-content applayout-content">
+      <div class="container-fluid">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

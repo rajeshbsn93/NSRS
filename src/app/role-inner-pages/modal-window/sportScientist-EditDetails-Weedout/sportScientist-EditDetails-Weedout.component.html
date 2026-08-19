@@ -1,0 +1,177 @@
+
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#edit-details" type="button">EDIT DETAILS</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#weed-out" type="button">WEED OUT</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reset-password" type="button">RESET PASSWORD</button>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="edit-details">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{ssRowData.full_name}} ({{ssRowData.kitd_unique_id}})</p>
+        </div>
+        <form [formGroup]="ssEditForm">
+        <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled w-100" appearance="fill">
+                      <mat-label>NSRS ID</mat-label>
+                      <input matInput formControlName="ki_unique_id" readonly="true">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width mat-form-field-disabled w-100" appearance="fill">
+                      <mat-label>Sport Scientist Name</mat-label>
+                      <input matInput formControlName="coach_name" readonly="true">
+                    </mat-form-field>
+                  </td>                 
+                  <td>
+                    <mat-form-field class="w-100" appearance="fill" (click)="picker1.open()" (dateChange)="dojChange()">
+                      <mat-label>Date Of Joining</mat-label>
+                      <input matInput [matDatepicker]="picker1" (keypress)="false" formControlName="date_of_joining">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Designation</mat-label>
+                      <mat-select formControlName="designation">
+                        <mat-option *ngFor="let data of designationList" [value]="data.designation">{{data.designation}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Employment Type</mat-label>
+                      <mat-select formControlName="employmenttype">
+                        <mat-option value="Regular">Regular</mat-option>
+                        <mat-option value="Contract">Contract</mat-option>
+                        <mat-option value="Deputation">Deputation</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-3 d-flex justify-content-between align-items-center">
+            <div>
+              <button type="button" [disabled]="!this.ssEditForm.valid" (click)="saveEditSSInfo()" class="btn btn-lightblue me-2">Save</button>
+            </div>
+            <a href="javascript:void(0)" (click)="delete()" class="deleteIcon text-danger text-decoration-none px-3 mx-2"><i class="fa-solid fa-trash-can"></i></a>
+          </div>
+        </form>
+      </div>
+
+      <div class="tab-pane fade" id="weed-out">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{ssRowData.full_name}} ({{ssRowData.kitd_unique_id}})</p>
+        </div>
+        <div class="table-responsive text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>NSRS ID</th>
+                <th>DISCIPLINE</th>
+                <th>STATE</th>
+                <th>DATE OF JOINING</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ssRowData.full_name}}</td>
+                <td>{{ssRowData.kitd_unique_id}}</td>
+                <td>{{ssRowData.sport_name}}</td>
+                <td>{{ssRowData.state_name}}</td>
+                <td>{{ssRowData.date_of_joining | date:'dd-MM-YYYY'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <form [formGroup]="ssWeedOutForm">
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <mat-form-field class="example-full-width w-100" appearance="fill" (click)="weedoutDate1.open()">
+                <mat-label>WEEDOUT DATE</mat-label>
+                <input matInput [matDatepicker]="weedoutDate1" formControlName="pWeedOutDate" [min]="ssRowData.date_of_joining | date:'yyyy-MM-dd'">
+                <mat-datepicker-toggle matSuffix [for]="weedoutDate1"></mat-datepicker-toggle>
+                <mat-datepicker #weedoutDate1></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-6 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>WEED-OUT REASON</mat-label>
+                <input type="text" matInput placeholder="weed out reason" formControlName="pWeedOutRemark">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <button (click)="weedoutSave()" class="btn btn-lightblue">Weed Out</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="tab-pane fade" id="reset-password">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{ssRowData.full_name}} ({{ssRowData.kitd_unique_id}})</p>
+        </div>
+        <div class="p-3">
+          <div class="text-center">
+            <!-- <button (click)="resetPassword()" class="btn btn-blue px-4">Reset Password</button> -->
+            <button (click)="reset()" class="btn btn-blue px-4">Reset Password</button>
+          </div>
+        </div>
+        <!-- RESET PASSWORD -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #resetPasswordSS let-modal>
+  <div class="modal-body tagcommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{ssRowData.full_name}} ({{ssRowData.kitd_unique_id}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Do you want to reset password!</p>
+    </div>
+    
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmResetPassword()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #deletess let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{ssRowData.full_name}} ({{ssRowData.kitd_unique_id}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want delete this Athlete!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmDelete()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<app-loader *ngIf="loader"></app-loader>

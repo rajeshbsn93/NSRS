@@ -1,0 +1,52 @@
+/******about us css*******/
+.commontopsec{padding: 100px 0 80px;background-color: #FCFCFC;}
+.about-us{padding:60px 0 30px;}
+.about_p p,.about_p .lh-1{line-height:39px;
+color: #434343;
+max-width: 1042px;
+font-size: 18px;
+margin-left: auto;
+margin-right: auto;}
+.row-about .item .box{margin: 15px 0;
+padding-bottom: 10px;}
+.row-about .item:nth-child(1) .box,.row-about .item:nth-child(2) .box{border-bottom: 1px solid #E2E2E2;}
+.row-about .item h3{display: flex;
+align-items: center;
+font-size: 21px;
+font-weight: bold;
+flex-wrap: wrap;margin-bottom: 15px;text-transform: uppercase;}
+.row-about .item h3 .iconbox{width: 30px;
+height: 30px;
+background-color: #F36E21;
+display: inline-flex;
+justify-content: center;
+align-items: center;
+font-size: 16px;
+border-radius: 6px;
+margin-right: 20px;}
+.row-about .item p{font-size: 18px;line-height: 39px;color: #434343;text-align: justify;}
+
+
+/************Media Query*************/
+@media(max-width:1199.8px){
+}
+@media(max-width:991.8px){
+.aboutsec .aboutimg::before{left: 0;}
+.midtitle h2{font-size: 30px;}
+}
+@media(max-width:767.8px){
+.midtitle h2{font-size: 30px;}
+.about_p p,.row-about .item p{line-height: 28px;max-width: 100%;font-size: 15px;}
+.commontopsec {padding: 50px 0 30px;}
+.about-us {padding: 40px 0 30px;}
+.row-about .item h3{font-size: 17px;margin-bottom: 10px;}
+.row-about .item:not(:last-child) .box{border-bottom: 1px solid #E2E2E2;}
+.aboutsec .aboutimg{margin-bottom: 20px;}
+.aboutsec p,.nsrs-mobile p{font-size: 15px;line-height: 30px;}
+.aboutsec,.nsrs-mobile{padding-top: 40px;}
+.about_p p{text-align: justify;}
+}
+@media(max-width:575.8px){}
+@media(max-width:480.8px){
+    .midtitle h2{font-size: 25px;}
+}

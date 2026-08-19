@@ -1,0 +1,32 @@
+<div class="athlete athlete-detail">
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center p-3 pb-0">
+      <h3 class="fw-bold mb-3"><span class="titleIcon"><i class="icon-kicAttendanceHistory"></i></span> Khelo India Center
+        Attendance History</h3>
+      <div class="filterRoleInner d-flex align-items-center flex-wrap">
+        <!-- <div class="me-2 mb-3">
+            <form >
+              <select formControlName="disciplineToSearch"  class="form-control">
+                <option  value="" selected="selected">Select Sports Discipline</option> 
+              </select> 
+            </form>
+          </div> -->
+  
+        <a href="javascript:void(0)" class="btn btn-blue mb-3 me-2" (click)="popupOpen()"
+          *ngIf="(this.userDetails.role_id === 80 && enableAddBtn)">ADD</a>
+  
+        <!-- <div class="searchInput border-end pe-2 me-2 mb-3">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input class="form-control" placeholder="Search.." #input>
+          </div>
+          <div class="exports mb-3">
+            <select class="form-control" >
+              <option disabled selected="selected">Export</option>
+              <option value="excel">Excel</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div> -->
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <!-- <app-loader *ngIf="false"></app-loader> -->

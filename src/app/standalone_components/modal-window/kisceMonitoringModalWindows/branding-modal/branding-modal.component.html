@@ -1,0 +1,118 @@
+
+
+<div class="athleteAction-modal">
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span class="titleIcon"><i class="icon-personal-information-18"></i></span> BRANDING </button>
+        </div>
+      </nav>
+  
+  
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="athletetag">
+          <div class="d-flex justify-content-between align-items-center my-2">
+            <h5></h5>
+            <!-- <button class="btn border px-3 text-uppercase addmore" *ngIf="equipmentModalData.action == 'add'" (click)="newAddMultiTagArray()">ADD MORE +</button> -->
+          </div>
+          <form [formGroup]="multiEquipmentTagForm">
+            <div class="table-responsive mt-3">
+              <table class="table">
+                <tbody formArrayName="addMultiTagArray">
+                
+                  <tr *ngFor="let item of addMultiTagArray.controls; let i= index" [formGroupName]="i">
+                 
+                    <td>{{i + 1}}</td>
+  
+                    <td *ngIf="this.userDetails.role_id != this.KicUsersRoleId.kisceAdmin">
+                     <mat-form-field class="example-full-width w-100" appearance="fill">
+                       <mat-label>KIC KIUD</mat-label> 
+                       <input matInput [value]="this.brandingModalData.data.kiC_KUID" [disabled]="true">
+                      
+                     </mat-form-field>
+                    </td>
+  
+                    <td *ngIf="this.userDetails.role_id != this.KicUsersRoleId.kisceAdmin">
+                      <mat-form-field class="example-full-width w-100" appearance="fill">
+                        <mat-label>KIC NAME</mat-label> 
+                        <input matInput [value]="this.brandingModalData.data.kiC_NAME" [disabled]="true">
+                       
+                      </mat-form-field>
+                    </td>   
+                    <td *ngIf="this.userDetails.role_id==this.KicUsersRoleId.kisceAdmin">
+                      <mat-form-field class="example-full-width w-100"  appearance="fill" (click)="yearEstablish.open()" appYearFormat>
+                        <mat-label>Year</mat-label>
+                        <input matInput [matDatepicker]="yearEstablish" formControlName="year"  [min]="min_date" [max]="max_date">
+                        <mat-datepicker-toggle matSuffix [for]="yearEstablish"></mat-datepicker-toggle>
+                        <mat-datepicker  #yearEstablish startView="multi-year" (yearSelected)="handleYearSelected($event,yearEstablish,i)"></mat-datepicker>
+                      </mat-form-field> 
+                    </td>
+                   
+                    <td>
+                      <mat-form-field appearance="fill"  class="example-full-width w-100">
+                        <mat-label>BRANDING DONE AT KSICE?</mat-label>
+                        <mat-select formControlName="branding_kic">
+                          <mat-option [value]=1>YES</mat-option>
+                          <mat-option [value]=0>NO</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                    
+                    <td>
+                        <div class="form-floating  position-relative  ms-2  ">
+            
+                          <div
+                            class="inputFileUpload-wraper border rounded-1 p-1 d-flex flex-lg-row flex-column align-items-center justify-content-lg-between justify-content-md-center custom-mobile-wid-btn-upload">
+            
+                            <div class="d-flex align-items-center ">
+                              <div class="inputfileLevel d-flex align-items-center position-relative ">
+                                <span class="text-uppercase uploadLevel ">UPLOAD DOCUMENT</span>
+                                <input class="inputUpload" type="file" #brandingFileInput (change)="uploadBrandingFile(brandingFileInput.files,i)"
+                                  accept=".gif, .jpg, .jpeg, .png, .xls, .xlsx, .doc, .docx ,.pdf">
+                                
+                              </div>
+                            </div>
+                            <!-- {{this.addMultiTagArray.controls[i].get('upload_image')?.value}} -->
+                            <a class="ms-2" *ngIf="this.addMultiTagArray.controls[i].get('upload_image')?.value" [href]="this.fileBaseUrl + this.addMultiTagArray.controls[i].get('upload_image')?.value" target="_blank">
+                              <mat-icon class="" >remove_red_eye</mat-icon>
+                            </a>
+            
+                          </div>
+                          
+                        </div>
+                    </td>
+  
+                    <td class="custom-text-area">
+                      
+                      <mat-form-field class="example-full-width w-100 " appearance="fill">
+                        <mat-label>REMARKS</mat-label>
+                        <textarea matInput formControlName="remarks"  cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+                      </mat-form-field>
+                    </td>
+                    <!-- <td>
+                   
+                      <a href="javascript:void(0)"  (click)="removeAddMultiTagArray(i)" *ngIf="this.addMultiTagArray.length>1"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-3">
+              <button type="button" [disabled]="!this.multiEquipmentTagForm.valid"  (click)="saveBranding()" class="btn btn-lightblue me-2">{{brandingModalData.action == 'add' ? 'SAVE' : 'UPDATE' }}</button>
+              <!-- <button type="button"   (click)="saveBranding()" class="btn btn-lightblue me-2">{{brandingModalData.action == 'add' ? 'SAVE' : 'UPDATE' }}</button> -->
+             
+              <button type="button"  (click)="activeModal.dismiss('Cross click')" class="btn readmore border px-3">CANCEL</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loader *ngIf="loader"></app-loader>
+  <app-loader *ngIf="mainLoader"></app-loader>
+  

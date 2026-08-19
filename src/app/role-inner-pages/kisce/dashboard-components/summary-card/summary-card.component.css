@@ -1,0 +1,235 @@
+/* ############## Desing Change 2 Start ############# */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.custom-card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.new-tab-tile-footer {
+    min-height: 230px;
+}
+
+.tile-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 110px;
+}
+
+.inner-tile {
+    min-height: 75px;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid #00000029;
+}
+
+.inner-tile:nth-child(3),
+.inner-tile:nth-child(6) {
+    border-right: none;
+
+}
+
+.inner-tile:last-child {
+    border-right: none;
+
+}
+
+.tile-box-name {
+    color: #989898;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+.tile-num {
+    color: #4D5864;
+    font-size: 20px;
+}
+
+.tile-new-box {
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.sports-name {
+    color: #2C3D4D;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* +++++++++++ tile-1 +++++++++++ */
+.tile-1 {
+    border-radius: 5px;
+}
+
+.tile-1 .custom-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.tile-1 .custom-icons img {
+    height: 50px;
+    width: 50px;
+    filter: invert(99%) sepia(91%) saturate(5669%) hue-rotate(163deg) brightness(78%) contrast(110%);
+}
+
+.tile-1 .tab-tile-header {
+    background-color: #e9f7f7;
+    min-height: 70px;
+    border-top: 5px solid #74caca;
+}
+
+/* +++++++++++ tile-2 +++++++++++ */
+
+.tile-2 {
+    border-radius: 5px;
+}
+
+.tile-2 .custom-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.tile-2 .custom-icons img {
+    height: 50px;
+    width: 50px;
+    filter: invert(56%) sepia(52%) saturate(1632%) hue-rotate(270deg) brightness(84%) contrast(86%);
+}
+
+.tile-2 .tab-tile-header {
+    background-color: #ffe9fe;
+    min-height: 70px;
+    border-top: 5px solid #c95ac6;
+}
+
+/* +++++++++++ tile-3 +++++++++++ */
+
+.tile-3 {
+    border-radius: 5px;
+}
+
+.tile-3 .custom-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.tile-3 .custom-icons img {
+    height: 50px;
+    width: 50px;
+    filter: invert(79%) sepia(72%) saturate(2338%) hue-rotate(306deg) brightness(89%) contrast(109%);
+}
+
+.tile-3 .tab-tile-header {
+    background-color: #ffecec;
+    min-height: 70px;
+    border-top: 5px solid #ee7b75;
+}
+
+/* +++++++++++ tile-4 +++++++++++ */
+
+.tile-4 {
+    border-radius: 5px;
+}
+
+.tile-4 .custom-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.tile-4 .custom-icons img {
+    height: 50px;
+    width: 50px;
+    filter: invert(45%) sepia(64%) saturate(690%) hue-rotate(197deg) brightness(99%) contrast(91%);
+}
+
+.tile-4 .tab-tile-header {
+    background-color: #e9ecff;
+    min-height: 70px;
+    border-top: 5px solid #687bf1;
+}
+
+/* +++++++++++ tile-5 +++++++++++ */
+
+.tile-5 {
+    border-radius: 5px;
+}
+
+.tile-5 .custom-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.tile-5 .custom-icons img {
+    height: 50px;
+    width: 50px;
+    filter: invert(61%) sepia(30%) saturate(582%) hue-rotate(91deg) brightness(91%) contrast(86%);
+}
+
+.tile-5 .tab-tile-header {
+    background-color: #bfffd9;
+    min-height: 70px;
+    border-top: 5px solid #57a877;
+}
+
+/* +++++++++++ tile-6 +++++++++++ */
+
+.tile-6 {
+    border-radius: 5px;
+}
+
+.tile-6 .custom-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.tile-6 .custom-icons img {
+    height: 50px;
+    width: 50px;
+    filter: invert(93%) sepia(79%) saturate(1733%) hue-rotate(322deg) brightness(110%) contrast(99%);
+}
+
+.tile-6 .tab-tile-header {
+    background-color: #fff9d1;
+    min-height: 70px;
+    border-top: 5px solid #fee547;
+}
+
+
+@media screen and (min-width:1150px) {
+    .spl-wid .col-xl-4{
+        width: 32%;
+        margin-bottom: 22px;
+    }
+}
+.max-hi{
+    max-height: 500px;
+    overflow-y: scroll;
+}
+@media screen and (min-width:1190px) {
+    .spl-wid .col-xl-3{
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1308px) and (min-width: 1200px) {
+    .spl-wid .col-xl-3{
+     width: 45%;
+    }
+   }
+@media screen and (max-width: 1200px) and (min-width: 998px) {
+    .spl-wid .col-lg-6{
+     width: 45%;
+    }
+   }
+
+/* ############## Desing Change 2 End ############# */

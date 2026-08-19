@@ -1,0 +1,90 @@
+/* .athleteAction-modal .modal-dialog{} */
+.athleteAction-modal .modal-body{padding: 0;}
+.athleteAction-modal .btn-close{position: absolute;
+  right: 15px;
+  top: 15px;}
+.athleteAction-modal .nav-tabs{border: 0;
+  padding: 0px 15px;
+  box-shadow: 0 0 7px -2px #ddd;}
+.athleteAction-modal .nav-tabs .nav-link{border: 0;
+  font-size: 14px;
+  color: #C9C9C9;
+  border-bottom: 1.5px solid transparent;padding: 16px 14px;text-transform: uppercase;}
+.athleteAction-modal .nav-tabs .nav-link.active{border-bottom-color: #1F60AB;
+  color: #1F60AB;}
+.athleteAction-modal .tab-content{padding: 15px;}
+.titleIcon{width: 30px;
+height: 30px;
+border: 1px solid #1E5FAA;
+border-radius: 50%;
+font-size: 14px;
+display: inline-flex;
+align-items: center;
+justify-content: center;margin-right: 8px;}
+.titleIcon i:before{color: #1E5FAA;}
+.btn-close{box-shadow: none;outline: none;}
+.btn-lightblue{font-size: 14px;padding: 7px 26px;}
+
+.addmore{font-size: 13px;font-weight: bold;color: #000000;}
+.athleteAction-modal .mat-form-field{font-size: 14px;}
+/* .athleteAction-modal ::ng-deep .mat-form-field-flex{padding-top: 0;}
+.athleteAction-modal ::ng-deep .mat-form-field-infix{padding-bottom: 8px;width: 110px;} */
+
+:host ::ng-deep .inputFileUpload-wrapper {
+  justify-content: space-between;
+  padding: 8.3px 10px;
+}
+
+:host ::ng-deep .inputFileUpload-wrapper .upload-level {
+  background-color: #f1f1f1;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 5px 20px;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+:host ::ng-deep .inputFileUpload-wrapper .upload-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  left: 0;
+}
+
+:host ::ng-deep .inputFileUpload-wrapper a {
+  color: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

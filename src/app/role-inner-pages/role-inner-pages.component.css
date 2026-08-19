@@ -1,0 +1,39 @@
+
+.inner-bg{min-height: 110px;/*min-height: 150px;*/}
+.roleInnerContent,.roleInnerSidebar{margin-top: -80px;
+    background: #fff;
+    min-height: 100%;border: 1px solid #E4E7EB;width: 100%;}
+.roleInnerSidebar{border-radius: 4px;}
+
+:host .br-4-px {
+    border-radius: 4px;
+}
+.academy-banner{
+    background: url('../../assets/images/academy-baner-bg.jpg') no-repeat top;background-size: contain;
+}
+.athlete-banner{
+    background: url('../../assets/images/athlete-baner-bg.jpg') no-repeat top;background-size: contain;
+}
+.coach-banner{
+    background: url('../../assets/images/coach-baner-bg.jpg') no-repeat top;background-size: contain;
+}
+.sport-scientist-banner{
+    background: url('../../assets/images/ss-baner-bg.jpg') no-repeat top;background-size: contain;
+}
+
+@media(max-width:767.8px){
+    .roleInnerContent{margin-top: 0;}
+    .roleInnerSidebar{margin-bottom: 15px;}
+    .academy-banner{
+        background: url('../../assets/images/academy-baner-bg-Mobile.jpg') no-repeat top;background-size: contain;
+    }
+    .athlete-banner{
+        background: url('../../assets/images/athlete-baner-bg-Mobile.jpg') no-repeat top;background-size: contain;
+    }
+    .coach-banner{
+        background: url('../../assets/images/coach-baner-bg-Mobile.jpg') no-repeat top;background-size: contain;
+    }
+    .sport-scientist-banner{
+        background: url('../../assets/images/ss-baner-bg-Mobile.jpg') no-repeat top;background-size: contain;
+    }
+}

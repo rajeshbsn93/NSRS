@@ -1,0 +1,45 @@
+.tagcommonModal .titleTxt h4{background-color: #FFE89E;border: 1px solid #E1C15C;
+    padding: 3px;
+    font-size: 13px;
+    text-transform: uppercase;}
+  .tagcommonModal .btn-close{position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: 14px;box-shadow: none;outline: none;}
+  .tagcommonModal{padding: 15px 20px;}
+
+
+  .language-modal .mat-form-field{font-size: 14px;}
+  .language-modal .titleTxt h3{font-size: 16px;
+    color: #4b6fbf;
+    text-transform: uppercase;margin-bottom: 0;}
+  .language-modal .titleTxt .titleIcon{width: 30px;
+    height: 30px;
+    border: 1px solid #4b6fbf;
+    border-radius: 50%;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;margin-right: 8px;}
+    .language-modal .titleIcon .icon-language {
+      width: 16px;
+      height: 16px;
+      filter: invert(42%) sepia(91%) saturate(380%) hue-rotate(182deg) brightness(85%) contrast(88%);
+    }
+  .language-modal .titleTxt .btn-edit{border-color: #1F60AB;
+    background-color: #D1E6FF;
+    color: #1F60AB;
+    font-size: 12px;
+    padding: 1px 8px 0;
+    border-radius: 3px;}
+
+  ::ng-deep .readonlyBasicDetailsInput.mat-form-field-appearance-fill .mat-form-field-flex{
+    background-color: rgba(0,0,0,.02);
+  }
+  :host ::ng-deep .mw-150-px {
+    min-width: 150px;
+  }
+
+  :host .table-wrapper {
+    overflow: auto;
+  }

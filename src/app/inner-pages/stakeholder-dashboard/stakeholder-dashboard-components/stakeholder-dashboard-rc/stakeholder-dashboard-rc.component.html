@@ -1,0 +1,53 @@
+<div class="summary-card px-3">
+  <div class="summary-card-tiles row">
+      <div class="col-sm-6 col-lg-4 col-12 my-2" *ngFor="let card of rcListData; let cardIndex=index">
+          <div [className]="'summary-card-tile p-3 pt-0'">
+              <div [className]="'tile-' +  (((cardIndex+1)%4)+1)">
+                  <div class="row align-items-center justify-content-between header-card">
+                      <div class="col">
+                          <h3 class="summary-card-heading">{{card?.name ? card.name : 'N/A' }}</h3>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-12 main-content-card">
+                          <table class="table table-bordered text-center mb-0 ">
+                              <thead>
+                                  <tr style="background-color: #e3ffed;">
+                                      <th></th>
+                                      <th>Current</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td class="fw-bold">
+                                        Academy
+                                      </td>
+                                      <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,0)">{{card?.no_of_academy}}</a></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="fw-bold">
+                                          Athlete
+                                      </td>
+                                      <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,1)">{{card?.no_of_athletes}}</a></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="fw-bold">
+                                          Coach
+                                      </td>
+                                      <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,2)">{{card?.no_of_Coaches}}</a></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="fw-bold">
+                                          Sports Scientist
+                                      </td>
+                                      <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,3)">{{card.no_of_SS}}</a></td>
+                                  </tr>
+                              </tbody>                             
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

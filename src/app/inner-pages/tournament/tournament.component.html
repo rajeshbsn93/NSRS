@@ -1,0 +1,182 @@
+<div class="athlete">
+  <div class="filterdata">
+    <div class="filterTop">
+      <div class="row align-items-center justify-content:between mt-3">
+        <div class="col-auto">
+          <h5 class="fw-bold text-uppercase">TOURNAMENT</h5>
+        </div>
+        <div class="col text-end">
+          <div class="row justify-content-end">
+            <div class="col-auto leftsec d-flex align-items-center">
+              <a type="button" routerLink="/eventmaster"  class="btn btn-lightblue px-3">Event</a>
+                <button type="button" (click)="addEditTournament(null)" class="btn btn-lightblue px-3 ms-2">Add+</button>
+            </div>
+            <div class="col-auto rightsec d-flex align-items-center">
+              <div class="exports">
+                <select class="form-control" (ngModelChange)="exportToExcelPdfChange($event)" [(ngModel)]="docType">
+                  <option disabled selected="selected">Export</option>
+                  <option value="excel">Excel</option>
+                  <option value="pdf">PDF</option>
+                </select>
+              </div>
+              <div class="searchInput ms-2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="form-control" (keyup)="applyFilter($event)" placeholder="Search.." #input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filterBottom mb-3">
+      <form [formGroup]="tournamentFilterForm">
+        <div class="row gx-3 align-items-center flex-wrap">
+          <div class="col">
+            <select class="form-control" formControlName="tournament_category_id">
+              <option value="" selected>Tournament Category</option>
+              <option *ngFor="let categoryData of tournamentCategoryList" [value]="categoryData.tournament_category_id">{{categoryData.tournament_calegory_name}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="level">
+              <option value="">Level</option>
+              <option value="National">National</option>
+              <option value="International">International</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="category">
+              <option value="" selected>Category</option>
+              <option value="Senior">Senior</option>
+              <option value="Junior">Junior</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="year">
+              <option value="" selected>Year</option>
+              <option *ngFor="let yearData of distinctYear" [value]="yearData.tournament_Year">{{yearData.tournament_Year}}</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button type="submit" (click)="filterData()" class="btn btn-lightblue px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <div class="col-auto">
+            <a href="javascript:void(0)" class="btn btn-lightblue  px-3"><i
+                class="icon-sound-module-line mt-1 d-block"></i></a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-responsive position-relative">
+    <!-- <div class="example-loading-shade" *ngIf="isloading">
+      <mat-spinner *ngIf="isloading"></mat-spinner>
+    </div> -->
+    <table mat-table matTableExporter id="tournamentTable" #exporter="matTableExporter" [dataSource]="dataSource" class="w-100 table-striped" matSort>
+
+       
+      <!-- Type Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="tournament_Name"> Name  </th>
+        <td mat-cell *matCellDef="let row"> {{row.tournament_Name}}  {{row.tournament_Year}} ({{row.tournament_Edition}})</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="tournament_Category_Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="tournament_Category_Name">Tournament</th>
+        <td mat-cell *matCellDef="let row"> {{row.tournament_Category_Name}} </td>
+      </ng-container>
+      <!--Category Column -->
+      <ng-container matColumnDef="Category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="category"> Category </th>
+        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+      </ng-container>
+      <!-- Age Column -->
+      <ng-container matColumnDef="Level">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="tournament_Level"> Level </th>
+        <td mat-cell *matCellDef="let row"> {{row.tournament_Level}} </td>
+      </ng-container>
+      <!-- Start Column -->
+      <ng-container matColumnDef="from_Date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="from_Date"> Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.from_Date | date: 'dd/MM/yyyy'}} - {{row.to_date | date: 'dd/MM/yyyy'}}</td>
+      </ng-container>\
+      <!-- Event Column -->
+      <ng-container matColumnDef="Event">
+        <th mat-header-cell *matHeaderCellDef > Event </th>
+        <td mat-cell *matCellDef="let row">
+          <a href="javascript:void(0)" (click)="viewEvent(row)" class="text-center"><i class="fa-solid fa-eye"></i>
+            <span class="d-block">View</span>
+          </a> 
+        </td>
+      </ng-container>
+      <!-- Venue Column -->
+      <ng-container matColumnDef="venue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="venue"> Venue </th>
+        <td mat-cell *matCellDef="let row"> {{row.venue}} </td>
+      </ng-container>
+      <!-- Event Column -->
+      <!-- <ng-container matColumnDef="Alloted-achievements">
+        <th mat-header-cell *matHeaderCellDef>  ALLOCATED ACHIEVEMENTS </th>
+        <td mat-cell *matCellDef="let row">
+          1
+        </td>
+      </ng-container> -->
+      <!-- cash_Reward Column -->
+      <ng-container matColumnDef="cash_Reward">
+        <th mat-header-cell *matHeaderCellDef> Cash Reward </th>
+        <td mat-cell *matCellDef="let row">
+          <!-- {{row.cash_Reward}} -->
+          <ng-container *ngIf="row.cash_Reward; else noBtn">
+            <button type="button" class="yesbtn">YES</button>
+          </ng-container>
+          <ng-template #noBtn>
+            <button type="button" class="nobtn">NO</button>
+          </ng-template>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>  Actions </th>
+        <td mat-cell *matCellDef="let row,let i=index">
+          <a href="javascript:void(0)" (click)="addEditTournament(row)" class="text-center d-inline-block"><i class="fa-solid fa-pen-to-square text-warning"></i>
+            <span class="d-block">Edit <br/> Tournament</span>
+          </a>
+          <a href="javascript:void(0)" (click)="achievementTournament(row)" class="text-center d-inline-block"><i class="fa-solid fa-award"></i>
+            <span class="d-block"> View <br/> Achievement</span>
+          </a>
+          <a href="javascript:void(0)" (click)="deleteTounament(row)" class="text-center d-inline-block"><i class="fa-solid fa-trash-can text-danger"></i>
+            <span class="d-block">Delete <br/> Tournament</span>
+          </a>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell text-center" colspan="10"> <span class="noDataFound"> No Data Found </span></td>
+      </tr>
+    </table>    
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+
+<ng-template #deletetournament let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{deleteTournamentData.tournament_Category_Name}} <!--{{deleteTournamentData.tournament_Edition}}--> ({{deleteTournamentData.tournament_Year}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want delete this Tournament!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmDelete()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<app-loader *ngIf="innerLoader"></app-loader>
+<app-loader *ngIf="innerLoaderMainData"></app-loader>

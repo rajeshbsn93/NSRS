@@ -1,0 +1,236 @@
+<div class="modal-crossIcon">
+  <button type="button" class="btn-close" aria-label="Close"
+  (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="proposal-form cust-table">
+  <!-- <form [formGroup]="addProposalForm"> -->
+  <table>
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>Proposal Documents</th>
+        <th>Files</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Proposal Details</td>
+
+
+
+
+        <!-- <ng-container matColumnDef="dpac_Agenda">
+          <th mat-header-cell *matHeaderCellDef>DPAC AGENDA</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-container *ngIf="enableEdit">
+              <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                <div class="inputfileLevel position-relative">
+                  <span class="text-uppercase uploadLevel">Upload</span>
+                  <input
+                    type="file"
+                    class="inputUpload"
+                    (input)="editSanctonObj(i, 'proposal_Head', 'proposal_details', 'approval_date', 'proposal_Status')"
+                    #dpac_Minutes
+                    (change)="uploadFile(dpac_Minutes.files, i, 'dpac_Agenda')"
+                  />
+                </div>
+                <div *ngIf="element.get('dpac_Agenda')?.value && element.get('dpac_Agenda')?.value != 'N/A'">
+                  <a [href]="fileBaseUrl + element.get('dpac_Agenda')?.value" target="_blank">
+                    <i class="fa-solid fa-eye"></i>
+                  </a>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!enableEdit">
+              <div *ngIf="!element.get('dpac_Agenda')?.value || element.get('dpac_Agenda')?.value == 'N/A'">-</div>
+              <div *ngIf="element.get('dpac_Agenda')?.value && element.get('dpac_Agenda')?.value != 'N/A'">
+                <a [href]="fileBaseUrl + element.get('dpac_Agenda')?.value" target="_blank">
+                  <i class="fa-solid fa-eye"></i>
+                </a>
+              </div>
+            </ng-container>
+          </td>
+        </ng-container> -->
+        <td>
+          <ng-container *ngIf="selectMode==='edit'"
+          >
+            <div class="wrap-upload mb-2">
+              <div class="upload" (click)="proposal_details.click()">
+                <span class="text">Upload*</span>
+                <span class="icon">
+                  <img src="assets/images/svg-icons/upload.svg" alt="" srcset="" />
+                </span>
+                <input
+                  type="file"
+                  #proposal_details
+                  name="proposal_details"
+                  class="d-none"
+                  (change)="uploadProposalDocumentFile(proposal_details.files, 'proposal_details')"
+                />
+              </div>
+
+              
+            </div>
+            <div class="text-danger" *ngIf="proposalArray.controls[this.documentsIndex].get('proposal_details')?.hasError('required')">
+              Required
+            </div>
+          </ng-container>
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('proposal_details')?.value != ''">
+            <div class="wrap-view">
+              <div class="view" (click)="openFile('proposal_details')">
+                <span class="icon">
+                  <img src="assets/images/svg-icons/eye-fill.svg" alt="view" srcset="" />
+                </span>
+                <span class="text">View</span>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('proposal_details')?.value === '' && selectMode !='edit'">
+            <div class="wrap-view">
+              <div class="view-proposal">
+                <span class="no-data">-</span>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>Notification Letter</td>
+        <td>
+          <ng-container *ngIf="selectMode==='edit'"
+          >
+            <div class="wrap-upload mb-2">
+              <div class="upload" (click)="notification_letter.click()">
+                <span class="text">Upload</span>
+                <span class="icon">
+                  <img src="assets/images/svg-icons/upload.svg" alt="" srcset="" />
+                </span>
+                <input
+                  type="file"
+                  #notification_letter
+                  name="notification_letter"
+                  class="d-none"
+                  (change)="uploadProposalDocumentFile(notification_letter.files, 'notification_Letter')"
+                />
+              </div>
+            </div>
+          </ng-container> 
+
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('notification_Letter')?.value != ''">
+            <!-- <ng-container *ngIf="addProposalForm.get('notification_Letter')?.value!=undefined"> -->
+            <!-- <ng-container *ngIf="getName(addProposalForm.get('notification_Letter')?.value)"> -->
+            <div class="wrap-view">
+              <div class="view" (click)="openFile('notification_Letter')">
+                <span class="icon">
+                  <img src="assets/images/svg-icons/eye-fill.svg" alt="view" srcset="" />
+                </span>
+                <span class="text">View</span>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('notification_Letter')?.value === '' && selectMode !='edit'">
+            <div class="wrap-view">
+              <div class="view">
+                <span class="no-data">-</span>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>In Principal Approval</td>
+        <td>
+          <ng-container *ngIf="selectMode==='edit'"
+          >
+            <div class="wrap-upload mb-2">
+              <div class="upload" (click)="principal_approval.click()">
+                <span class="text">Upload</span>
+                <span class="icon">
+                  <img src="assets/images/svg-icons/upload.svg" alt="" srcset="" />
+                </span>
+                <input
+                  type="file"
+                  #principal_approval
+                  name="principal_approval"
+                  class="d-none"
+                  (change)="uploadProposalDocumentFile(principal_approval.files, 'In_principal_Approval_document')"
+                />
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('In_Principal_Approval')?.value!='' || proposalArray.controls[this.documentsIndex].get('In_Principal_Approval')?.value!=undefined"> -->
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('In_principal_Approval_document')?.value != ''">
+            <div class="wrap-view">
+              <div class="view" (click)="openFile('In_principal_Approval_document')">
+                <span class="icon">
+                  <img src="assets/images/svg-icons/eye-fill.svg" alt="view" srcset="" />
+                </span>
+                <span class="text">View</span>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('In_principal_Approval_document')?.value === '' && selectMode !='edit'">
+            <div class="wrap-view">
+              <div class="view">
+                <span class="no-data">-</span>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>Sanction Order</td>
+        <td>
+          <ng-container *ngIf="selectMode==='edit'"
+          >
+            <div class="wrap-upload mb-2">
+              <div class="upload" (click)="sanction_order.click()">
+                <span class="text">Upload</span>
+                <span class="icon">
+                  <img src="assets/images/svg-icons/upload.svg" alt="" srcset="" />
+                </span>
+                <input
+                  type="file"
+                  #sanction_order
+                  name="sanction_order"
+                  class="d-none"
+                  (change)="uploadProposalDocumentFile(sanction_order.files, 'Sanction_Order')"
+                />
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- <ng-container *ngIf="addProposalForm.get('Sanction_Order')?.value!='' || addProposalForm.get('Sanction_Order')?.value!=undefined"> -->
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('Sanction_Order')?.value != ''">
+            <div class="wrap-view">
+              <div class="view" (click)="openFile('Sanction_Order')">
+                <span class="icon">
+                  <img src="assets/images/svg-icons/eye-fill.svg" alt="view" srcset="" />
+                </span>
+                <span class="text">View</span>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="proposalArray.controls[this.documentsIndex].get('Sanction_Order')?.value === '' && selectMode !='edit'">
+            <div class="wrap-view">
+              <div class="view">
+                <span class="no-data">-</span>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

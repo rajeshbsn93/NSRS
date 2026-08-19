@@ -1,0 +1,470 @@
+#addProposalModal {
+    font-family: "lato";
+  }
+  
+  #addProposalModal .modal-body {
+    padding: 15px 15px 30px 15px;
+  }
+  
+  #addProposalModal .modal-title {
+    letter-spacing: 0px;
+    color: #0d0d0d;
+    font-size: 1.063rem;
+    font-weight: 600;
+  }
+  
+  .sanction-modal .nav-tabs {
+    border: 0;
+    padding: 0px 15px;
+    box-shadow: 0 0 7px -2px #ddd;
+    margin-bottom: 13px;
+  }
+  .sanction-modal .nav-tabs .nav-link {
+    border: 0;
+    font-size: 14px;
+    color: #c9c9c9;
+    border-bottom: 1.5px solid transparent;
+    padding: 16px 14px;
+    text-transform: uppercase;
+  }
+  .sanction-modal .nav-tabs .nav-link.active {
+    border-bottom-color: #1f60ab;
+    color: #1f60ab;
+  }
+  
+  #addProposalModal .btn-close {
+    /* background: url('../../../../../assets/images/close.svg'); */
+    opacity: 1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    margin: 5px;
+  }
+  
+  #addProposalModal .btn-close:focus {
+    box-shadow: none;
+  }
+  
+  .btn-wrap {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn-wrap .btn-org {
+    background: #2b4b65;
+    color: #fff;
+    border-radius: 21px;
+    padding: 8px 35px;
+    letter-spacing: 0px;
+    font-size: 0.938em;
+    font-weight: 600;
+    border: 1px solid #2b4b65;
+    display: flex;
+    align-items: center;
+  }
+
+  .table th {
+    text-align: center;
+  }
+  
+  .btn-wrap .btn-org:hover {
+    color: #fff;
+    border-color: #2b4b65;
+    background: #2b4b65;
+  }
+  
+  .btn-wrap .btn-org img {
+    margin-right: 5px;
+  }
+  
+  ::ng-deep .cdk-overlay-container {
+    z-index: 9999 !important;
+  }
+  
+  ::ng-deep .uploadButton {
+    color: #2b4b65 !important;
+    padding: 27px 0 !important;
+    background-color: #ececec !important;
+    border-radius: 0 !important;
+  }
+  
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: block !important;
+  }
+  
+  td {
+    vertical-align: top;
+  }
+  
+  .custom-mat-error-div {
+    padding: 0px 16px;
+    font-size: 12px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td,
+  th {
+    text-align: left;
+    vertical-align: middle;
+    padding: 0px 5px 0px 5px;
+  }
+  
+  .label {
+    font-weight: 900;
+    font-size: 14px;
+  }
+  
+  #commentModalLabel {
+    font-weight: 18px;
+    font-weight: 600;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .wrap-upload .upload {
+    position: relative;
+    width: 86px;
+    height: 30px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 0.5px solid #707070;
+    border-radius: 2px;
+    cursor: pointer;
+    /* margin-top: -12px; */
+    margin-left: 8px;
+  }
+  
+  .wrap-upload .upload .text {
+    position: absolute;
+    display: inline-block;
+    width: 34px;
+    height: 13px;
+    text-align: center;
+    font: normal normal 600 11px/35px Lato;
+    letter-spacing: 0px;
+    color: #000000;
+    top: -5px;
+    left: 10px;
+  }
+  
+  .wrap-upload .upload .icon {
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+  
+    right: 10px;
+  }
+  
+  .wrap-upload .upload .icon img {
+    height: 11px;
+    width: 13px;
+  }
+  
+  /* +++++++++++ View Css +++++++++++ */
+  .wrap-view .view {
+    position: relative;
+    width: 86px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .wrap-view .view .text {
+    position: absolute;
+    display: block;
+    width: 34px;
+    height: 13px;
+    font: normal normal 600 11px/35px Lato;
+    letter-spacing: 0px;
+    color: #000000;
+    top: 3px;
+    left: 30px;
+  }
+  
+  .wrap-view .view .icon {
+    position: absolute;
+    display: block;
+    top: -4px;
+    right: 35px;
+  }
+  
+  .wrap-view .view .icon img {
+    height: 11px;
+    width: 13px;
+  }
+  
+  /* #################### Custom Table Start ############################ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    letter-spacing: 0.7px;
+    font-family: "lato";
+    font-size: 10px;
+  }
+  
+  th,
+  td {
+    padding: 4px 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  td {
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #000000;
+  }
+  
+  th {
+    text-transform: uppercase;
+    background-color: #1f60ab;
+    height: 38px;
+    font-family: "lato" !important;
+    letter-spacing: 0px;
+    color: #ffffff;
+    opacity: 1;
+    letter-spacing: 0.7px;
+  }
+  
+  .Address-para {
+    font-size: 12px;
+  }
+  
+  .select-field {
+    cursor: pointer;
+    width: 102px;
+    height: 22px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 0.5px solid #707070;
+    border-radius: 2px;
+    margin-left: 2%;
+    margin-top: -2%;
+  }
+  
+  /* .modal-content {
+    margin-top: 10%;
+  
+  } */
+  #proposal_Status {
+    width: 80px;
+    height: 23px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 0.5px solid #707070;
+    border-radius: 2px;
+    pointer-events: none;
+    margin-top: -1%;
+    margin-left: 14px;
+  }
+  
+  #proposalHead {
+    margin-left: 11px;
+    width: 672px;
+    height: 30px;
+  }
+  
+  .field {
+    width: 89%;
+    height: 30px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 0.5px solid #707070;
+    border-radius: 2px;
+    margin-top: -2px;
+    margin-left: 4px;
+  }
+  /* #################### Custom Table End ############################ */
+  
+  #adreess {
+    margin-top: 22px;
+  }
+  
+  .save-data {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .Add-button {
+    margin-left: 59%;
+  }
+  #supporting {
+    margin-top: 8px;
+  }
+  
+  .formControl {
+    /* width: 100%;
+    padding: .375rem .75rem; */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .releaseAmount {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+  }
+  
+  .btn {
+    /* background-color: #3B454D; */
+    font-size: 11px;
+    /* color: #fff; */
+    /* border-color: #1F60AB; */
+    padding: 7px 30px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  td:not(:last-child) {
+    border-right: 1px solid #f5f5f5;
+  }
+  #dropdown {
+    width: 121px;
+    margin-left: 14px;
+    height: 30px;
+    margin-top: -22px;
+  }
+  
+  .tableRelease {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    font-family: "Roboto";
+    margin-bottom: 8px;
+    background: #1f60ab;
+    color: white;
+    padding: 14px 4px;
+  }
+  
+  .label-text-pair {
+    margin-right: 20px; /* Adjust spacing as needed */
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    margin-right: 5px; /* Adjust label-text spacing */
+  }
+  
+  .trash-icon {
+    color: red;
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    cursor: pointer;
+  }
+  
+  .inputFileUpload-wraper {
+    justify-content: space-between;
+    padding: 6.3px 10px;
+  }
+  
+  .inputFileUpload-wraper .uploadLevel {
+    background-color: #f1f1f1;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 5px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .inputFileUpload-wraper .inputUpload {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    left: 0;
+  }
+  .inputFileUpload-wraper a {
+    color: inherit;
+  }
+  
+  .read-only {
+    pointer-events: none;
+  }
+  
+  .read-only .mat-select-arrow {
+    display: none;
+  }
+
+  .noDataFound {
+    display: flex;
+    justify-content: center;
+    height: 15rem;
+  }
+
+  table tbody tr{
+    font-size: small;
+  }
+  
+  .wrap-upload .upload .text {
+    position: absolute;
+    display: inline-block;
+    width: 34px;
+    height: 13px;
+    text-align: center;
+    font: normal normal 600 11px/35px Lato;
+    letter-spacing: 0px;
+    color: #000000;
+    top: -3px;
+    left: 10px;
+  
+  }
+  
+  .wrap-upload .upload .icon {
+    position: absolute;
+    display: inline-block;
+    top: 4px;
+    right: 10px;
+  }
+  
+  .wrap-upload .upload .icon img {
+    height: 11px;
+    width: 13px;
+  }
+
+/* Enabled state styles */
+.upload.enabled {
+  position: relative;
+  width: 86px;
+  height: 30px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 0.5px solid #707070;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Disabled state styles */
+.upload.disabled {
+  position: relative;
+  width: 86px;
+  height: 30px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 0.5px solid #707070;
+  border-radius: 2px;
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+  opacity: 0.5; /* Lower opacity to indicate it's disabled */
+}
+
+.wrap-view{
+display: flex;
+justify-content: center;
+font-size: large;
+}
+
+
+  
+
+ 
+
+  

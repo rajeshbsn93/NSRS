@@ -1,0 +1,88 @@
+<div class="modal-body tagcommonModal language-modal ath-modal" *ngIf="athleteDocument$ | async as data">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+  <h3>
+    <!-- <span class="titleIcon"><i class="icon-kicAttendanceHistory"></i></span> -->
+    Document View
+  </h3>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-3 col-6 my-2">
+     <div class="img-box-ath">
+      <!-- <img src="" alt="img" class="img-fluid" >
+      <span class="mt-1">pancard.pdf</span> -->
+      <figure *ngIf="data.pancard_path!==null && data.pancard_path !==''">
+        <a [href]="fileBaseUrl + data.pancard_path" target="_blank">
+          <img [src]="verifyDocumentPath(data.pancard_path)" alt="Pancard" class="img-fluid" >
+        </a>
+        <figcaption>Pancard</figcaption>
+      </figure>
+      <app-document-not-found *ngIf="data.pancard_path==null || data.pancard_path ==''"></app-document-not-found>
+     </div>
+    </div>
+    <div class="col-md-3 col-6 my-2">
+     <div class="img-box-ath">
+      <figure *ngIf="data.aadhar_image_path!==null && data.aadhar_image_path!==''">
+        <a [href]="fileBaseUrl + data.aadhar_image_path" target="_blank">
+          <img [src]="verifyDocumentPath(data.aadhar_image_path)" alt="Aadhaar" class="img-fluid" >
+        </a>
+        <figcaption>Aadhaar</figcaption>
+      </figure>
+      <app-document-not-found  *ngIf="data.aadhar_image_path==null || data.aadhar_image_path==''"></app-document-not-found>
+     </div>
+    </div>
+    <div class="col-md-3 col-6 my-2">
+     <div class="img-box-ath">
+      <figure *ngIf="data.tenth_certificate_path!==null && data.tenth_certificate_path !==''">
+        <a [href]="fileBaseUrl + data.tenth_certificate_path" target="_blank">
+          <img [src]="verifyDocumentPath(data.tenth_certificate_path)" alt="10th Marksheet" class="img-fluid" >
+        </a>
+        <figcaption>10th Marksheet</figcaption>
+      </figure>
+      <app-document-not-found *ngIf="data.tenth_certificate_path==null || data.tenth_certificate_path==''"></app-document-not-found>
+     </div>
+    </div>
+    <div class="col-md-3 col-6 my-2">
+     <div class="img-box-ath">
+      <figure *ngIf="data.birth_certificate_path!==null && data.birth_certificate_path!==''">
+        <a [href]="fileBaseUrl + data.birth_certificate_path" target="_blank">
+          <img [src]="verifyDocumentPath(data.birth_certificate_path)" alt="Birth Certificate" class="img-fluid" >
+        </a>
+        <figcaption>Birth Certificate</figcaption>
+      </figure>
+      <app-document-not-found *ngIf="data.birth_certificate_path==null || data.birth_certificate_path==''"></app-document-not-found>
+     </div>
+    </div>
+  </div>
+  <form [formGroup]="esignForm">
+    <div class="row align-items-center justify-content-between mt-2 txt-area">
+      <div class="col-lg-9 col-md-12 col-12 my-2 d-sm-flex">
+        <mat-form-field appearance="fill" class="example-full-width w-75" (click)="picker.open()">
+          <mat-label>Select Date of Birth</mat-label>
+          <input formControlName="dob"
+            readonly 
+            matInput 
+            [matDatepicker]="picker"  
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="example-full-width w-100 ms-2 mt-3 mt-sm-0">
+          <mat-label>Remarks</mat-label>
+          <textarea formControlName="remark" matInput placeholder="Remarks"></textarea>
+        </mat-form-field>
+        
+      </div>
+      <div class="col-lg col-md col-12 my-2">
+        <div class="d-flex justify-content-end">
+          <button (click)="rejectButton()"  type="button" class="btn btn-transp  me-2 ">REJECT</button>
+          <!-- <button  type="button" class="btn btn-blue  ">E-SIGN</button> -->
+          <button (click)="verifyButton()"  type="button" class="btn btn-blue py-0 ">VERIFY</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-loader *ngIf="loader"></app-loader>

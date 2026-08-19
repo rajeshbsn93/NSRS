@@ -1,0 +1,82 @@
+.athleteAction-modal .modal-dialog{}
+.athleteAction-modal .modal-body{padding: 0;}
+.athleteAction-modal .btn-close{position: absolute;
+  right: 15px;
+  top: 15px;}
+.athleteAction-modal .nav-tabs{border: 0;
+  padding: 0px 15px;
+  box-shadow: 0 0 7px -2px #ddd;}
+.athleteAction-modal .nav-tabs .nav-link{border: 0;
+  font-size: 14px;
+  color: #C9C9C9;
+  border-bottom: 1.5px solid transparent;padding: 16px 14px;text-transform: uppercase;}
+.athleteAction-modal .nav-tabs .nav-link.active{border-bottom-color: #1F60AB;
+  color: #1F60AB;}
+.athleteAction-modal .tab-content{padding: 15px;}
+.athleteAction-modal tr th{font-size: 14px;text-align: center;}
+.athleteAction-modal tr td{border-color: #F5F5F5;}
+.athleteAction-modal tr td,.athleteAction-modal .form-control{font-size: 14px;color: #4D4D4D;}
+.form-control:disabled{background-color: #E9ECEF;}
+.athleteAction-modal tr td .form-control{border-radius: 3px;border-color:#E9ECEF ;}
+.athleteAction-modal label{font-size: 12px;color: #000000;}
+.athleteAction-modal select{appearance: auto;}
+.athleteAction-modal ::ng-deep .mat-form-field-infix{max-width: 130px;}
+.athleteAction-modal ::ng-deep .matselectFull{font-size: 14px;}
+.athleteAction-modal ::ng-deep .matselectFull .mat-form-field-infix{max-width: 100%;}
+.setMinWidth{
+  min-width: 100px;
+}
+
+.inputFileUpload-wraper{justify-content: space-between;
+  padding: 6.5px 10px;}
+/* .inputFileUpload-wraper .inputfileLevel{} */
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;
+font-size: 11px;
+font-weight: bold;
+padding: 5px 20px;
+border-radius: 4px;
+display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;
+opacity: 0;
+width: 100%;
+left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+
+.athleteAction-modal #edit-details ::ng-deep .matselectFull .mat-form-field-infix{max-width: 130px;}
+
+
+.insuranceNsrsId{
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  background-color: #D1E5FB;
+  border: 1px solid;
+  border-color: #A3CCF9;
+}
+
+#history{}
+#history tr th{font-size: 14px;text-align: center;color: #000000;background-color: #F8F8F8;}
+#history tr td{font-size: 14px;color: #4D4D4D;}
+#history .table-striped tbody tr td {
+    
+  border:1px solid #dee2e6;
+}
+.noDataFound{font-size: 16px;
+  font-weight: bold;}
+
+  .inputFileUpload-wraper{justify-content: space-between;
+    padding: 5px 10px;}
+/* .inputFileUpload-wraper .inputfileLevel{} */
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;
+font-size: 11px;
+font-weight: bold;
+padding: 6px 20px;
+border-radius: 4px;
+display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;
+opacity: 0;
+width: 100%;
+left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+.fa-solid.fa-eye{color: #4D4D4D;}

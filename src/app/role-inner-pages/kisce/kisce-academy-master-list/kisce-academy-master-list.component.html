@@ -1,0 +1,191 @@
+<div class="kicAcademy container-fluid">
+  <div class="filterdata">
+    <form [formGroup]="academySearchFilter">
+      <div class="filterTop">
+        <div class="row align-items-center justify-content:between mt-3">
+          <div class="col-lg-auto col-md-12 my-1">
+            <h5 class="text-uppercase">ACADEMY MASTER LIST </h5>
+          </div>
+          <!-- <div class="col-lg col-12 my-1 text-end" id="dropdown-end"> -->
+          <div class="col-lg col-12 my-1 text-end" id="">
+            <div class="row justify-content-lg-end justify-content-md-start">
+              <div class="col-auto rightsec d-flex align-items-center">
+                <div class="exports">
+                  <select class="form-control" placeholder=" Select Discipline" formControlName="discipline" (change)="searchFilter()">
+                    <option value="" selected="selected">All Discipline</option>
+
+                    <option *ngFor="let sport of sportMasterList" [value]="sport.sport_name">
+                      {{ sport.sport_name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="exports">
+                  <select class="form-control" formControlName="stateId" (change)="searchFilter()">
+                    <option value="" selected="selected">All State</option>
+                    <option *ngFor="let state of stateMasterList" [value]="state.state_name">
+                      {{ state.state_name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="exports">
+                  <select class="form-control" formControlName="rc" (change)="searchFilter()">
+                    <!-- <option value=""  selected="selected">ALL</option> -->
+                    <option *ngFor="let rc of rcList" [value]="rc.value">{{ rc.value }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="filterBottom mb-3">
+      <form [formGroup]="academySearchFilter">
+        <div class="row gx-3 align-items-center justify-content-start flex-wrap">
+          <div class="col-lg col-12 my-1">
+            <div class="row">
+              <div class="col-lg-4 col-md">
+                <div class="searchInput">
+                  <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                  <input class="form-control" formControlName="Academyname" placeholder="Search by Academy Name" />
+                </div>
+              </div>
+              <div class="col-auto">
+                <button type="submit" (click)="searchFilter()" class="btn btn-lightblue px-3">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+              <div class="col-lg-4 col-md">
+                <div class="searchInput ms-2">
+                  <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                  <input class="form-control" placeholder="Enter Academy KID" formControlName="Academykid" />
+                </div>
+              </div>
+              <div class="col-auto">
+                <button type="submit" (click)="searchFilter()" class="btn btn-lightblue px-3">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-auto col-md-12 my-1 rightsec d-flex align-items-center">
+            <div class="">
+              <!-- <select class="form-control">
+                                <option disabled selected="selected">Export</option>
+                                <option value="excel">Excel</option>
+                            </select> -->
+              <select class="form-control" (change)="exportToExcelPdfChange($event)">
+                <option disabled selected="selected">Export</option>
+                <option value="excel">Excel</option>
+                <!-- <option value="pdf">PDF</option> -->
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <form [formGroup]="academySearchFilter">
+    <div class="table-responsive position-relative">
+      <table
+        mat-table
+        id="Academylisttable"
+        matTableExporter
+        #exporter="matTableExporter"
+        [dataSource]="dataSource"
+        matSort
+        class="mat-elevation-z8 table-striped"
+      >
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="sno" class="col-1">Select</th>
+          <td mat-cell *matCellDef="let element" class="col-1 text-center">
+            <mat-radio-group [value]="selectedElementId">
+            <mat-radio-button [value]="element.id" (click)="onRadioChange(element)"></mat-radio-button>
+            </mat-radio-group>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nsrS_Id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrS_Id" class="col-2">NSRS ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.nsrS_Id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nsrS_Registration_Date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrS_Registration_Date" class="col-4">NSRS REGISTRATION DATE</th>
+          <td mat-cell *matCellDef="let element">{{ element.nsrS_Registration_Date | date : "dd-MM-YYYY" }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="academy_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="academy_name" class="col-2">ACADEMY NAME</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.academy_name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="discipline">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="discipline" class="col-4">DISCIPLINE</th>
+          <td mat-cell *matCellDef="let element">{{ element.discipline }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="district">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="district" class="col-4">DISTRICT</th>
+          <td mat-cell *matCellDef="let element">{{ element.district }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="state" class="col-4">State</th>
+          <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="regional_Center">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="regional_Center" class="col-4">REGIONAL CENTER</th>
+          <td mat-cell *matCellDef="let element">{{ element.regional_Center }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="male">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="male" class="col-4">male</th>
+          <td mat-cell *matCellDef="let element">{{ element.male }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="female">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="female" class="col-4">female</th>
+          <td mat-cell *matCellDef="let element">{{ element.female }}</td>
+        </ng-container>
+
+        <ng-container *ngIf="this.userDetails.role_id == KicUsersRoleId.hoAdmin">
+          <tr mat-header-row *matHeaderRowDef="displayedHoColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedHoColumns"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="5"><span class="noDataFound"> No Data Found </span></td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngIf="this.userDetails.role_id != KicUsersRoleId.hoAdmin">
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="4"><span class="noDataFound"><img src="../../../../assets/images/norecordfound.png" alt="No Records Found"></span></td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+    <div class="save-data my-4" *ngIf="this.userDetails.role_id == this.KicUsersRoleId.hoAdmin && this.selectedData != '' && onSelectRadio">
+      <button (click)="addProposal()" type="button" class="btn btn-lightwhite px-3 ms-2 text-uppercase">Proceed</button>
+      <button (click)="onCancel()" type="button" class="btn btn-lightblue px-3 ms-2 text-uppercase">Cancel</button>
+    </div>
+  </form>
+
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"> </mat-paginator>
+
+  <app-add-proposal-kisce
+    *ngIf="addProposalPopup"
+    [popupShow]="addProposalPopup"
+    (showHideControl)="showHideProposalPopup($event)"
+    (popupControl_ConfirmBtn)="refreshListOfProposal($event)"
+  ></app-add-proposal-kisce>
+</div>
+
+<app-loader *ngIf="mainLoader || loader1 || loader2"></app-loader>

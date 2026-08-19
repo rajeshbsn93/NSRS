@@ -1,0 +1,16 @@
+.pagenotFound h2{
+  color: #707070;
+  font-size: 60px;
+  font-family: 'lato',sans-serif;
+  font-weight: bold;
+}
+
+.pagenotFound h5{
+  color: #BCBCBC;
+  font-size: 30px;
+  font-family: 'lato',sans-serif;
+}
+
+.pagenotFound img{
+  max-width: 638px;
+}

@@ -1,0 +1,113 @@
+.athlete .table thead tr th{font-size: 10px;background-color: #1F60AB;}
+.athlete-table .table{font-size: 10px;}
+.athlete-table .table .nobtn{font-size: 8px;}
+.athlete .mat-row .mat-cell:first-child{padding-left: 24px;}
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nobtn{
+  background-color: #FFCCD2;
+  border: 1px solid;
+  border-color: #FF475D;
+  border-radius: 3px;text-transform: uppercase
+}
+.yesbtn{
+  background-color: #CCFFEC;
+  border: 1px solid;
+  border-color: #0E8B5C;
+  border-radius: 3px;text-transform: uppercase
+}
+
+.mat-table,.table{min-height: 150px;}
+.eye-icon{font-size: 14px;}
+#academyTable tr th:nth-child(2){width: 15%;}
+#academyTable tr th:nth-child(3){width: 15%;}
+#academyTable ::ng-deep .mat-sort-header-arrow{color: #fff;}
+#academyTable tr td:nth-child(5),#academyTable tr td:nth-child(6),#academyTable tr td:nth-child(7){text-align: center;}
+.filterBottom .icon-sound-module-line{font-size: 13px;}
+#academyTable  tr td a{text-decoration: none;display: block;margin-right: 12px;}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{/*width: 15%;*/}
+th:nth-child(5) ::ng-deep .mat-sort-header-container,th:nth-child(6) ::ng-deep .mat-sort-header-container,th:nth-child(7) ::ng-deep .mat-sort-header-container{
+  justify-content: center;
+}
+.athlete .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.athlete .mat-row .mat-cell:last-child {border-right: 0;}
+
+.athlete .mat-table button{
+  font-size: 10px;
+}
+
+.noDataFound{font-size: 16px;}
+.commonbtnType{background-color: #FFCCD2;
+  border: 1px solid;
+  border-color: #FF475D;
+  border-radius: 3px;
+  padding: 1px 7px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 10px;}
+.btnAcademy{border-color: #D891D1;
+  background-color: #ffbdf8;}
+.btnSatcSai{border-color: #6F79D1;
+  background-color: #d4d8fd;}
+.btnNcoeSai{border-color: #339CAC;
+  background-color: #a4e7f1;}
+.btnSkicSai{border-color: #F1A800;
+  background-color: #f1dba9;}
+.btnAbscSai{border-color: #4EB2FF;
+background-color: #bee1fd;}
+.btnNstcSai{
+  border-color: #4EB2FF;
+  background-color: #bee1fd;
+}
+
+.btnAbscSlkic{
+  border-color: #D44800;
+  background-color: #ffbf9d;
+}
+.btnKiceSlkic{
+  border-color: #8F0900;
+  background-color: #ffa6a0;
+}
+.btnKissSlkic{
+  border-color: #8F9400;
+  background-color: #F9FF4E;
+}
+.btnSkicSlkic{
+  border-color: #380F80;
+  background-color: #e4d4ff;
+}
+.btnCollege{
+  border-color: #1C0D00;
+  background-color: #FFB677;
+}
+.btnHostel{
+  border-color: #196755;
+  background-color: #87D9C6;
+}
+::ng-deep .trainingCenterTooltip .tooltip-inner {
+  background-color: #003b80;
+  font-size: 13px;
+}
+::ng-deep .trainingCenterTooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: #003b80;
+}
+::ng-deep .trainingCenterTooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: #003b80;
+}
+::ng-deep .trainingCenterTooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #003b80;
+}
+::ng-deep .trainingCenterTooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: #003b80;
+}

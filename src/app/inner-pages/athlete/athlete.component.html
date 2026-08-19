@@ -1,0 +1,281 @@
+<div class="athlete">
+  <div class="filterdata">
+    <div class="filterTop">
+      <div class="row align-items-center justify-content:between mt-3">
+        <div class="col-auto"><h5  class="fw-bold text-uppercase">Athlete</h5></div>
+        <div class="col text-end">
+          <div class="row justify-content-end">
+            <div class="col-auto leftsec d-flex align-items-center">
+              <form [formGroup]="schemeForm" class="d-flex align-items-center">
+                <select class="form-control" formControlName="selectedScheme">
+                  <option selected="selected" value="">Scheme</option>
+                  <option value="financial"> Financial Assistance</option>
+                  <!-- <option value="insurance">Insurance</option> -->
+                </select>
+                <button type="button" [disabled]="(schemeForm.controls['selectedScheme'].value == '')" class="btn btn-lightblue px-3 ms-2" (click)="AddAthleteModal()">Add+</button>
+              </form>
+            </div>
+            <div class="col-auto rightsec d-flex align-items-center">
+              <div class="exports">
+                <select class="form-control"  (ngModelChange)="exportToExcelPdfChange($event)" [(ngModel)]="docType">
+                  <option disabled selected="selected">Export</option>
+                  <option value="excel">Excel</option>
+                  <option value="pdf">PDF</option>
+                </select>
+              </div>
+              <div class="searchInput ms-2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="form-control"  (keyup)="applyFilter($event)" placeholder="Search.." #input>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="filterBottom mb-3">
+      <form [formGroup]="searchFilter" (ngSubmit)="search()">
+        <div class="row gx-3 align-items-center flex-wrap">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="NSRS ID" formControlName="nsrsid">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="discipline">
+              <option value="" selected="selected"> Discipline</option>
+              <option [value]="data.sport_name" *ngFor="let data of sportListData">{{data.sport_name}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control apperance-top" formControlName="scheme">
+              <option value="">Scheme</option>
+              <option [value]="data.scholarship_type" *ngFor="let data of schemeListData">{{data.scholarship_type}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control academy-type" (change)="changeAcademyType($event)" formControlName="academy_type">
+              <option value="" selected="selected"> Academy Type</option>
+              <option [value]="data.scheme_id" *ngFor="let data of getSchemeListData">{{data.scheme_name}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control apperance-top" formControlName="academy" (click)="checkAcademyType()">
+              <option value="">Academy</option>
+              <option [value]="data.academyid" *ngFor="let data of academyListData">{{data.academyName}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="gender">
+              <option value="">Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-lightblue px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <div class="col-auto">
+            <a href="javascript:void(0)" class="btn btn-lightblue  px-3"><i class="icon-sound-module-line mt-1 d-block"></i></a>
+          </div>
+        </div>
+      </form>
+      <!-- </form> -->
+    </div>
+  </div>
+  
+
+
+
+  <!-- <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" (matSortChange)="announceSortChange($event)" > -->
+
+  <div class="table-responsive position-relative">
+    <!-- <div class="example-loading-shade" *ngIf="isloading">
+      <mat-spinner *ngIf="isloading"></mat-spinner>
+    </div> -->
+
+    <table mat-table id="athleteTable"  matTableExporter  #exporter="matTableExporter" [dataSource]="dataSource" matSort class="mat-elevation-z8 table-striped">
+      <!-- <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> ACTION </th>
+        <td mat-cell *matCellDef="let element;"><img src="assets/images/action_arrow.svg"> </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="nsrsId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="nsrsId"> NSRS ID</th>
+        <td mat-cell *matCellDef="let element"> <a href="javascript:void(0)" class="text-decoration-none" (click)="openAthleteProfile(element)">{{element.nsrsId}}</a> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NAME">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="ath_Name"> NAME </th>
+        <td mat-cell *matCellDef="let element"> {{element.ath_Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Discipline">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="sport_name"> DISCIPLINE
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.sport_name}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="TrainingCenter">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="trainingCenter">ACADEMY </th>
+        <td mat-cell *matCellDef="let element"><button *ngIf="element.trainingCenter==''" disabled style="text-decoration: none;"
+            class="addAcademyBtn">ADD
+          </button>
+          <a [btnDisableIfRole]="[hideRoleID]" href="javascript:void(0)" style="text-decoration: none;" *ngIf="element.trainingCenter!='' " style="text-decoration: none;"
+            (click)="openTransferComponent(element)">{{element.trainingCenter}}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="TIDC">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="iS_TIDC"> TIDC </th>
+        <td mat-cell *matCellDef="let element"><button
+            [ngClass]="element.iS_TIDC==0 ? 'nobtn':'yesbtn'">{{element.iS_TIDC==0 ? "NO" : "YES"}}</button></td>
+      </ng-container>
+      <ng-container matColumnDef="kia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="is_kia"> KIA </th>
+        <td mat-cell *matCellDef="let element"><button
+            [ngClass]="element.is_kia==0 ? 'nobtn':'yesbtn'">{{element.is_kia==0 ? "NO" : "YES"}}</button></td>
+
+      </ng-container>
+
+
+      <ng-container matColumnDef="tops">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="is_Tops"> TOPS </th>
+        <td mat-cell *matCellDef="let element"><button
+            [ngClass]="!element.is_Tops ? 'nobtn':'yesbtn'">{{!element.is_Tops ? "NO" : "YES"}}</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="insurance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="is_Insured"> INSURANCE</th>
+        <td mat-cell *matCellDef="let element">
+          <button *ngIf="(element.insurance_status=='0')" [btnDisableIfRole]="[hideRoleID]"  class="nobtn"
+            (click)="noInsurance(element.nsrsId,element)">NO</button>
+          <button *ngIf="(element.insurance_status=='P')" [btnDisableIfRole]="[hideRoleID]" 
+            (click)="athletePendingInsurance(element)" class="pendingBtn"> PENDING </button>
+            <ng-container *ngIf="(userDetails.role_id !=hideRoleID)">
+   <a href="javascript:void(0)" *ngIf="(element.insurance_status=='P')"
+             class="text-danger ms-1"><i *ngIf="element.insured_by == this.userDetails.user_id"
+              class="fa-solid fa-trash-can" (click)="deleteInsurance(element)" ></i></a>
+            </ng-container>
+       
+          <button *ngIf="(element.insurance_status=='S')" [btnDisableIfRole]="[hideRoleID]" 
+            (click)="athleteSuccessInsurace(element)" class="yesbtn"> INSURED </button>
+          <button [btnDisableIfRole]="[hideRoleID]"  *ngIf="(element.insurance_status=='E')"
+            (click)="athleteExpiredInsurance(element)" class="expiredBtn"> EXPIRED </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="financial">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="scholarship_type"> FINANCIAL</th>
+        <td mat-cell *matCellDef="let element">
+          <button [btnDisableIfRole]="[hideRoleID]" *ngIf="element.scholarship_type!=''" [ngClass]="{'kheloIndiaOpaBtn' : element.scholarship_type == 'Khelo India' ,
+            'developmentOpaBtn' : element.scholarship_type == 'Developmental',
+            'topcoreOpaBtn' : element.scholarship_type == 'Tops Core',
+            'othersOpaBtn' : element.scholarship_type == 'Others'}"
+            (click)="openFinancialModel($event, element)" id="financialOtherButton">
+            {{element.scholarship_type}}
+          </button>
+          <button [btnDisableIfRole]="[hideRoleID]" id="financialNoButton" *ngIf="element.scholarship_type==''" class="nobtn"
+            (click)="openFinancialModel($event, element)">NO</button>
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="pduw">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="is_PDU">PDUWFNS</th>
+        <td mat-cell *matCellDef="let element"><button
+            [ngClass]="element.is_PDU==0 ? 'nobtn':'yesbtn'">{{element.is_PDU==0 ? "NO" : "YES"}}</button></td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="kiaa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="is_KIAA"> KIAA</th>
+        <td mat-cell *matCellDef="let element"><button
+            [ngClass]="element.is_KIAA==0 ? 'nobtn':'yesbtn'">{{element.is_KIAA==0 ? "NO" : "YES"}}</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell text-center" colspan="10"> <span class="noDataFound"> No Data Found </span></td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-body tagcommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{popupData.ath_Name}} ({{popupData.nsrsId}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want to tag for Insurance!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmInsuranceTag()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #expiredInsurance let-modal>
+  <div class="modal-body tagcommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{popupData.ath_Name}} ({{popupData.nsrsId}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <!-- <p>Please confirm if you want to tag for Insurance!</p> -->
+      <p>Please confirm if you want to renew the insurance!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmExpiredInsuranceTag()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #delete let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{deleteInsuranceData.ath_Name}} ({{deleteInsuranceData.nsrsId}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want Delete this Insurance!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmDeleteInsurance()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #SubmitTagcontent let-modal>
+  <div class="modal-body tagcommonModal taggedSuccessfully">
+    <div class="mb-2 text-end">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{popupData.ath_Name}} ({{popupData.nsrsId}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Athlete tagged successfully !</p>
+    </div>
+    <div class="text-center pb-3">
+      <button class="btn btn-lightblue px-3 px-lg-4 text-uppercase" (click)="athleteInsuranceDetails()">SUBMIT DETAILS</button>
+    </div>
+  </div>
+
+</ng-template>
+
+<app-loader *ngIf="innerLoaderSportList"></app-loader>
+<app-loader *ngIf="innerLoader"></app-loader>
+<app-loader *ngIf="innerLoaderMainData"></app-loader>

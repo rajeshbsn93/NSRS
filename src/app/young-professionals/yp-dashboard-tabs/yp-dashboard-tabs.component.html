@@ -1,0 +1,87 @@
+<div class="yp-tab-table">
+  <div class="pending-table-yp table-responsive mt-3">
+            <!-- <table mat-table class="currentTable"   matTableExporter  #exporter="matTableExporter" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class=" table table-striped table-bordered w-100">   -->
+            <table mat-table class="currentTable"   matTableExporter  #exporter="matTableExporter" [dataSource]="dataSource" matSort class=" table table-striped table-bordered w-100">  
+                
+                <ng-container matColumnDef="s_no">
+                <th mat-header-cell *matHeaderCellDef  class="">S.No</th>
+                <td mat-cell *matCellDef="let row"> {{row?.s_no}} </td>
+                </ng-container>  
+                
+                <ng-container matColumnDef="kitd">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="kitd_unique_id"  class="">NSRS ID</th>
+                <td mat-cell *matCellDef="let row"> {{row?.kitd_unique_id}}</td>
+                </ng-container>
+                
+                <ng-container matColumnDef="eventName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header  class="col-2">KI Games</th>
+                <td mat-cell *matCellDef="let row"> {{row?.eventName}}</td>
+                </ng-container>
+                
+                <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header="full_name">  Name</th>
+                <td mat-cell *matCellDef="let row"> 
+                    {{row?.full_name}}
+                </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="date_of_birth">
+                <th mat-header-cell *matHeaderCellDef > Date of Birth </th>
+                <td mat-cell *matCellDef="let row">{{row?.date_of_birth }}
+                </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="father_name">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header="father_full_name"> Father Name </th>
+                <td mat-cell *matCellDef="let row">{{row?.father_full_name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="document">
+                  <th mat-header-cell *matHeaderCellDef> Document </th>
+                  <td mat-cell *matCellDef="let row" >
+                      <div class="d-flex align-items-center  justify-content-center cursor-pointer" (click)="viewYPDocument(row?.form5Id)"><mat-icon>remove_red_eye</mat-icon> <span class="ms-1">View</span></div>
+                  </td>   
+                </ng-container>
+        
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Status</th>
+                    <td mat-cell *matCellDef="let row">
+                        <!-- <ng-container *ngFor="let item of row?.required_status">
+                            <p *ngIf="item.includes('Pending')" class="status-table pending-color">{{item}}</p>
+                            <p *ngIf="item.includes('Approved')" class="status-table">{{item}}</p>
+                            <p *ngIf="item.includes('Rejected')" class="status-table rejected-color">{{item}}</p>
+                        </ng-container> -->
+                        <span [ngClass]="type=='approved' ? 'text-success-1' :'text-pending'">{{row.shortStatus}}</span>
+                    
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef class="text-nowrap"> Action (Form 5) </th>
+                  <td mat-cell *matCellDef="let row" >
+                    <ng-container *ngIf="row?.form5DocPath; else noDocPath">
+                        <div class="d-flex align-items-center justify-content-center cursor-pointer" (click)="downloadPdf(row)"> <img src="assets/images/pdf-icon.svg"  class="img-fluid pdf-img"><span class="ms-1 text-decoration-underline">Download</span> </div>
+                    </ng-container>
+                    <ng-template #noDocPath>
+                        <span *ngIf="type=='approved'"> N/A</span>                       
+                    </ng-template>
+                    <ng-container  *ngIf="type ==='pending'">
+                        <!-- <div class="d-flex justify-content-evenly" *ngIf="(row?.form5_Status== 10) || (row?.form5_Status== 15)"> -->
+                        <div class="d-flex justify-content-evenly">
+                            <a (click)="navigateToCom(row?.form5Id ,row?.player_detail_id ,'approve')" class="text-success text-decoration-none me-1 cursor-pointer "><span class="text-success-1 text-decoration-underline">Approve</span></a>
+                            <a (click)="navigateToCom(row?.form5Id ,row?.player_detail_id ,'reject')" class="text-danger text-decoration-none ms-1 cursor-pointer"> <span class="text-danger-1  text-decoration-underline">Reject</span></a>
+
+                        </div>
+                    </ng-container>                            
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="athleteCurrentTableColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: athleteCurrentTableColumns;"></tr>      
+            
+                
+                <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+                </tr>
+            </table>     
+        </div>
+        <mat-paginator [pageSizeOptions]="[5,10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

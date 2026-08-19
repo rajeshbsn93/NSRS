@@ -1,0 +1,87 @@
+<div class="summary-card px-3" [ngClass]="{'state_img': type=='stateWise'}">
+    <div class="summary-card-tiles row">
+        <div class="col-sm-6 col-lg-4 col-12 my-2" *ngFor="let card of cardList; let cardIndex=index">
+            <div [className]="'summary-card-tile p-3 pt-0'">
+                <div [className]="'tile-' +  (((cardIndex+1)%4)+1)">
+                    <div class="row align-items-center justify-content-between header-card">
+                        <div class="col">
+                            <h3 class="summary-card-heading">{{card?.name}}</h3>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon-img">
+                                <img [src]="basePath + (type == 'stateWise' ? 'state-icons/' : 'discipline-icons/') + (type == 'stateWise'? imageName(card?.name) : replaceName(card?.icon)) + '.svg'"
+                                [alt]="(type == 'stateWise' ? card?.name : card?.icon)" [height]="35" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 main-content-card">
+                            <table class="table table-bordered text-center mb-0 ">
+                                <thead>
+                                    <tr style="background-color: #e3ffed;">
+                                        <th></th>
+                                        <th>Current</th>
+                                        <th *ngIf="type == 'disciplineWise'">Vacancy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">
+                                          Academy
+                                          <!-- <div class="d-block mt-2">
+                                            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                                          </div> -->
+                                        </td>
+                                        <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,0)">{{card?.no_of_academy}}</a></td>
+                                        <td *ngIf="type == 'disciplineWise'">N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">
+                                            Athlete
+                                            <div class="d-block mt-2" *ngIf="type == 'disciplineWise'">
+                                                <!-- 'progressbar-green': progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) == 100 || progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) >75, -->
+                                                <mat-progress-bar [ngClass]="{
+                                                    'progressbar-green':progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) >75,
+                                                    'progressbar-yellow': progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) > 50 && progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) <=75,
+                                                    'progressbar-blue': progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) > 25 && progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) <=50,
+                                                    'progressbar-red': progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) > 0 && progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth) <=25
+                                                }" mode="determinate" [value]="progressAthlete(card?.no_of_athletes,card?.ath_Vacant_strnth)"></mat-progress-bar>
+                                            </div>
+                                        </td>
+                                        <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,1)">{{card?.no_of_athletes}}</a></td>
+                                        <td *ngIf="type == 'disciplineWise'"><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,1)">{{card?.ath_Vacant_strnth}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">
+                                            Coach
+                                            <div class="d-block mt-2" *ngIf="type == 'disciplineWise'">
+                                                <mat-progress-bar [ngClass]="{
+                                                    'progressbar-green':progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) >75,
+                                                    'progressbar-yellow': progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) > 50 && progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) <=75,
+                                                    'progressbar-blue': progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) > 25 && progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) <=50,
+                                                    'progressbar-red': progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) > 0 && progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth) <=25                                                    
+                                                }" mode="determinate" [value]="progressCoach(card?.no_of_Coaches,card?.coach_Vacant_strnth)"></mat-progress-bar>
+                                            </div>
+                                        </td>
+                                        <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,2)">{{card?.no_of_Coaches}}</a></td>
+                                        <td *ngIf="type == 'disciplineWise'"><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,2)">{{card?.coach_Vacant_strnth }}</a></td>
+                                    </tr>
+                                    <tr  *ngIf="type !== 'disciplineWise'">
+                                        <td class="fw-bold">
+                                            Sports Scientist
+                                            <div class="d-block mt-2" *ngIf="type == 'disciplineWise'">
+                                                <mat-progress-bar mode="determinate" [value]="progressSportScientist(card?.no_of_SS,card?.sS_Vacant_strnth)"></mat-progress-bar>
+                                            </div>
+                                        </td>
+                                        <td><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,3)">{{card.no_of_SS}}</a></td>
+                                        <td *ngIf="type == 'disciplineWise'"><a href="javascript:void(0)" (click)="openCardSummaryModal(card,type,3)">{{card?.sS_Vacant_strnth}}</a></td>
+                                    </tr>
+                                </tbody>                             
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

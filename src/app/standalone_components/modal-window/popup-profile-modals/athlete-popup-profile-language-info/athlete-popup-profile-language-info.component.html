@@ -1,0 +1,66 @@
+<div class="modal-body education-modal-wrapper education-modal">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.close(false)"
+    ></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3>
+        <span class="titleIcon"><img src="assets/images/icon-language.svg" class="icon-language"></span>Languages
+      </h3>
+      <!-- <button
+        type="button"
+        class="btn btn-blue py-1 me-4"
+        (click)="openAddEducationInfoModal()"
+      >
+        ADD
+      </button> -->
+    </div>
+    <div class="row overflow-auto h-75-vh g-0">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center align-middle">LANGUAGE TYPE</th>
+            <th scope="col" class="text-center align-middle">LANGUAGE</th>
+            <th scope="col" class="text-center align-middle">READ</th>
+            <th scope="col" class="text-center align-middle">WRITE</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="popupDataReceived!=null">
+          <tr>
+            <td class="text-center align-middle">Primary Language</td>
+            <td class="text-center align-middle">{{ popupDataReceived.primary_communication_language }}</td>
+            <td class="text-center align-middle">
+                <ng-container *ngIf="popupDataReceived.is_primary_read"><mat-icon  class="material-symbols-outlined" fontIcon="done"></mat-icon></ng-container>
+                <ng-container *ngIf="!popupDataReceived.is_primary_read"><mat-icon  class="material-symbols-outlined" fontIcon="close"></mat-icon></ng-container>
+            </td>
+            <td class="text-center align-middle">
+                <ng-container *ngIf="popupDataReceived.is_primary_write"><mat-icon  class="material-symbols-outlined" fontIcon="done"></mat-icon></ng-container>
+                <ng-container *ngIf="!popupDataReceived.is_primary_write"><mat-icon  class="material-symbols-outlined" fontIcon="close"></mat-icon></ng-container>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center align-middle">Secondary Language</td>
+            <td class="text-center align-middle">{{ popupDataReceived.secondary_communication_language }}</td>
+            <td class="text-center align-middle">
+                <ng-container *ngIf="popupDataReceived.is_secondary_read"><mat-icon  class="material-symbols-outlined" fontIcon="done"></mat-icon></ng-container>
+                <ng-container *ngIf="!popupDataReceived.is_secondary_read"><mat-icon  class="material-symbols-outlined" fontIcon="close"></mat-icon></ng-container>
+            </td>
+            <td class="text-center align-middle">
+                <ng-container *ngIf="popupDataReceived.is_secondary_write"><mat-icon  class="material-symbols-outlined" fontIcon="done"></mat-icon></ng-container>
+                <ng-container *ngIf="!popupDataReceived.is_secondary_write"><mat-icon  class="material-symbols-outlined" fontIcon="close"></mat-icon></ng-container>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="popupDataReceived==null">
+          <tr>
+            <td colspan="4" align="center"><strong>Data not available!</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <app-loader *ngIf="loader"></app-loader>
+  

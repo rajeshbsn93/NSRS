@@ -1,0 +1,42 @@
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+
+    <div class="text-center pt-3">
+      <p *ngIf="menuName=='athlete'" class="insuranceNsrsId px-4">REIMBURSEMENT DETAILS FOR {{commonData.ath_Name | uppercase}} ({{commonData.nsrsId |uppercase}}) | POLICY NUMBER - {{insuranceData.policy_number}}</p>
+      <p *ngIf="menuName=='coach'" class="insuranceNsrsId px-4">REIMBURSEMENT DETAILS FOR {{commonData.full_name | uppercase}} ({{commonData.kitd_unique_id |uppercase}}) | POLICY NUMBER - {{insuranceData.policyNo}}</p>
+    </div>
+    <div class="table-responsive mt-3" >
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">AMOUNT </th>
+          <th scope="col">DATE</th>
+          <th scope="col">RELEASED</th>
+          <th scope="col">REASON</th>
+          <!-- <th>Reimbursement</th> -->
+        </tr>
+        </thead>
+        <tbody> 
+          <ng-container *ngIf="athleteReimbursementDetailsLength!=0">
+            <ng-container *ngFor="let arr of athleteReimbursementDetails">
+            <tr class="text-center">
+              <td>{{arr.amount}}</td>
+              <td>{{arr.date| date:'dd/MM/yyyy'}}</td>
+              <td *ngIf="arr.released==true">YES</td>
+              <td *ngIf="arr.released==false">NO</td>
+              <!-- <td><a href="javascript:void(0)"><i class="fa-solid fa-eye"></i></a></td>  -->
+              <td>{{arr.reason}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="athleteReimbursementDetailsLength==0">
+          <tr>
+            <td colspan="6" class="text-center"><span class="noDataFound d-block pt-3 pb-3" >No Data Found!</span></td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

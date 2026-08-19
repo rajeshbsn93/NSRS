@@ -1,0 +1,230 @@
+<div class="px-3">
+    <!-- +++++ Filter Data Start +++++  -->
+    <div class="filterdata">
+      <div class="filterTop">
+        <div class="row align-items-center justify-content:between mt-3">
+          <div class="col-auto d-flex align-items-center">
+            <h5 class="defaultFont fw-bold text-uppercase">KISCE STATE DETAILS {{!showPcaTable?' (Athlete Attendance)':' (PCA Attendance)'}}</h5>
+          </div>
+          <div class="col text-end">
+            <div class="row justify-content-end">
+              <div class="col-auto rightsec d-flex align-items-center">
+                <!-- <div class="exports">
+                    <select class="form-control">
+                      <option disabled selected="selected">Export</option>
+                      <option value="excel">Excel</option>
+                      <option value="pdf">PDF</option>
+                    </select>
+                  </div> -->
+                <div class="d-flex justify-content-center">
+                  <div class="searchInput ms-2" *ngIf="!showPcaTable">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="form-control" (keyup)="searchFilter($event)" placeholder="Search..">
+                  </div>
+                  <div class="searchInput ms-2" *ngIf="showPcaTable">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="form-control" (keyup)="searchFilterPca($event)" placeholder="Search..">
+                  </div>
+                  <div class="ms-2" *ngIf="showPcaTable">
+                    <a href="javascript:void(0)" class="btn btn-blue mb-3 me-2" (click)="popupOpen()">ADD</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="filterBottom mb-3">
+          <form [formGroup]="kicAttendanceFilter">
+            <div class="row gx-3 align-items-center justify-content-end flex-wrap">
+              <div class="col">
+                <select class="form-control" formControlName="stateId">
+                  <option value="" selected="selected"> State</option>
+                  <option *ngFor="let state of stateMasterList" [value]="state.id">{{state.state_name}}</option>
+                </select>
+              </div>
+              <div class="col">
+                <select class="form-control" formControlName="discipline">
+                  <option value="" selected="selected"> Discipline</option>
+                  <option *ngFor="let sport of sportMasterList" [value]="sport.sport_name">{{sport.sport_name}}</option>
+                </select>
+              </div>
+    
+              <div class="col">
+                <select class="form-control" formControlName="operationalStatus">
+                  <option value="">Operational Status</option>
+                </select>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-lightblue px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+              <div class="col-auto">
+                <a href="javascript:void(0)" class="btn btn-lightblue  px-3"><i
+                    class="icon-sound-module-line mt-1 d-block"></i></a>
+              </div>
+            </div>
+          </form>
+        </div> -->
+      <div class="my-2">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [value]="'athlete'">
+          <mat-button-toggle [value]="'athlete'" (click)="showPcaTable = false">Athlete
+            Attendance</mat-button-toggle>
+          <!-- <mat-button-toggle [value]="'pca'" (click)="showPcaTable = true">PCA Attendance</mat-button-toggle> -->
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <!-- +++++ Filter Data End +++++ -->
+    <!-- ############### Athlete Table Start ######################## -->
+    <div [ngClass]="{'d-none':showPcaTable}">
+      <div class="table-responsive position-relative">
+        <table mat-table id="athleteDetailTable" [dataSource]="dataSource"  matSort #matSortAthlete="matSort" class="table-striped w-100">
+  
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef> S.No </th>
+            <td mat-cell *matCellDef="let dataSource; let i=index">
+              {{(i+1) + (tablePaginatorAthlete.pageIndex * tablePaginatorAthlete.pageSize)}}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="kiud">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="kitd_unique_id"> KIUD </th>
+            <td mat-cell *matCellDef="let dataSource; let i = index">
+              <a href="javascript:void(0)" (click)="openKicDetailsPopup(dataSource)">{{dataSource.kitd_unique_id}}</a>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="attendanceRecord">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="duration"> ATTENDANCE DURATION </th>
+            <td mat-cell *matCellDef="let dataSource; let i = index">{{dataSource.duration}}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="maleCount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="male_count"> MALE </th>
+            <td mat-cell *matCellDef="let dataSource"> {{dataSource.male_count}}</td>
+          </ng-container>
+  
+  
+  
+          <ng-container matColumnDef="femaleCount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="female_count">
+              FEMALE
+            </th>
+            <td mat-cell *matCellDef="let dataSource"> {{dataSource.female_count}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="athelete_count">
+              TOTAL
+            </th>
+            <td mat-cell *matCellDef="let dataSource">
+              {{dataSource.athelete_count}}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="uploadDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="upload_date"> UPLOAD DATE </th>
+            <td mat-cell *matCellDef="let dataSource">
+              {{dataSource.upload_date | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="fromDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="from_date"> FROM DATE </th>
+            <td mat-cell *matCellDef="let dataSource">
+              {{dataSource.from_date | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="toDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="to_date"> TO DATE </th>
+            <td mat-cell *matCellDef="let dataSource">
+              {{dataSource.to_date | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="recordFile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="recordFile">
+              RECORD FILE
+            </th>
+            <td class="pointer" *matCellDef="let dataSource"> <a [href]="filePath + dataSource?.file_path"
+                target="_blank">
+                View </a><i class="fa-solid fa-eye"></i>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+          </tr>
+        </table>
+      </div>
+      <mat-paginator #tablePaginatorAthlete [pageSizeOptions]="[10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+  
+    </div>
+    <!-- ############### Athlete Table End ######################## -->
+  
+    <!-- ############### PCA Table Start ######################## -->
+    <div [ngClass]="{'d-none':!showPcaTable}">
+      <div class="table-responsive position-relative">
+        <table mat-table id="athleteDetailTable" [dataSource]="dataSourcePca" matSort #matSortPca="matSort" class="table-striped w-100">
+  
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef> S.No </th>
+            <td mat-cell *matCellDef="let dataSourcePca; let i=index">
+              {{(i+1) + (tablePaginatorPca.pageIndex * tablePaginatorPca.pageSize)}}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="attendanceDuration">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="duration"> ATTENDANCE DURATION </th>
+            <td mat-cell *matCellDef="let dataSourcePca; let i = index">{{dataSourcePca.duration}}</td>
+          </ng-container>
+          <ng-container matColumnDef="kitd_unique_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="kitd_unique_id"> KIUD </th>
+            <td mat-cell *matCellDef="let dataSourcePca; let i = index">{{dataSourcePca.kitd_unique_id}}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="uploadDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="upload_date"> UPLOAD DATE </th>
+            <td mat-cell *matCellDef="let dataSourcePca">
+              {{dataSourcePca.upload_date | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="fromDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="from_date"> FROM DATE </th>
+            <td mat-cell *matCellDef="let dataSourcePca">
+              {{dataSourcePca.from_date | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="toDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="to_date"> TO DATE </th>
+            <td mat-cell *matCellDef="let dataSourcePca">
+              {{dataSourcePca.to_date | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="recordFile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="recordFile">
+              RECORD FILE
+            </th>
+            <td class="pointer" *matCellDef="let dataSourcePca"> <a [href]="filePath + dataSourcePca?.file_path"
+                target="_blank">
+                View </a><i class="fa-solid fa-eye"></i>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsPca"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsPca;"></tr>
+  
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="13"> <span class="noDataFound"> No Data Found </span></td>
+          </tr>
+        </table>
+      </div>
+      <mat-paginator #tablePaginatorPca [pageSizeOptions]="[10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+  
+    </div>
+    <!-- ############### PCA Table End ######################## -->
+    <app-loader *ngIf="isLoading"></app-loader>
+  </div>

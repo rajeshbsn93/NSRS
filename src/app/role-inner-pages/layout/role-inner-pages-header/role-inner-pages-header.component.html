@@ -1,0 +1,123 @@
+<!-- <nav class="navbar navbar-expand-sm bg-white"> -->
+<nav class="navbar navbar-expand-sm bg-transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <!-- <img src="assets/images/nsrs_logo.svg" alt=""  width="112px" height="64px"> -->
+      <img src="assets/images/logo_banner.svg" alt=""  width="112px" height="64px">
+    </a>
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <mat-icon  class="material-symbols-outlined" fontIcon="menu"></mat-icon>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item dropdown nsrsApps text-center p-1">
+          <a href="javascript:void(0)" class="iconappDots nav-link  dropdown-toggle bg-white" data-bs-toggle="dropdown"><span class="icon-apps_dots"></span></a>
+          <ul class="dropdown-menu dropdownPortal_menu">
+            <ul class="list-unstyled text-center">
+              <ng-container *ngFor="let project of projectsList">
+                <li 
+                  *ngIf="project.appId !== 1" 
+                  class="app-item rounded-2 border-grey p-1" 
+                  [ngClass]="{'app-disabled': !allowedApps.includes(project.appId)}"
+                  [title]="project.display_name"
+                >
+                  <a (click)="goToProject(project.encAppId, project.appId)">
+                    <span class="d-block"><img class="p-1 app-logo" [src]="'assets/images/' + project.app_icon" [alt]="project.display_name"></span>
+                    <span class="thumb_title">{{ project.display_name }}</span>
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </ul>
+        </li>
+        <li class="nav-item dropdown text-center p-1">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img [src]="profilePicUrl || '/assets/images/placeholderProfile.png'" class="userImg img-thumbnail p-0 border border-2 border-white" alt="">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="javascript:void(0)" (click)="changePassword()">Change Password</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <!-- <li><a class="dropdown-item"  routerLink="/academy-dashboard">Change Profile</a></li>
+            <li><hr class="dropdown-divider"></li> -->
+            <li><a href="javascript:void(0)" class="dropdown-item"  (click)="logout()" >Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ng-template #resetpasspopup let-modal>
+  <div class="modal-header">
+    <h4 style="margin-bottom: 0px">Change Password</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="changePasswordForm">
+      <div class="mb-3">
+        <div class="inputIcon">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Old password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="oldPass">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div *ngIf="changePasswordForm.controls['newPass'].touched &&  changePasswordForm.controls['newPass'].invalid" class="text-danger">
+          <div *ngIf="changePasswordForm.controls['newPass'].errors && changePasswordForm.controls['newPass'].errors['required']">
+              Old Password is Required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="inputIcon">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>New Password</mat-label>
+            <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="newPass">  
+            <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+              <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div *ngIf="changePasswordForm.controls['newPass'].touched &&  changePasswordForm.controls['newPass'].invalid" class="text-danger">
+          <div *ngIf="changePasswordForm.controls['newPass'].errors && changePasswordForm.controls['newPass'].errors['required']">
+              Password is Required
+          </div>
+          <small *ngIf="changePasswordForm.controls['newPass'].errors && changePasswordForm.controls['newPass'].errors['pattern']">
+            Minimum eight characters, at least one uppercase letter, one lowercase letter, 
+              one number and one special character</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="inputIcon">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="confirmPass">
+            <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+              <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div *ngIf="changePasswordForm.controls['newPass'].touched &&  changePasswordForm.controls['newPass'].invalid" class="text-danger">
+          <div *ngIf="changePasswordForm.controls['newPass'].errors && changePasswordForm.controls['newPass'].errors['required']">
+              Password is Required
+          </div>
+        </div>
+        <div class="text-danger" *ngIf="(changePasswordForm.controls['newPass'].value)!=(changePasswordForm.controls['confirmPass'].value)">
+          Confirm Password and New Password Must Be Same
+        </div>
+      </div>
+      <div class="text-center d-flex flex-wrap justify-content-center align-items-center">        
+        <button type="submit" (click)="savePassword()" class="btn btn-blue me-2 me-lg-3 px-4" [disabled]="!this.changePasswordForm.valid" >Submit</button>
+        <!-- <a href="javascript:void(0)"  class="btn btn-blue px-4"  (click)="forgotPassword()">Forgot password</a> -->
+        <!-- <a href="javascript:void(0)"  class="btn btn-blue px-4">Forgot password</a> -->
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+<app-loader *ngIf="loader"></app-loader>

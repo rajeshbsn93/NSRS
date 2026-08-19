@@ -1,0 +1,60 @@
+<div class="modal-dialog  modal-dialog-centered m-0 p-0">
+  <div id="mContent" class="modal-content inner-modal">
+    <div class="modal-header container">
+      <div class="label-header">
+        <label>State Name: </label>
+        <span>{{ financialStatusData.state_Name }}</span>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalClose('cancel')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="custom-table custom-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>UC ID</th>
+                <th>UC AMOUNT</th>
+                <th>DATE OF SUBMISSION</th>
+                <th>E-FILE NO.</th>
+                <th>UC DOCUMENT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr *ngFor="let item of addSanctionReleased; let i = index">
+                  <td>
+                    <p>{{ item.uC_Id }}</p>
+                  </td>
+                  <td>
+                    <p>{{ item.uC_Amount }}</p>
+                  </td>
+                  <td>
+                    <p>{{ item.date_submission | date : "dd/MM/yyyy" }}</p>
+                  </td>
+                  <td>
+                    <p>{{ item.e_File_Number }}</p>
+                  </td>
+                  <td>
+                    <div class="wrap-view">
+                      <div class="view">
+                        <span class="icon">
+                          <img src="assets/images/svg-icons/eye-fill.svg" alt="view" srcset="" />
+                        </span>
+                        <span class="text" (click)="openFile(item.uC_Document)">View</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <div class="noDataFound">
+            <ng-container *ngIf="addSanctionReleased.length === 0"
+              ><img src="../../../../../assets/images/norecordfound.png" alt="No Records Found"
+            /></ng-container>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="mainLoader || isLoading"></app-loader>

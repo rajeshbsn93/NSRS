@@ -1,0 +1,108 @@
+<aside class="dashboard-menu">
+    <div class="sidebarlogo-wrap">
+        <!-- <img src="assets/images/nsrs_logo.svg" width="112px" height="64px"> -->
+        <img src="assets/images/Logo6.svg" width="112px" height="80px">
+        
+    </div>
+    <div class="sidemenu-wraper">
+        <ul class="navbar-nav">
+            <!-- <li class="dropdown active"> -->
+            <ng-container *ngFor="let menuData of this.authenticateService.dashboardData">
+                <li *ngIf="menuData.menu_order >= 0">
+                    <a (click)="sidebarMenuData(menuData)" [routerLink]="menuData.menu_component" [attr.data-pageid]="menuData.menu_id" routerLinkActive="active"><i [ngClass]="menuData.class_name" ></i><span >{{menuData.menu_name}}</span></a>
+                </li>
+            </ng-container>
+            <!-- <li class="dropdown">
+                <a [routerLink]="['/sportsTrainingCenter']" ><i class="icon-Traing-Center"></i>  <span class="menu-title">SPORTS TRAINING...</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS TRAINING</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS TRAINING</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS TRAINING</span></a></li>
+                </ul>
+            </li>  -->
+            <!--<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a routerLink="/athletes" routerLinkActive="active"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ATHLETES</span></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Coaches"></i>  <span class="menu-title">COACHES</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COACHES</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COACHES</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COACHES</span></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Insurance"></i>  <span class="menu-title">SPORTS SCIENTIST</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS SCIENTIST</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS SCIENTIST</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">SPORTS SCIENTIST</span></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Assessment"></i>  <span class="menu-title">ASSESSMENT</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ASSESSMENT</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ASSESSMENT</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">ASSESSMENT</span></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">COUNSELLING</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COUNSELLING</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COUNSELLING</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">COUNSELLING</span></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">TOURNAMENT</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">TOURNAMENT</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">TOURNAMENT</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">TOURNAMENT</span></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="icon-Traing-Center"></i>  <span class="menu-title">REPORT</span> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">REPORT</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">REPORT</span></a></li>
+                    <li><a href="#"><i class="icon-athletes"></i>  <span class="menu-title">REPORT</span></a></li>
+                </ul>
+            </li> -->
+          </ul>
+    </div>
+</aside>
+
+<ng-template #sidebarOffCanvasContent let-offcanvas>
+	<div>
+        <div class="offcanvas-header justify-content-end">
+            <!-- <h4 class="offcanvas-title">Mobile Menu</h4> -->
+            <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+            </button>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <div class="sidebarlogo-wrap my-0 mb-4">
+                <img src="assets/images/Logo6.svg" width="112px" height="80px">
+            </div>
+            <ul class="navbar-nav">
+                <ng-container *ngFor="let v of authenticateService.dashboardData">
+                    <li *ngIf="v.menu_order >= 0" (click)="offcanvas.dismiss('Cross click')">
+                        <a href="javascript:void(0)" [routerLink]="v.menu_component" [attr.data-pageid]="v.menu_id" routerLinkActive="active" >
+                            <i [ngClass]="v.class_name" ></i><span >{{v.menu_name}}</span></a>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+</ng-template>
+<app-loader *ngIf="innerLoaderMainData"></app-loader>

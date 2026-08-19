@@ -1,0 +1,88 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-information"></i></span> ADDITIONAL INFORMATION & DOCUMENTS</h3>
+      <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button>
+    </div>
+    <form [formGroup]="additionalForm">
+      <div class="row">
+        <div class="col-sm-6 col-lg-4 mb-3">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Enter Aadhar Card Number</mat-label>
+            <input matInput formControlName="aadhaar_number" [minLength]="12" [maxlength]="12">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Enter Passport Number</mat-label>
+            <input matInput formControlName="passport_number">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Enter Pan Number</mat-label>
+            <input matInput formControlName="pancard_number">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3">
+            <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                <div class="inputfileLevel position-relative">
+                  <span class="text-uppercase uploadLevel">Upload(Aadhaar/Passport/Voter ID)</span>
+                  <input [disabled]="readonlyEdit" type="file" class="inputUpload"  #aadhaarfileInput (change)="uploadDocument(aadhaarfileInput.files,'aadhaar')"
+                  accept=".gif, .jpg, .jpeg, .png, .xls, .xlsx, .doc, .docx">
+                </div>
+                <div  *ngIf="additionalForm?.get('aadhaarFile')?.value != '' &&  additionalForm?.get('aadhaarFile')?.value != null">
+                    <a [href]="fileBaseUrl + additionalForm.get('aadhaarFile')?.value" target="_blank"><i class="fa-solid fa-eye"></i></a>
+                </div>
+              </div>
+              <div *ngIf="additionalForm.get('aadhaarFile')?.touched || additionalForm.get('aadhaarFile')?.dirty &&  additionalForm.get('aadhaarFile')?.invalid" class="text-danger">
+                <small *ngIf="additionalForm.get('aadhaarFile')?.errors">
+                  Required
+                </small>
+              </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3">
+            <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                <div class="inputfileLevel position-relative">
+                  <span class="text-uppercase uploadLevel">Copy of Service Indenitiy Proof</span>
+                  <input [disabled]="readonlyEdit" type="file" class="inputUpload"  #identityfileInput (change)="uploadDocument(identityfileInput.files,'identity')"
+                  accept=".gif, .jpg, .jpeg, .png, .xls, .xlsx, .doc, .docx, .pdf">
+                </div>
+                <div  *ngIf="additionalForm?.get('identityFile')?.value != '' &&  additionalForm?.get('identityFile')?.value != null">
+                    <a [href]="fileBaseUrl + additionalForm.get('identityFile')?.value" target="_blank"><i class="fa-solid fa-eye"></i></a>
+                </div>
+              </div>
+              <div *ngIf="additionalForm.get('identityFile')?.touched || additionalForm.get('identityFile')?.dirty &&  additionalForm.get('identityFile')?.invalid" class="text-danger">
+                <small *ngIf="additionalForm.get('identityFile')?.errors">
+                  Required
+                </small>
+              </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3">
+            <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                <div class="inputfileLevel position-relative">
+                  <span class="text-uppercase uploadLevel">Govt./NSF/SGFI Coaching Certificate</span>
+                  <input [disabled]="readonlyEdit" type="file" class="inputUpload"  #certificatefileInput (change)="uploadDocument(certificatefileInput.files,'certificate')"
+                  accept=".gif, .jpg, .jpeg, .png, .xls, .xlsx, .doc, .docx">
+                </div>
+                <div  *ngIf="additionalForm?.get('certificateFile')?.value != '' &&  additionalForm?.get('certificateFile')?.value != null">
+                    <a [href]="fileBaseUrl + additionalForm.get('certificateFile')?.value" target="_blank"><i class="fa-solid fa-eye"></i></a>
+                </div>
+              </div>
+              <div *ngIf="additionalForm.get('certificateFile')?.touched || additionalForm.get('certificateFile')?.dirty &&  additionalForm.get('certificateFile')?.invalid" class="text-danger">
+                <small *ngIf="additionalForm.get('certificateFile')?.errors">
+                  Required
+                </small>
+              </div>
+        </div>       
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <hr class="mt-1" />
+          <button type="button" class="btn btn-blue px-4" (click)="save()" [disabled]="readonlyEdit">Save</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+  <app-loader *ngIf="loader || loader2"></app-loader>

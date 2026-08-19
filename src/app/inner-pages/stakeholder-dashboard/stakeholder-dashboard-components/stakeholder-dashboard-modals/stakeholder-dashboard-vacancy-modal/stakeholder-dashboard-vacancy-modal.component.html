@@ -1,0 +1,41 @@
+<div class="modal-body tagcommonModal language-modal">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+  <h3>
+    <!-- <span class="titleIcon"><i class="icon-kicAttendanceHistory"></i></span> -->
+    {{vacancyType.split(' ')[0]}} Vacancy ({{sportName}})
+  </h3>
+  </div>
+  <hr />
+  <div class="athlete">
+      <div class="table-responsive">
+          <table mat-table class="currentTable" matTableExporter  #exporter="matTableExporter" [dataSource]="dataSource" matSort class="table-striped w-100">  
+                                  
+              <ng-container matColumnDef="academy_Name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="academy_Name" class="col-3"> Academy</th>
+              <td mat-cell *matCellDef="let row"> {{row.academy_name}} </td>
+              </ng-container>
+              <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="type" class="col-3">Type</th>
+              <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+              </ng-container>
+              <ng-container matColumnDef="no_athlete">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="no_of_athlete" class="col-3">No.  Athlete</th>
+              <td mat-cell *matCellDef="let row"> {{row.no_of_athlete}} </td>
+              </ng-container>
+              <ng-container matColumnDef="vacancy">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="ath_Vacant_strnth" class="col-3">Athlete Vacancy</th>
+              <td mat-cell *matCellDef="let row"> {{row.ath_Vacant_strnth}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="vacancyTableColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: vacancyTableColumns;"></tr> 
+              <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell text-center" colspan="4"> <span class="noDataFound"> No Data Found </span></td>
+              </tr>
+          </table>
+      </div>
+      <mat-paginator [pageSizeOptions]="[5,10, 50, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>
+<app-loader *ngIf="loader"></app-loader>

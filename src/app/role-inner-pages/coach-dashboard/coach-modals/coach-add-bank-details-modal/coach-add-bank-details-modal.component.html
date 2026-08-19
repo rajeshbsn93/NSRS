@@ -1,0 +1,81 @@
+<div class="modal-body tagcommonModal profileModal">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+    <h3><span class="titleIcon"><i class="icon-Bank"></i></span>Add Bank Information</h3>
+    <!-- <div>
+      <button type="button" *ngIf="showAddButton" (click)="openAddBankInfoModal()" class="btn btn-blue py-1 me-4">ADD</button>
+    </div> -->
+  </div> 
+  <form [formGroup]="coachBankForm">
+    <div class="row">
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <mat-form-field  class="w-100" appearance="fill">
+          <mat-label>IFSC Code</mat-label>
+          <input matInput #ifscInput formControlName="ifsc_code" (blur)="onBankIfscChange(ifscInput?.value)">
+        </mat-form-field>
+        <div
+          *ngIf="coachBankForm.get('ifsc_code')?.touched || coachBankForm.get('ifsc_code')?.dirty &&  coachBankForm.get('ifsc_code')?.invalid"
+          class="text-danger fs-6">
+          <small *ngIf="coachBankForm.get('ifsc_code')?.errors">Only alphanumeric characters are allowed</small>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <mat-form-field  class="w-100" appearance="fill">
+          <mat-label>Bank Name</mat-label>
+          <input matInput formControlName="bank_name">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <mat-form-field  class="w-100" appearance="fill">
+          <mat-label>Bank Account Number</mat-label>
+          <input matInput type="text" #bankAccountInput formControlName="bank_account_number" maxlength="30"
+            pattern="^[0-9]*$" />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+          <div class="inputfileLevel position-relative" >
+            <span class="text-uppercase uploadLevel">Cancelled Cheque Upload</span>
+            <input type="file" class="inputUpload" #fileInput formControlName="cancelled_cheque_upload"
+              (change)="bankFileUpload(fileInput.files)">
+          </div>
+          <div *ngIf="bankFileUploadUrl"><a [href]="fileBaseUrl + bankFileUploadUrl" target="_blank"><i
+                class="fa-solid fa-eye"></i></a></div>
+        </div>
+        <div
+          *ngIf="coachBankForm.get('cancelled_cheque_upload')?.touched || coachBankForm.get('cancelled_cheque_upload')?.dirty &&  coachBankForm.get('cancelled_cheque_upload')?.invalid"
+          class="text-danger">
+          <small *ngIf="coachBankForm.get('cancelled_cheque_upload')?.errors">
+            Document is Required
+          </small>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <mat-form-field  class="w-100" appearance="fill">
+          <mat-label>Branch Name</mat-label>
+          <input matInput formControlName="bank_branch">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <mat-form-field  class="w-100" appearance="fill">
+          <mat-label>Bank Address</mat-label>
+          <input matInput formControlName="bank_address">
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-sm-6 col-lg-4 mb-3">
+
+        <mat-form-field  class="w-100" appearance="fill">
+          <mat-label>Is Primary Account</mat-label>
+          <mat-select  formControlName="is_Primary">
+            <mat-option value='' disabled selected>Please Select</mat-option>
+            <mat-option [value]='true'>Yes</mat-option>
+            <mat-option [disabled]="checkprimary" [value]='false'>No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <button type="button" class="btn btn-blue px-4" (click)="save()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

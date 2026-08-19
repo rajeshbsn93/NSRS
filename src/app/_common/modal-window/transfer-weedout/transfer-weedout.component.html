@@ -1,0 +1,368 @@
+<!-- {{athleteData | json}} -->
+
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <!-- <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#edit" type="button" >Add Scholar</button> -->
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#edit-details" type="button">EDIT</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#transfer" type="button">TRANSFER</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#weed-out" type="button">WEED OUT</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#history" type="button" >HISTORY</button>
+      </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="edit-details">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{athleteData.ath_Name}}  ({{athleteData.nsrsId}})</p>
+        </div>
+        <div class="table-responsive">
+          <form [formGroup]="editDetails">
+            <table class="table">
+              <tbody>  
+                <tr>
+                  <td>
+                    <mat-form-field  class="w-100 matselectFull" appearance="fill">
+                      <mat-label> NSRS ID</mat-label>
+                      <input matInput  formControlName="editNsrsid" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field  class="w-100 matselectFull" appearance="fill">
+                      <mat-label> ATHLETE NAME</mat-label>
+                      <input matInput formControlName="editAthleteName" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field  class="w-100 matselectFull" appearance="fill">
+                      <mat-label>SPORT</mat-label>
+                      <input matInput formControlName="editSport" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field  class="w-100 matselectFull" appearance="fill">
+                      <mat-label>TRAINING CENTER NAME</mat-label>
+                      <input matInput formControlName="editTrainingCenterName" readonly >
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <!-- <input type="date" class="form-control" value="23-07-2018"> -->
+                    <mat-form-field appearance="fill" (click)="editFromDate.open()">
+                      <mat-label>DATE OF JOINING</mat-label>
+                      <input matInput [matDatepicker]="editFromDate" formControlName="editDOJ" (dateChange)="transferEditfromDate(editDetails.value?.editDOJ)">
+                      <mat-datepicker-toggle matSuffix [for]="editFromDate"></mat-datepicker-toggle>
+                      <mat-datepicker #editFromDate></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <!-- <input type="date" class="form-control" value="27-07-2018"> -->
+                    <mat-form-field appearance="fill" (click)="editToDate.open()">
+                      <mat-label>VALID UPTO</mat-label>
+                      <input matInput [matDatepicker]="editToDate" [min]="editDOJdate" formControlName="editValidUpto"  (dateChange)="transferEditValidUpto(editDetails.value?.editValidUpto)">
+                      <mat-datepicker-toggle matSuffix [for]="editToDate"></mat-datepicker-toggle>
+                      <mat-datepicker #editToDate></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="10">
+                    <button class="btn btn-lightblue" (click)="editDetailsSave()" [disabled]="!this.editDetails.valid">Save</button>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </form>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="transfer">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{athleteData.ath_Name}}  ({{athleteData.nsrsId}})</p>
+        </div>
+        <div class="table-responsive text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>NSRSID</th>
+                <th>DISCIPLINE</th>
+                <th>ACADEMY</th>
+
+                <th>DATE OF JOINING</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{athleteData.ath_Name}}</td>
+                <td>{{athleteData.nsrsId}}</td>
+                <td>{{athleteData.sport_name}}</td>
+                <td>{{athleteData.trainingCenter}}</td>
+                <td>
+                  {{this.doj| date:'dd/MM/yyyy'}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <form [formGroup]="transferForm" (ngSubmit)="transfer()">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <mat-form-field appearance="fill" class="w-100 matselectFull">
+                <mat-label>Sports Training Centre Type</mat-label>
+                <!-- <mat-select [disabled]="disableSelect.value"> -->
+                <mat-select formControlName="athleteType" #teams formControlName="centerTypeList" (valueChange)="onSelected(teams['value'])">
+                  <!-- <mat-option value="option1">Option 1</mat-option> -->
+                  <mat-option  *ngFor="let data of academylist"  [value]="data.academy_id">{{data.academy_name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table mb-2">
+              <tbody>
+                <tr>
+                  <td>
+                    <mat-form-field appearance="fill" (click)="transferDatePicker.open()">
+                      <mat-label>Transfer Date</mat-label>
+                      <input readonly matInput [matDatepicker]="transferDatePicker" formControlName="tranferDate"
+                        [min]="doj" (dateChange)="funcTransferDate(transferForm.value?.tranferDate)">
+                      <mat-datepicker-toggle matSuffix [for]="transferDatePicker"></mat-datepicker-toggle>
+                      <mat-datepicker #transferDatePicker></mat-datepicker>
+                    </mat-form-field>
+
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" (click)="joiningDatePicker.open()">
+                      <mat-label>Date of Joining</mat-label>
+                      <input readonly matInput [disabled]="!transferForm.value?.tranferDate"
+                        [matDatepicker]="joiningDatePicker" formControlName="joiningDate" [min]="transferDate"
+                        (dateChange)="funcJoiningDate(transferForm.value?.joiningDate)">
+                      <mat-datepicker-toggle matSuffix [for]="joiningDatePicker"></mat-datepicker-toggle>
+                      <mat-datepicker #joiningDatePicker></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" (click)="periodUptoPicker.open()">
+                      <mat-label>Period UpTo</mat-label>
+                      <input matInput [disabled]="!transferForm.value?.joiningDate" [matDatepicker]="periodUptoPicker"
+                        formControlName="periodUpto" [min]="joiningDate" readonly>
+                      <mat-datepicker-toggle matSuffix [for]="periodUptoPicker"></mat-datepicker-toggle>
+                      <mat-datepicker #periodUptoPicker></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" required>
+                      <mat-label>Athlete Type</mat-label>
+                      <mat-select formControlName="athleteType">
+                        <mat-option value="Residential">Residential</mat-option>
+                        <mat-option value="Non-Residential">Non-Residential</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Joining Status</mat-label>
+                      <mat-select formControlName="joiningStatus">
+                        <mat-option value=1>Joined</mat-option>
+                        <mat-option value=0>Not Joined</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </td>
+                  <td>
+                    <div class="inputFileUpload-wraper border rounded-1 d-flex align-items-center">
+                      <div class="inputfileLevel position-relative me-3">
+                        <span class="text-uppercase uploadLevel">Document</span>
+                        <input type="file" class="inputUpload" #transferFileInput   formControlName="transferDocument" accept=".png, .Jeg, .Jpg, .pdf" (change)="transferFileUpload(transferFileInput.files)">
+                      </div>
+                      <div *ngIf="transferFileUploadUrl"><a [href]="transferFileUploadUrl" target="_blank"><i class="fa-solid fa-eye"></i></a></div>
+                    </div>
+                    <div *ngIf="transferForm.controls['transferDocument']?.touched">
+                      <div class="text-danger " *ngIf="transferForm.controls['transferDocument'].errors?.['required']">File Required</div>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="!academyName">
+            <div *ngIf="!dojPresent ">
+              <h6 class="text-danger text-center">Please update the current Academy to transfer the athlete.</h6>
+            </div>
+            <div *ngIf="dojPresent">
+              <h6 class="text-danger text-center">Please update the current academy Date of Joining to transfer
+                the athlete.</h6>
+            </div>
+          </div>
+          <div *ngIf="academyName">
+            <div *ngIf="!dojPresent ">
+              <h6 class="text-danger text-center">Please update the current academy Date of Joining to transfer
+                the athlete.</h6>
+            </div>
+            <div *ngIf="dojPresent"><button class="btn btn-lightblue submit mt-3"
+                [disabled]="!transferForm.valid">Transfer</button>
+              </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="tab-pane fade" id="weed-out">
+        <div class="text-center">
+          <p class="insuranceNsrsId px-4">{{athleteData.ath_Name}}  ({{athleteData.nsrsId}})</p>
+        </div>
+        <div class="table-responsive text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>NSRSID</th>
+                <th>DISCIPLINE</th>
+                <th>ACADEMY</th>
+
+                <th>DATE OF JOINING</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{athleteData.ath_Name}}</td>
+                <td>
+                  {{athleteData.nsrsId}}
+                </td>
+                <td>
+                  {{athleteData.sport_name}}
+                </td>
+                <td>
+                  {{athleteData.trainingCenter}}
+                </td>
+
+                <td>
+                  {{this.doj| date:'dd/MM/yyyy'}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <form [formGroup]="weedoutform">
+          <div class="row gx-3">
+            <div class="col-sm-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100 matselectFull" (click)="weedOutDate.open()">
+                <mat-label>Weed Out Date</mat-label>
+                <input readonly matInput [matDatepicker]="weedOutDate" formControlName="weedOutDate" [min]="doj"
+                [ngClass]="{'is-invalid': weedoutSubmitted && weedoutFormControl['weedOutDate'].errors}">
+                <mat-datepicker-toggle matSuffix [for]="weedOutDate"></mat-datepicker-toggle>
+                <mat-datepicker #weedOutDate></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <mat-form-field  class="w-100 matselectFull" appearance="fill">
+                <mat-label> Weed Out Reason</mat-label>
+                <input matInput formControlName="weedOutReason" [ngClass]="{'is-invalid': weedoutSubmitted && weedoutFormControl['weedOutReason'].errors}">
+              </mat-form-field>
+              <!-- <div *ngIf="weedoutSubmitted && weedoutFormControl['weedOutReason'].errors" class="text-danger">
+                <div
+                  *ngIf="weedoutFormControl['weedOutReason'].errors && weedoutFormControl['weedOutReason'].errors['required']">
+                  Weed out reason is required
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <ng-container *ngIf="athleteData.can_weedOut; else cannotWeeout">
+            <ng-container *ngIf="academyName">
+              <div><button class="btn btn-lightblue " (click)="weedOut()" [disabled]="!weedoutform.valid">Weed out</button></div>
+            </ng-container>
+            <ng-container *ngIf="!academyName">
+              <h6 class="text-danger text-center">Please update the current academy to Weed out the athlete.</h6>
+            </ng-container>
+          </ng-container>
+
+          <ng-template #cannotWeeout>
+            <h6 class="text-danger text-center">Can not weed out the athlete.</h6>
+          </ng-template>
+        </form>
+      </div>
+      
+      <div class="tab-pane fade" id="history">
+        <ng-container>
+          <div class="text-center">
+            <p class="insuranceNsrsId px-4">{{athleteData.ath_Name}} ({{athleteData.nsrsId}})</p>
+          </div>
+        </ng-container>
+
+        <ng-container>
+          <div class="table-responsive mt-3">
+            <table class="table table-striped table-bordered ">
+              <thead>
+                <tr class="text-center text-uppercase">
+                  <!-- <th scope="col">ACADEMEY NAME</th> -->
+                  <th scope="col">Academy NAME</th>
+                  <th scope="col">PERIOD</th>
+                  <th scope="col">WEED OUT DATE</th>
+                  <th>WEED OUT REMARK</th>
+                </tr>
+              </thead>              
+              <tbody>
+                <ng-container *ngIf="atheleteAcademyHistory==0; else other_content">
+                  <tr>
+                    <td colspan="6" class="text-center"><span class="noDataFound d-block pt-3 pb-3">No Data
+                        Found!</span>
+                    </td>
+                  </tr>
+                </ng-container>
+                <ng-template #other_content>
+                  <ng-container *ngFor="let item of atheleteAcademyHistory">
+                    <tr class="text-center">
+                      <td *ngIf="item.academy_name!=''">{{item.academy_name}}</td>
+                      <td *ngIf="item.academy_name==''">N/A</td>
+                      <td>
+                        <ng-container *ngIf="item.startDate!=''">
+                          {{item.startDate | date:"dd/MM/YYYY"}} - 
+                        </ng-container>
+                        <ng-container *ngIf="item.startDate==''">
+                          N/A - 
+                        </ng-container>
+                        <ng-container *ngIf="item.endDate!=''">
+                          {{item.endDate |date:"dd/MM/YYYY"}}
+                        </ng-container>
+                        <ng-container *ngIf="item.endDate==''">
+                          N/A
+                        </ng-container>
+                      </td>
+
+                      <td >
+                        <ng-container *ngIf="item.weedOut_Date!=''">
+                          {{item.weedOut_Date |date:"dd/MM/YYYY"}}
+                        </ng-container>
+                        <ng-container *ngIf="item.weedOut_Date==''">
+                         N/A
+                        </ng-container>
+                      </td>
+
+                      <td >
+                        <ng-container *ngIf="item.weedOut_Remark!=''">
+                          {{item.weedOut_Remark}}
+                        </ng-container>
+                        <ng-container *ngIf="item.weedOut_Remark==''">
+                         N/A
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </ng-template>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="innerLoaderMainData"></app-loader>
+<app-loader *ngIf="innerLoaderSchemeList"></app-loader>
+<app-loader *ngIf="innerLoaderAcademyHistory"></app-loader>

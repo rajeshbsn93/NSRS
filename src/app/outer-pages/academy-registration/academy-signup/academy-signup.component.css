@@ -1,0 +1,36 @@
+.academySignup{
+    padding: 114px 0 68px;
+    background: url(../../../../assets/images/login-bg.jpg)no-repeat center;
+    background-size: cover;color: #707070;
+}
+.academySignup h1{color: #707070;font-size: 31px;font-weight: 600;font-family: 'lato', sans-serif;}
+    
+.academySignup .card{padding: 60px 112px;
+    box-shadow: 0 3px 25px #00000021;
+    border-radius: 15px;max-width: 912px;margin: 0 auto;
+}
+.academySignup .form-control{border-color: #ECECEC;height: 50px;outline: none;box-shadow: none;}
+.academySignup .form-control::placeholder{color: #D5D5D5;}
+.inputIcon{position: relative;display: block;}
+.inputIcon .form-control{padding-left: 40px;}
+.inputIcon i{position: absolute;
+    top: 17px;
+    left: 15px;color: #D5D5D5;}
+
+.or{position: relative;margin: 20px 0 30px;}
+.or span{
+    background: #fff;
+    position: relative;
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.or::before{
+    position: absolute;
+    content: '';
+    top: 12px;
+    left: 0;
+    right: 0;
+    border: 1px dashed #C5C5C5;
+}

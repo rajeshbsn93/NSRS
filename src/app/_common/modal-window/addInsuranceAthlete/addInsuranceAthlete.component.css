@@ -1,0 +1,12 @@
+.athleteAction-modal .modal-body{padding: 0;}
+.athleteAction-modal .btn-close{position: absolute;right: 15px;top: 12px;}
+.addmore{font-size: 13px;font-weight: bold;color: #000000;}
+.athleteAction-modal tr td{font-size: 14px;}
+.athleteAction-modal ::ng-deep .mat-form-field-flex{padding-top: 0;}
+.athleteAction-modal ::ng-deep .mat-form-field-infix{padding-bottom: 8px;width: 150px;}
+
+.athleteAction-modal tr th{font-size: 14px;text-align: center;color: #000000;background-color: #F8F8F8;text-transform: uppercase;}
+.athleteAction-modal tr td:last-child,.athleteAction-modal tr td:first-child{vertical-align: middle;text-align: center;}
+
+.athleteAction-modal .modal-header{border: 0; box-shadow: 0 0 7px -2px #ddd; padding-top: 20px; padding-bottom: 12px;}
+.athleteAction-modal .modal-header .modal-title{font-size: 18px;font-weight: 600;}

@@ -1,0 +1,88 @@
+.tiles-form-five .tile{
+    border-radius: 5px;
+    padding: 6px 6px 6px 25px;
+    color: #ffffff;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.tiles-form-five .tile-1{
+    background-color: #36AF0B;
+    box-shadow: 0px 3px 6px #FFAA3A80;
+}
+.tiles-form-five .tile-2{
+    background-color: #FB9F00;
+    box-shadow: 0px 3px 6px #AEB9FF85; 
+}
+.tiles-form-five .tile-3{
+    background-color: #DC4E5B;
+    box-shadow: 0px 3px 6px #FF9CA6A3;
+}
+.tiles-form-five .numbox{
+    color: #000000;
+    font-size: 22px;
+    min-height: 32px;
+    min-width: 35px;
+    text-align: center;
+    font-weight: 700;
+    background-color: #fff;
+    padding: 4px 7px;
+    border-radius: 3px;
+}
+.form-five-table h5{
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+.form-five-table .apply-btn{
+    border-radius: 2px ;
+    background-color: #1F60AB ;
+    border: 1px solid #1F60AB ;
+    box-shadow: 0px 3px 6px #00000029 ;
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 9px 20px;
+    min-width: 200px;
+}
+
+.form-five-table table th{
+    background-color: #2263AE;
+    font-size: 13px;
+    color: #ffffff;
+    vertical-align: middle;
+    text-align: center;
+}
+.form-five-table table td{
+   border: 1px solid #dedede;
+   border-collapse: collapse;
+    font-size: 13px;
+    color: #000000;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 8px;
+}
+
+
+.mat-table{
+    font-family: 'Lato' !important;
+}
+.status-text-pending{color:#FB9F00;font-weight:550;}
+.status-text-approved{color:#36AF0B;font-weight:550;}
+.status-text-rejected{color:#DC4E5B;font-weight:550;}
+
+
+
+/* .form-five-table .export-btn .inputFileUpload-wraper .uploadLevel{background-color: transparent;
+    cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 20px;
+  border-radius: 4px;
+  display: inline-block;cursor: pointer;}
+ .form-five-table .export-btn .inputFileUpload-wraper .inputUpload{position: absolute;
+    cursor: pointer;
+  opacity: 0;
+  width: 100%;
+  left: 0;}
+.form-five-table .export-btn  .inputFileUpload-wraper a{color: inherit;}
+.form-five-table .export-btn  .inputFileUpload-wraper{min-height: 45px ; min-width: 135px;}
+ .form-five-table .fa-solid.fa-eye{color: #4D4D4D;} */

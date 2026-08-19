@@ -1,0 +1,67 @@
+<div class="modal-body tagcommonModal profileModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+    <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+      <h3><span class="titleIcon"><i class="icon-user-line"></i></span> Personal Details</h3>
+      <button type="button" *ngIf="readonlyEdit" (click)="editButton()" class="btn btn-blue py-1 me-4">EDIT</button>
+    </div>
+    <form [formGroup]="personalDetailsForm">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Father Name</mat-label>
+            <input matInput formControlName="father_name">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Mother Name</mat-label>
+            <input matInput formControlName="mother_name">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Father's Profession</mat-label>
+            <input matInput formControlName="father_profession">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill">
+            <mat-label>Mother's Profession</mat-label>
+            <input matInput formControlName="mother_profession">
+          </mat-form-field>
+        </div>     
+        
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field [ngClass]="{'readonlyBasicDetailsInput':readonlyEdit}" class="w-100" appearance="fill" >
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" >
+              <mat-option value="M">Male</mat-option>
+              <mat-option value="F">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+          <mat-form-field appearance="fill" class="w-100" (click)="picker.open()">
+            <mat-label>Date of Birth*</mat-label>
+            <input matInput [matDatepicker]="picker" (keypress)="false" [min]="minDate" [max]="maxDate" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <hr class="mt-1" />
+          <button type="button" class="btn btn-blue px-4" (click)="save()" [disabled]="readonlyEdit">Save</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+  <app-loader *ngIf="loader"></app-loader>

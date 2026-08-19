@@ -1,0 +1,97 @@
+.athlete-top-row .list {
+  padding: 5px 25px;
+  display: inline-flex;
+  background-color: #8be2df;
+  color: #1b6866;
+  border-radius: 2px;
+  font-size: 14px;
+  min-width: 95px;
+}
+
+.athlete-top-row .list:nth-child(2) {
+  background-color: #fff1e5;
+  color: #bb5905;
+}
+
+.athlete-top-row .list:nth-child(3) {
+  background-color: #fbe5ff;
+  color: #74008a;
+}
+
+.event-title {
+  font-size: 16px;
+  border-bottom: 1px solid #c7c8c9;
+  padding-bottom: 5px;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+}
+
+.border-top .btn-blue {
+  font-size: 14px;
+  padding: 7px;
+}
+
+.profile-row .item .icon-box {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.profile-row .item h4 {
+  font-size: 13px;
+  color: #000;
+  margin-top: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.profile-row .item {
+  display: flex;
+}
+
+.profile-row .item .card {
+  padding: 25px 15px;
+  background-color: #dfe9ff;
+  border-radius: 3px;
+  align-items: center;
+  text-decoration: none;
+  border-color: transparent;
+  transition: 0.5s;
+  flex: 1;
+}
+
+.profile-row .item .card {cursor: pointer;}
+.profile-row .item:nth-child(4) .icon-box i::before {color: #FFB24D;}
+.profile-row .item:nth-child(2) .card {background-color: #FFE6FA;}
+.profile-row .item:nth-child(3) .card {background-color: #D6EFFF;}
+.profile-row .item:nth-child(3) .card i::before {color: #64C6D5;}
+.profile-row .item:nth-child(4) .card {background-color: #FFE5CF;}
+.profile-row .item:nth-child(5) .card {background-color: #C9F8FF;}
+.profile-row .item:nth-child(5) .card i::before {color: #64C6D5;}
+.profile-row .item:nth-child(6) .card {background-color: #D2E7FF;}
+.profile-row .item:nth-child(6) .card i::before {color: #5A93D4;}
+.profile-row .item:nth-child(7) .card {background-color: #FFE6FA;}
+.profile-row .item:nth-child(7) .card i::before {color: #F9B4EB;}
+.profile-row .item:nth-child(8) .card {background-color: #DFE9FF;}
+.profile-row .item:nth-child(8) .card i::before {color: #F9B4EB;}
+.profile-row .item:nth-child(9) .card {background-color: #FFE5CF;}
+.profile-row .item:nth-child(1) .card:hover {background-color: #90B0F7;}
+.profile-row .item:nth-child(2) .card:hover {background-color: #F9B4EB;}
+.profile-row .item:nth-child(3) .card:hover {background-color: #92CBEF;}
+.profile-row .item:nth-child(4) .card:hover {background-color: #FFB275;}
+.profile-row .item:nth-child(5) .card:hover {background-color: #64C6D5;}
+.profile-row .item:nth-child(6) .card:hover {background-color: #6F9AD4;}
+.profile-row .item:nth-child(7) .card:hover {background-color: #F9B4EB;}
+.profile-row .item:nth-child(8) .card:hover {background-color: #90B0F7;}
+.profile-row .item:nth-child(9) .card:hover {background-color: #FFB275;}
+.rec-card{
+  background-color: #D6D2FF !important;
+}
+.rec-card:hover{
+  background-color: #766fc981 !important;
+}

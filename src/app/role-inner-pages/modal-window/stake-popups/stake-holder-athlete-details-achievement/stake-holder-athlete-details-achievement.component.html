@@ -1,0 +1,193 @@
+<div class="athleteAction-modal">
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#athletetag" type="button"><span class="titleIcon"><i class="icon-Details-Of-achievement"></i></span> Add achievement</button>
+      </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="athletetag">
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h5></h5>
+          <!-- <button class="btn border px-3 text-uppercase addmore" (click)="newAddMultiTagArray()">ADD MORE +</button> -->
+        </div>
+        <form [formGroup]="achievementForm">
+          <div class="row">
+            <!-- <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field  class="w-100" appearance="fill">
+                <mat-label>Year</mat-label>
+                <input matInput formControlName="name_of_competition">
+              </mat-form-field>
+            </div> -->
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="example-full-width w-100" appearance="fill" (click)="yearEstablish.open()" appYearFormat>
+                <mat-label>Tournament Year</mat-label>
+                <input matInput [matDatepicker]="yearEstablish" formControlName="tournamentYear" [max]="maxDate" required>
+                <mat-datepicker-toggle matSuffix [for]="yearEstablish"></mat-datepicker-toggle>
+                <mat-datepicker #yearEstablish startView="multi-year" 
+                  (yearSelected)="handleYearSelected($event,yearEstablish)">
+                </mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Level</mat-label>
+                <mat-select formControlName="level" (valueChange)="changeLevel($event)">
+                  <mat-option value="International">International</mat-option>
+                  <mat-option value="National">National</mat-option>
+                  <mat-option value="State">State</mat-option>
+                  <mat-option value="District">District</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3" *ngIf="showCategory">
+              <mat-form-field class="w-100" appearance="fill" (click)="checkCategory()" >
+                <mat-label>Category Type</mat-label>
+                <mat-select formControlName="category" (valueChange)="categoryChange($event)">
+                  <mat-option [value]="data.tournament_calegory_name" *ngFor="let data of filterTournamentCategoryListData">{{data.tournament_calegory_name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="w-100" appearance="fill" *ngIf="showCategory" (click)="checkTournament()">
+                <mat-label>Tournament</mat-label>
+                <mat-select formControlName="tournament" (selectionChange)="changeTournament($event)">
+                  <mat-option [value]="data.tournament_detail_id" *ngFor="let data of tournamentListData"  placement="bottom" container="body" [ngbTooltip]="data.tournament_name" [openDelay]="500" tooltipClass="customTooltip">{{data.tournament_name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="fill" *ngIf="!showCategory">
+                <mat-label>Tournament</mat-label>
+                <input matInput  formControlName="tournament">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Age Category</mat-label>
+                <mat-select formControlName="age_category">
+                  <mat-option value="Senior">Senior</mat-option>
+                  <mat-option value="Junior">Junior</mat-option>
+                  <mat-option value="Sub Junior">Sub Junior</mat-option>
+                  <mat-option value="Youth">Youth</mat-option>
+                  <mat-option value="Cadet">Cadet</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Position</mat-label>
+                <mat-select formControlName="position">
+                  <mat-option value="1">Position 1</mat-option>
+                  <mat-option value="2">Position 2</mat-option>
+                  <mat-option value="3">Position 3</mat-option>
+                  <mat-option value="4">Position 4</mat-option>
+                  <mat-option value="5">Position 5</mat-option>
+                  <mat-option value="6">Position 6</mat-option>
+                  <mat-option value="7">Position 7</mat-option>
+                  <mat-option value="8">Position 8</mat-option>
+                  <mat-option value="9">Position 9</mat-option>
+                  <mat-option value="10">Position 10</mat-option>
+                  <mat-option value="0">Participated</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Result</mat-label>
+                <input matInput  formControlName="result">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <ng-container *ngIf="achievementForm.get('level')?.value=='' || achievementForm.get('level')?.value == 'International' || achievementForm.get('level')?.value == 'National'">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Event</mat-label>
+                  <mat-select formControlName="event_id">
+                    <mat-option [value]="data.event_id" *ngFor="let data of eventListData">{{data.event_name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>                
+              <ng-container *ngIf="achievementForm.get('level')?.value == 'State' || achievementForm.get('level')?.value == 'District'">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Event</mat-label>
+                  <mat-select formControlName="event_id">
+                    <mat-option [value]="data.event_id" *ngFor="let data of eventListData">{{data.event_name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>                
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field appearance="fill" class="w-100" (click)="picker1.open()">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="fromdate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <!-- <mat-form-field appearance="fill" class="w-100" (click)="picker2.open()"> -->
+              <mat-form-field appearance="fill" class="w-100" (click)="validateStartDate();achievementForm.get('fromdate')?.getRawValue() ? picker2.open(): picker2.close()">
+                <mat-label>End Date</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="todate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Venue</mat-label>
+                <input matInput  formControlName="venue">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <ng-container *ngIf="achievementForm.get('level')?.value == '' || achievementForm.get('level')?.value == 'International'">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Represented</mat-label>
+                  <mat-select formControlName="represented">
+                    <mat-option value="India">India</mat-option>
+                    <mat-option value="Other">Other</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>                
+              <ng-container *ngIf="achievementForm.get('level')?.value == 'National'">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Represented</mat-label>
+                  <mat-select formControlName="represented">
+                    <mat-option [value]="data.state_name" *ngFor="let data of stateListData">{{data.state_name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>
+              <ng-container *ngIf="achievementForm.get('level')?.value == 'State' || achievementForm.get('level')?.value=='District'">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Represented</mat-label>
+                  <input matInput  formControlName="represented">
+                </mat-form-field>
+              </ng-container>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
+              <div class="inputFileUpload-wrapper border rounded-1 d-flex align-items-center">
+                <div class="inputfileLevel position-relative">
+                  <span class="text-uppercase upload-level">Choose File</span>
+                  <input #document_pathInput type="file" class="upload-input" 
+                    (change)="fileUpload($event)" 
+                    accept=".jpg, .jpeg, .png, .pdf" 
+                    [disabled]="achievementForm.disabled" />
+                </div>
+                <div *ngIf="document_pathUrl">
+                  <a [href]="fileBaseUrl + document_pathUrl" target="_blank"><i class="fa-solid fa-eye ps-2"></i></a>
+                </div>
+              </div>
+              <small *ngIf="isSaveClicked && !document_pathUrl" class="text-danger">Please upload the file.</small>
+            </div>              
+          </div>
+          <div class="text-center">
+            <hr class="mt-1">
+              <button type="button" (click)="save()" class="btn btn-blue px-4">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="loader"></app-loader>

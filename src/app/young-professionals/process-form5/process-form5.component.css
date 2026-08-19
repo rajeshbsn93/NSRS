@@ -1,0 +1,57 @@
+.form-five .heading h3{
+    font-family: 'Lato';
+    font-size: 25px;
+    font-weight: bold;
+}
+.form-five .heading h5{
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 400;
+}
+.form-five .card h6{
+    font-size: 19px;
+    font-weight: bold;
+}
+.form-five .card p{
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 3px;
+}
+.form-five .details h6{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.form-five .details p{
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+    vertical-align: middle;
+    padding-top: 3px;
+}
+.form-five label{
+    font-size: 16px;
+    font-weight: bold;
+}
+.form-five .submit , .form-five .reject{
+    min-width: fit-content;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 3px;
+    height: 38px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+}
+.form-five .content p{
+    font-size: 16px;
+}
+.form-five .btn:disabled, fieldset:disabled .btn {
+    background-color: #dc3545 !important;
+    opacity: 0.5;
+}
+.cursor-pointer{
+    cursor: pointer;
+}

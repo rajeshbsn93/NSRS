@@ -1,0 +1,16 @@
+<!-- ++++++++++ KIC Dashboard Component Work +++++++++++ -->
+<div class="kic-dashboard-container mt-3">
+    <div class="kic-dashboard-wrapper">
+        <div class="mft-card-status">
+            <app-mft-card [selectedRegionId]="regionId"></app-mft-card>
+        </div>
+        <div class="row w-100 mt-3">
+            <div class="col-12">
+                <div class="statewise-summary">
+                    <app-state-status (regionIdEvent)="regionIdChange($event)"
+                        (categoryEvent)="categoryChange($event)"></app-state-status>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row align-items-center mb-2">
+    <div class="col my-1 mb-0 main-heading-one fw-bolder ">ROLE TRANSFER</div>
+    <div class="col-auto my-1">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter(($event))"/>
+      </mat-form-field>
+    </div>
+  </div>
+<div class="row mb-2">
+  <div class="col d-flex">
+     <div class="m-1">
+       <mat-form-field appearance="fill">
+    <mat-label>Select Role</mat-label>
+    <mat-select [formControl]="selectRoleControl">
+      <mat-option *ngFor="let item of roleMasterList" [value]="item.role_id">{{item.role_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+     </div>
+     <div class="m-1">
+        <mat-form-field appearance="fill">
+    <mat-label>User Name or NSRS ID</mat-label>
+    <input matInput [formControl]="userNameNSRSIDControl" />
+  </mat-form-field>
+     </div>
+     <div class="m-1">
+        <button 
+  type="button" 
+  (click)="submitSearch()" 
+  mat-flat-button 
+  [disabled]="!selectRoleControl.value || !userNameNSRSIDControl.value"
+  class="bg-blue text-white text-uppercase min-height-btn">
+    Submit
+  </button>
+     </div>
+     <div class="m-1">
+        <button 
+  type="button" 
+  (click)="reset()" 
+  mat-flat-button 
+  class="border text-uppercase min-height-btn">
+    Reset
+  </button>
+     </div>
+
+  </div>
+  <div class="col-auto">
+      <button [disabled]="!tableDataSource.length" 
+  type="button" 
+  mat-flat-button 
+  class="bg-blue text-white text-uppercase min-height-btn"
+  (click)="openDialog()"
+  >
+    Add+
+  </button>
+  </div>
+</div>
+  <div class="table-responsive mt-3 min-table">
+    <table mat-table [dataSource]="dataSource" class="w-100 table-striped">
+      <ng-container matColumnDef="sln">
+        <th mat-header-cell *matHeaderCellDef>S.NO.</th>
+        <td mat-cell *matCellDef="let rowData;let i=index">{{i+1}}</td>
+      </ng-container>
+      <ng-container matColumnDef="roleName">
+        <th mat-header-cell *matHeaderCellDef>ROLE NAME</th>
+        <td mat-cell *matCellDef="let rowData">{{rowData.role_name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef>FULL NAME</th>
+        <td mat-cell *matCellDef="let rowData">{{rowData.user_display_name}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="tableColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns:tableColumn"></tr>
+    </table>
+  </div>
+</div>
+
+<ng-template #addRoleDialog>
+  <form>
+      <div class="container-fluid px-0">
+            <div class="row justify-content-between align-items-center mb-2 pb-2 border-bottom ">
+              <div class="col">
+                <span class="main-heading-one fw-bold">Select Role</span>
+              </div>
+            <div class="col-auto">
+               <button type="button" mat-flat-button (click)="closeDialog()">
+        <mat-icon >close</mat-icon>
+      </button>
+            </div>
+    </div>
+   <div class="row">
+    <div class="col-md-6 col-12 my-1">
+       <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Select Role</mat-label>
+      <mat-select [formControl]="dialogRoleControl" (valueChange)="changeDialogRole($event)">
+        <mat-option *ngFor="let item of filterRoleIdsList" [value]="item.role_id">{{item.role_name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+   
+    </div>
+    <div class="col-md-6 col-12 my-1">
+       <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Select Sports/Category</mat-label>
+      <mat-select [formControl]="dialogSportCatControl">
+        <mat-option *ngFor="let item of dialogSportCatList" [value]="item.sport_detail_id">{{item.sport_display_name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+   </div>
+    <div class="text-center mt-3">
+        <button (click)="submitFormDialog()"
+        [disabled]="!dialogRoleControl.value || !dialogSportCatControl.value"
+        type="button" 
+        mat-flat-button 
+        class="bg-blue text-white h-100 ms-2 text-uppercase min-height-btn"
+        >
+          Submit
+        </button>
+    </div>
+      </div>
+  </form>
+</ng-template>
+
+<ng-container *ngIf="loader">
+  <app-loader></app-loader>
+</ng-container>
+
+

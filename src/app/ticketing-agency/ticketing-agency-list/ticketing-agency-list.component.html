@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-between py-3">
+    <div class="col-auto">
+      <h5 class="fw-bold text-uppercase mb-0">AGENCY DASHBOARD</h5>
+    </div>
+  </div>
+  <hr class="custom-hr row" />
+  <div class="row my-4 font-fam">
+    <div class="col-12">
+      <mat-tab-group [selectedIndex]="activeIndexTab" (selectedTabChange)="onTabChanged($event)">
+        <mat-tab label="Pending Bookings">
+          <app-ticketing-agency-list-pending-booking *ngIf="!isLoading" [proposalListData]="proposalList" (selectedTabIndex)="pendingBookingTab($event)"></app-ticketing-agency-list-pending-booking>
+        </mat-tab>
+        <mat-tab label="Confirmed Bookings">
+          <app-ticketing-agency-list-confirm-booking *ngIf="!isLoading" [proposalListData]="proposalList"></app-ticketing-agency-list-confirm-booking>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="isLoading"></app-loader>

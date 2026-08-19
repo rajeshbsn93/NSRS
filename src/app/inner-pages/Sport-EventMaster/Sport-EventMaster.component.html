@@ -1,0 +1,143 @@
+<div class="athlete">
+  <div class="filterdata">
+    <div class="filterTop">
+      <div class="row align-items-center justify-content:between mt-3">
+        <div class="col-auto">
+          <h5 class="fw-bold text-uppercase">EVENTS</h5>
+        </div>
+        <div class="col text-end">
+          <div class="row justify-content-end">
+            <!-- <div class="col-auto leftsec d-flex align-items-center">
+                <button type="button" (click)="creatEvent()" class="btn btn-lightblue px-3 ms-2">Add+</button>
+            </div> -->
+            <div class="col-auto rightsec d-flex align-items-center">
+              <div class="exports">
+                <select class="form-control" (ngModelChange)="selectChange($event)" [(ngModel)]="docType">
+                  <option disabled selected="selected">Export</option>
+                  <option value="excel">Excel</option>
+                  <option value="pdf">PDF</option>
+                </select>
+              </div>
+              <div class="searchInput ms-2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="form-control" (keyup)="applyFilter($event)" placeholder="Search.." #input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filterBottom mb-3">
+      <form [formGroup]="eventtFilterForm">
+        <div class="row gx-3 align-items-center flex-wrap">
+          <div class="col">
+            <select class="form-control" formControlName="discipline">
+              <option value="" selected>Discipline</option>
+              <option *ngFor="let sportData of sportList" [value]="sportData.sport_name">{{sportData.sport_name}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="gender_category">
+              <option value="">Gender Category</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" formControlName="event_type">
+              <option value="" selected>Event Type</option>
+              <option  value="Individual Event">Individual</option>
+              <option value="Double's Event">Doubles</option>
+              <option value="Team Event">Team</option>
+              
+            </select>
+          </div>
+          <!-- <div class="col">
+            <select class="form-control" formControlName="age_category">
+              <option value="" selected>Age Category</option>
+              <option value="Junior">Junior</option>
+              <option value="Senior">Senior</option>
+            </select>
+          </div> -->
+          <div class="col-auto">
+            <button type="submit" (click)="filterData()" class="btn btn-lightblue px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <div class="col-auto">
+            <a href="javascript:void(0)" class="btn btn-lightblue  px-3"><i
+                class="icon-sound-module-line mt-1 d-block"></i></a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-responsive position-relative">
+    <!-- <div class="example-loading-shade" *ngIf="isloading">
+      <mat-spinner *ngIf="isloading"></mat-spinner>
+    </div> -->
+    <table mat-table matTableExporter id="eventMasterTable" #exporter="matTableExporter" [dataSource]="dataSource" class="w-100 table-striped" matSort>
+
+      <ng-container matColumnDef="event_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="event_name" class=" col-5 col-lg-4"> Event Name</th>
+        <td mat-cell *matCellDef="let row"> {{row.event_name}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="sport">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="sport">Discipline</th>
+        <td mat-cell *matCellDef="let row"> {{row.sport}} </td>
+      </ng-container>
+   
+      <ng-container matColumnDef="gender_category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="gender_category">Gender Category </th>
+        <td mat-cell *matCellDef="let row"> {{row.gender_category}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="event_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="event_type">Event Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.event_type}} </td>
+      </ng-container>
+  
+      <!-- <ng-container matColumnDef="age_category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="age_category" > Age Category </th>
+        <td mat-cell *matCellDef="let row">{{row.age_category}}</td>
+      </ng-container> -->
+      
+      <!-- <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>  Actions </th>
+        <td mat-cell *matCellDef="let row,let i=index">
+          <a href="javascript:void(0)" (click)="deleteEvent(row)" class="text-center d-inline-block"><i class="fa-solid fa-trash-can text-danger"></i>
+            <span class="d-block">Delete <br/> Event</span>
+          </a>
+        </td>
+      </ng-container> -->
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell text-center" colspan="10"> <span class="noDataFound"> No Data Found </span></td>
+      </tr>
+    </table>    
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+
+<ng-template #deletetournament let-modal>
+  <div class="modal-body tagcommonModal deleteCommonModal">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="titleTxt">
+      <h4 class="text-center fw-bold">{{deleteEventMasterData.event_name}} ({{deleteEventMasterData.sport}})</h4>
+    </div>
+    <div class="text-center mt-3 pt-lg-2">
+      <p>Please confirm if you want delete this Event!</p>
+    </div>
+    <div class="text-center pb-3">
+      <button type="button" class="btn btn-lightblue me-2 px-3 me-sm-3 me-lg-4"
+        (click)="modal.close('Save click')">CANCEL</button>
+      <button type="button" class="btn btn-lightblue px-3" (click)="confirmDelete()">CONFIRM</button>
+    </div>
+  </div>
+</ng-template>
+<app-loader *ngIf="innerLoader"></app-loader>
+<app-loader *ngIf="innerLoaderEventList"></app-loader>

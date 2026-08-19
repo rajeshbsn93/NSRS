@@ -1,0 +1,57 @@
+<div class="education-popup">
+    <div class="modal-body">
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss(false)"></button>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" data-bs-toggle="tab"
+            data-bs-target="#current-athlete" type="button">Current/Previous Athlete</button>
+        </div>
+      </nav>
+  
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="current-athlete">
+          <div class="d-flex justify-content-between align-items-center my-2">
+            <h5></h5>
+            <!-- <a *ngIf="readonlydobEdit" href="javascript:void(0)" class="btn btn-edit">EDIT</a> -->
+          </div>
+          <form [formGroup]="coachForm">
+            <div class="row">
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>NSRS ID</mat-label>
+                  <input matInput (blur)="changeNSRS($event)" formControlName="nsrs_id">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Athlete Name</mat-label>
+                  <input matInput formControlName="athleteName">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill" (click)="picker.open()">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [max]="minStartDate" (keypress)="false" formControlName="fromDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <mat-form-field class="w-100" appearance="fill" (click)="picker2.open()">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="picker2" [min]="coachForm.get('fromDate')?.value" (keypress)="false" formControlName="toDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>               
+              </div>
+              <div class="col-sm-6 col-lg-3 mb-3">
+                <button class="btn btn-blue px-lg-4 w-100" (click)="save()" [disabled]="!coachForm.valid">Save</button>
+              </div>
+            </div>         
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<app-loader *ngIf="loader"></app-loader>

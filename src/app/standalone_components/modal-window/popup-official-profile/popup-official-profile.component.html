@@ -1,0 +1,173 @@
+<div class="modal-body pt-0">
+    <div class="profileModal-wraper">
+        <div class="d-flex justify-content-end pt-2">
+            <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 d-flex">
+                <div class="left-col w-100">
+                    <figure class="text-center mb-0">
+                        <img [src]="baseUrl + officialProfilePopupDetailsData?.documentInfo?.official_image_path" alt="">
+                        <figcaption>{{officialProfilePopupDetailsData?.personalInfo?.name}}</figcaption>
+                    </figure>
+                    <div class="profile-lbl text-center">
+                        <!-- <span>{{officialProfilePopupDetailsData?.personalInfo?.kitd_unique_id}}</span>
+                        <span>{{officialProfilePopupDetailsData?.personalInfo?.sport_name}}</span> -->
+                        <span>{{academyCoachDetailPopUpData?.kitd_unique_id ? academyCoachDetailPopUpData?.kitd_unique_id : 'N/A'}}</span>
+                        <span>{{academyCoachDetailPopUpData?.designation ? academyCoachDetailPopUpData?.designation :'N/A'}}</span>
+                        <span>{{academyCoachDetailPopUpData?.sport_name ? academyCoachDetailPopUpData?.sport_name :'N/A'}}</span>
+                    </div>
+                    <!-- <div class="financial-lbl text-center mt-3" *ngIf="officialProfilePopupDetailsData?.dashboardData?.currentFASchemes !=''">
+                        <ng-container *ngFor="let item of officialProfilePopupDetailsData?.dashboardData?.currentFASchemes.split(',')">
+                            <span>{{item}}</span>
+                        </ng-container>                        
+                    </div> -->
+                    <ul class="list-unstyled list-info mt-3 mt-lg-4">
+                        <li>
+                            <div class="d-inline-flex align-items-center">
+                                <div class="iconbox"><i class="icon-sportstrainingcenter"></i></div>
+                                <h5>
+                                    <small class="d-block">CURRENT ACADEMY</small>
+                                    {{officialProfilePopupDetailsData?.dashboardData?.currentAcademy}}
+                                </h5>
+                            </div>
+                            <div><img src="assets/images/svg-icons/veryfied.svg" alt=""></div>
+                        </li>
+                        <li>
+                            <div class="d-inline-flex align-items-center">
+                                <div class="iconbox"><i class="icon-coach"></i></div>
+                                <h5>
+                                    <small class="d-block">CURRENT TRAINEES</small>
+                                    {{officialProfilePopupDetailsData?.dashboardData?.totalCurrentTrainee ? officialProfilePopupDetailsData?.dashboardData?.totalCurrentTrainee : 'NA'}}
+                                </h5>
+                            </div>
+                            <div *ngIf="officialProfilePopupDetailsData?.dashboardData?.totalCurrentTrainee !=null || officialProfilePopupDetailsData?.dashboardData?.totalCurrentTrainee !=''"><img src="assets/images/svg-icons/veryfied.svg" alt=""></div>
+                        </li>
+                        <li>
+                            <div class="d-inline-flex align-items-center">
+                                <div class="iconbox"><i class="icon-DOB"></i></div>
+                                <h5>
+                                    <small class="d-block">DATE OF BIRTH</small>
+                                    {{officialProfilePopupDetailsData?.personalInfo?.date_of_birth | date: 'dd-MM-yyyy'}}
+                                </h5>
+                            </div>
+                            <div><img src="assets/images/svg-icons/veryfied.svg" alt=""></div>
+                        </li>
+                        <li>
+                            <div class="d-inline-flex align-items-center">
+                                <div class="iconbox"><img src="assets/images/aadhaar.svg" alt=""></div>
+                                <h5>
+                                    <small class="d-block">AADHAAR</small>
+                                </h5>
+                            </div>
+                            <!-- <div *ngIf="officialProfilePopupDetailsData?.dashboardData?.isAadhaarVerified; else notAdhar"><img src="assets/images/svg-icons/veryfied.svg" alt=""></div> -->
+                            <div *ngIf="officialProfilePopupDetailsData?.dashboardData?.isAadharVerified; else notAadhar"><img src="assets/images/svg-icons/veryfied.svg" alt=""></div>
+                            <ng-template #notAadhar><mat-icon class="material-symbols-outlined text-danger" fontIcon="report"></mat-icon></ng-template>
+                        </li>
+                        <li>
+                            <div class="d-inline-flex align-items-center">
+                                <div class="iconbox"><i class="icon-map-pin-line-2"></i></div>
+                                <h5>
+                                    <small class="d-block">STATE</small>
+                                    {{officialProfilePopupDetailsData?.addressInfo?.addressInfoNames?.comm_state_name}} {{officialProfilePopupDetailsData?.addressInfo?.addressInfoId?.comm_pincode}}
+                                </h5>
+                            </div>
+                            <div 
+                            *ngIf="officialProfilePopupDetailsData?.addressInfo?.addressInfoNames?.comm_state_name !=null || officialProfilePopupDetailsData?.addressInfo?.addressInfoNames?.comm_state_name !='' && officialProfilePopupDetailsData?.addressInfo?.addressInfoId?.comm_pincode !=null || officialProfilePopupDetailsData?.addressInfo?.addressInfoId?.comm_pincode !=''"><img src="assets/images/svg-icons/veryfied.svg" alt=""></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#achievement">Achievements</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#trainingInfo">Training Info</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#support">Support</a>
+                    </li>
+                </ul>
+                
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane container active" id="home">
+                        <app-coach-popup-home *ngIf="officialInstanceData?.role_Id ==2 && officialProfilePopupDetailsData" [officialId]="officialInstanceData?.official_detail_id" [officialProfilePopupDetailsData]="this.officialProfilePopupDetailsData" [academyCoachDetailPopUpData]="academyCoachDetailPopUpData"></app-coach-popup-home>
+                        <h2 class="text-center mt-4" *ngIf="officialInstanceData?.role_Id ==103"><strong>Coming Soon</strong></h2>
+                    </div>
+                    <div class="tab-pane container fade" id="achievement">
+                        <app-coach-popup-achievement *ngIf="officialInstanceData?.role_Id ==2" [officialId]="officialInstanceData?.official_detail_id"></app-coach-popup-achievement>
+                        <app-sport-scientist-popup-pfrofile-achievement *ngIf="officialInstanceData?.role_Id ==103"  [officialId]="officialInstanceData?.official_detail_id"></app-sport-scientist-popup-pfrofile-achievement>
+                        <!-- <h2 class="text-center mt-4"><strong>Coming Soon</strong></h2> -->
+                    </div>
+                    <div class="tab-pane container fade" id="trainingInfo">                 
+                        <app-coach-popup-pfrofile-training-info  *ngIf="officialInstanceData?.role_Id ==2" [officialId]="officialInstanceData?.official_detail_id"></app-coach-popup-pfrofile-training-info>
+                        <app-sport-scientist-popup-pfrofile-training-info  *ngIf="officialInstanceData?.role_Id ==103" [officialId]="officialInstanceData?.official_detail_id"></app-sport-scientist-popup-pfrofile-training-info>
+                    </div>
+                    <div class="tab-pane container fade" id="profile">
+                        <div class="row profile-row">
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" (click)="personalDetail()" class="card text-center">
+                                    <span class="icon-box"><i class="icon-user-line"></i></span>
+                                    <h4>Personal Details</h4>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" (click)="communicationAddress()" class="card text-center">
+                                    <span class="icon-box"><i class="icon-map-pin-line-2"></i></span>
+                                    <h4>Address</h4>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" class="card text-center" (click)="officialDocuments()">
+                                    <span class="icon-box"><i class="icon-image-line"></i></span>
+                                    <h4>Photo ID Proof / DOB</h4>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" class="card text-center" (click)="bankInformation()">
+                                    <span class="icon-box"><i class="icon-Bank"></i></span>
+                                    <h4>Bank Information</h4>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" class="card text-center" (click)="openEducationInfoPopup()">
+                                    <span class="icon-box"><i class="icon-book-2-line-1"></i></span>
+                                    <h4>Education Information</h4>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" (click)="mobileEmail()" class="card text-center">
+                                    <span class="icon-box"><i class="icon-mail-line-1"></i></span>
+                                    <h4>Mobile No & Email ID</h4>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-6 item mt-3">
+                                <a href="javascript:void(0)" (click)="sportKittingDetails()" class="card text-center">
+                                    <span class="icon-box"><i class="icon-football-line"></i></span>
+                                    <h4>Sport & Kitting Details</h4>
+                                </a>
+                            </div>                                                        
+                        </div> 
+                    </div>
+                    <div class="tab-pane container fade" id="support">
+                        <!-- <h2 class="text-center mt-4"><strong>Coming Soon</strong></h2> -->
+                        <app-official-popup-profile-support  [player_Id]="officialInstanceData?.official_detail_id"></app-official-popup-profile-support>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loader *ngIf="achievementLoader"></app-loader>
+<app-loader *ngIf="loader"></app-loader>

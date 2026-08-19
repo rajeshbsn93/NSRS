@@ -1,0 +1,354 @@
+/* .branding-table table{
+  border-collapse: collapse;
+}
+::ng-deep tr.mat-header-row{
+  height: 45px !important;
+}
+.branding-table table th{
+  border: 1px solid #dedede;
+  border-color: #fff;
+  vertical-align: middle;
+  text-align: center !important;
+  font-size: 14px;
+}
+.branding-table table td{
+  border: 1px solid #dedede;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 13px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+::ng-deep .branding-table table thead tr th .mat-sort-header-container{
+  justify-content: center !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  padding-left: 10px;
+  padding-right: 10px;
+} */
+::ng-deep .mat-sort-header-arrow {color: #fff;}
+
+.filterRoleInner .form-control{font-size: 14px;}
+
+.equipment-procurement-table .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.equipment-procurement-table .mat-row .mat-cell:last-child {border-right: 0;}
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+.btn-blue {
+  background-color: #1F60AB;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  width: fit-content;
+}
+.titleTxt{
+  padding: 7px 20px;
+  font-size: 12px;
+  border-radius: 3px;
+  font-family: 400;
+  font-family: 'Lato';
+}
+
+
+.inputFileUpload-wraper{justify-content: space-between;padding: 6.3px 10px;}
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;font-size: 11px;font-weight: bold;padding: 5px 20px;
+border-radius: 4px;display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;opacity: 0;width: 100%;left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+:host .eyeIcon{
+  font-family: 'Roboto', sans-serif;
+  }
+
+  .trash-can-equipment{
+    font-size: 18px;
+    color: #dc3545;
+    cursor: pointer;
+}
+.edit-btn-equipment{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.brandingTableTopMargin{
+  margin-top: 1rem;
+}
+
+.training-details-heading{
+  font-size: 15px !important;
+  font-weight: 700;
+  font-family: "Lato" !important;
+  text-transform: uppercase;
+}
+
+
+
+
+ ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 8px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .rdBackButton{
+    margin-bottom:-7px;
+}
+
+.state-wise-link{
+  cursor: pointer;
+}
+::ng-deep .custom-ui-mat  .mat-form-field-flex{
+  height: 32px;
+  font-size: 14px;
+  padding-top: 0px !important;
+}
+::ng-deep .custom-ui-mat .mat-form-field-wrapper{
+  padding: 0px 12px !important;
+  border:1px solid rgb(206, 212, 218) !important;
+  border-radius: 3px !important;
+}
+.custom-ui-btn{
+  height: 32px;
+  font-size: 14px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+/* .branding-table table{
+  border-collapse: collapse;
+}
+::ng-deep tr.mat-header-row{
+  height: 45px !important;
+}
+.branding-table table th{
+  border: 1px solid #dedede;
+  border-color: #fff;
+  vertical-align: middle;
+  text-align: center !important;
+  font-size: 14px;
+}
+.branding-table table td{
+  border: 1px solid #dedede;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 13px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+::ng-deep .branding-table table thead tr th .mat-sort-header-container{
+  justify-content: center !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  padding-left: 10px;
+  padding-right: 10px;
+} */
+::ng-deep .mat-sort-header-arrow {color: #fff;}
+
+.filterRoleInner .form-control{font-size: 14px;}
+
+.equipment-procurement-table .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.equipment-procurement-table .mat-row .mat-cell:last-child {border-right: 0;}
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+.btn-blue {
+  background-color: #1F60AB;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  width: fit-content;
+}
+.titleTxt{
+  padding: 7px 20px;
+  font-size: 12px;
+  border-radius: 3px;
+  font-family: 400;
+  font-family: 'Lato';
+}
+
+
+.inputFileUpload-wraper{justify-content: space-between;padding: 6.3px 10px;}
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;font-size: 11px;font-weight: bold;padding: 5px 20px;
+border-radius: 4px;display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;opacity: 0;width: 100%;left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+:host .eyeIcon{
+  font-family: 'Roboto', sans-serif;
+  }
+
+  .trash-can-equipment{
+    font-size: 18px;
+    color: #dc3545;
+    cursor: pointer;
+}
+.edit-btn-equipment{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.brandingTableTopMargin{
+  margin-top: 1rem;
+}
+
+.training-details-heading{
+  font-size: 15px !important;
+  font-weight: 700;
+  font-family: "Lato" !important;
+  text-transform: uppercase;
+}
+
+
+
+
+ ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 8px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .rdBackButton{
+    margin-bottom:-7px;
+}
+
+.state-wise-link{
+  cursor: pointer;
+}
+::ng-deep .custom-ui-mat  .mat-form-field-flex{
+  height: 32px;
+  font-size: 14px;
+  padding-top: 0px !important;
+}
+::ng-deep .custom-ui-mat .mat-form-field-wrapper{
+  padding: 0px 12px !important;
+  border:1px solid rgb(206, 212, 218) !important;
+  border-radius: 3px !important;
+}
+.custom-ui-btn{
+  height: 32px;
+  font-size: 14px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+/* .branding-table table{
+  border-collapse: collapse;
+}
+::ng-deep tr.mat-header-row{
+  height: 45px !important;
+}
+.branding-table table th{
+  border: 1px solid #dedede;
+  border-color: #fff;
+  vertical-align: middle;
+  text-align: center !important;
+  font-size: 14px;
+}
+.branding-table table td{
+  border: 1px solid #dedede;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 13px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+::ng-deep .branding-table table thead tr th .mat-sort-header-container{
+  justify-content: center !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  padding-left: 10px;
+  padding-right: 10px;
+} */
+::ng-deep .mat-sort-header-arrow {color: #fff;}
+
+.filterRoleInner .form-control{font-size: 14px;}
+
+.equipment-procurement-table .mat-row .mat-cell {border-right: 1px solid #F5F5F5;}
+.equipment-procurement-table .mat-row .mat-cell:last-child {border-right: 0;}
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type{padding-left: 24px;}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type{padding-right: 24px;}
+.btn-blue {
+  background-color: #1F60AB;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  width: fit-content;
+}
+.titleTxt{
+  padding: 7px 20px;
+  font-size: 12px;
+  border-radius: 3px;
+  font-family: 400;
+  font-family: 'Lato';
+}
+
+
+.inputFileUpload-wraper{justify-content: space-between;padding: 6.3px 10px;}
+.inputFileUpload-wraper .uploadLevel{background-color: #F1F1F1;font-size: 11px;font-weight: bold;padding: 5px 20px;
+border-radius: 4px;display: inline-block;cursor: pointer;}
+.inputFileUpload-wraper .inputUpload{position: absolute;opacity: 0;width: 100%;left: 0;}
+.inputFileUpload-wraper a{color: inherit;}
+:host .eyeIcon{
+  font-family: 'Roboto', sans-serif;
+  }
+
+  .trash-can-equipment{
+    font-size: 18px;
+    color: #dc3545;
+    cursor: pointer;
+}
+.edit-btn-equipment{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.brandingTableTopMargin{
+  margin-top: 1rem;
+}
+
+.training-details-heading{
+  font-size: 15px !important;
+  font-weight: 700;
+  font-family: "Lato" !important;
+  text-transform: uppercase;
+}
+
+
+
+
+ ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 8px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .rdBackButton{
+    margin-bottom:-7px;
+}
+
+.state-wise-link{
+  cursor: pointer;
+}
+::ng-deep .custom-ui-mat  .mat-form-field-flex{
+  height: 32px;
+  font-size: 14px;
+  padding-top: 0px !important;
+}
+::ng-deep .custom-ui-mat .mat-form-field-wrapper{
+  padding: 0px 12px !important;
+  border:1px solid rgb(206, 212, 218) !important;
+  border-radius: 3px !important;
+}
+.custom-ui-btn{
+  height: 32px;
+  font-size: 14px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}

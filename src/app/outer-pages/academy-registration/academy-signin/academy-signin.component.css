@@ -1,0 +1,28 @@
+.academySignin{
+    padding: 114px 0 68px;
+    background: url(../../../../assets/images/login-bg.jpg)no-repeat center;
+    background-size: cover;color: #707070;
+    }
+    .academySignin h1{color: #707070;font-size: 31px;font-weight: 600;font-family: 'lato', sans-serif;}
+    
+    .academySignin .card{padding: 60px 112px;
+    box-shadow: 0 3px 25px #00000021;
+    border-radius: 15px;max-width: 912px;margin: 0 auto;}
+    .academySignin .form-control{border-color: #ECECEC;height: 50px;outline: none;box-shadow: none;}
+    .academySignin .form-control::placeholder{color: #D5D5D5;}
+
+    .academySignin ::ng-deep mat-select{font-size: 14px;}
+
+    /*******sweetAlert Custom Css for Generate NSRS Id********/
+    ::ng-deep .htmlcontainer-academysignin{margin: 0;
+        text-align: left;}
+    ::ng-deep .htmlcontainer-academysignin h3{font-size: 16px;
+        background: #1f60ab;
+        color: #fff;border-radius: 5px 5px 0 0;
+        padding: 12px;margin-bottom: 20px;text-transform: uppercase;}
+    ::ng-deep .htmlcontainer-academysignin p{display: flex;
+        justify-content: space-between;
+        font-size: 14px;padding:  0 12px;}
+ ::ng-deep .htmlcontainer-academysignin table{width: 100%;
+    font-size: 14px;border-collapse: collapse;}
+    ::ng-deep .htmlcontainer-academysignin table tr td{padding: 8px;width: 50%;}

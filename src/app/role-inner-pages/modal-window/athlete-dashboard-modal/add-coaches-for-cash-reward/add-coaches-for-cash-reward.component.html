@@ -1,0 +1,74 @@
+<div class="modal-body tagcommonModal language-modal">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(false)"></button>
+  <div class="titleTxt d-flex flex-wrap justify-content-between align-items-center">
+    <h3><!--<span class="titleIcon"><i class="icon-kicAttendanceHistory"></i></span>-->Add Coach</h3>
+    <!-- <a *ngIf="form.disabled" href="javascript:void(0)" class="btn btn-edit">EDIT</a> -->
+  </div>
+  <hr />
+  <form [formGroup]="addCoachForm">
+    <div class="row">
+      <div class="col-md-4 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100 custom-input">
+          <mat-label>Select NSRS ID</mat-label>
+          <mat-select formControlName="nsrs_id" (valueChange)="nsrsidChange($event)" (opened)="onInsttNameSelectOpen()">
+            <mat-option value="null" class="custom-select-option p-2" disabled>
+              <div class="searchInput">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input 
+                  #insttSearch
+                  [formControl]="insttNameSearch" 
+                  (keydown.space)="$event.stopPropagation()"
+                  (blur)="onInsttSearchBlur()"
+                  class="form-control h-100 w-100" 
+                  placeholder="Search.." 
+                  type="text"
+                />
+              </div>
+            </mat-option>
+            <mat-optgroup *ngIf="filterAthleteACTCCoachData?.length == 0">
+              <div>No results found!</div>
+            </mat-optgroup>
+            <mat-option
+              *ngFor="let option of filterAthleteACTCCoachData" 
+              [value]="option.srNo"
+            >
+            {{option.coachName}}( {{option.coach_kitd_unique_id}} )
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <div *ngIf="addCoachForm.get('nsrs_id')?.touched && addCoachForm.get('nsrs_id')?.errors?.['required']">
+          <div class="me-2 text-danger">NSRS ID Required</div>
+        </div> -->
+      </div>
+      <div class="col-md-4 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100 custom-input">
+          <mat-label>Coach</mat-label>
+          <input matInput formControlName="coach" type="text">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100 custom-input">
+          <mat-label>Period</mat-label>
+          <input matInput formControlName="period" type="text">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100 custom-input">
+          <mat-label>Level</mat-label>
+          <input matInput formControlName="level" type="text">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-12 mb-3">
+        <mat-form-field appearance="fill" class="w-100 custom-input">
+          <mat-label>Mapping Type</mat-label>
+          <input matInput formControlName="mapping_type" type="text">
+        </mat-form-field>
+      </div>
+      <div class="col-12 text-center">
+        <hr>
+        <button type="button" (click)="submit()" class="btn btn-blue px-4">Save</button>
+      </div>
+    </div>
+    </form>
+</div>
+<app-loader *ngIf="loader"></app-loader>
